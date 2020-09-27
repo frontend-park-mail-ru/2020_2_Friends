@@ -10,10 +10,10 @@
 
 ## Менторы
 - [Гавриленко Роман](https://github.com/gavroman)
-- [Место вакантно](https://github.com/)
+- [Рыбаков Дмитрий](https://github.com/bulletmys)
 
 ## Ссылка на проект
 - Тут будет деплой
 
 ## Репозиторий бекенда
-- [Завести](https://github.com/go-park-mail-ru/)
+- [Ссылка на репозиторий](https://github.com/go-park-mail-ru/2020_2_Friends)
