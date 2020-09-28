@@ -1,0 +1,24 @@
+{
+  "name": "2020_2_friends",
+  "version": "1.0.0",
+  "description": "## Репозиторий фронтенда",
+  "main": "index.js",
+  "dependencies": {
+    "browser-sync": "^2.26.12",
+    "static-livereload": "^0.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "browser-sync start --server --files 'static/*.css, static/*.html, static/assets/*.png'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scotfarel/2020_2_Friends.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Scotfarel/2020_2_Friends/issues"
+  },
+  "homepage": "https://github.com/Scotfarel/2020_2_Friends#readme"
+}
