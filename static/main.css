@@ -3,11 +3,12 @@
     padding-top: 20px;
     padding-right: 10px;
     display: flex;
-    justify-content: safe center;
+    justify-content: center;
 }
 
 .store_label {
     padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,6 +27,10 @@
 .store_stats {
     display: flex;
     justify-content: center;
+}
+
+.vendor_headline {
+    padding-left: 40px;
 }
 
 .foodimg {
@@ -54,7 +59,7 @@ img {
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 15px;
-    vertical-align: middle;
+    display: block;
 }
 
 .product {
@@ -67,7 +72,6 @@ img {
     text-align: center;
     line-height: 14px;
     border-radius: 7px;
-    /* box-shadow: 0px 0px 5px 1px #1111119a; */
 }
 
 button {
@@ -76,7 +80,7 @@ button {
     width: 100px;
     border-radius: 5px;
     color: #ffffff;
-    background-color: #6da762;
+    background-color: #72a368cb;
     text-shadow: 1px 1px #000000;
     margin-left: 20px;
     border-width: 1px;
