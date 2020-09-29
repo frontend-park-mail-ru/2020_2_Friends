@@ -4,8 +4,7 @@
   "description": "## Репозиторий фронтенда",
   "main": "index.js",
   "dependencies": {
-    "browser-sync": "^2.26.12",
-    "static-livereload": "^0.1.4"
+    "browser-sync": "^2.26.12"
   },
   "devDependencies": {},
   "scripts": {
