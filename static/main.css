@@ -1,0 +1,30 @@
+:root {
+    --first-color: #DC1E0B;
+    --second-color: #EAF4CB;
+    --third-color: #5D044C;
+    --fourth-color: #0f2027;
+    --fifth-color: #d8e9a2;
+    --sixth-color: #28590C;
+    background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.1em;
+    color: var(--sixth-color);
+}
+
+p,
+h2,
+h1 {
+    color: var(--third-color);
+}
+
+p {
+    font-size: 125%;
+}
+
+a {
+    font-size: 125%;
+    color: var(--sixth-color);
+}

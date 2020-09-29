@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Стили</title>
+    <link rel="stylesheet" href="/static/profile.css">
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>
+    <div class="profile_page_container-column">
+        <div class="back_to_restaurants backround_gradient">
+            <a href="#">Все рестораны</a>
+        </div>
+        <div class="profile_page_container">
+            <div class="profile_page_data_container backround_gradient">
+
+                <div class="personal-info">
+                    <h1>Личные данные</h1>
+                    <div class="row_container">
+                        <div class="point_balance"></div>
+                        <p>Количество баллов</p>
+                        <a href="#">Еда за баллы</a>
+                    </div>
+                    <div class="row_container">
+                        <h2>Профиль</h2>
+                        <div class="form__group">
+                            <input type="text" class="form__input" id="name" placeholder="Имя" required="" />
+                            <label for="name" class="form__label">Имя</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="text" class="form__input" id="name" placeholder="Телефон" required="" />
+                            <label for="name" class="form__label">Телефон</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="text" class="form__input" id="name" placeholder="Email" required="" />
+                            <label for="name" class="form__label">Email</label>
+                        </div>
+                    </div>
+                    <div class="row_container">
+                        <h2>Адреса</h2>
+                        <ul class="">
+                            <li class="widget-item__container">
+                                <p>Улица пушкина дом кукушниа</p>
+                            </li>
+                            <li class="widget-item__container">
+                                <p>Мой адрес - Советский Союз!)))))))))))))</p>
+                            </li>
+                            <li class="widget-item__container">
+                                <p>Идите.. . на стук сердца.. . Не слышите ?..Тогда, зачем вам мой адрес ?..)</p>
+                            </li>
+                            <li class="widget-item__container">
+                                <p>Обычно в Москве, но последнее время все чаще в интернете</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="row_container">
+                        <h2>Настройки</h2>
+                        <div class="profile-personal__switch">
+                            <input type="checkbox" name="switch" class="input--switch">
+                            <div class="profile-personal__switch-text">
+                                <p>Уведомлять об акциях по email</p>
+                            </div>
+                        </div>
+                        <div class="profile-personal__switch">
+                            <input type="checkbox" name="switch" class="input--switch">
+                            <div class="profile-personal__switch-text">
+                                <p>Уведомлять состоянии заказов по смс</p>
+                            </div>
+                        </div>
+                        <div class="profile-personal__switch">
+                            <input type="checkbox" name="switch" class="input--switch">
+                            <div class="profile-personal__switch-text">
+                                <p>Уведомлять об акциях по смс</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile_page_right_column_container backround_gradient">
+                <ul class="">
+                    <li class="widget-item__container">
+                        <a href="/profile/personal" class="widget-item__link">
+                            <p>Личные данные</p>
+                        </a>
+                    </li>
+                    <li class="widget-item__container">
+                        <a href="/profile/addresses" class="widget-item__link">
+                            <p>Адреса доставки</p>
+                        </a>
+                    </li>
+                    <li class="widget-item__container">
+                        <a href="#" class="widget-item__link">
+                            <p>Мои заказы</p>
+                        </a>
+                    </li>
+                    <li class="widget-item__container">
+                        <a href="/profile/mydiscounts" class="widget-item__link">
+                            <p>Мои скидки</p>
+                        </a>
+                    </li>
+                    <li class="widget-item__container">
+                        <a href="/logout" class="widget-item__link">
+                            <p>Выход</p>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+</body>
+
+</html>
