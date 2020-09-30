@@ -1,76 +1,105 @@
-body {
-    background-color: gray;
-}
+.login {
+    height: 45px;
+    width: auto;
+    font-size: 28px;
 
-button {
-    height: 65px;
-    width: 200px;
-    font-size: 30px;
     padding: 0 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    outline: none;
 
     border-radius: 15px;
+    border-style: none;
     border: none;
-    background-color: #97CE52;
+    background-color: #28a745;
     color: #ffffff;
     cursor: pointer;
 }
 
-button:hover {
+.col-container {
+    background-color: #f5fafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 10px;
+
+    box-shadow: 1px 2px 10px 1px #c5c5c5;
+    padding: 12px 20px 20px;
+}
+
+.signup {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.link {
+    font-size: 18px;
+    color: #0f7afc;
+    border-bottom-color: rgba(15, 122, 252, 0.2);
+    text-decoration:none
+
+}
+
+
+.login:hover {
     background-color: #218555;
 }
 
-button:active {
+.login:active {
     background-color: #218555;
 }
 
-button[disabled] {
+.login[disabled] {
     opacity: 0.48;
     pointer-events: none;
     user-select: none;
 }
 
-button.secondary {
+.login.secondary {
     background: #c5c5c5;
 }
 
-input {
-    height: 50px;
-    font-size: 24px;
+.input_text {
+    height: 35px;
+    font-size: 22px;
     padding: 0 10px;
+    margin-bottom: 5px;
 
+    border-width: 1px;
     border-radius: 15px;
-    border: solid;
-    border-color: #97CE52;
+    border:0;
+    box-shadow: 1px 2px 10px 1px #d6dad6;
+    border-color: #28a745;
     outline: 0;
+
+    margin-top: 5px;
 }
 
-form {
+.input_text[type=text] {
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  }
+
+
+
+.login_page {
     display: flex;
     flex-direction: column;
-    width: 550px;
-    border-radius: 15px;
-    background-color: white;
+    align-items: center;
 
-    padding: 20px 20px 20px;
+    font-family: sans-serif;
+
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-    border: 1px dotted #63476f;
-    box-shadow: 0 0 0px 1000px #edf8f6 inset,
-                0 0 0px 4px #edf8f6;
-}
-
-input:focus,
-button:focus,
-a:focus {
-    box-shadow: 0 0 0 2px #FFFFFF,
-                0 0 0 4px #FBD1DC;
-    outline: none;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
+.input_forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 a {
@@ -85,39 +114,19 @@ a:hover {
     color: red;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 320px;
-
-    box-shadow: 1px 2px 10px 0px #c5c5c5;
-    padding: 12px 20px 20px;
-}
-
-form main {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-form main img {
+.log_image {
     width: 320px;
     height: 320px;
     text-align: center;
+    padding-bottom: 10px;
 }
 
-form main > * {
+.registarion_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+
     margin-bottom: 20px;
-}
-
-form main a {
-    text-align: center;
-}
-
-form main > *:last-child {
-    margin-bottom: 0;
-}
-
-form footer {
-    text-align: center;
+    margin-top: 20px;
 }
