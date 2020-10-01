@@ -4,20 +4,23 @@
   "description": "## Репозиторий фронтенда",
   "main": "index.js",
   "dependencies": {
-    "browser-sync": "^2.26.12"
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "browser-sync start --server --files 'static/*.css, static/*.html, static/assets/*.png'"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Scotfarel/2020_2_Friends.git"
+    "url": "git+https://github.com/frontend-park-mail-ru/2020_2_Friends.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Scotfarel/2020_2_Friends/issues"
+    "url": "https://github.com/frontend-park-mail-ru/2020_2_Friends/issues"
   },
-  "homepage": "https://github.com/Scotfarel/2020_2_Friends#readme"
+  "homepage": "https://github.com/frontend-park-mail-ru/2020_2_Friends#readme"
 }
