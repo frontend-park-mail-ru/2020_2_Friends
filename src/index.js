@@ -1,4 +1,4 @@
-import {LoginController} from './controller/loginController.js';
+import { LoginController } from './controller/loginController.js';
 
 const root = document.getElementById('root');
 

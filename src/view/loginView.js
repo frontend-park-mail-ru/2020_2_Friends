@@ -1,12 +1,11 @@
-import {renderLoginView} from '/template/loginViewTemplate.js';
+import { renderLoginView } from '../template/loginViewTemplate.js';
 
 export class LoginView {
-    
-    constructor(root) {
+    constructor (root) {
         this.root = root;
     }
 
-    render() {
+    render () {
         const template = renderLoginView();
         const loginHTML = template();
 
