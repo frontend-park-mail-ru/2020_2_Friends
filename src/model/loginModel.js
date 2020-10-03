@@ -1,10 +1,5 @@
 export class LoginModel {
-
-    constructor() {
-
-    }
-  
-    doLogin(input) {
+    doLogin (input) {
 
     }
-  }
+}

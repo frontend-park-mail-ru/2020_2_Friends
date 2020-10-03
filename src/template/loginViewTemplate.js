@@ -1,5 +1,5 @@
 export const renderLoginView = () => {
-    return Handlebars.compile(`
+    return window.Handlebars.compile(`
         <div class="login_page">
             <div class="col-container">
                 <img src="assets/img/logo.png" class="log_image">
