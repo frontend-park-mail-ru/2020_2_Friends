@@ -31,9 +31,7 @@
   "homepage": "https://github.com/frontend-park-mail-ru/2020_2_Friends#readme",
   "husky": {
     "hooks": {
-      "pre-commit": "npx eslint ./",
-      "pre-push": "npx eslint ./",
-      "...": "..."
+      "pre-commit": "npx eslint ./"
     }
   }
 }
