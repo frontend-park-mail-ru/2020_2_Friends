@@ -131,7 +131,7 @@
     outline: none;
 }
 
-.js-submit-login {
+.submit_button {
     height: 45px;
     width: auto;
     font-size: 28px;
@@ -175,25 +175,25 @@
 
 }
 
-.js-submit-login:hover {
+.submit_button:hover {
     background-color: #218555;
 }
 
-.js-submit-login:active {
+.submit_button:active {
     background-color: #218555;
 }
 
-.js-submit-login[disabled] {
+.submit_button[disabled] {
     opacity: 0.48;
     pointer-events: none;
     user-select: none;
 }
 
-.js-submit-login.secondary {
+.submit_button.secondary {
     background: #c5c5c5;
 }
 
-.js-input-login, .js-input-password {
+.input_text {
     height: 35px;
     font-size: 22px;
     padding: 0 10px;
@@ -209,7 +209,7 @@
     margin-top: 5px;
 }
 
-.js-input-login[type=text], .js-input-password[type=text] {
+.input_text[type=text] {
     padding:10px;
     border:0;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
