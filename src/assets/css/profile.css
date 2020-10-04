@@ -5,8 +5,8 @@
     justify-content: space-around;
     align-items: baseline;
     /* borders */
-    padding: 10px;
-    border: 10px;
+    padding: 2em;
+    border: 2em;
 }
 
 .profile_page_data_container {
@@ -16,11 +16,8 @@
     justify-content: space-between;
     align-items: center;
     /* borders */
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10em;
-    margin: 20px;
+    padding-top: 2em 2em 2em 10em;
+    margin: 5em;
     background-color: var(--fifth-color);
     border-bottom-left-radius: 6em;
     border-top-right-radius: 6em;
@@ -34,8 +31,8 @@
     align-items: baseline;
     flex: 1;
     /* borders */
-    padding: 10px;
-    border: 10px;
+    padding: 2em;
+    border: 2em;
     background-color: var(--fifth-color);
     border-top-left-radius: 5em;
     border-bottom-right-radius: 5em;
@@ -46,7 +43,7 @@
     padding: 2em;
 }
 
-.widget-item__container {
+.widget_item_container {
     display: block;
     padding: 0.5em;
     margin: 0.5em;
@@ -65,10 +62,10 @@
     flex-direction: column;
     justify-content: flex-start;
     /* borders */
-    padding: 10px;
+    padding: 2em;
 }
 
-.profile-personal_container-label {
+.profile-personal_container_label {
     /* position */
     display: flex;
     flex-direction: column;
@@ -76,7 +73,7 @@
     align-items: baseline;
 }
 
-.profile-personal__switch {
+.profile-personal_switch {
     /* position */
     display: flex;
     flex-direction: row;
@@ -98,38 +95,21 @@
     border-bottom-right-radius: 5em;
 }
 
-.form__group {
+.form_group {
     margin: 0.5em;
 }
 
-.form__label {
-    font-size: 1.2rem;
-    margin-left: 2rem;
-    margin-top: 0.7rem;
-    display: block;
-    transition: all 0.3s;
-    transform: translateY(0rem);
-}
-
-.form__input {
+.form_input {
     color: #5D044C;
     font-size: 1.2rem;
     margin: 0 auto;
     padding: 1.5rem 2rem;
     border-radius: 0.4rem;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     border: none;
     width: 90%;
     display: block;
     border-bottom: 0.3rem solid transparent;
-    transition: all 0.3s;
-}
-
-.form__input:placeholder-shown+.form__label {
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transform: translateY(-4rem);
-    transform: translateY(-4rem);
 }
 
 .backround_gradient {
