@@ -8,7 +8,7 @@
     background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
 }
 
-a {
+.reference {
     text-decoration: none;
     font-size: 1.1em;
     color: var(--sixth-color);
