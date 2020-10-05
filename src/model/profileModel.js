@@ -2,14 +2,14 @@ import { RouterStore } from '../store/routes.js';
 import { Request } from '../managers/request/request.js';
 
 export class ModelUser {
-    constructor(attrs = null, isLoaded = false, eventBus) {
+    constructor (attrs = null, isLoaded = false, eventBus) {
         const defaults = {
             id: null,
             username: null,
-            email: null,
+            email: null
         };
 
-        this.attrs = {...defaults, ...attrs };
+        this.attrs = { ...defaults, ...attrs };
         this.isLoaded = isLoaded;
         this.eventBus = eventBus;
 
@@ -19,7 +19,7 @@ export class ModelUser {
         eventBus.subscribe('ADD_NUMBER', this.doLogin);
     }
 
-    get(key, defaultv) {
+    get (key, defaultv) {
         const spl = key.split('.');
 
         let result = this.attrs;
@@ -38,11 +38,11 @@ export class ModelUser {
         return result;
     }
 
-    update(attrs) {
+    update (attrs) {
         this.attrs = Object.assign(this.attrs, attrs);
     }
 
-    static getCurrentUser() {
+    static getCurrentUser () {
         return new Promise((resolve) => {
             const url = RouterStore.api.user.current;
             let user;
