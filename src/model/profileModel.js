@@ -13,10 +13,9 @@ export class ModelUser {
         this.isLoaded = isLoaded;
         this.eventBus = eventBus;
 
-        eventBus.subscribe('ADD_ADDRESS', this.doLogin);
-        eventBus.subscribe('ADD_AVATAR', this.doLogin);
-        eventBus.subscribe('ADD_NUMBER', this.doLogin);
-        eventBus.subscribe('ADD_NUMBER', this.doLogin);
+        // eventBus.subscribe('ADD_ADDRESS', this.doLogin);
+        // eventBus.subscribe('ADD_AVATAR', this.doLogin);
+        // eventBus.subscribe('ADD_NUMBER', this.doLogin);
     }
 
     get (key, defaultv) {

@@ -1,4 +1,4 @@
-export const renderLoginView = () => window.Handlebars.compile(`<div class="profile_page_container-column">
+export const renderProfieView = () => window.Handlebars.compile(`<div class="profile_page_container-column">
 <div class="back_to_restaurants backround_gradient">
     <a class="reference" href="#">Все рестораны</a>
 </div>
