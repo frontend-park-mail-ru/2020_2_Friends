@@ -1,4 +1,5 @@
-export const renderProfieView = () => window.Handlebars.compile(`<div class="profile_page_container-column">
+export const renderProfieView = () => window.Handlebars.compile(`
+<div class="profile_page_container-column">
 <div class="back_to_restaurants backround_gradient">
     <a class="reference" href="#">Все рестораны</a>
 </div>
@@ -9,36 +10,29 @@ export const renderProfieView = () => window.Handlebars.compile(`<div class="pro
             <h1 class="heading">Личные данные</h1>
             <div class="row_container">
                 <div class="point_balance"></div>
-                <p class="default_text">Количество баллов</p>
+                <p class="default_text">Количество баллов: {{ this.points }}</p>
                 <a class="reference" href="#">Еда за баллы</a>
             </div>
             <div class="row_container">
                 <h2 class="heading">Профиль</h2>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder="Имя" required="" />
+                    <input type="text" class="form_input" placeholder={{ this.name }} required="" />
                 </div>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder="Телефон" required="" />
+                    <input type="text" class="form_input" placeholder={{ this.number }} required="" />
                 </div>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder="Email" required="" />
+                    <input type="text" class="form_input" placeholder={{ this.email }} required="" />
                 </div>
             </div>
             <div class="row_container">
                 <h2 class="heading">Адреса</h2>
                 <ul class="">
+                {{#each address}}
                     <li class="widget_item_container">
-                        <p class="default_text">Улица пушкина дом кукушниа</p>
+                        <p class="default_text">{{ this.address_text }}</p>
                     </li>
-                    <li class="widget_item_container">
-                        <p class="default_text">Мой адрес - Советский Союз!)))))))))))))</p>
-                    </li>
-                    <li class="widget_item_container">
-                        <p class="default_text">Идите.. . на стук сердца.. . Не слышите ?..Тогда, зачем вам мой адрес ?..)</p>
-                    </li>
-                    <li class="widget_item_container">
-                        <p class="default_text">Обычно в Москве, но последнее время все чаще в интернете</p>
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
 
@@ -97,4 +91,5 @@ export const renderProfieView = () => window.Handlebars.compile(`<div class="pro
 
     </div>
 </div>
-</div>`)
+</div>
+`)
