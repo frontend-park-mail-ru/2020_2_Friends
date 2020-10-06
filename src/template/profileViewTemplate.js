@@ -24,6 +24,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 <div class="form_group">
                     <input type="text" class="form_input" placeholder={{ email }} required="" />
                 </div>
+                <button class="submit_button">Сохранить</button>
             </div>
             <div class="row_container">
                 <h2 class="heading">Адреса</h2>
@@ -79,7 +80,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
             </li>
             <li class="widget-item_container">
                 <a class="reference" href="/profile/mydiscounts" class="widget-item__link">
-                    <p class="default_text">Мои скидки</p>
+                    <p class="default_text">Мой избранный магазин</p>
                 </a>
             </li>
             <li class="widget-item_container">
