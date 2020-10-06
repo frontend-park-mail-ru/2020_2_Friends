@@ -8,7 +8,7 @@ export class LoginView {
         this.eventBus = eventBus;
     }
 
-    render () {
+    render = () => {
         const template = renderLoginView();
 
         this.root.innerHTML = template()

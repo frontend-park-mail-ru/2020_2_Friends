@@ -3,6 +3,7 @@ import { ProfileController } from './controller/profileController.js';
 import { RegisterController } from './controller/registerController.js';
 import { StoreController } from './controller/storeController.js'
 import { Router } from './utils/router.js';
+// import { getStoreDataRequest } from './utils/ApiService.js';
 
 const root = document.getElementById('root');
 
@@ -16,5 +17,4 @@ router.setRoute('register', regController);
 router.setRoute('login', loginController);
 router.setRoute('profile', profileController);
 router.setRoute('store', storeController);
-
-loginController.view.render();
+router.redirect('register')

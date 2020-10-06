@@ -13,7 +13,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
         </div>
     </div>
     <div class="showcase">
-        {{#each product}}
+        {{#each products}}
             <div class="product">
                 <div id="food" class="food" title="Обед №1">
                     <img src="{{this.picturePath}}" class="food_img" alt="assets/burger1.png">

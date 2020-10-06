@@ -8,7 +8,7 @@ export class RegisterView {
         this.eventBus = eventBus;
     }
 
-    render () {
+    render = () => {
         const template = renderRegisterView();
 
         this.root.innerHTML = template()
@@ -19,7 +19,7 @@ export class RegisterView {
         const login = this.root.querySelector('.js-input-login');
         const email = this.root.querySelector('.js-input-email');
         const password = this.root.querySelector('.js-input-password');
-        const repeatPassword = this.root.querySelector('.js-input-password-second');
+        // const repeatPassword = this.root.querySelector('.js-input-password-second');
         const button = this.root.querySelector('.js-submit-reg');
         button.addEventListener('click', () => {
             const data = { login: login.value, password: password.value };

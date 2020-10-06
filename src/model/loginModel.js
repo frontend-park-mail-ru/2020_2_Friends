@@ -1,3 +1,5 @@
+import { loginRequest, cookieRequest } from '../utils/ApiService.js'
+
 export class LoginModel {
     constructor (eventBus) {
         this.eventBus = eventBus;
@@ -6,6 +8,8 @@ export class LoginModel {
 
     doLogin (input) {
         console.log('doLogin');
-        return true;
+        loginRequest(input);
+        console.log('Login passed');
+        cookieRequest();
     }
 }

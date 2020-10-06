@@ -8,5 +8,6 @@ export class StoreController {
 
         this.model = new StoreModel(eventBus);
         this.view = new StoreView(root, eventBus);
+        eventBus.subscribe('SHOW_STORE', this.view.render)
     }
 }
