@@ -5,9 +5,10 @@ import { EventBus } from '../utils/eventBus.js'
 export class LoginController {
     constructor (root, router) {
         const eventBus = new EventBus();
+        this.router = router
 
         this.model = new LoginModel(eventBus);
         this.view = new LoginView(root, eventBus);
-        eventBus.subscribe('REDITECT_TO_REG', router.redirect)
+        eventBus.subscribe('REDITECT_TO_REG', this.router.redirect)
     }
 }
