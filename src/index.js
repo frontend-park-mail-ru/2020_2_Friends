@@ -2,7 +2,6 @@
 // import { StoreController } from './controller/storeController.js';
 import { ProfileController } from './controller/profileController.js';
 
-
 const root = document.getElementById('root');
 
 // const loginController = new LoginController(root);
