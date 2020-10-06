@@ -6,7 +6,7 @@ export class ProfileView {
         this.eventBus = eventBus;
     }
 
-    render () {
+    render = () => {
         const template = renderProfileView();
         const profileHTML = template({
             name: 'Ксюша',

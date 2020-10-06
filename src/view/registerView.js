@@ -6,7 +6,7 @@ export class RegisterView {
         this.eventBus = eventBus;
     }
 
-    render () {
+    render = () => {
         const template = renderRegisterView();
 
         this.root.innerHTML = template()

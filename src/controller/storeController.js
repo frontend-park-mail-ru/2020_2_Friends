@@ -3,10 +3,11 @@ import { StoreView } from '../view/storeView.js';
 import { EventBus } from '../utils/eventBus.js'
 
 export class StoreController {
-    constructor (root, storeData) {
+    constructor (root) {
         const eventBus = new EventBus();
 
         this.model = new StoreModel(eventBus);
-        this.view = new StoreView(root, eventBus, storeData);
+        this.view = new StoreView(root, eventBus);
+        eventBus.subscribe('SHOW_STORE', this.view.render)
     }
 }

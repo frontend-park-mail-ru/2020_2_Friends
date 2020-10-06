@@ -5,11 +5,11 @@ export class Router {
         this.redirect = this.redirect.bind(this)
     }
 
-    setRoute (path, controller) {
-        this.routes.set(path, controller);
+    setRoute (path, handler) {
+        this.routes.set(path, handler);
     }
 
     redirect (to) {
-        this.routes.get(to).view.render();
+        this.routes.get(to)();
     }
 }
