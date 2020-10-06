@@ -8,7 +8,18 @@ export class ProfileView {
 
     render () {
         const template = renderProfileView();
-        const profileHTML = template();
+        const profileHTML = template({
+            name: 'Ксюша',
+            points: '100',
+            email: 'qqqq',
+            number: '888',
+            address: [
+                'address1',
+                'address2',
+                'address3',
+                'address4'
+            ]
+        });
 
         this.root.innerHTML = profileHTML;
         // this.addEventListeners();

@@ -1,4 +1,4 @@
-export class ModelUser {
+export class ProfileModel {
     constructor (attrs = null, isLoaded = false, eventBus) {
         const defaults = {
             id: null,

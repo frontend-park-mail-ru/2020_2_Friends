@@ -1,4 +1,4 @@
-export const renderProfieView = () => window.Handlebars.compile(`
+export const renderProfileView = () => window.Handlebars.compile(`
 <div class="profile_page_container-column">
 <div class="back_to_restaurants backround_gradient">
     <a class="reference" href="#">Все рестораны</a>
@@ -10,19 +10,19 @@ export const renderProfieView = () => window.Handlebars.compile(`
             <h1 class="heading">Личные данные</h1>
             <div class="row_container">
                 <div class="point_balance"></div>
-                <p class="default_text">Количество баллов: {{ this.points }}</p>
+                <p class="default_text">Количество баллов: {{ points }}</p>
                 <a class="reference" href="#">Еда за баллы</a>
             </div>
             <div class="row_container">
                 <h2 class="heading">Профиль</h2>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder={{ this.name }} required="" />
+                    <input type="text" class="form_input" placeholder={{ name }} required="" />
                 </div>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder={{ this.number }} required="" />
+                    <input type="text" class="form_input" placeholder={{ number }} required="" />
                 </div>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder={{ this.email }} required="" />
+                    <input type="text" class="form_input" placeholder={{ email }} required="" />
                 </div>
             </div>
             <div class="row_container">
@@ -30,7 +30,7 @@ export const renderProfieView = () => window.Handlebars.compile(`
                 <ul class="">
                 {{#each address}}
                     <li class="widget_item_container">
-                        <p class="default_text">{{ this.address_text }}</p>
+                        <p class="default_text">{{this}}</p>
                     </li>
                     {{/each}}
                 </ul>
