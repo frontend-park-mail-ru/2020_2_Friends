@@ -1,53 +1,18 @@
-export const loginRequest = (input) => {
+// import { json, urlencoded } from "express";
 
+import { ajaxGetUsingFetch, ajaxPostUsingFetch } from '../utils/ajax.js';
+
+export const loginRequest = (input) => {
+    const args = {
+        url: 'http://localhost:9000/',
+        body: input
+    }
+    return ajaxPostUsingFetch(args);
 }
 
 export const getStoreDataRequest = (id) => {
-    const products = [
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        }
-    ]
-
-    return {
-        storeName: 'Veggie shop',
-        product: products
-    };
+    const args = {
+        url: `http://localhost:9000/vendor/${id}/`
+    }
+    return ajaxGetUsingFetch(args);
 }

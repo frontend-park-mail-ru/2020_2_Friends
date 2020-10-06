@@ -3,10 +3,10 @@ import { StoreView } from '../view/storeView.js';
 import { EventBus } from '../utils/eventBus.js'
 
 export class StoreController {
-    constructor (root) {
+    constructor (root, storeData) {
         const eventBus = new EventBus();
 
         this.model = new StoreModel(eventBus);
-        this.view = new StoreView(root, eventBus);
+        this.view = new StoreView(root, eventBus, storeData);
     }
 }
