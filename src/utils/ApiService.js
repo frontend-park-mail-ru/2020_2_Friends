@@ -43,7 +43,7 @@ export const getStoreDataRequest = (id) => {
             picturePath: 'assets/vegan.png',
             foodName: 'Toffee',
             foodPrice: '179 P'
-        },
+        }
     ]
 
     return {
