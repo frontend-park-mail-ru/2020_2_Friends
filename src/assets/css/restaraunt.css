@@ -9,6 +9,7 @@
     padding-right: 10px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .store_label {
