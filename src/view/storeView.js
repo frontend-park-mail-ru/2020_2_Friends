@@ -11,9 +11,8 @@ export class StoreView {
         const template = renderStoreView();
 
         const data = getStoreDataRequest(0);
-        console.log(data);
-        const loginHTML = template(data);
+        const storeHTML = template(data);
 
-        this.root.innerHTML = loginHTML;
+        this.root.innerHTML = storeHTML;
     }
 }
