@@ -45,7 +45,6 @@
 
 .widget_item_container {
     display: block;
-    padding: 0.5em;
     margin: 0.5em;
 }
 
@@ -62,7 +61,7 @@
     flex-direction: column;
     justify-content: flex-start;
     /* borders */
-    padding: 2em;
+    padding: 1em;
 }
 
 .profile-personal_container_label {
@@ -87,8 +86,8 @@
     align-content: center;
     flex: 1;
     /*  borders */
-    margin-top: 2em;
-    margin-left: 2em;
+    margin-top: 1em;
+    margin-left: 1em;
     background-color: var(--fifth-color);
     font-size: 2.5em;
     border-top-left-radius: 5em;

@@ -8,5 +8,7 @@ export class ProfileController {
 
         this.model = new ProfileModel(eventBus);
         this.view = new ProfileView(root, eventBus);
+
+        eventBus.subscribe('REDITECT_TO_STORE', () => this.router.redirect('store'));
     }
 }

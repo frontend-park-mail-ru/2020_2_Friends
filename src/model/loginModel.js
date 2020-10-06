@@ -6,5 +6,6 @@ export class LoginModel {
 
     doLogin (input) {
         console.log('doLogin');
+        return true;
     }
 }
