@@ -9,6 +9,6 @@ export class LoginController {
 
         this.model = new LoginModel(eventBus);
         this.view = new LoginView(root, eventBus);
-        eventBus.subscribe('REDITECT_TO_REG', this.router.redirect)
+        eventBus.subscribe('REDITECT_TO_REG', () => this.router.redirect('register'));
     }
 }

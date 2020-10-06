@@ -8,9 +8,8 @@ export class LoginView {
 
     render () {
         const template = renderLoginView();
-        const loginHTML = template();
 
-        this.root.innerHTML = loginHTML;
+        this.root.innerHTML = template()
         this.addEventListeners();
     }
 
@@ -26,7 +25,7 @@ export class LoginView {
         })
 
         regButton.addEventListener('click', () => {
-            this.eventBus.call('REDITECT_TO_REG', 'register')
+            this.eventBus.call('REDITECT_TO_REG')
         })
     }
 }

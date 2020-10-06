@@ -6,7 +6,6 @@ export class Router {
     }
 
     setRoute (path, controller) {
-        console.log('set route')
         this.routes.set(path, controller);
     }
 

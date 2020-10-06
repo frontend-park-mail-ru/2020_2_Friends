@@ -8,9 +8,8 @@ export class RegisterView {
 
     render () {
         const template = renderRegisterView();
-        const loginHTML = template();
 
-        this.root.innerHTML = loginHTML;
+        this.root.innerHTML = template()
         this.addEventListeners();
     }
 
