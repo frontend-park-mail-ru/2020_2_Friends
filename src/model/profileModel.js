@@ -2,6 +2,8 @@ import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
 export class ProfileModel {
     constructor (eventBus) {
+        this.validate = this.validate.bind(this);
+
         this.eventBus = eventBus;
         eventBus.subscribe('LOGOUT', this.changePersonalInfo);
         eventBus.subscribe('CHANGE_INFO', this.logOut);
@@ -36,7 +38,7 @@ export class ProfileModel {
             isValid = false;
         }
         if (isValid) {
-            console.log('logIN');
+            console.log('logIN'); // eventBus.call('LOG_IN');
         }
     }
 }

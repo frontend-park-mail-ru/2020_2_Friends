@@ -2,7 +2,7 @@ export const renderRegisterView = () => window.Handlebars.compile(`
     <div class="login_page">
         <div class="col-container">
             <img src="assets/img/logo.png" class="log_image">
-            <div class="username-errors"></div>
+            <div class="login-errors"></div>
             <input type="email" class="js-input-login input_text" placeholder="Логин:">
             <div class="email-errors"></div>
             <input type="email" class="js-input-email input_text" placeholder="Email:">
