@@ -20,30 +20,27 @@ export class LoginView {
         const password = this.root.querySelector('.js-input-password');
         const button = this.root.querySelector('.js-submit-login');
         const regButton = this.root.querySelector('.js-reg-button');
-        const formErrors = this.root.querySelector('.form-errors');
+        const usernameErrors = this.root.querySelector('.username-errors');
+        const passwordErrors = this.root.querySelector('.password-errors');
 
         button.addEventListener('click', () => {
-            const data = { login: login.value, password: password.value };
+            // const data = { login: login.value, password: password.value };
             let isValid = true;
 
-            formErrors.innerText = '';
+            usernameErrors.innerText = '';
+            passwordErrors.innerText = '';
 
-            const usernameValidator = userFormValidator(
-                login, regTemplates.username,
-                'Имя может содержать только буквы и цифры. Минимальная длина 2 символа'
-            );
+            const usernameValidator = userFormValidator(login, regTemplates.username);
 
             if (!usernameValidator.status) {
-                formErrors.innerText = usernameValidator.message;
+                usernameErrors.innerText = 'Имя может содержать только буквы и цифры.Минимальная длина 2 символа';
                 isValid = false;
             }
 
-            const password1Validator = userFormValidator(password,
-                regTemplates.password,
-                'Длина пароля от 8 до 30 символов<br />Может содержать только латинские буквы и цифры');
+            const password1Validator = userFormValidator(password, regTemplates.password);
 
             if (!password1Validator.status) {
-                formErrors.innerHTML = password1Validator.message;
+                passwordErrors.innerHTML = 'Длина пароля от 8 до 30 символов<br/>Может содержать только латинские буквы и цифры';
                 isValid = false;
             }
 
@@ -51,9 +48,7 @@ export class LoginView {
                 return;
             }
             // ЗДЕСЬ ДОЛЖНО БЫТЬ САМО ЗАЛОГИНИВАНИЕ
-            if (this.eventBus.call('SUBMIT_LOGIN', data)) {
-                this.eventBus.call('REDITECT_TO_PROFILE');
-            }
+            this.eventBus.call('REDITECT_TO_PROFILE');
         })
 
         regButton.addEventListener('click', () => {

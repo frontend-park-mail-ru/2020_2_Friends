@@ -47,20 +47,20 @@ export class ProfileView {
             emailErrors.innerText = '';
             let isValid = true;
 
-            const loginValidator = userFormValidator(login, regTemplates.username, 'Имя может содержать только буквы и цифры');
+            const loginValidator = userFormValidator(login, regTemplates.username);
             if (!loginValidator.status) {
-                loginErrors.innerText = loginValidator.message;
+                loginErrors.innerText = 'Имя может содержать только буквы и цифры';
                 isValid = false;
             }
 
-            const numberValidator = userFormValidator(number, regTemplates.number, 'Номер имеет недопустимый формат!');
+            const numberValidator = userFormValidator(number, regTemplates.number);
             if (!numberValidator.status) {
-                numberErrors.innerHTML = numberValidator.message;
+                numberErrors.innerHTML = 'Номер имеет недопустимый формат!';
                 isValid = false;
             }
-            const emailValidator = userFormValidator(email, regTemplates.email, 'Поле дожно быть формата something@something.ru');
+            const emailValidator = userFormValidator(email, regTemplates.email);
             if (!emailValidator.status) {
-                emailErrors.innerText = emailValidator.message;
+                emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
                 isValid = false;
             }
             if (isValid) {

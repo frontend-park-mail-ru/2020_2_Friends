@@ -19,7 +19,7 @@ export class RegisterView {
         const login = this.root.querySelector('.js-input-login');
         const email = this.root.querySelector('.js-input-email');
         const password = this.root.querySelector('.js-input-password');
-        // const repeatPassword = this.root.querySelector('.js-input-password-second');
+        const repeatPassword = this.root.querySelector('.js-input-password-second');
         const button = this.root.querySelector('.js-submit-reg');
         button.addEventListener('click', () => {
             const data = { login: login.value, password: password.value };
@@ -31,24 +31,20 @@ export class RegisterView {
             usernameErrors.innerText = '';
             passwordErrors.innerText = '';
             emailErrors.innerText = '';
-            const emailValidator = userFormValidator(email, regTemplates.email, 'Поле дожно быть формата something@something.ru');
+            const emailValidator = userFormValidator(email, regTemplates.email);
             if (!emailValidator.status) {
-                emailErrors.innerText = emailValidator.message;
+                emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
                 isValid = false;
             }
-            const usernameValidator = userFormValidator(login, regTemplates.username, 'Имя может содержать только буквы и цифры');
+            const usernameValidator = userFormValidator(login, regTemplates.username);
             if (!usernameValidator.status) {
-                usernameErrors.innerText = usernameValidator.message;
+                usernameErrors.innerText = 'Имя может содержать только буквы и цифры';
                 isValid = false;
             }
-            const password1Validator = userFormValidator(password,
-                regTemplates.password,
-                'Длина пароля от 8 до 30 символов<br/>Может содержать только латинские буквы и цифры');
-            const password2Validator = userFormValidator(repeatPassword,
-                regTemplates.password,
-                'Длина пароля от 8 до 30 символов<br/>Может содержать только латинские буквы и цифры');
+            const password1Validator = userFormValidator(password, regTemplates.password);
+            const password2Validator = userFormValidator(repeatPassword, regTemplates.password);
             if (!password1Validator.status || !password2Validator.status) {
-                passwordErrors.innerHTML = password1Validator.message;
+                passwordErrors.innerHTML = 'Длина пароля от 8 до 30 символов<br/>Может содержать только латинские буквы и цифры';
                 isValid = false;
             }
             if (password.value !== repeatPassword.value) {

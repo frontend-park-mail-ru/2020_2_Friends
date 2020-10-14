@@ -1,4 +1,4 @@
-export const userFormValidator = (target, reg, helpText) => {
+export const userFormValidator = (target, reg) => {
     const { value } = target;
     if (!value) {
         return { status: false, message: 'Заполните поле' };
@@ -7,7 +7,7 @@ export const userFormValidator = (target, reg, helpText) => {
     const match = new RegExp(reg).test(value);
 
     if (!match) {
-        return { status: false, message: `${helpText}` };
+        return { status: false };
     }
     return { status: true };
 };

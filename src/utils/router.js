@@ -9,7 +9,7 @@ export class Router {
         this.routes.set(path, handler);
     }
 
-    redirect =  (to) => {
+    redirect =(to) => {
         this.routes.get(to)();
     }
 }
