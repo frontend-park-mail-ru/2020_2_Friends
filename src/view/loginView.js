@@ -40,11 +40,11 @@ export class LoginView {
             loginErrors.innerText = '';
             passwordErrors.innerText = '';
             const data = { login, password };
-            this.eventBus.call('VALIDATE', data);
+            this.eventBus.call('SUBMIT_LOGIN', data);
         })
 
         regButton.addEventListener('click', () => {
-            this.eventBus.call('REDITECT_TO_REG')
+            this.eventBus.call('REDIRECT_TO_REG')
         })
     }
 }

@@ -4,18 +4,30 @@ import { regTemplates } from '../utils/reg_templates.js';
 
 export class RegisterModel {
     constructor (eventBus) {
-        this.validate = this.validate.bind(this);
+        this.doRegistration = this.doRegistration.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('SUBMIT_REG', this.doRegistration);
-        eventBus.subscribe('LOGOUT', this.changePersonalInfo);
-        eventBus.subscribe('CHANGE_INFO', this.logOut);
-        eventBus.subscribe('VALIDATE', this.validate);
+        eventBus.subscribe('LOGOUT', this.logOut);
+        eventBus.subscribe('CHANGE_INFO', this.logOutchangePersonalInfo);
     }
 
-    doRegistration (input) {
-        console.log('doLogin');
-        registerRequest(input);
-        console.log('doLogin');
+    doRegistration = async (input) => {
+        const { login, email, password, repeatPassword } = input;
+        console.log('we registered!');
+        if (this.validate(input)) {
+            console.log('data is valid!');
+            const { status } = await registerRequest({
+                login: login.value,
+                email: email.value,
+                password: password.value
+            });
+            if (status === 201) {
+                console.log('we registered!');
+                // дать юзеру понять, что он зарегестрирован
+                this.eventBus.subscribe('REDIRECT_TO_LOGIN');
+            }
+        }
+        // тут могут быть 5хх
     }
 
     validate (input) {
@@ -41,8 +53,6 @@ export class RegisterModel {
             this.eventBus.call('PASSWORD_NOT_VALID', errorString)
             isValid = false;
         }
-        if (isValid) {
-            this.eventBus.call('SUBMIT_REG', input);
-        }
+        return isValid;
     }
 }

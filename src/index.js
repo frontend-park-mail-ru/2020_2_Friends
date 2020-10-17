@@ -16,4 +16,4 @@ router.setRoute('register', regController.view.render);
 router.setRoute('login', loginController.view.render);
 router.setRoute('profile', profileController.view.render);
 router.setRoute('store', storeController.model.getData);
-router.redirect('login')
+router.redirect('login');

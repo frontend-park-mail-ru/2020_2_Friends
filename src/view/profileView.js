@@ -12,6 +12,7 @@ export class ProfileView {
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('EMAIL_NOT_VALID', this.emailNotValid);
+        eventBus.subscribe('INFO_CHANGED', this.infoChanged);
     }
 
     render () {
@@ -37,6 +38,10 @@ export class ProfileView {
         emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
     }
 
+    infoChanged () {
+        console.log('infoChanged');
+    }
+
     addEventListeners () {
         const favoriteStore = this.root.querySelector('#favorite_store');
         const saveInfo = this.root.querySelector('.save_info');
@@ -56,7 +61,7 @@ export class ProfileView {
             numberErrors.innerText = '';
             emailErrors.innerText = '';
             const data = { login, number, email };
-            this.eventBus.call('VALIDATE', data);
+            this.eventBus.call('CHANGE_INFO', data);
         })
     }
 }

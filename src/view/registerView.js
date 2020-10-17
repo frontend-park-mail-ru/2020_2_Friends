@@ -50,7 +50,7 @@ export class RegisterView {
             passwordErrors.innerText = '';
             emailErrors.innerText = '';
             const data = { login, email, password, repeatPassword };
-            this.eventBus.call('VALIDATE', data);
+            this.eventBus.call('SUBMIT_REG', data);
         })
     }
 }
