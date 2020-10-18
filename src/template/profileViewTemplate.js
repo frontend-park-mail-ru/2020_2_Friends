@@ -15,16 +15,19 @@ export const renderProfileView = () => window.Handlebars.compile(`
             </div>
             <div class="row_container">
                 <h2 class="heading">Профиль</h2>
+                <div class="login-errors"></div>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder={{ name }} required="" />
+                    <input type="text" class="form_input login-input" placeholder=Логин: {{ name }} required="" />
                 </div>
+                <div class="number-errors"></div>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder={{ number }} required="" />
+                    <input type="text" class="form_input number-input" placeholder=Номер: {{ number }} required="" />
                 </div>
+                <div class="email-errors"></div>
                 <div class="form_group">
-                    <input type="text" class="form_input" placeholder={{ email }} required="" />
+                    <input type="text" class="form_input email-input" placeholder=Email: {{ email }} required="" />
                 </div>
-                <button class="submit_button">Сохранить</button>
+                <button class="submit_button save_info">Сохранить</button>
             </div>
             <div class="row_container">
                 <h2 class="heading">Адреса</h2>
@@ -79,8 +82,8 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 </a>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="/profile/mydiscounts" class="widget-item__link">
-                    <p class="default_text">Мой избранный магазин</p>
+                <a class="reference" href="#" class="widget-item__link">
+                    <p class="default_text" id="favorite_store">Мой избранный магазин</p>
                 </a>
             </li>
             <li class="widget-item_container">

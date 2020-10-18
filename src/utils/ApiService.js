@@ -1,53 +1,31 @@
-export const loginRequest = (input) => {
 
+import { ajaxGetUsingFetch, ajaxPostUsingFetch } from '../utils/ajax.js';
+
+const backendUrl = 'http://localhost:9000';
+
+export const loginRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/sessions',
+        body: input
+    }
+    return ajaxPostUsingFetch(args);
+}
+
+export const registerRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/users',
+        body: input
+    }
+    return ajaxPostUsingFetch(args);
 }
 
 export const getStoreDataRequest = (id) => {
-    const products = [
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        },
-        {
-            picturePath: 'assets/vegan.png',
-            foodName: 'Toffee',
-            foodPrice: '179 P'
-        }
-    ]
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}`
+    }
+    return ajaxGetUsingFetch(args);
+}
 
-    return {
-        storeName: 'Veggie shop',
-        product: products
-    };
+export const changePersonalInfoRequest = () => {
+    // return;
 }
