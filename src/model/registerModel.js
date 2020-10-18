@@ -12,7 +12,7 @@ export class RegisterModel {
     }
 
     doRegistration = async (input) => {
-        const { login, email, password, repeatPassword } = input;
+        const { login, email, password } = input;
         console.log('we registered!');
         if (this.validate(input)) {
             console.log('data is valid!');

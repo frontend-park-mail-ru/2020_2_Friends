@@ -1,6 +1,6 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import {changePersonalInfoRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest } from '../utils/ApiService.js';
 export class ProfileModel {
     constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);

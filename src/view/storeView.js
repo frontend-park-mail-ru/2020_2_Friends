@@ -4,6 +4,7 @@ export class StoreView {
     constructor (root, eventBus) {
         this.root = root;
         this.eventBus = eventBus;
+        this.render = this.render.bind(this);
     }
 
     render = (data) => {
