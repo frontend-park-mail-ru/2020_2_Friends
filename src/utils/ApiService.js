@@ -1,9 +1,11 @@
 
 import { ajaxGetUsingFetch, ajaxPostUsingFetch } from '../utils/ajax.js';
 
+const backendUrl = 'http://localhost:9000';
+
 export const loginRequest = (input) => {
     const args = {
-        url: 'http://89.208.197.247:9000/api/v1/sessions',
+        url: backendUrl + '/api/v1/sessions',
         body: input
     }
     return ajaxPostUsingFetch(args);
@@ -11,7 +13,7 @@ export const loginRequest = (input) => {
 
 export const registerRequest = (input) => {
     const args = {
-        url: 'http://89.208.197.247:9000/api/v1/users',
+        url: backendUrl + '/api/v1/users',
         body: input
     }
     return ajaxPostUsingFetch(args);
@@ -19,18 +21,11 @@ export const registerRequest = (input) => {
 
 export const getStoreDataRequest = (id) => {
     const args = {
-        url: `http://89.208.197.247:9000/api/v1/vendors/${id}`
+        url: backendUrl + `/api/v1/vendors/${id}`
     }
     return ajaxGetUsingFetch(args);
 }
 
 export const changePersonalInfoRequest = () => {
-    return;
-}
-
-export const cookieRequest = () => {
-    const args = {
-        url: 'http://89.208.197.247:9000/api/v1/cookie'
-    }
-    return ajaxGetUsingFetch(args);
+    // return;
 }

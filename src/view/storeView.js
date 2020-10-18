@@ -7,7 +7,7 @@ export class StoreView {
         this.render = this.render.bind(this);
     }
 
-    render = (data) => {
+    render (data) {
         const template = renderStoreView();
         const storeHTML = template(data);
         this.root.innerHTML = storeHTML;

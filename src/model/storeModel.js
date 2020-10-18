@@ -3,9 +3,10 @@ import { getStoreDataRequest } from '../utils/ApiService.js';
 export class StoreModel {
     constructor (eventBus) {
         this.eventBus = eventBus;
+        this.getData = this.getData.bind(this);
     };
 
-    getData = async () => {
+    async getData () {
         const response = await getStoreDataRequest(0);
         console.log(response);
         this.eventBus.call('SHOW_STORE', response.responseObject);

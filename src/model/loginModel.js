@@ -8,7 +8,7 @@ export class LoginModel {
         eventBus.subscribe('SUBMIT_LOGIN', this.doLogin);
     }
 
-    doLogin = async (input) => {
+    async doLogin (input) {
         const { login, password } = input;
         if (this.validate(input)) {
             console.log('data is valid!');

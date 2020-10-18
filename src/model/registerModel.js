@@ -11,7 +11,7 @@ export class RegisterModel {
         eventBus.subscribe('CHANGE_INFO', this.logOutchangePersonalInfo);
     }
 
-    doRegistration = async (input) => {
+    async doRegistration (input) {
         const { login, email, password } = input;
         console.log('we registered!');
         if (this.validate(input)) {
@@ -46,7 +46,7 @@ export class RegisterModel {
         const password1Validator = userFormValidator(password, regTemplates.password);
         const password2Validator = userFormValidator(repeatPassword, regTemplates.password);
         if (!password1Validator.status || !password2Validator.status) {
-            var errorString = 'Длина пароля от 8 до 30 символов<br/>Может содержать только латинские буквы и цифры';
+            let errorString = 'Длина пароля от 8 до 30 символов<br/>Может содержать только латинские буквы и цифры';
             if (password.value !== repeatPassword.value) {
                 errorString = 'Пароли не совпадают';
             }
