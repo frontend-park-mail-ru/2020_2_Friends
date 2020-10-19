@@ -1,5 +1,5 @@
 
-import { ajaxGetUsingFetch, ajaxPostUsingFetch } from '../utils/ajax.js';
+import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch } from '../utils/ajax.js';
 
 const schema = 'http://';
 const host = 'localhost:9000';
@@ -28,13 +28,17 @@ export const getStoreDataRequest = (id) => {
     return ajaxGetUsingFetch(args);
 }
 
-export const getProfileInfoRequest = (id) => {
+export const getProfileInfoRequest = () => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/'
+        url: backendUrl + '/api/v1/profiles'
     }
     return ajaxGetUsingFetch(args);
 }
 
-export const changePersonalInfoRequest = () => {
-    // return;
+export const changePersonalInfoRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/profiles',
+        body: input
+    }
+    return ajaxPutUsingFetch(args);
 }
