@@ -24,9 +24,13 @@ export class RegisterModel {
             if (response.status === 201) {
                 // дать юзеру понять, что он зарегестрирован
                 this.eventBus.subscribe('REDIRECT_TO_LOGIN');
+            } else if (response.status === 400) {
+                this.eventBus.call('REGISTER_NOT_VALID');
             } else if (response.status === 409) {
                 // This username was already taken
                 this.eventBus.call('USERNAME_NOT_VALID');
+            } else if (response.status === 500) {
+                this.eventBus.call('SERVER_NOT_VALID');
             } else {
                 console.log('Uncaught backend http-status');
             }

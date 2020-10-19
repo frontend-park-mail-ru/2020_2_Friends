@@ -8,12 +8,15 @@ export class RegisterView {
         this.passwordNotValid = this.passwordNotValid.bind(this);
         this.emailNotValid = this.emailNotValid.bind(this);
         this.usernameNotValid = this.usernameNotValid.bind(this);
+        this.registerNotValid = this.registerNotValid.bind(this);
         this.render = this.render.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('PASSWORD_NOT_VALID', this.passwordNotValid);
         eventBus.subscribe('EMAIL_NOT_VALID', this.emailNotValid);
         eventBus.subscribe('USERNAME_NOT_VALID', this.usernameNotValid);
+        eventBus.subscribe('REGISTER_NOT_VALID', this.registerNotValid);
+        eventBus.subscribe('SERVER_NOT_VALID', this.serverNotValid);
     }
 
     render () {
@@ -21,6 +24,16 @@ export class RegisterView {
 
         this.root.innerHTML = template()
         this.addEventListeners();
+    }
+
+    serverNotValid () {
+        const serverErrors = this.root.querySelector('.login-errors');
+        serverErrors.innerText = 'Упс! Сервер устал, подождите и попробуйте заново!';
+    }
+
+    registerNotValid () {
+        const registerErrors = this.root.querySelector('.login-errors');
+        registerErrors.innerText = 'Что-то пошло не так, попробуйте заново!';
     }
 
     usernameNotValid () {
