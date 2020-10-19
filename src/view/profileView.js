@@ -39,7 +39,8 @@ export class ProfileView {
     }
 
     infoChanged () {
-        console.log('infoChanged');
+        const infoText = this.root.querySelector('.login-errors');
+        infoText.innerText = 'Данные успешно обновлены!';
     }
 
     addEventListeners () {
