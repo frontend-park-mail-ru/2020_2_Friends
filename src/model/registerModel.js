@@ -35,7 +35,6 @@ export class RegisterModel {
                 console.log('Uncaught backend http-status');
             }
         }
-        // тут могут быть 5хх
     }
 
     validate (input) {
