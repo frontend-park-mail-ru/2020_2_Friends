@@ -7,11 +7,13 @@ export class RegisterView {
         this.loginNotValid = this.loginNotValid.bind(this);
         this.passwordNotValid = this.passwordNotValid.bind(this);
         this.emailNotValid = this.emailNotValid.bind(this);
+        this.usernameNotValid = this.usernameNotValid.bind(this);
         this.render = this.render.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('PASSWORD_NOT_VALID', this.passwordNotValid);
         eventBus.subscribe('EMAIL_NOT_VALID', this.emailNotValid);
+        eventBus.subscribe('USERNAME_NOT_VALID', this.usernameNotValid);
     }
 
     render () {
@@ -19,6 +21,11 @@ export class RegisterView {
 
         this.root.innerHTML = template()
         this.addEventListeners();
+    }
+
+    usernameNotValid () {
+        const usernameErrors = this.root.querySelector('.login-errors');
+        usernameErrors.innerText = 'Имя пользователя уже занято';
     }
 
     loginNotValid () {
