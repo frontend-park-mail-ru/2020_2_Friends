@@ -5,10 +5,13 @@ export class LoginView {
         this.eventBus = eventBus;
         this.loginNotValid = this.loginNotValid.bind(this);
         this.passwordNotValid = this.passwordNotValid.bind(this);
+        this.loginOrPasswordNotValid = this.loginOrPasswordNotValid.bind(this);
         this.render = this.render.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('PASSWORD_NOT_VALID', this.passwordNotValid);
+        eventBus.subscribe('LOGIN_OR_PASSWORD_NOT_VALID', this.loginOrPasswordNotValid);
+        eventBus.subscribe('SERVER_NOT_VALID', this.serverNotValid.bind(this));
     }
 
     render () {
@@ -16,6 +19,16 @@ export class LoginView {
 
         this.root.innerHTML = template()
         this.addEventListeners();
+    }
+
+    serverNotValid () {
+        const serverErrors = this.root.querySelector('.login-errors');
+        serverErrors.innerText = 'Упс! Сервер устал, подождите и попробуйте заново!';
+    }
+
+    loginOrPasswordNotValid () {
+        const inputErrors = this.root.querySelector('.login-errors');
+        inputErrors.innerText = 'Неверное имя пользователя или пароль';
     }
 
     loginNotValid () {
