@@ -3,23 +3,23 @@ export const ajaxGetUsingFetch = async (ajaxArgs) => {
         method: 'GET',
         credentials: 'include'
     });
-    const parsedJsonObject = await response.json();
-    return {
-        status: response.status,
-        responseObject: parsedJsonObject
-    };
+    return response;
 }
 
 export const ajaxPostUsingFetch = async (ajaxArgs) => {
-    console.log(ajaxArgs.body);
     const response = await fetch(ajaxArgs.url, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(ajaxArgs.body)
     });
-    // const parsedJsonObject = await response.json();
-    return {
-        status: response.status
-        // responseObject: parsedJsonObject
-    };
+    return response;
+}
+
+export const ajaxPutUsingFetch = async (ajaxArgs) => {
+    const response = await fetch(ajaxArgs.url, {
+        method: 'PUT',
+        credentials: 'include',
+        body: JSON.stringify(ajaxArgs.body)
+    })
+    return response;
 }
