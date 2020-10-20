@@ -21,7 +21,13 @@ export class ProfileModel {
         case 200: {
             const body = await response.json();
             const avatarUrl = makeAvatarUrl(body.avatar);
-            this.eventBus.call('SHOW_PROFILE', { avatar: avatarUrl });
+            this.eventBus.call('SHOW_PROFILE', {
+                avatar: avatarUrl,
+                points: body.points,
+                addresses: body.addresses,
+                phone: body.phone,
+                username: body.username
+            });
             break;
         }
         default:
