@@ -7,6 +7,7 @@ export class ProfileView {
         this.loginNotValid = this.loginNotValid.bind(this);
         this.numberNotValid = this.numberNotValid.bind(this);
         this.emailNotValid = this.emailNotValid.bind(this);
+        this.infoChanged = this.infoChanged.bind(this);
         this.render = this.render.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
