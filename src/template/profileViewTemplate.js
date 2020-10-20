@@ -28,6 +28,10 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <input type="text" class="form_input email-input" placeholder=Email: {{ email }} required="" />
                 </div>
                 <button class="submit_button save_info">Сохранить</button>
+                <form class="upload">
+                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                    <input type="submit" />
+                </form>
             </div>
             <div class="row_container">
                 <h2 class="heading">Адреса</h2>
