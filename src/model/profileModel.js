@@ -1,16 +1,38 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, pullAvatarRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, pullAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
+import { makeAvatarUrl } from '../utils/urlThrottle.js';
 export class ProfileModel {
     constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
+        this.getProfileData = this.getProfileData.bind(this);
 
         this.eventBus = eventBus;
         eventBus.subscribe('LOGOUT', this.logOut);
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
+    }
+
+    async getProfileData () {
+        const response = await getProfileInfoRequest();
+        switch (response.status) {
+        case 200: {
+            const body = await response.json();
+            const avatarUrl = makeAvatarUrl(body.avatar);
+            this.eventBus.call('SHOW_PROFILE', {
+                avatar: avatarUrl,
+                points: body.points,
+                addresses: body.addresses,
+                phone: body.phone,
+                username: body.username
+            });
+            break;
+        }
+        default:
+            console.log('Backend error');
+        }
     }
 
     async uploadAvatar (avatar) {
