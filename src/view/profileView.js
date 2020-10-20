@@ -7,6 +7,7 @@ export class ProfileView {
         this.loginNotValid = this.loginNotValid.bind(this);
         this.numberNotValid = this.numberNotValid.bind(this);
         this.emailNotValid = this.emailNotValid.bind(this);
+        this.infoChanged = this.infoChanged.bind(this);
         this.render = this.render.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
@@ -45,11 +46,20 @@ export class ProfileView {
 
     addEventListeners () {
         const favoriteStore = this.root.querySelector('#favorite_store');
-        const saveInfo = this.root.querySelector('.save_info');
         favoriteStore.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_STORE');
         })
 
+        const uploadAvatar = this.root.querySelector('.upload');
+        uploadAvatar.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const file = e.target.uploadFile.files[0];
+            const avatar = new FormData();
+            avatar.append('avatar', file);
+            this.eventBus.call('UPLOAD_AVATAR', avatar);
+        })
+
+        const saveInfo = this.root.querySelector('.save_info');
         saveInfo.addEventListener('click', () => {
             const login = this.root.querySelector('.login-input');
             const email = this.root.querySelector('.email-input');
