@@ -1,17 +1,27 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, pullAvatarRequest } from '../utils/ApiService.js';
 export class ProfileModel {
     constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
+        this.uploadAvatar = this.uploadAvatar.bind(this);
 
         this.eventBus = eventBus;
         eventBus.subscribe('LOGOUT', this.logOut);
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
+        eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
+    }
+
+    async uploadAvatar (avatar) {
+        const response = await uploadAvatarRequest(avatar);
+        console.log(response);
     }
 
     async changePersonalInfo (input) {
+        const name = '9ymaN9cx3CuwQnphJvupUj.jpeg';
+        const ava = await pullAvatarRequest(name);
+        console.log(ava);
         if (this.validate(input)) {
             console.log(input);
             const response = await changePersonalInfoRequest(input);
