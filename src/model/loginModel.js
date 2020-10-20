@@ -16,13 +16,17 @@ export class LoginModel {
                 password: password.value
             });
 
-            if (response.status === 200) {
+            switch (response.status) {
+            case 200:
                 this.eventBus.call('REDIRECT_TO_PROFILE');
-            } else if (response.status === 400) {
+                break;
+            case 400:
                 this.eventBus.call('LOGIN_OR_PASSWORD_NOT_VALID');
-            } else if (response.status === 500) {
+                break;
+            case 500:
                 this.eventBus.call('SERVER_NOT_VALID');
-            } else {
+                break;
+            default:
                 console.log('Uncaught backend http-status');
             }
         }

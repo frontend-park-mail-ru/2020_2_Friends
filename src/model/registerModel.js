@@ -21,17 +21,22 @@ export class RegisterModel {
                 password: password.value
             });
 
-            if (response.status === 201) {
+            switch (response.status) {
+            case 201:
                 // дать юзеру понять, что он зарегестрирован
                 this.eventBus.subscribe('REDIRECT_TO_LOGIN');
-            } else if (response.status === 400) {
+                break;
+            case 400:
                 this.eventBus.call('REGISTER_NOT_VALID');
-            } else if (response.status === 409) {
+                break;
+            case 409:
                 // This username was already taken
                 this.eventBus.call('USERNAME_NOT_VALID');
-            } else if (response.status === 500) {
+                break;
+            case 500:
                 this.eventBus.call('SERVER_NOT_VALID');
-            } else {
+                break;
+            default:
                 console.log('Uncaught backend http-status');
             }
         }
