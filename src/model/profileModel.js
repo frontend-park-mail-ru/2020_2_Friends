@@ -11,24 +11,16 @@ export class ProfileModel {
         eventBus.subscribe('VALIDATE', this.validate);
     }
 
-    changePersonalInfo (input) {
+    async changePersonalInfo (input) {
         if (this.validate(input)) {
-            console.log('data is valid!');
-            const { status, response } = changePersonalInfoRequest(input);
-            if (status === 200) {
-                // если залогинились
-                // что делать?
+            console.log(input);
+            const response = await changePersonalInfoRequest(input);
+            if (response.status === 200) {
                 console.log(response);
                 this.eventBus.call('INFO_CHANGED');
             }
-            // может не быть такого пользователя
-            // могут быть 5хх, 3xx
         }
         console.log('changePersonalInfo');
-    }
-
-    logOut (input) {
-        console.log('logOut');
     }
 
     validate (input) {
@@ -51,5 +43,9 @@ export class ProfileModel {
             isValid = false;
         }
         return isValid;
+    }
+
+    logOut (input) {
+        console.log('logOut');
     }
 }

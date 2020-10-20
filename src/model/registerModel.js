@@ -13,21 +13,33 @@ export class RegisterModel {
 
     async doRegistration (input) {
         const { login, email, password } = input;
-        console.log('we registered!');
         if (this.validate(input)) {
             console.log('data is valid!');
-            const { status } = await registerRequest({
+            const response = await registerRequest({
                 login: login.value,
                 email: email.value,
                 password: password.value
             });
-            if (status === 201) {
-                console.log('we registered!');
+
+            switch (response.status) {
+            case 201:
                 // дать юзеру понять, что он зарегестрирован
                 this.eventBus.subscribe('REDIRECT_TO_LOGIN');
+                break;
+            case 400:
+                this.eventBus.call('REGISTER_NOT_VALID');
+                break;
+            case 409:
+                // This username was already taken
+                this.eventBus.call('USERNAME_NOT_VALID');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_NOT_VALID');
+                break;
+            default:
+                console.log('Uncaught backend http-status');
             }
         }
-        // тут могут быть 5хх
     }
 
     validate (input) {

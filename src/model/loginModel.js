@@ -11,19 +11,24 @@ export class LoginModel {
     async doLogin (input) {
         const { login, password } = input;
         if (this.validate(input)) {
-            console.log('data is valid!');
-            const { status, response } = await loginRequest({
+            const response = await loginRequest({
                 login: login.value,
                 password: password.value
             });
-            if (status === 200) {
-                // если залогинились
-                // что делать?
-                console.log(response);
+
+            switch (response.status) {
+            case 200:
                 this.eventBus.call('REDIRECT_TO_PROFILE');
+                break;
+            case 400:
+                this.eventBus.call('LOGIN_OR_PASSWORD_NOT_VALID');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_NOT_VALID');
+                break;
+            default:
+                console.log('Uncaught backend http-status');
             }
-            // может не быть такого пользователя
-            // могут быть 5хх, 3xx
         }
     }
 
