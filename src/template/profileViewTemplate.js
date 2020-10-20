@@ -9,6 +9,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
         <div class="personal-info">
             <h1 class="heading">Личные данные</h1>
             <div class="row_container">
+                <img src=" {{ avatar }} " alt="Italian Trulli">
                 <div class="point_balance"></div>
                 <p class="default_text">Количество баллов: {{ points }}</p>
                 <a class="reference" href="#">Еда за баллы</a>

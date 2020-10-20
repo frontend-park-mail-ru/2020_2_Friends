@@ -14,11 +14,12 @@ export class ProfileView {
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('EMAIL_NOT_VALID', this.emailNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
+        eventBus.subscribe('SHOW_PROFILE', this.render);
     }
 
-    render () {
+    async render (data) {
         const template = renderProfileView();
-        const profileHTML = template();
+        const profileHTML = template(data);
 
         this.root.innerHTML = profileHTML;
         this.addEventListeners();
