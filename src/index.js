@@ -14,6 +14,6 @@ const storeController = new StoreController(root, router);
 
 router.setRoute('register', regController.view.render);
 router.setRoute('login', loginController.view.render);
-router.setRoute('profile', profileController.view.render);
+router.setRoute('profile', profileController.model.getProfileData);
 router.setRoute('store', storeController.model.getData);
 router.redirect('login');
