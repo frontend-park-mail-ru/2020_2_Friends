@@ -20,3 +20,11 @@ export const ajaxPutUsingFetch = (ajaxArgs) => {
         body: JSON.stringify(ajaxArgs.body)
     })
 }
+
+export const ajaxMultipartUsingFetch = (ajaxArgs) => {
+    return fetch(ajaxArgs.url, {
+        method: 'PUT',
+        credentials: 'include',
+        body: ajaxArgs.body
+    })
+}

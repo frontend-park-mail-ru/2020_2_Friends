@@ -1,10 +1,16 @@
 
-import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch } from '../utils/ajax.js';
+import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch } from '../utils/ajax.js';
 
+// Servers configs
 const schema = 'http://';
-const host = 'localhost:9000';
-const backendUrl = schema + host;
+const host = 'localhost';
+const backendPort = ':9000';
+const staticPort = ':9001';
 
+const backendUrl = schema + host + backendPort;
+const staticUrl = schema + host + staticPort;
+
+// HTTP - requests methods
 export const loginRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/sessions',
@@ -41,4 +47,19 @@ export const changePersonalInfoRequest = (input) => {
         body: input
     }
     return ajaxPutUsingFetch(args);
+}
+
+export const uploadAvatarRequest = (formAvatar) => {
+    const args = {
+        url: backendUrl + '/api/v1/profiles/avatars',
+        body: formAvatar
+    }
+    return ajaxMultipartUsingFetch(args);
+}
+
+export const pullAvatarRequest = (avatarName) => {
+    const args = {
+        url: staticUrl + '/data/img/' + avatarName
+    }
+    return ajaxGetUsingFetch(args);
 }
