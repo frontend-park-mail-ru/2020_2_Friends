@@ -17,7 +17,7 @@ export class ProfileView {
         eventBus.subscribe('SHOW_PROFILE', this.render);
     }
 
-    async render (data) {
+    render (data) {
         const template = renderProfileView();
         const profileHTML = template(data);
 
