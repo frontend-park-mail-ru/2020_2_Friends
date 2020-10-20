@@ -17,9 +17,16 @@ export class ProfileModel {
 
     async getProfileData () {
         const response = await getProfileInfoRequest();
-        const body = await response.json();
-        const avatarUrl = makeAvatarUrl(body.avatar);
-        this.eventBus.call('SHOW_PROFILE', { avatar: avatarUrl });
+        switch (response.status) {
+        case 200: {
+            const body = await response.json();
+            const avatarUrl = makeAvatarUrl(body.avatar);
+            this.eventBus.call('SHOW_PROFILE', { avatar: avatarUrl });
+            break;
+        }
+        default:
+            console.log('Backend error');
+        }
     }
 
     async uploadAvatar (avatar) {
