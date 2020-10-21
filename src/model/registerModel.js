@@ -23,7 +23,7 @@ export class RegisterModel {
             switch (response.status) {
             case 201:
                 // дать юзеру понять, что он зарегестрирован
-                this.eventBus.сall('REDIRECT_TO_LOGIN');
+                this.eventBus.call('REDIRECT_TO_LOGIN');
                 break;
             case 400:
                 this.eventBus.call('REGISTER_NOT_VALID');
