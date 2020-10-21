@@ -1,7 +1,8 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, pullAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
+
 export class ProfileModel {
     constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
@@ -17,6 +18,7 @@ export class ProfileModel {
 
     async getProfileData () {
         const response = await getProfileInfoRequest();
+
         switch (response.status) {
         case 200: {
             const body = await response.json();
@@ -30,6 +32,12 @@ export class ProfileModel {
             });
             break;
         }
+        case 400:
+            this.eventBus.call('PROFILE_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
         default:
             console.log('Backend error');
         }
@@ -37,22 +45,40 @@ export class ProfileModel {
 
     async uploadAvatar (avatar) {
         const response = await uploadAvatarRequest(avatar);
-        console.log(response);
+
+        switch (response.status) {
+        case 200:
+            this.eventBus.call('AVATAR_UPLOADED');
+            break;
+        case 400:
+            this.eventBus.call('AVATAR_UPLOAD_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
     }
 
     async changePersonalInfo (input) {
-        const name = '9ymaN9cx3CuwQnphJvupUj.jpeg';
-        const ava = await pullAvatarRequest(name);
-        console.log(ava);
         if (this.validate(input)) {
-            console.log(input);
             const response = await changePersonalInfoRequest(input);
-            if (response.status === 200) {
-                console.log(response);
+
+            switch (response.status) {
+            case 200:
                 this.eventBus.call('INFO_CHANGED');
+                break;
+            case 400:
+                this.eventBus.call('CHANGE_PROFILE_ERROR');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_INTERNAL_ERROR');
+                break;
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
             }
         }
-        console.log('changePersonalInfo');
     }
 
     validate (input) {

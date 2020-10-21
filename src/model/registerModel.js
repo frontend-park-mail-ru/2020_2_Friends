@@ -21,7 +21,6 @@ export class RegisterModel {
             });
             switch (response.status) {
             case 201:
-                // дать юзеру понять, что он зарегестрирован
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:
@@ -35,7 +34,7 @@ export class RegisterModel {
                 this.eventBus.call('SERVER_NOT_VALID');
                 break;
             default:
-                console.log('Uncaught backend http-status');
+                console.log(`Uncaught backend http-status: ${response.status}`);
             }
         }
     }

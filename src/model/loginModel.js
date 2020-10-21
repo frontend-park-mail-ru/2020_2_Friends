@@ -28,7 +28,7 @@ export class LoginModel {
                 this.eventBus.call('SERVER_NOT_VALID');
                 break;
             default:
-                console.log('Uncaught backend http-status');
+                console.log(`Uncaught backend http-status: ${response.status}`);
             }
         }
     }
