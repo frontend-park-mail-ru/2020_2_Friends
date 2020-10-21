@@ -1,6 +1,7 @@
 import { loginRequest } from '../utils/ApiService.js'
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
+
 export class LoginModel {
     constructor (eventBus) {
         this.doLogin = this.doLogin.bind(this);

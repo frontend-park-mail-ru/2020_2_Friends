@@ -14,17 +14,15 @@ export class RegisterModel {
     async doRegistration (input) {
         const { login, email, password } = input;
         if (this.validate(input)) {
-            console.log('data is valid!');
             const response = await registerRequest({
                 login: login.value,
                 email: email.value,
                 password: password.value
             });
-
             switch (response.status) {
             case 201:
                 // дать юзеру понять, что он зарегестрирован
-                this.eventBus.subscribe('REDIRECT_TO_LOGIN');
+                this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:
                 this.eventBus.call('REGISTER_NOT_VALID');
