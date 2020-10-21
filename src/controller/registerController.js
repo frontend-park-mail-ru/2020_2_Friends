@@ -10,6 +10,6 @@ export class RegisterController {
         this.model = new RegisterModel(eventBus);
         this.view = new RegisterView(root, eventBus);
 
-        eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
+        eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
     }
 }

@@ -19,11 +19,10 @@ export class RegisterModel {
                 email: email.value,
                 password: password.value
             });
-            console.log(response);
             switch (response.status) {
             case 201:
                 // дать юзеру понять, что он зарегестрирован
-                this.eventBus.call('REDIRECT_TO_LOGIN');
+                this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:
                 this.eventBus.call('REGISTER_NOT_VALID');
