@@ -18,11 +18,9 @@ export class StoreModel {
     async getData () {
         const response = await getStoreByIdDataRequest(1);
 
-        console.log(response);
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            console.log(body);
             this.eventBus.call('SHOW_STORE',
                 {
                     storeName: body.storeName,
