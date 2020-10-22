@@ -47,7 +47,7 @@ export const registerRequest = (input) => {
  *
  * @return {object} - Response object.
  */
-export const getStoreDataRequest = (id) => {
+export const getStoreByIdDataRequest = (id) => {
     const args = {
         url: backendUrl + `/api/v1/vendors/${id}`
     }

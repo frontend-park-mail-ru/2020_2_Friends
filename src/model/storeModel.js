@@ -1,4 +1,4 @@
-import { getStoreDataRequest } from '../utils/ApiService.js';
+import { getStoreByIdDataRequest } from '../utils/ApiService.js';
 
 export class StoreModel {
     /**
@@ -16,14 +16,26 @@ export class StoreModel {
      * Getting store data with http-request.
      */
     async getData () {
-        const response = await getStoreDataRequest(0);
+        const response = await getStoreByIdDataRequest(1);
 
+        console.log(response);
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            this.eventBus.call('SHOW_STORE', { body: body });
+            console.log(body);
+            this.eventBus.call('SHOW_STORE',
+                {
+                    storeName: body.storeName,
+                    products: body.products
+                });
             break;
         }
+        case 400:
+            this.eventBus.call('STORE_DATA_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
