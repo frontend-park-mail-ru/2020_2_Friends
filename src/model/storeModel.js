@@ -17,10 +17,13 @@ export class StoreModel {
      */
     async getData () {
         const response = await getStoreDataRequest(0);
+
         switch (response.status) {
-        case 200:
-            this.eventBus.call('SHOW_STORE', response.responseObject);
+        case 200: {
+            const body = await response.json();
+            this.eventBus.call('SHOW_STORE', { body: body });
             break;
+        }
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
