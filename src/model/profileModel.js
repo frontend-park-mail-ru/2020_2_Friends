@@ -42,7 +42,7 @@ export class ProfileModel {
             break;
         }
         case 400:
-            this.eventBus.call('PROFILE_ERROR');
+            this.eventBus.call('GET_PROFILE_ERROR');
             break;
         case 500:
             this.eventBus.call('SERVER_INTERNAL_ERROR');

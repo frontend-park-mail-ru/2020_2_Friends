@@ -20,6 +20,8 @@ export class ProfileView {
         this.renderAvatar = this.renderAvatar.bind(this);
         this.avatarUploadError = this.avatarUploadError.bind(this);
         this.serverInternalError = this.serverInternalError.bind(this);
+        this.changeProfileError = this.changeProfileError.bind(this);
+        this.getProfileError = this.getProfileError.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
@@ -29,6 +31,13 @@ export class ProfileView {
         eventBus.subscribe('RENDER_AVATAR', this.renderAvatar);
         eventBus.subscribe('AVATAR_UPLOAD_ERROR', this.avatarUploadError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
+        eventBus.subscribe('CHANGE_PROFILE_ERROR', this.changeProfileError);
+        eventBus.subscribe('GET_PROFILE_ERROR', this.getProfileError);
+    }
+
+    getProfileError () {
+        const profileErrors = this.root.querySelector('.avatar-errors');
+        profileErrors.innerText = 'Ошибка при загрузке профиля!';
     }
 
     /**
@@ -37,6 +46,14 @@ export class ProfileView {
     serverInternalError () {
         const serverErrors = this.root.querySelector('.avatar-errors');
         serverErrors.innerText = 'Упс! Сервер устал, подождите и попробуйте заново!';
+    }
+
+    /**
+     * Reacting to change profile error.
+     */
+    changeProfileError () {
+        const profileErrors = this.root.querySelector('.avatar-errors');
+        profileErrors.innerText = 'Произошла ошибка, попробуйте снова!';
     }
 
     /**
