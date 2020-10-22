@@ -17,12 +17,44 @@ export class ProfileView {
         this.emailNotValid = this.emailNotValid.bind(this);
         this.infoChanged = this.infoChanged.bind(this);
         this.render = this.render.bind(this);
+        this.renderAvatar = this.renderAvatar.bind(this);
+        this.avatarUploadError = this.avatarUploadError.bind(this);
+        this.serverInternalError = this.serverInternalError.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('EMAIL_NOT_VALID', this.emailNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
         eventBus.subscribe('SHOW_PROFILE', this.render);
+        eventBus.subscribe('RENDER_AVATAR', this.renderAvatar);
+        eventBus.subscribe('AVATAR_UPLOAD_ERROR', this.avatarUploadError);
+        eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
+    }
+
+    /**
+     * Reacting to server internal error.
+     */
+    serverInternalError () {
+        const serverErrors = this.root.querySelector('.avatar-errors');
+        serverErrors.innerText = 'Упс! Сервер устал, подождите и попробуйте заново!';
+    }
+
+    /**
+     * Reacting to avatar upload error.
+     */
+    avatarUploadError () {
+        const avatarErrors = this.root.querySelector('.avatar-errors');
+        avatarErrors.innerText = 'Произошла ошибка, попробуйте снова!';
+    }
+
+    /**
+     * Rendering profile page and setting event listeners.
+     *
+     * @param {object} data - Avatar object, contains avatarUrl to rerender.
+     */
+    renderAvatar (data) {
+        this.avatarElement = this.root.querySelector('#avatar');
+        this.avatarElement.src = data.avatarUrl;
     }
 
     /**

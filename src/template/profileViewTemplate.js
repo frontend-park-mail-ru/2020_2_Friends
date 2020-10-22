@@ -12,7 +12,14 @@ export const renderProfileView = () => window.Handlebars.compile(`
         <div class="personal-info">
             <h1 class="heading">Личные данные</h1>
             <div class="row_container">
-                <img src=" {{ avatar }} " alt="Italian Trulli">
+                <div class="img-container">
+                    <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli">
+                    <div class="avatar-errors"></div>
+                </div>
+                <form class="upload">
+                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                    <input type="submit" />
+                </form>
                 <div class="point_balance"></div>
                 <p class="default_text">Количество баллов: {{ points }}</p>
                 <a class="reference" href="#">Еда за баллы</a>
@@ -32,10 +39,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <input type="text" class="form_input email-input" placeholder=Email: {{ email }} required="" />
                 </div>
                 <button class="submit_button save_info">Сохранить</button>
-                <form class="upload">
-                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
-                    <input type="submit" />
-                </form>
             </div>
             <div class="row_container">
                 <h2 class="heading">Адреса</h2>
