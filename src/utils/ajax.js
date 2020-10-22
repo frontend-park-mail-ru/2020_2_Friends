@@ -1,3 +1,11 @@
+/**
+ * Creating and sending http-request using fetch.
+ * GET request.
+ *
+ * @param {object} ajaxArgs - Arguments for http-request.
+ *
+ * @return {Promise} - Response object.
+ */
 export const ajaxGetUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'GET',
@@ -5,6 +13,14 @@ export const ajaxGetUsingFetch = (ajaxArgs) => {
     });
 }
 
+/**
+ * Creating and sending http-request using fetch.
+ * POST request.
+ *
+ * @param {object} ajaxArgs - Arguments for http-request.
+ *
+ * @return {Promise} - Response object.
+ */
 export const ajaxPostUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'POST',
@@ -13,6 +29,14 @@ export const ajaxPostUsingFetch = (ajaxArgs) => {
     });
 }
 
+/**
+ * Creating and sending http-request using fetch.
+ * PUT request.
+ *
+ * @param {object} ajaxArgs - Arguments for http-request.
+ *
+ * @return {Promise} - Response object.
+ */
 export const ajaxPutUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'PUT',
@@ -21,6 +45,15 @@ export const ajaxPutUsingFetch = (ajaxArgs) => {
     })
 }
 
+/**
+ * Creating and sending http-request using fetch.
+ * Sending multipart/form-data body.
+ * PUT request.
+ *
+ * @param {object} ajaxArgs - Arguments for http-request.
+ *
+ * @return {Promise} - Response object.
+ */
 export const ajaxMultipartUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'PUT',

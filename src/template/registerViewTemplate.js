@@ -1,3 +1,6 @@
+/**
+ * Templating html-code using handlebars templater for register.
+ */
 export const renderRegisterView = () => window.Handlebars.compile(`
     <div class="login_page">
         <div class="col-container">

@@ -4,18 +4,27 @@ import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest }
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class ProfileModel {
+    /**
+     * Creating an LoginModel instance.
+     *
+     * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
+     */
     constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
 
         this.eventBus = eventBus;
+
         eventBus.subscribe('LOGOUT', this.logOut);
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
     }
 
+    /**
+     * Getting user profile data with http-request.
+     */
     async getProfileData () {
         const response = await getProfileInfoRequest();
 
@@ -43,6 +52,11 @@ export class ProfileModel {
         }
     }
 
+    /**
+     * Uploading to backend fileserver user's avatar picture with http.
+     *
+     * @param {object} avatar - Form-data with avatar.
+     */
     async uploadAvatar (avatar) {
         const response = await uploadAvatarRequest(avatar);
 
@@ -61,6 +75,12 @@ export class ProfileModel {
         }
     }
 
+    /**
+     * Changing user's information in profile.
+     * Passing new user's input data to backend server via http.
+     *
+     * @param {object} input - New user's input data.
+     */
     async changePersonalInfo (input) {
         if (this.validate(input)) {
             const response = await changePersonalInfoRequest(input);
@@ -81,6 +101,13 @@ export class ProfileModel {
         }
     }
 
+    /**
+     * Checking user-passed data to pass in into http-request.
+     *
+     * @param {object} input - User-passed data.
+     *
+     * @return {boolean} isValid - Result of validating.
+     */
     validate (input) {
         const { login, number, email } = input;
         let isValid = true;

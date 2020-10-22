@@ -1,3 +1,4 @@
+// Regular expessions to check user input forms.
 export const regTemplates = {
     url: /([^:]+):?(.+)?/,
     email: /^.+@.+\..+$/,

@@ -3,14 +3,26 @@ import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
 
 export class RegisterModel {
+    /**
+     * Creating an RegisterModel instance.
+     *
+     * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
+     */
     constructor (eventBus) {
         this.doRegistration = this.doRegistration.bind(this);
+
         this.eventBus = eventBus;
+
         eventBus.subscribe('SUBMIT_REG', this.doRegistration);
         eventBus.subscribe('LOGOUT', this.logOut);
         eventBus.subscribe('CHANGE_INFO', this.logOutchangePersonalInfo);
     }
 
+    /**
+     * Event handler for user registration.
+     *
+     * @param {object} input - User-passed data.
+     */
     async doRegistration (input) {
         const { login, email, password } = input;
         if (this.validate(input)) {
@@ -39,6 +51,13 @@ export class RegisterModel {
         }
     }
 
+    /**
+     * Checking user-passed data to pass in into http-request.
+     *
+     * @param {object} input - User-passed data.
+     *
+     * @return {boolean} isValid - Result of validating.
+     */
     validate (input) {
         const { login, email, password, repeatPassword } = input;
         let isValid = true;
