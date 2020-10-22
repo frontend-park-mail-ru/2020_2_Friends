@@ -21,4 +21,6 @@ router.setRoute('store', storeController.model.getData);
 router.setRoute('/', loginController.view.render);
 router.setRoute('', loginController.view.render);
 
-router.redirect(window.location.pathname.split('/')[1]);
+const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
+const url = window.location.pathname.slice(firstSlashIndex);
+router.redirect(url);
