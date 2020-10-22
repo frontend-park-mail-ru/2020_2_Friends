@@ -1,3 +1,6 @@
+/**
+ * Templating html-code using handlebars templater for profile.
+ */
 export const renderProfileView = () => window.Handlebars.compile(`
 <div class="profile_page_container-column">
 <div class="back_to_restaurants backround_gradient">

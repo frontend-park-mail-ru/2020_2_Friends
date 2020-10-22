@@ -1,9 +1,17 @@
 import { renderProfileView } from '../template/profileViewTemplate.js';
 
 export class ProfileView {
+    /**
+     * Creating an ProfileView instance.
+     * Allows to render profile page and response correctly to user's interaction with page.
+     *
+     * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
+     * @param {object} root - Main html div object.
+     */
     constructor (root, eventBus) {
         this.root = root;
         this.eventBus = eventBus;
+
         this.loginNotValid = this.loginNotValid.bind(this);
         this.numberNotValid = this.numberNotValid.bind(this);
         this.emailNotValid = this.emailNotValid.bind(this);
@@ -17,6 +25,9 @@ export class ProfileView {
         eventBus.subscribe('SHOW_PROFILE', this.render);
     }
 
+    /**
+     * Rendering profile page and setting event listeners.
+     */
     render (data) {
         const template = renderProfileView();
         const profileHTML = template(data);
@@ -25,26 +36,41 @@ export class ProfileView {
         this.addEventListeners();
     }
 
+    /**
+     * Reacting to login not valid error.
+     */
     loginNotValid () {
         const loginErrors = this.root.querySelector('.login-errors');
         loginErrors.innerText = 'Имя может содержать только буквы и цифры';
     }
 
+    /**
+     * Reacting to phone number not valid error.
+     */
     numberNotValid () {
         const numberErrors = this.root.querySelector('.number-errors');
         numberErrors.innerHTML = 'Номер имеет недопустимый формат!';
     }
 
+    /**
+     * Reacting to email not valid error.
+     */
     emailNotValid () {
         const emailErrors = this.root.querySelector('.email-errors');
         emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
     }
 
+    /**
+     * Reacting to successful info change.
+     */
     infoChanged () {
         const infoText = this.root.querySelector('.login-errors');
         infoText.innerText = 'Данные успешно обновлены!';
     }
 
+    /**
+     * Setting event listeners for profile page.
+     */
     addEventListeners () {
         const favoriteStore = this.root.querySelector('#favorite_store');
         favoriteStore.addEventListener('click', () => {

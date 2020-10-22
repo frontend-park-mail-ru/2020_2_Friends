@@ -1,3 +1,6 @@
+/**
+ * Templating html-code using handlebars templater for login.
+ */
 export const renderLoginView = () => window.Handlebars.compile(`
     <div class="login_page">
         <div class="col-container">

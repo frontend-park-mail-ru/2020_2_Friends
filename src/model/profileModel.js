@@ -1,22 +1,33 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, pullAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
+
 export class ProfileModel {
+    /**
+     * Creating an LoginModel instance.
+     *
+     * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
+     */
     constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
 
         this.eventBus = eventBus;
+
         eventBus.subscribe('LOGOUT', this.logOut);
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
     }
 
+    /**
+     * Getting user profile data with http-request.
+     */
     async getProfileData () {
         const response = await getProfileInfoRequest();
+
         switch (response.status) {
         case 200: {
             const body = await response.json();
@@ -30,31 +41,73 @@ export class ProfileModel {
             });
             break;
         }
+        case 400:
+            this.eventBus.call('PROFILE_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
         default:
             console.log('Backend error');
         }
     }
 
+    /**
+     * Uploading to backend fileserver user's avatar picture with http.
+     *
+     * @param {object} avatar - Form-data with avatar.
+     */
     async uploadAvatar (avatar) {
         const response = await uploadAvatarRequest(avatar);
-        console.log(response);
+
+        switch (response.status) {
+        case 200:
+            this.eventBus.call('AVATAR_UPLOADED');
+            break;
+        case 400:
+            this.eventBus.call('AVATAR_UPLOAD_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
     }
 
+    /**
+     * Changing user's information in profile.
+     * Passing new user's input data to backend server via http.
+     *
+     * @param {object} input - New user's input data.
+     */
     async changePersonalInfo (input) {
-        const name = '9ymaN9cx3CuwQnphJvupUj.jpeg';
-        const ava = await pullAvatarRequest(name);
-        console.log(ava);
         if (this.validate(input)) {
-            console.log(input);
             const response = await changePersonalInfoRequest(input);
-            if (response.status === 200) {
-                console.log(response);
+
+            switch (response.status) {
+            case 200:
                 this.eventBus.call('INFO_CHANGED');
+                break;
+            case 400:
+                this.eventBus.call('CHANGE_PROFILE_ERROR');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_INTERNAL_ERROR');
+                break;
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
             }
         }
-        console.log('changePersonalInfo');
     }
 
+    /**
+     * Checking user-passed data to pass in into http-request.
+     *
+     * @param {object} input - User-passed data.
+     *
+     * @return {boolean} isValid - Result of validating.
+     */
     validate (input) {
         const { login, number, email } = input;
         let isValid = true;

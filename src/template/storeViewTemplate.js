@@ -1,3 +1,6 @@
+/**
+ * Templating html-code using handlebars templater for store.
+ */
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="restaraunt_page">
     <div class="store_label">
