@@ -13,6 +13,8 @@ export class StoreView {
         this.eventBus = eventBus;
 
         this.render = this.render.bind(this);
+
+        eventBus.subscribe('SHOW_STORE', this.render);
     }
 
     /**
