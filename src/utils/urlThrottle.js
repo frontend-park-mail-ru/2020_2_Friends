@@ -7,7 +7,7 @@
  */
 export const makeAvatarUrl = (avatarName) => {
     const schema = 'http://';
-    const host = 'localhost';
+    const host = '89.208.197.247';
     const staticPort = ':9001';
     const staticUrl = schema + host + staticPort;
 

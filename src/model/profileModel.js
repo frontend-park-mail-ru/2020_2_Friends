@@ -62,13 +62,13 @@ export class ProfileModel {
 
         switch (response.status) {
         case 200:
-            this.eventBus.call('AVATAR_UPLOADED');
+            // this.eventBus.call('AVATAR_UPLOADED');
             break;
         case 400:
-            this.eventBus.call('AVATAR_UPLOAD_ERROR');
+            // this.eventBus.call('AVATAR_UPLOAD_ERROR');
             break;
         case 500:
-            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            // this.eventBus.call('SERVER_INTERNAL_ERROR');
             break;
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
