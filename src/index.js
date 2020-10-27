@@ -25,18 +25,14 @@ router.setRoute('', loginController.view.render);
 const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
 const url = window.location.pathname.slice(firstSlashIndex);
 router.redirect(url);
-// console.log(url);
+console.log(url);
 
-// window.onpopstate = function (e) {
-//     e.preventDefault();
-//     router.redirect(url);
-// }
-
-window.onload = function () {
-    setTimeout(function () {
-        window.onpopstate = function (e) {
-            e.preventDefault();
-            router.redirect(url);
-        }
-    }, 0);
+console.log(2);
+window.onpopstate = function (e) {
+    const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
+    const url = window.location.pathname.slice(firstSlashIndex);
+    console.log(1);
+    // e.preventDefault();
+    router.redirect(url, false);
 }
+console.log(3);

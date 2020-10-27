@@ -93,7 +93,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 </a>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="#" class="widget-item__link">
+                <a class="reference" href="" class="widget-item__link">
                     <p class="default_text" id="favorite_store">Мой избранный магазин</p>
                 </a>
             </li>
