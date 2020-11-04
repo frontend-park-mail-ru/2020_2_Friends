@@ -25,7 +25,6 @@ router.setRoute('', loginController.view.render);
 const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
 const url = window.location.pathname.slice(firstSlashIndex);
 router.redirect(url);
-console.log(url);
 
 window.onpopstate = function () {
     const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
