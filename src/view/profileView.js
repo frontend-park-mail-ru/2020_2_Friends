@@ -12,6 +12,8 @@ export class ProfileView {
         this.root = root;
         this.eventBus = eventBus;
 
+        this.defaultErrorMessage = 'Перезагрузите страницу и попробуйте заново!'; //  TODO: Create exceptions module
+
         this.loginNotValid = this.loginNotValid.bind(this);
         this.numberNotValid = this.numberNotValid.bind(this);
         this.emailNotValid = this.emailNotValid.bind(this);
@@ -35,9 +37,12 @@ export class ProfileView {
         eventBus.subscribe('GET_PROFILE_ERROR', this.getProfileError);
     }
 
+    /**
+     * Reacting to get profile error.
+     */
     getProfileError () {
         const profileErrors = this.root.querySelector('.avatar-errors');
-        profileErrors.innerText = 'Ошибка при загрузке профиля!';
+        profileErrors.innerText = this.defaultErrorMessage;
     }
 
     /**
@@ -53,7 +58,7 @@ export class ProfileView {
      */
     changeProfileError () {
         const profileErrors = this.root.querySelector('.avatar-errors');
-        profileErrors.innerText = 'Произошла ошибка, попробуйте снова!';
+        profileErrors.innerText = this.defaultErrorMessage;
     }
 
     /**
@@ -61,7 +66,7 @@ export class ProfileView {
      */
     avatarUploadError () {
         const avatarErrors = this.root.querySelector('.avatar-errors');
-        avatarErrors.innerText = 'Произошла ошибка, попробуйте снова!';
+        avatarErrors.innerText = this.defaultErrorMessage;
     }
 
     /**
