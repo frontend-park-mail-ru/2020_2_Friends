@@ -16,6 +16,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
         </div>
     </div>
     <div class="showcase">
+        <div class="store-errors"></div>
         {{#each products}}
             <div class="product">
                 <div id="food" class="food" title="{{ this.foodName }}">
