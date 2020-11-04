@@ -27,12 +27,8 @@ const url = window.location.pathname.slice(firstSlashIndex);
 router.redirect(url);
 console.log(url);
 
-console.log(2);
-window.onpopstate = function (e) {
+window.onpopstate = function () {
     const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
     const url = window.location.pathname.slice(firstSlashIndex);
-    console.log(1);
-    // e.preventDefault();
     router.redirect(url, false);
 }
-console.log(3);

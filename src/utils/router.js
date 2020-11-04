@@ -28,7 +28,6 @@ export class Router {
      * @param {string} to - Name of resource to redirect.
      */
     redirect (to, needPushState = true) {
-        console.log(to);
         if (needPushState) {
             history.pushState({ to }, to, to);
         }
