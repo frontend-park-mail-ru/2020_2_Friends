@@ -31,7 +31,13 @@ export class ProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            const avatarUrl = makeAvatarUrl(body.avatar);
+            var avatarUrl;
+            if (!body.avatar) {
+                avatarUrl = '../assets/img/default-avatar.png';
+            } else {
+                avatarUrl = makeAvatarUrl(body.avatar);
+            }
+            console.log(avatarUrl);
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
                 points: body.points,

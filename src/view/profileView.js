@@ -160,7 +160,7 @@ export class ProfileView {
             this.eventBus.call('UPLOAD_AVATAR', avatar);
         })
 
-        const saveInfo = this.root.querySelector('.save_info');
+        const saveInfo = this.root.querySelector('.js-save-info');
         saveInfo.addEventListener('click', () => {
             const login = this.root.querySelector('.login-input');
             const email = this.root.querySelector('.email-input');

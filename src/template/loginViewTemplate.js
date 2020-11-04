@@ -2,19 +2,16 @@
  * Templating html-code using handlebars templater for login.
  */
 export const renderLoginView = () => window.Handlebars.compile(`
-    <div class="login_page">
-        <div class="col-container">
-            <img src="assets/img/logo.png" class="log_image">
-            <div class="login-errors"></div>
-            <input type="email" class="js-input-login input_text" placeholder="Логин:">
-            <div class="password-errors"></div>
-            <input type="password" class="js-input-password input_text" placeholder="Пароль:">
-            <div class="signup">
-                <button class="js-reg-button link">Зарегистрироваться</button>
-            </div>
-            <div>
-                <button class="js-submit-login submit_button">Войти</button>
-            </div>
-        </div>
-    </div>`
+
+    <div class="login-page__background">
+    <div class="login-page__input-block">
+        <img class="common-image" src="assets/img/logo.png"></img>
+        <div class="login-errors text-error"></div>
+        <input type="text" class="common-input js-input-login" placeholder="Логин:" ></input>
+        <div class="password-errors text-error"></div>
+        <input type="text" class="common-input js-input-password" placeholder="Пароль:" ></input>
+        <button class="proceed-button js-submit-login">Войти</button>
+        <button class="js-reg-button link info-button">Зарегистрироваться</button>
+    </div>
+</div>`
 )

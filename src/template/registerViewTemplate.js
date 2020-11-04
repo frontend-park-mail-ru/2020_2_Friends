@@ -2,19 +2,16 @@
  * Templating html-code using handlebars templater for register.
  */
 export const renderRegisterView = () => window.Handlebars.compile(`
-    <div class="login_page">
-        <div class="col-container">
-            <img src="assets/img/logo.png" class="log_image">
-            <div class="login-errors"></div>
-            <input type="email" class="js-input-login input_text" placeholder="Логин:">
-            <div class="email-errors"></div>
-            <input type="email" class="js-input-email input_text" placeholder="Email:">
-            <div class="password-errors"></div>
-            <input type="password" class="js-input-password input_text" placeholder="Пароль:">
-            <input type="password" class="js-input-password-second input_text" placeholder="Повторите пароль:">
-            <div>
-                <button class="js-submit-reg submit_button">Зарегистрироваться</button>
-            </div>
-        </div>
-    </div>`
+<div class="regestration-page__background">
+<div class="regestration-page__input-block">
+    <div class="login-errors text-error"></div>
+    <input type="text" class="common-input js-input-login" placeholder="Логин:" ></input>
+    <div class="email-errors text-error"></div>
+    <input type="text" class="common-input js-input-email" placeholder="Email": ></input>
+    <div class="password-errors text-error"></div>
+    <input type="text" class="common-input js-input-password" placeholder="Пароль:" ></input>
+    <input type="text" class="common-input js-input-password-second" placeholder="Повторите пароль:"></input>
+    <button class="proceed-button js-submit-reg">Зарегестрироваться</button>
+</div>
+</div>`
 )

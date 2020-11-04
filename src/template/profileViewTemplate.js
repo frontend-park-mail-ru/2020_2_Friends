@@ -2,7 +2,48 @@
  * Templating html-code using handlebars templater for profile.
  */
 export const renderProfileView = () => window.Handlebars.compile(`
-<div class="profile_page_container-column">
+<div class="profile-page__background">
+<div class="header__background">
+    <img class="header__logo">
+    <div>
+        <button class="header__button">Корзина</button>
+        <button class="header__button">Выйти</button>
+    </div>
+</div>
+<div class="profile-page__profile-cart">
+    <div class="profile-page__navbar">
+        <button class="profile-page__navbar-button profile-page__navbar-button_focus">О Вас</button>
+        <button class="profile-page__navbar-button">Адреса</button>
+        <button class="profile-page__navbar-button">Мои заказы</button>
+        <button class="profile-page__navbar-button">Мои скидки</button>
+    </div>
+    <div class="profile-page__content">
+        <div class="profile-page__left-column">
+            <img id="avatar" class="common-image profile-page__img" src="{{ avatar }}">
+            <div class="js-avatar-errors"></div>
+            <button class="profile-page__img-upload-button">
+                <img class="profile-page__img-upload-button-img">
+            </button>
+            <form class="upload">
+            <input type="file" name="uploadFile"  accept=".png, .jpg, .jpeg">
+            <input type="submit" />
+        </form>
+            <div class="profile-page__bonus-points">Количество баллов: {{ points }}</div>
+        </div>
+        <div class="profile-page__right-column">
+            <div class="login-errors text-error"></div>
+            <input type="text" class="common-input" placeholder="Логин: {{ username }}" :></input>
+            <div class="number-errors text-error"></div>
+            <input type="text" class="common-input" placeholder="Номер: {{ phone }}"></input>
+            <div class="email-errors text-error"></div>
+            <input type="text" class="common-input" placeholder="Email: {{ email }}"></input>
+            <button class="proceed-button js-save-info">Сохранить</button>
+        </div>
+    </div>
+</div>
+</div>
+`)
+/* <div class="profile_page_container-column">
 <div class="back_to_restaurants backround_gradient">
     <a class="reference" href="#">Все рестораны</a>
 </div>
@@ -20,26 +61,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
                     <input type="submit" />
                 </form>
-                <div class="point_balance"></div>
-                <p class="default_text">Количество баллов: {{ points }}</p>
-                <a class="reference" href="#">Еда за баллы</a>
-            </div>
-            <div class="row_container">
-                <h2 class="heading">Профиль</h2>
-                <div class="login-errors"></div>
-                <div class="form_group">
-                    <input type="text" class="form_input login-input" placeholder=Логин: {{ name }} required="" />
-                </div>
-                <div class="number-errors"></div>
-                <div class="form_group">
-                    <input type="text" class="form_input number-input" placeholder=Номер: {{ number }} required="" />
-                </div>
-                <div class="email-errors"></div>
-                <div class="form_group">
-                    <input type="text" class="form_input email-input" placeholder=Email: {{ email }} required="" />
-                </div>
-                <button class="submit_button save_info">Сохранить</button>
-            </div>
             <div class="row_container">
                 <h2 class="heading">Адреса</h2>
                 <ul class="">
@@ -96,5 +117,4 @@ export const renderProfileView = () => window.Handlebars.compile(`
 
     </div>
 </div>
-</div>
-`)
+</div> */
