@@ -78,29 +78,19 @@ export const renderProfileView = () => window.Handlebars.compile(`
     <div class="profile_page_right_column_container backround_gradient">
         <ul>
             <li class="widget-item_container">
-                <a class="reference" href="/profile/personal" class="widget-item__link">
-                    <p class="default_text">Личные данные</p>
-                </a>
+                <button class="js-userdata-button link">Личные данные</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="/profile/addresses" class="widget-item__link">
-                    <p class="default_text">Адреса доставки</p>
-                </a>
+                <button class="js-addresses-button link">Адреса доставки</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="#" class="widget-item__link">
-                    <p class="default_text">Мои заказы</p>
-                </a>
+                <button class="js-myorders-button link">Мой заказы</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="" class="widget-item__link">
-                    <p class="default_text" id="favorite_store">Мой избранный магазин</p>
-                </a>
+                <button class="js-favstore-button link">Мой избранный магазин</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="/logout" class="widget-item__link">
-                    <p class="default_text">Выход</p>
-                </a>
+                <button class="js-logout-button link">Выйти!</button>
             </li>
         </ul>
 

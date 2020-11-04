@@ -121,9 +121,29 @@ export class ProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
-        const favoriteStore = this.root.querySelector('#favorite_store');
+        const favoriteStore = this.root.querySelector('.js-favstore-button');
         favoriteStore.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_STORE');
+        })
+
+        const profileData = this.root.querySelector('.js-userdata-button');
+        profileData.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_PROFILE_DATA');
+        })
+
+        const addresses = this.root.querySelector('.js-addresses-button');
+        addresses.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_PROFILE_ADDRESSES');
+        })
+
+        const orders = this.root.querySelector('.js-myorders-button');
+        orders.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_PROFILE_ORDERS');
+        })
+
+        const logout = this.root.querySelector('.js-logout-button');
+        logout.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_LOGOUT');
         })
 
         const uploadAvatar = this.root.querySelector('.upload');
