@@ -16,13 +16,14 @@ export const renderStoreView = () => window.Handlebars.compile(`
         </div>
     </div>
     <div class="showcase">
+        <div class="store-errors"></div>
         {{#each products}}
             <div class="product">
-                <div id="food" class="food" title="Обед №1">
-                    <img src="{{this.picturePath}}" class="food_img" alt="assets/burger1.png">
-                    <div class="food_description"> {{this.foodName}}</div>
+                <div id="food" class="food" title="{{ this.foodName }}">
+                    <img src="{{ this.picture }}" class="food_img" alt="assets/burger1.png">
+                    <div class="food_description"> {{ this.foodName }}</div>
                 </div>
-                <div class="product_price"> {{ this.foodPrice }} 
+                <div class="product_price"> {{ this.foodPrice }} P
                     <button class="buy_button">Добавить</button> 
                 </div>
             </div>

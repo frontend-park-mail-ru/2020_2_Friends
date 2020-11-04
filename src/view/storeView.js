@@ -13,8 +13,28 @@ export class StoreView {
         this.eventBus = eventBus;
 
         this.render = this.render.bind(this);
+        this.storeDataError = this.storeDataError.bind(this);
+        this.serverInternalError = this.serverInternalError.bind(this);
 
         eventBus.subscribe('SHOW_STORE', this.render);
+        eventBus.subscribe('STORE_DATA_ERROR', this.storeDataError);
+        eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
+    }
+
+    /**
+     * Reacting to internal server error.
+     */
+    serverInternalError () {
+        const serverErrors = this.root.querySelector('.store-errors');
+        serverErrors.innerHTML = 'Упс! Сервер устал, подождите и попробуйте заново!';
+    }
+
+    /**
+     * Reacting to failed getting store data.
+     */
+    storeDataError () {
+        const storeErrors = this.root.querySelector('.store-errors');
+        storeErrors.innerHTML = 'Произошла ошибка при загрузке данных магазина!';
     }
 
     /**

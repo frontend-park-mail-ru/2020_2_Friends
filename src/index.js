@@ -1,3 +1,4 @@
+// import { response } from 'express';
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
 import { RegisterController } from './controller/registerController.js';
@@ -24,3 +25,9 @@ router.setRoute('', loginController.view.render);
 const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
 const url = window.location.pathname.slice(firstSlashIndex);
 router.redirect(url);
+
+window.onpopstate = function () {
+    const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
+    const url = window.location.pathname.slice(firstSlashIndex);
+    router.redirect(url, false);
+}

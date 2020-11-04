@@ -12,7 +12,14 @@ export const renderProfileView = () => window.Handlebars.compile(`
         <div class="personal-info">
             <h1 class="heading">Личные данные</h1>
             <div class="row_container">
-                <img src=" {{ avatar }} " alt="Italian Trulli">
+                <div class="img-container">
+                    <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli">
+                    <div class="avatar-errors"></div>
+                </div>
+                <form class="upload">
+                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                    <input type="submit" />
+                </form>
                 <div class="point_balance"></div>
                 <p class="default_text">Количество баллов: {{ points }}</p>
                 <a class="reference" href="#">Еда за баллы</a>
@@ -32,10 +39,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <input type="text" class="form_input email-input" placeholder=Email: {{ email }} required="" />
                 </div>
                 <button class="submit_button save_info">Сохранить</button>
-                <form class="upload">
-                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
-                    <input type="submit" />
-                </form>
             </div>
             <div class="row_container">
                 <h2 class="heading">Адреса</h2>
@@ -75,29 +78,19 @@ export const renderProfileView = () => window.Handlebars.compile(`
     <div class="profile_page_right_column_container backround_gradient">
         <ul>
             <li class="widget-item_container">
-                <a class="reference" href="/profile/personal" class="widget-item__link">
-                    <p class="default_text">Личные данные</p>
-                </a>
+                <button class="js-userdata-button link">Личные данные</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="/profile/addresses" class="widget-item__link">
-                    <p class="default_text">Адреса доставки</p>
-                </a>
+                <button class="js-addresses-button link">Адреса доставки</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="#" class="widget-item__link">
-                    <p class="default_text">Мои заказы</p>
-                </a>
+                <button class="js-myorders-button link">Мой заказы</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="#" class="widget-item__link">
-                    <p class="default_text" id="favorite_store">Мой избранный магазин</p>
-                </a>
+                <button class="js-favstore-button link">Мой избранный магазин</button>
             </li>
             <li class="widget-item_container">
-                <a class="reference" href="/logout" class="widget-item__link">
-                    <p class="default_text">Выход</p>
-                </a>
+                <button class="js-logout-button link">Выйти!</button>
             </li>
         </ul>
 

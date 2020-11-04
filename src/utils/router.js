@@ -27,8 +27,10 @@ export class Router {
      *
      * @param {string} to - Name of resource to redirect.
      */
-    redirect (to) {
-        history.pushState({}, null, to);
+    redirect (to, needPushState = true) {
+        if (needPushState) {
+            history.pushState({ to }, to, to);
+        }
         this.routes.get(to)();
     }
 }
