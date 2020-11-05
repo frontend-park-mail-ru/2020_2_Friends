@@ -2,99 +2,238 @@
  * Templating html-code using handlebars templater for profile.
  */
 export const renderProfileView = () => window.Handlebars.compile(`
-<div class="profile_page_container-column">
-<div class="back_to_restaurants backround_gradient">
-    <a class="reference" href="#">Все рестораны</a>
-</div>
-<div class="profile_page_container">
-    <div class="profile_page_data_container backround_gradient">
-
-        <div class="personal-info">
-            <h1 class="heading">Личные данные</h1>
-            <div class="row_container">
+    <div class="profile-page__background">
+        <div class="header__background">
+            <img class="header__logo">
+            <div>
+                <button class="header__button js-bucket-button">Корзина</button>
+                <button class="header__button js-logout-button">Выйти</button>
+            </div>
+        </div>
+        <div class="back-to-shopping">
+        <button class="back-to-shopping__button">Все рестораны</button>
+        </div>
+        <div class="profile-page__profile-cart">
+            <div class="profile-page__navbar">
+                <button class="profile-page__navbar-button profile-page__navbar-button_focus js-userdata-button link">О Вас</button>
+                <button class="profile-page__navbar-button js-addresses-button link">Адреса</button>
+                <button class="profile-page__navbar-button js-myorders-button link">Мои заказы</button>
+                <button class="profile-page__navbar-button js-favstore-button link">Избранный магазин</button>
+                <button class="profile-page__navbar-button js-coupons-button link">Мои скидки</button>
+            </div>
+            <div class="profile-page__content">
+                <div class="profile-page__left-column">
                 <div class="img-container">
-                    <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli">
-                    <div class="avatar-errors"></div>
-                </div>
-                <form class="upload">
-                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
-                    <input type="submit" />
-                </form>
-                <div class="point_balance"></div>
-                <p class="default_text">Количество баллов: {{ points }}</p>
-                <a class="reference" href="#">Еда за баллы</a>
-            </div>
-            <div class="row_container">
-                <h2 class="heading">Профиль</h2>
-                <div class="login-errors"></div>
-                <div class="form_group">
-                    <input type="text" class="form_input login-input" placeholder=Логин: {{ name }} required="" />
-                </div>
-                <div class="number-errors"></div>
-                <div class="form_group">
-                    <input type="text" class="form_input number-input" placeholder=Номер: {{ number }} required="" />
-                </div>
-                <div class="email-errors"></div>
-                <div class="form_group">
-                    <input type="text" class="form_input email-input" placeholder=Email: {{ email }} required="" />
-                </div>
-                <button class="submit_button save_info">Сохранить</button>
-            </div>
-            <div class="row_container">
-                <h2 class="heading">Адреса</h2>
-                <ul class="">
-                {{#each address}}
-                    <li class="widget_item_container">
-                        <p class="default_text">{{this}}</p>
-                    </li>
-                    {{/each}}
-                </ul>
-            </div>
+                <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli" class="common-image profile-page__img">
+                <div class="avatar-errors"></div>
+            </div>                    
+            <button class="profile-page__img-upload-button">
+                        <img class="profile-page__img-upload-button-img">
+            </button>
+            <form class="upload">
+                <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                <input type="submit" />
+            </form>
 
-            <div class="row_container">
-                <h2 class="heading">Настройки</h2>
-                <div class="profile-personal_switch">
-                    <input type="checkbox" name="switch" class="input--switch">
-                    <div class="profile-personal__switch-text">
-                        <p class="default_text">Уведомлять об акциях по email</p>
-                    </div>
+                    <div class="profile-page__bonus-points">Количество баллов: {{points}}</div>
                 </div>
-                <div class="profile-personal_switch">
-                    <input type="checkbox" name="switch" class="input--switch">
-                    <div class="profile-personal__switch-text">
-                        <p class="default_text">Уведомлять состоянии заказов по смс</p>
-                    </div>
-                </div>
-                <div class="profile-personal_switch">
-                    <input type="checkbox" name="switch" class="input--switch">
-                    <div class="profile-personal__switch-text">
-                        <p class="default_text">Уведомлять об акциях по смс</p>
-                    </div>
+                <div class="profile-page__right-column">
+                   <div class="js-login-errors text-error"></div>
+                    <input type="text" class="common-input js-login-input" placeholder="Имя:" :>{{username}}</input>
+                    <div class="js-number-errors text-error"></div>
+                    <input type="text" class="common-input js-number-input" placeholder="Номер:">{{phone}}</input>
+                    <div class="js-email-errors text-error"></div>
+                    <input type="text" class="common-input js-email-input" placeholder="Email:">{{email}}</input>
+                    <button class="proceed-button js-save-info">Сохранить</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="profile_page_right_column_container backround_gradient">
-        <ul>
-            <li class="widget-item_container">
-                <button class="js-userdata-button link">Личные данные</button>
-            </li>
-            <li class="widget-item_container">
-                <button class="js-addresses-button link">Адреса доставки</button>
-            </li>
-            <li class="widget-item_container">
-                <button class="js-myorders-button link">Мой заказы</button>
-            </li>
-            <li class="widget-item_container">
-                <button class="js-favstore-button link">Мой избранный магазин</button>
-            </li>
-            <li class="widget-item_container">
-                <button class="js-logout-button link">Выйти!</button>
-            </li>
-        </ul>
+    </div>
+`)
 
+export const renderProfileMain = () => window.Handlebars.compile(`
+            <div class="profile-page__navbar">
+                <button class="profile-page__navbar-button profile-page__navbar-button_focus js-userdata-button link">О Вас</button>
+                <button class="profile-page__navbar-button js-addresses-button link">Адреса</button>
+                <button class="profile-page__navbar-button js-myorders-button link">Мои заказы</button>
+                <button class="profile-page__navbar-button js-favstore-button link">Избранный магазин</button>
+                <button class="profile-page__navbar-button js-coupons-button link">Мои скидки</button>
+            </div>
+            <div class="profile-page__content">
+                <div class="profile-page__left-column">
+                <div class="img-container">
+                <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli" class="common-image profile-page__img">
+                <div class="avatar-errors"></div>
+            </div>                    
+            <button class="profile-page__img-upload-button">
+                        <img class="profile-page__img-upload-button-img">
+            </button>
+            <form class="upload">
+                <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                <input type="submit" />
+            </form>
+
+                    <div class="profile-page__bonus-points">Количество баллов: {{points}}</div>
+                </div>
+                <div class="profile-page__right-column">
+                   <div class="js-login-errors text-error"></div>
+                    <input type="text" class="common-input js-login-input" placeholder="Имя:" :>{{username}}</input>
+                    <div class="js-number-errors text-error"></div>
+                    <input type="text" class="common-input js-number-input" placeholder="Номер:">{{phone}}</input>
+                    <div class="js-email-errors text-error"></div>
+                    <input type="text" class="common-input js-email-input" placeholder="Email:">{{email}}</input>
+                    <button class="proceed-button js-save-info">Сохранить</button>
+                </div>
+`)
+
+export const renderProfileAddresses = () => window.Handlebars.compile(`
+<div class="profile-page__navbar">
+<button class="profile-page__navbar-button js-userdata-button link">О Вас</button>
+<button class="profile-page__navbar-button profile-page__navbar-button_focus js-addresses-button link">Адреса</button>
+<button class="profile-page__navbar-button js-myorders-button link">Мои заказы</button>
+<button class="profile-page__navbar-button js-favstore-button link">Избранный магазин</button>
+<button class="profile-page__navbar-button js-coupons-button link">Мои скидки</button>
+</div>
+<div class="profile-page__content">
+<div class="profile-page__left-column">
+    <img class="common-image" src="./assets/img/map.png">
+</div>
+<div class="profile-page__right-column">
+    <div class="profile-page__address-item">
+        <div class="profile-page__address-item-text">
+            Улица Пушкина Дом кукушкина
+        </div>
+        <div class="profile-page__address-item-button"></div>
+    </div>
+    <div class="profile-page__address-item">
+        <div class="profile-page__address-item-text">
+            Улица Пушкина Дом кукушкина
+        </div>
+        <div class="profile-page__address-item-button"></div>
+    </div>
+    <div class="profile-page__address-item">
+        <div class="profile-page__address-item-text">
+            Улица Пушкина Дом кукушкина</div>
+        <div class="profile-page__address-item-button"></div>
+    </div>
+    <div class="profile-page__add-address-block">
+        <input type="text" class="common-input" placeholder="Добавьте новый адрес:"></input>
+        <button class="proceed-button">Добавить</button>
     </div>
 </div>
+</div>
+`)
+export const renderProfileOrders = () => window.Handlebars.compile(`
+<div class="profile-page__navbar">
+<button class="profile-page__navbar-button js-userdata-button link">О Вас</button>
+<button class="profile-page__navbar-button js-addresses-button link">Адреса</button>
+<button class="profile-page__navbar-button profile-page__navbar-button_focus js-myorders-button link">Мои заказы</button>
+<button class="profile-page__navbar-button js-favstore-button link">Избранный магазин</button>
+<button class="profile-page__navbar-button js-coupons-button link">Мои скидки</button>
+</div>
+<div class="profile-page__content">
+<div class="profile-page__content-column">
+    <div class="profile-page__order-cart">
+        <div class="profile-page__order-cart__header">
+            <div class="profile-page__order-cart__order-info">
+                <a class="profile-page__order-cart__shop-name" href="#">Имя магазина</a>
+                <p class="profile-page__order-cart__order-date">22.10.2020, 15:29</p>
+                <p class="profile-page__order-cart__order-address">Улица Пушкина, дом Кукушкинаaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            </div>
+            <img class="profile-page__order-cart-resto-img" src="img/250px-CycleLayer2.png"></img>
+        </div>
+        <div class="profile-page__order-cart__order-list">
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+            </div>
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+            </div>
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+            </div>
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+
+            </div>
+            <div class="profile-page__order-cart__total">
+                <p>Итого:</p>
+                <p>Много рублей</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-page__order-cart">
+        <div class="profile-page__order-cart__header">
+            <div class="profile-page__order-cart__order-info">
+                <a class="profile-page__order-cart__shop-name" href="#">Имя магазина</a>
+                <p class="profile-page__order-cart__order-date">22.10.2020, 15:29</p>
+                <p class="profile-page__order-cart__order-address">Улица Пушкина, дом Кукушкина</p>
+            </div>
+            <img class="profile-page__order-cart-resto-img" src="250px-CycleLayer2.png"></img>
+        </div>
+        <div class="profile-page__order-cart__order-list">
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+            </div>
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+            </div>
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+            </div>
+            <div class="profile-page__order-cart__order-item">
+                <div class="profile-page__order-cart__order-item-name">Название</div>
+                <div class="profile-page__order-cart__order-item-price">100 p.</div>
+
+            </div>
+            <div class="profile-page__order-cart__total">
+                <p>Итого:</p>
+                <p>Много рублей</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+`)
+export const renderProfileCoupons = () => window.Handlebars.compile(`
+<div class="profile-page__navbar">
+<button class="profile-page__navbar-button js-userdata-button link">О Вас</button>
+<button class="profile-page__navbar-button js-addresses-button link">Адреса</button>
+<button class="profile-page__navbar-button js-myorders-button link">Мои заказы</button>
+<button class="profile-page__navbar-button js-favstore-button link">Избранный магазин</button>
+<button class="profile-page__navbar-button profile-page__navbar-button_focus js-coupons-button link">Мои скидки</button>
+</div>
+<div class="profile-page__content">
+<div class="profile-page__content-column">
+    <div class="profile-page__сoupon-cart">
+        <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно получить.</p>
+        <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+    </div>
+    <div class="profile-page__сoupon-cart">
+        <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно получить.</p>
+        <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+    </div>
+    <div class="profile-page__сoupon-cart">
+        <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно получить.</p>
+        <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+    </div>
+    <div class="profile-page__сoupon-cart">
+        <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно получить.</p>
+        <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+    </div>
+    <div class="profile-page__сoupon-cart">
+        <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно получить.</p>
+        <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+    </div>
 </div>
 `)

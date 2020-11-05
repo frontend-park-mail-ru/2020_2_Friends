@@ -30,9 +30,6 @@
     font-family: sans-serif;
     width: fit-content;
 }
-.info-button {
-    font-size: 20px;
-}
 
 .info-button {
     background-color: #FFFFFF;
@@ -60,17 +57,9 @@
 }
 
 .common-image {
-    background-color: #ffffff;
+    background-color: #488286;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     margin: 20px;
-    
-}
-
-.text-error {
-    font-size: 20px;
-    color: #878A86;
-    max-width: 350px;
-    margin: 15px;
 }

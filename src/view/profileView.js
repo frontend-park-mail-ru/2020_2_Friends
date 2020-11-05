@@ -1,4 +1,4 @@
-import { renderProfileView } from '../template/profileViewTemplate.js';
+import { renderProfileView, renderProfileMain, renderProfileAddresses, renderProfileOrders, renderProfileCoupons } from '../template/profileViewTemplate.js';
 
 export class ProfileView {
     /**
@@ -91,10 +91,20 @@ export class ProfileView {
     }
 
     /**
+     * Rendering profile sub-page and setting event listeners.
+     */
+    showProfilePage (data, template) {
+        const profileHTML = template(data);
+        const profileCart = this.root.querySelector('.profile-page__profile-cart');
+        profileCart.innerHTML = profileHTML;
+        this.addEventListeners();
+    }
+
+    /**
      * Reacting to login not valid error.
      */
     loginNotValid () {
-        const loginErrors = this.root.querySelector('.login-errors');
+        const loginErrors = this.root.querySelector('.js-login-errors');
         loginErrors.innerText = 'Имя может содержать только буквы и цифры';
     }
 
@@ -102,7 +112,7 @@ export class ProfileView {
      * Reacting to phone number not valid error.
      */
     numberNotValid () {
-        const numberErrors = this.root.querySelector('.number-errors');
+        const numberErrors = this.root.querySelector('.js-number-errors');
         numberErrors.innerHTML = 'Номер имеет недопустимый формат!';
     }
 
@@ -110,7 +120,7 @@ export class ProfileView {
      * Reacting to email not valid error.
      */
     emailNotValid () {
-        const emailErrors = this.root.querySelector('.email-errors');
+        const emailErrors = this.root.querySelector('.js-email-errors');
         emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
     }
 
@@ -118,7 +128,7 @@ export class ProfileView {
      * Reacting to successful info change.
      */
     infoChanged () {
-        const infoText = this.root.querySelector('.login-errors');
+        const infoText = this.root.querySelector('.js-login-errors');
         infoText.innerText = 'Данные успешно обновлены!';
     }
 
@@ -133,22 +143,36 @@ export class ProfileView {
 
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE_DATA');
+            const data = {};
+            this.showProfilePage(data, renderProfileMain());
         })
 
         const addresses = this.root.querySelector('.js-addresses-button');
         addresses.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE_ADDRESSES');
+            const data = {};
+            this.showProfilePage(data, renderProfileAddresses());
         })
 
         const orders = this.root.querySelector('.js-myorders-button');
         orders.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE_ORDERS');
+            const data = {};
+            this.showProfilePage(data, renderProfileOrders());
+        })
+
+        const coupons = this.root.querySelector('.js-coupons-button');
+        coupons.addEventListener('click', () => {
+            const data = {};
+            this.showProfilePage(data, renderProfileCoupons());
         })
 
         const logout = this.root.querySelector('.js-logout-button');
         logout.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_LOGOUT');
+        })
+
+        const bucket = this.root.querySelector('.js-bucket-button');
+        bucket.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_BUCKET');
         })
 
         const uploadAvatar = this.root.querySelector('.upload');
@@ -160,15 +184,15 @@ export class ProfileView {
             this.eventBus.call('UPLOAD_AVATAR', avatar);
         })
 
-        const saveInfo = this.root.querySelector('.save_info');
+        const saveInfo = this.root.querySelector('.js-save-info');
         saveInfo.addEventListener('click', () => {
-            const login = this.root.querySelector('.login-input');
-            const email = this.root.querySelector('.email-input');
-            const number = this.root.querySelector('.number-input');
+            const login = this.root.querySelector('.js-login-input');
+            const email = this.root.querySelector('.js-email-input');
+            const number = this.root.querySelector('.js-number-input');
 
-            const loginErrors = this.root.querySelector('.login-errors');
-            const numberErrors = this.root.querySelector('.number-errors');
-            const emailErrors = this.root.querySelector('.email-errors');
+            const loginErrors = this.root.querySelector('.js-login-errors');
+            const numberErrors = this.root.querySelector('.js-number-errors');
+            const emailErrors = this.root.querySelector('.js-email-errors');
             loginErrors.innerText = '';
             numberErrors.innerText = '';
             emailErrors.innerText = '';

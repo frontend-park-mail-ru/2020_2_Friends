@@ -31,13 +31,18 @@ export class ProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            const avatarUrl = makeAvatarUrl(body.avatar);
+            var avatarUrl;
+            if (!body.avatar) {
+                avatarUrl = '../assets/img/default-avatar.png';
+            } else {
+                avatarUrl = makeAvatarUrl(body.avatar);
+            }
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
                 points: body.points,
                 addresses: body.addresses,
                 phone: body.phone,
-                username: body.username
+                username: body.name
             });
             break;
         }
@@ -63,7 +68,6 @@ export class ProfileModel {
         switch (response.status) {
         case 200: {
             const avatar = await response.json();
-            console.log(avatar.avatar);
             const avatarUrl = makeAvatarUrl(avatar.avatar);
             this.eventBus.call('RENDER_AVATAR', { avatarUrl: avatarUrl });
             break;

@@ -23,7 +23,7 @@ export class StoreModel {
             const body = await response.json();
             this.eventBus.call('SHOW_STORE',
                 {
-                    storeName: body.storeName,
+                    storeName: body.store_name,
                     products: body.products
                 });
             break;

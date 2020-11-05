@@ -37,7 +37,7 @@ export class LoginView {
      * Reacting to server not valid error.
      */
     serverNotValid () {
-        const serverErrors = this.root.querySelector('.login-errors');
+        const serverErrors = this.root.querySelector('.js-login-errors');
         serverErrors.innerText = 'Упс! Сервер устал, подождите и попробуйте заново!';
     }
 
@@ -45,7 +45,7 @@ export class LoginView {
      * Reacting to login or password not valid error.
      */
     loginOrPasswordNotValid () {
-        const inputErrors = this.root.querySelector('.login-errors');
+        const inputErrors = this.root.querySelector('.js-login-errors');
         inputErrors.innerText = 'Неверное имя пользователя или пароль';
     }
 
@@ -53,7 +53,7 @@ export class LoginView {
      * Reacting to login not valid error.
      */
     loginNotValid () {
-        const loginErrors = this.root.querySelector('.login-errors');
+        const loginErrors = this.root.querySelector('.js-login-errors');
         loginErrors.innerText = 'Имя может содержать только буквы и цифры';
     }
 
@@ -61,7 +61,7 @@ export class LoginView {
      * Reacting to password not valid error.
      */
     passwordNotValid () {
-        const passwordErrors = this.root.querySelector('.password-errors');
+        const passwordErrors = this.root.querySelector('.js-password-errors');
         passwordErrors.innerHTML = 'Длина пароля от 8 до 30 символов<br/>Может содержать только латинские буквы и цифры';
     }
 
@@ -73,8 +73,8 @@ export class LoginView {
         const password = this.root.querySelector('.js-input-password');
         const button = this.root.querySelector('.js-submit-login');
         const regButton = this.root.querySelector('.js-reg-button');
-        const loginErrors = this.root.querySelector('.login-errors');
-        const passwordErrors = this.root.querySelector('.password-errors');
+        const loginErrors = this.root.querySelector('.js-login-errors');
+        const passwordErrors = this.root.querySelector('.js-password-errors');
 
         button.addEventListener('click', () => {
             loginErrors.innerText = '';

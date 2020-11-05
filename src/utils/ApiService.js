@@ -3,7 +3,7 @@ import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipart
 
 // Servers configs
 const schema = 'http://';
-const host = 'localhost';
+const host = '89.208.197.247';
 const backendPort = ':9000';
 const staticPort = ':9001';
 
@@ -110,4 +110,12 @@ export const pullAvatarRequest = (avatarName) => {
         url: staticUrl + '/data/img/' + avatarName
     }
     return ajaxGetUsingFetch(args);
+}
+
+/**
+ * Creating http bucket request via ajax methods.
+ *
+ * @return {object} - Response object.
+ */
+export const bucketRequest = () => {
 }
