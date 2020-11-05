@@ -1,5 +1,5 @@
 .regestration-page__background {
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     top: 0;
