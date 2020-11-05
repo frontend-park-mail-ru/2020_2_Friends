@@ -57,7 +57,7 @@ export class RegisterView {
      * Reacting to username not valid error.
      */
     usernameNotValid () {
-        const usernameErrors = this.root.querySelector('.login-errors');
+        const usernameErrors = this.root.querySelector('.js-login-errors');
         usernameErrors.innerText = 'Имя пользователя уже занято';
     }
 
@@ -65,7 +65,7 @@ export class RegisterView {
      * Reacting to login not valid error.
      */
     loginNotValid () {
-        const loginErrors = this.root.querySelector('.login-errors');
+        const loginErrors = this.root.querySelector('.js-login-errors');
         loginErrors.innerText = 'Имя может содержать только буквы и цифры';
     }
 
@@ -73,7 +73,7 @@ export class RegisterView {
      * Reacting to password not valid error.
      */
     passwordNotValid (errorString) {
-        const passwordErrors = this.root.querySelector('.password-errors');
+        const passwordErrors = this.root.querySelector('.js-password-errors');
         passwordErrors.innerHTML = errorString;
     }
 
@@ -81,7 +81,7 @@ export class RegisterView {
      * Reacting to email not valid error.
      */
     emailNotValid () {
-        const emailErrors = this.root.querySelector('.email-errors');
+        const emailErrors = this.root.querySelector('.js-email-errors');
         emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
     }
 
@@ -95,9 +95,9 @@ export class RegisterView {
         const repeatPassword = this.root.querySelector('.js-input-password-second');
         const button = this.root.querySelector('.js-submit-reg');
         button.addEventListener('click', () => {
-            const loginErrors = this.root.querySelector('.login-errors');
-            const passwordErrors = this.root.querySelector('.password-errors');
-            const emailErrors = this.root.querySelector('.email-errors');
+            const loginErrors = this.root.querySelector('.js-login-errors');
+            const passwordErrors = this.root.querySelector('.js-password-errors');
+            const emailErrors = this.root.querySelector('.js-email-errors');
             loginErrors.innerText = '';
             passwordErrors.innerText = '';
             emailErrors.innerText = '';

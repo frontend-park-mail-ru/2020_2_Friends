@@ -37,13 +37,12 @@ export class ProfileModel {
             } else {
                 avatarUrl = makeAvatarUrl(body.avatar);
             }
-            console.log(avatarUrl);
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
                 points: body.points,
                 addresses: body.addresses,
                 phone: body.phone,
-                username: body.username
+                username: body.name
             });
             break;
         }
@@ -69,7 +68,6 @@ export class ProfileModel {
         switch (response.status) {
         case 200: {
             const avatar = await response.json();
-            console.log(avatar.avatar);
             const avatarUrl = makeAvatarUrl(avatar.avatar);
             this.eventBus.call('RENDER_AVATAR', { avatarUrl: avatarUrl });
             break;

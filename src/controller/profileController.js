@@ -17,5 +17,6 @@ export class ProfileController {
         this.view = new ProfileView(root, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_STORE', () => this.router.redirect('store'));
+        eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
     }
 }

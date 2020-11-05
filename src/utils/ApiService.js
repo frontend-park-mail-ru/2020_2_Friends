@@ -111,3 +111,11 @@ export const pullAvatarRequest = (avatarName) => {
     }
     return ajaxGetUsingFetch(args);
 }
+
+/**
+ * Creating http bucket request via ajax methods.
+ *
+ * @return {object} - Response object.
+ */
+export const bucketRequest = () => {
+}

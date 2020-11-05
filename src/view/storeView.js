@@ -25,7 +25,7 @@ export class StoreView {
      * Reacting to internal server error.
      */
     serverInternalError () {
-        const serverErrors = this.root.querySelector('.store-errors');
+        const serverErrors = this.root.querySelector('.js-store-errors');
         serverErrors.innerHTML = 'Упс! Сервер устал, подождите и попробуйте заново!';
     }
 
@@ -33,7 +33,7 @@ export class StoreView {
      * Reacting to failed getting store data.
      */
     storeDataError () {
-        const storeErrors = this.root.querySelector('.store-errors');
+        const storeErrors = this.root.querySelector('.js-store-errors');
         storeErrors.innerHTML = 'Произошла ошибка при загрузке данных магазина!';
     }
 
