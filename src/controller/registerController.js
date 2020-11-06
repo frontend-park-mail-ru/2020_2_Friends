@@ -9,7 +9,7 @@ export class RegisterController {
      * @param {object} root - Main html div object.
      * @param {router} router - An object that allows to route inside a site.
      */
-    constructor (root, router) {
+    constructor(root, router) {
         const eventBus = new EventBus();
         this.router = router
 
@@ -17,5 +17,6 @@ export class RegisterController {
         this.view = new RegisterView(root, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
+        eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
     }
 }

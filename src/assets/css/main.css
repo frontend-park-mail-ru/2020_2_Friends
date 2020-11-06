@@ -1,3 +1,10 @@
+.background {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background: #D7DEE5;
+    height: 100%;
+}
 .common-input {
     width: 350px;
     height: 40px;

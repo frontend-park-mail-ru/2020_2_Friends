@@ -1,17 +1,22 @@
 .back-to-shopping {
-    width: 100%;
     background: #FFFFFF;
+    display: flex;
+    justify-self: start;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px 40px 20px 40px;
     border: 1px solid #C4C4C4;
 }
 
 .back-to-shopping__button {
     width: auto;
-    height: 70px;
+    height: 50px;
     border: 1px solid #C4C4C4;
     background: #FFFFFF;
     color: #444BCF;
     box-sizing: border-box;
-    font-size: 25px;
+    border-radius: 30px;
+    font-size: 20px;
     line-height: 140.62%;
     margin: 0px;
     white-space: nowrap;
@@ -26,22 +31,11 @@
     background: #D5896F;
 }
 
-.store__background {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    background: #D7DEE5;
-    margin: 0;
-    padding: 0;
-}
-
 .store__header {
     background: #FFFFFF;
     display: flex;
     align-self: flex-start;
+    justify-self: start;
     flex-direction: row;
     width: 100%;
     margin-bottom: 40px;

@@ -37,12 +37,13 @@ export class ProfileModel {
             } else {
                 avatarUrl = makeAvatarUrl(body.avatar);
             }
+            console.log(body);
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
                 points: body.points,
                 addresses: body.addresses,
                 phone: body.phone,
-                username: body.name
+                name: body.name
             });
             break;
         }
@@ -91,7 +92,8 @@ export class ProfileModel {
      */
     async changePersonalInfo (input) {
         if (this.validate(input)) {
-            const response = await changePersonalInfoRequest(input);
+            const {name, number} = input;
+            const response = await changePersonalInfoRequest({name: name.value, phone: number.value});
 
             switch (response.status) {
             case 200:
@@ -117,22 +119,12 @@ export class ProfileModel {
      * @return {boolean} isValid - Result of validating.
      */
     validate (input) {
-        const { login, number, email } = input;
+        const {name, number} = input;
         let isValid = true;
-        const loginValidator = userFormValidator(login, regTemplates.username);
-        if (!loginValidator.status) {
-            this.eventBus.call('LOGIN_NOT_VALID');
-            isValid = false;
-        }
 
         const numberValidator = userFormValidator(number, regTemplates.number);
         if (!numberValidator.status) {
             this.eventBus.call('NUMBER_NOT_VALID');
-            isValid = false;
-        }
-        const emailValidator = userFormValidator(email, regTemplates.email);
-        if (!emailValidator.status) {
-            this.eventBus.call('EMAIL_NOT_VALID');
             isValid = false;
         }
         return isValid;

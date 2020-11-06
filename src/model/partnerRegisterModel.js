@@ -1,8 +1,8 @@
-import { registerRequest } from '../utils/ApiService.js'
+import { partnerRegisterRequest } from '../utils/ApiService.js'
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
 
-export class RegisterModel {
+export class PartnerRegisterModel {
     /**
      * Creating an RegisterModel instance.
      *
@@ -25,7 +25,7 @@ export class RegisterModel {
     async doRegistration(input) {
         const { login, email, password } = input;
         if (this.validate(input)) {
-            const response = await registerRequest({
+            const response = await partnerRegisterRequest({
                 login: login.value,
                 email: email.value,
                 password: password.value

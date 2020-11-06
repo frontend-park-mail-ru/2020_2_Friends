@@ -6,9 +6,9 @@ export class BucketModel {
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
      */
-    constructor (eventBus) {
+    constructor(eventBus) {
         this.eventBus = eventBus;
     }
 
-    async getData () { }
+    async getData() { }
 }

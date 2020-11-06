@@ -1,0 +1,44 @@
+.my-store {
+    display: flex;
+    flex-direction: row;
+    border: 3px solid #C4C4C4;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    max-height: 200px;
+    max-width: 750px;
+    flex-wrap: wrap;
+}
+
+.my-store__info {
+    margin: 0px 10px 0px 10px;
+}
+
+.my-store__name {
+    font-style: normal;
+    font-weight: normal;
+    white-space: nowrap;
+    font-size: 25px;
+    margin: 20px;
+}
+
+.my-store__descr {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 350px;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.my-store__img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 10px;
+    padding: 10px;
+    justify-self: start;
+}
+
+.my-store__button {
+    align-self: end;
+}

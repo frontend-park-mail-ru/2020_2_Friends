@@ -1,8 +1,8 @@
-import { loginRequest } from '../utils/ApiService.js'
+import { partnerLoginRequest } from '../utils/ApiService.js'
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
 
-export class LoginModel {
+export class PartnerLoginModel {
     /**
      * Creating an LoginModel instance.
      *
@@ -24,7 +24,7 @@ export class LoginModel {
     async doLogin(input) {
         const { login, password } = input;
         if (this.validate(input)) {
-            const response = await loginRequest({
+            const response = await partnerLoginRequest({
                 login: login.value,
                 password: password.value
             });

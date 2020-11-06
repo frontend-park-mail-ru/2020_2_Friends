@@ -1,8 +1,8 @@
-import { ProfileModel } from '../model/profileModel.js';
-import { ProfileView } from '../view/profileView.js';
+import { PartnerProfileModel } from '../model/partnerProfileModel.js';
+import { PartnerProfileView } from '../view/partnerProfileView.js';
 import { EventBus } from '../utils/eventBus.js'
 
-export class ProfileController {
+export class PartnerProfileController {
     /**
      * Creating controller class for profile entity.
      *
@@ -13,10 +13,10 @@ export class ProfileController {
         const eventBus = new EventBus();
         this.router = router
 
-        this.model = new ProfileModel(eventBus);
-        this.view = new ProfileView(root, eventBus);
+        this.model = new PartnerProfileModel(eventBus);
+        this.view = new PartnerProfileView(root, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_STORE', () => this.router.redirect('store'));
-        eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
+        eventBus.subscribe('REDIRECT_TO_ADD_STORE', () => this.router.redirect('partners_addstore'));
     }
 }

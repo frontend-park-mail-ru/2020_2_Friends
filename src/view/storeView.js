@@ -44,5 +44,18 @@ export class StoreView {
         const template = renderStoreView();
         const storeHTML = template(data);
         this.root.innerHTML = storeHTML;
+        this.addEventListeners();
+    }
+
+    addEventListeners() {
+        const bucket = this.root.querySelector('.js-bucket-button');
+        bucket.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_BUCKET');
+        })
+
+        const profile = this.root.querySelector('.js-profile-button');
+        profile.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_PROFILE');
+        })
     }
 }
