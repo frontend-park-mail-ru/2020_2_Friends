@@ -52,6 +52,7 @@ export class StoreView {
         buttons.forEach(element => {
             element.addEventListener('click', () => {
                 this.eventBus.call('ADD_TO_CART', element.dataset.productId);
+                element.innerHTML = 'Добавлено!';
             })
         });
     }

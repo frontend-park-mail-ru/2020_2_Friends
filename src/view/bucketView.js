@@ -1,4 +1,5 @@
 import { renderBucketView } from '../template/bucketViewTemplate.js';
+
 export class BucketView {
     /**
      * Creating an BucketView instance.
@@ -8,16 +9,19 @@ export class BucketView {
     constructor (root, eventBus) {
         this.root = root;
         this.eventBus = eventBus;
+
         this.render = this.render.bind(this);
+
+        eventBus.subscribe('SHOW_CART', this.render);
     }
 
     /**
      * Rendering bucket page and setting event listeners.
      */
-    render () {
+    render (data) {
         const template = renderBucketView();
-
-        this.root.innerHTML = template()
+        console.log(data.products);
+        this.root.innerHTML = template(data);
         this.addEventListeners();
     }
 

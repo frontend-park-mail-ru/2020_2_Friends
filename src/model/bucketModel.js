@@ -1,4 +1,4 @@
-// import { bucketRequest } from '../utils/ApiService.js'
+import { getBucketRequest } from '../utils/ApiService.js'
 
 export class BucketModel {
     /**
@@ -8,7 +8,24 @@ export class BucketModel {
      */
     constructor (eventBus) {
         this.eventBus = eventBus;
+
+        this.getBucketData = this.getBucketData.bind(this);
     }
 
-    async getData () { }
+    async getBucketData () {
+        const response = await getBucketRequest();
+        // console.log(response);
+        switch (response.status) {
+        case 200: {
+            const body = await response.json();
+            console.log(body);
+            this.eventBus.call('SHOW_CART', {
+                products: body
+            });
+            break;
+        }
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
+    }
 }
