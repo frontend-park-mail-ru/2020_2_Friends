@@ -8,7 +8,7 @@ export class RegisterModel {
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
      */
-    constructor(eventBus) {
+    constructor (eventBus) {
         this.doRegistration = this.doRegistration.bind(this);
 
         this.eventBus = eventBus;
@@ -22,7 +22,7 @@ export class RegisterModel {
      *
      * @param {object} input - User-passed data.
      */
-    async doRegistration(input) {
+    async doRegistration (input) {
         const { login, email, password } = input;
         if (this.validate(input)) {
             const response = await registerRequest({
@@ -31,21 +31,21 @@ export class RegisterModel {
                 password: password.value
             });
             switch (response.status) {
-                case 201:
-                    this.eventBus.call('REDIRECT_TO_PROFILE');
-                    break;
-                case 400:
-                    this.eventBus.call('REGISTER_NOT_VALID');
-                    break;
-                case 409:
-                    // This username was already taken
-                    this.eventBus.call('USERNAME_NOT_VALID');
-                    break;
-                case 500:
-                    this.eventBus.call('SERVER_NOT_VALID');
-                    break;
-                default:
-                    console.log(`Uncaught backend http-status: ${response.status}`);
+            case 201:
+                this.eventBus.call('REDIRECT_TO_PROFILE');
+                break;
+            case 400:
+                this.eventBus.call('REGISTER_NOT_VALID');
+                break;
+            case 409:
+                // This username was already taken
+                this.eventBus.call('USERNAME_NOT_VALID');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_NOT_VALID');
+                break;
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
             }
         }
     }
@@ -57,7 +57,7 @@ export class RegisterModel {
      *
      * @return {boolean} isValid - Result of validating.
      */
-    validate(input) {
+    validate (input) {
         const { login, email, password, repeatPassword } = input;
         let isValid = true;
         const emailValidator = userFormValidator(email, regTemplates.email);

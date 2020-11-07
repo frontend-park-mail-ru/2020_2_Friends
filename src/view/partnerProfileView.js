@@ -89,7 +89,6 @@ export class PartnerProfileView {
         this.addEventListeners();
         this.changeSubPage('.js-profile-info');
         this.focusOnNavButton('.js-userdata-button');
-
     }
 
     /**
@@ -129,10 +128,11 @@ export class PartnerProfileView {
         const seenBlock = this.root.querySelector(selector);
         const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-mystores-button');
         allBlocks.forEach(element => {
-            element.classList.remove("profile-page__navbar-button_focus");
+            element.classList.remove('profile-page__navbar-button_focus');
         });
-        seenBlock.classList.add("profile-page__navbar-button_focus");
+        seenBlock.classList.add('profile-page__navbar-button_focus');
     }
+
     /**
      * Setting event listeners for profile page.
      */
@@ -176,13 +176,13 @@ export class PartnerProfileView {
         const saveInfo = this.root.querySelector('.js-save-info');
         saveInfo.addEventListener('click', () => {
             const name = this.root.querySelector('.js-login-input');
-            const number  = this.root.querySelector('.js-number-input');
+            const number = this.root.querySelector('.js-number-input');
 
             const loginErrors = this.root.querySelector('.js-login-errors');
             const numberErrors = this.root.querySelector('.js-number-errors');
             loginErrors.innerText = '';
             numberErrors.innerText = '';
-            const data = {name, number};
+            const data = { name, number };
             this.eventBus.call('CHANGE_INFO', data);
         })
     }

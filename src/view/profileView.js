@@ -89,7 +89,6 @@ export class ProfileView {
         this.addEventListeners();
         this.changeSubPage('.js-profile-info');
         this.focusOnNavButton('.js-userdata-button');
-
     }
 
     /**
@@ -129,10 +128,11 @@ export class ProfileView {
         const seenBlock = this.root.querySelector(selector);
         const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
         allBlocks.forEach(element => {
-            element.classList.remove("profile-page__navbar-button_focus");
+            element.classList.remove('profile-page__navbar-button_focus');
         });
-        seenBlock.classList.add("profile-page__navbar-button_focus");
+        seenBlock.classList.add('profile-page__navbar-button_focus');
     }
+
     /**
      * Setting event listeners for profile page.
      */
@@ -151,7 +151,6 @@ export class ProfileView {
         const addresses = this.root.querySelector('.js-addresses-button');
         addresses.addEventListener('click', () => {
             this.changeSubPage('.js-profile-addresses');
-            const button =  this.root.querySelector('.js-addresses-button');
             this.focusOnNavButton('.js-addresses-button');
         })
 
@@ -194,13 +193,13 @@ export class ProfileView {
         const saveInfo = this.root.querySelector('.js-save-info');
         saveInfo.addEventListener('click', () => {
             const name = this.root.querySelector('.js-login-input');
-            const number  = this.root.querySelector('.js-number-input');
+            const number = this.root.querySelector('.js-number-input');
 
             const loginErrors = this.root.querySelector('.js-login-errors');
             const numberErrors = this.root.querySelector('.js-number-errors');
             loginErrors.innerText = '';
             numberErrors.innerText = '';
-            const data = {name, number};
+            const data = { name, number };
             this.eventBus.call('CHANGE_INFO', data);
         })
     }

@@ -121,10 +121,10 @@ export const bucketRequest = () => {
 }
 /************************************
  *        PARTNER REQUESTS          *
- *                                  *      
+ *                                  *
  ***********************************/
 
- /**
+/**
  * Creating http login request via ajax methods.
  *
  * @param {object} input - Arguments that contains url and body for request.

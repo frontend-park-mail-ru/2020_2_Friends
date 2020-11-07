@@ -47,7 +47,7 @@ export class StoreView {
         this.addEventListeners();
     }
 
-    addEventListeners() {
+    addEventListeners () {
         const bucket = this.root.querySelector('.js-bucket-button');
         bucket.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_BUCKET');

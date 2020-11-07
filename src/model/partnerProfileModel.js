@@ -9,7 +9,7 @@ export class PartnerProfileModel {
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
      */
-    constructor(eventBus) {
+    constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
@@ -25,36 +25,36 @@ export class PartnerProfileModel {
     /**
      * Getting user profile data with http-request.
      */
-    async getProfileData() {
+    async getProfileData () {
         const response = await getProfileInfoRequest();
 
         switch (response.status) {
-            case 200: {
-                const body = await response.json();
-                var avatarUrl;
-                if (!body.avatar) {
-                    avatarUrl = '../assets/img/default-avatar.png';
-                } else {
-                    avatarUrl = makeAvatarUrl(body.avatar);
-                }
-                console.log(body);
-                this.eventBus.call('SHOW_PROFILE', {
-                    avatar: avatarUrl,
-                    points: body.points,
-                    addresses: body.addresses,
-                    phone: body.phone,
-                    name: body.name
-                });
-                break;
+        case 200: {
+            const body = await response.json();
+            var avatarUrl;
+            if (!body.avatar) {
+                avatarUrl = '../assets/img/default-avatar.png';
+            } else {
+                avatarUrl = makeAvatarUrl(body.avatar);
             }
-            case 400:
-                this.eventBus.call('GET_PROFILE_ERROR');
-                break;
-            case 500:
-                this.eventBus.call('SERVER_INTERNAL_ERROR');
-                break;
-            default:
-                console.log('Backend error');
+            console.log(body);
+            this.eventBus.call('SHOW_PROFILE', {
+                avatar: avatarUrl,
+                points: body.points,
+                addresses: body.addresses,
+                phone: body.phone,
+                name: body.name
+            });
+            break;
+        }
+        case 400:
+            this.eventBus.call('GET_PROFILE_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
+        default:
+            console.log('Backend error');
         }
     }
 
@@ -63,24 +63,24 @@ export class PartnerProfileModel {
      *
      * @param {object} avatar - Form-data with avatar.
      */
-    async uploadAvatar(avatar) {
+    async uploadAvatar (avatar) {
         const response = await uploadAvatarRequest(avatar);
 
         switch (response.status) {
-            case 200: {
-                const avatar = await response.json();
-                const avatarUrl = makeAvatarUrl(avatar.avatar);
-                this.eventBus.call('RENDER_AVATAR', { avatarUrl: avatarUrl });
-                break;
-            }
-            case 400:
-                this.eventBus.call('AVATAR_UPLOAD_ERROR');
-                break;
-            case 500:
-                this.eventBus.call('SERVER_INTERNAL_ERROR');
-                break;
-            default:
-                console.log(`Uncaught backend http-status: ${response.status}`);
+        case 200: {
+            const avatar = await response.json();
+            const avatarUrl = makeAvatarUrl(avatar.avatar);
+            this.eventBus.call('RENDER_AVATAR', { avatarUrl: avatarUrl });
+            break;
+        }
+        case 400:
+            this.eventBus.call('AVATAR_UPLOAD_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
         }
     }
 
@@ -90,23 +90,23 @@ export class PartnerProfileModel {
      *
      * @param {object} input - New user's input data.
      */
-    async changePersonalInfo(input) {
+    async changePersonalInfo (input) {
         if (this.validate(input)) {
             const { name, number } = input;
             const response = await changePersonalInfoRequest({ name: name.value, phone: number.value });
 
             switch (response.status) {
-                case 200:
-                    this.eventBus.call('INFO_CHANGED');
-                    break;
-                case 400:
-                    this.eventBus.call('CHANGE_PROFILE_ERROR');
-                    break;
-                case 500:
-                    this.eventBus.call('SERVER_INTERNAL_ERROR');
-                    break;
-                default:
-                    console.log(`Uncaught backend http-status: ${response.status}`);
+            case 200:
+                this.eventBus.call('INFO_CHANGED');
+                break;
+            case 400:
+                this.eventBus.call('CHANGE_PROFILE_ERROR');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_INTERNAL_ERROR');
+                break;
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
             }
         }
     }
@@ -118,8 +118,8 @@ export class PartnerProfileModel {
      *
      * @return {boolean} isValid - Result of validating.
      */
-    validate(input) {
-        const { name, number } = input;
+    validate (input) {
+        const { number } = input;
         let isValid = true;
 
         const numberValidator = userFormValidator(number, regTemplates.number);
@@ -130,7 +130,7 @@ export class PartnerProfileModel {
         return isValid;
     }
 
-    logOut(input) {
+    logOut (input) {
         console.log('logOut');
     }
 }

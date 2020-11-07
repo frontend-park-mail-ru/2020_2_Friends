@@ -8,7 +8,7 @@ export class LoginModel {
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
      */
-    constructor(eventBus) {
+    constructor (eventBus) {
         this.doLogin = this.doLogin.bind(this);
 
         this.eventBus = eventBus;
@@ -21,7 +21,7 @@ export class LoginModel {
      *
      * @param {object} input - User-passed data.
      */
-    async doLogin(input) {
+    async doLogin (input) {
         const { login, password } = input;
         if (this.validate(input)) {
             const response = await loginRequest({
@@ -30,17 +30,17 @@ export class LoginModel {
             });
 
             switch (response.status) {
-                case 200:
-                    this.eventBus.call('REDIRECT_TO_PROFILE');
-                    break;
-                case 400:
-                    this.eventBus.call('LOGIN_OR_PASSWORD_NOT_VALID');
-                    break;
-                case 500:
-                    this.eventBus.call('SERVER_NOT_VALID');
-                    break;
-                default:
-                    console.log(`Uncaught backend http-status: ${response.status}`);
+            case 200:
+                this.eventBus.call('REDIRECT_TO_PROFILE');
+                break;
+            case 400:
+                this.eventBus.call('LOGIN_OR_PASSWORD_NOT_VALID');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_NOT_VALID');
+                break;
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
             }
         }
     }
@@ -52,7 +52,7 @@ export class LoginModel {
      *
      * @return {boolean} isValid - Result of validating.
      */
-    validate(input) {
+    validate (input) {
         const { login, password } = input;
         let isValid = true;
         const loginValidator = userFormValidator(login, regTemplates.username);

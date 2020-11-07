@@ -92,8 +92,8 @@ export class ProfileModel {
      */
     async changePersonalInfo (input) {
         if (this.validate(input)) {
-            const {name, number} = input;
-            const response = await changePersonalInfoRequest({name: name.value, phone: number.value});
+            const { name, number } = input;
+            const response = await changePersonalInfoRequest({ name: name.value, phone: number.value });
 
             switch (response.status) {
             case 200:
@@ -119,7 +119,7 @@ export class ProfileModel {
      * @return {boolean} isValid - Result of validating.
      */
     validate (input) {
-        const {name, number} = input;
+        const { number } = input;
         let isValid = true;
 
         const numberValidator = userFormValidator(number, regTemplates.number);
