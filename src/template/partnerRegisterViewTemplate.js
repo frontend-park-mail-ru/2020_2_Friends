@@ -14,5 +14,4 @@ export const renderRegisterView = () => window.Handlebars.compile(`
     <button class="proceed-button js-submit-reg">Зарегестрироваться</button>
     <button class="js-to-login link info-button">Войти</button>
 </div>
-</div>`
-)
+</div>`);

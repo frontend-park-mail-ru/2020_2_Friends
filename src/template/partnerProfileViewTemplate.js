@@ -74,5 +74,4 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
             </div>
             </div>
-    </div>
-`)
+    </div>`);

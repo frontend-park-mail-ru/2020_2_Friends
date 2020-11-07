@@ -173,5 +173,4 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
             </div>
-    </div>
-`)
+    </div>`);

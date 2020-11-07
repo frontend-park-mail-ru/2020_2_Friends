@@ -29,7 +29,7 @@ export class PartnerLoginView {
     render () {
         const template = renderLoginView();
 
-        this.root.innerHTML = template()
+        this.root.innerHTML = template();
         this.addEventListeners();
     }
 
@@ -84,7 +84,7 @@ export class PartnerLoginView {
         })
 
         regButton.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_REG')
+            this.eventBus.call('REDIRECT_TO_REG');
         })
     }
 }

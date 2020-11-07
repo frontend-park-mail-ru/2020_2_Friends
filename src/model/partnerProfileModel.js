@@ -31,13 +31,7 @@ export class PartnerProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            var avatarUrl;
-            if (!body.avatar) {
-                avatarUrl = '../assets/img/default-avatar.png';
-            } else {
-                avatarUrl = makeAvatarUrl(body.avatar);
-            }
-            console.log(body);
+            const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : '../assets/img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
                 points: body.points,

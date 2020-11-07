@@ -37,7 +37,6 @@ export class ProfileModel {
             } else {
                 avatarUrl = makeAvatarUrl(body.avatar);
             }
-            console.log(body);
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
                 points: body.points,

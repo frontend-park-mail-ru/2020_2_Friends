@@ -13,5 +13,4 @@ export const renderRegisterView = () => window.Handlebars.compile(`
     <input type="text" class="common-input js-input-password-second" placeholder="Повторите пароль:"></input>
     <button class="proceed-button js-submit-reg">Зарегестрироваться</button>
 </div>
-</div>`
-)
+</div>`);

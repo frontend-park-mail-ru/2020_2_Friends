@@ -38,6 +38,4 @@ export const renderStoreView = () => window.Handlebars.compile(`
     
 {{/each}}
 </div>
-</div>
-
-`)
+</div>`);

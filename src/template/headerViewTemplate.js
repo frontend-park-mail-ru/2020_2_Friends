@@ -7,4 +7,4 @@ export const renderHeaderView = () => window.Handlebars.compile(`
     <button class="header__button js-bucket-button">Корзина</button>
     <button class="header__button js-logout-button">Выйти</button>
 </div>
-`)
+`);

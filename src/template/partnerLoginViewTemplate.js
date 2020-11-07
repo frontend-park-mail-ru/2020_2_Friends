@@ -13,5 +13,4 @@ export const renderLoginView = () => window.Handlebars.compile(`
         <button class="proceed-button js-submit-login">Войти</button>
         <button class="js-reg-button link info-button">Зарегистрироваться</button>
     </div>
-</div>`
-)
+</div>`);
