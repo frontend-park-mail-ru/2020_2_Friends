@@ -44,5 +44,15 @@ export class StoreView {
         const template = renderStoreView();
         const storeHTML = template(data);
         this.root.innerHTML = storeHTML;
+        this.addEventListeners();
+    }
+
+    addEventListeners () {
+        const buttons = this.root.querySelectorAll('.proceed-button');
+        buttons.forEach(element => {
+            element.addEventListener('click', () => {
+                this.eventBus.call('ADD_TO_CART', element.dataset.productId);
+            })
+        });
     }
 }
