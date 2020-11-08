@@ -17,6 +17,7 @@ export class BucketView {
 
     /**
      * Rendering bucket page and setting event listeners.
+     * @param {Array} data - Array of cart's items.
      */
     render (data) {
         const template = renderBucketView();

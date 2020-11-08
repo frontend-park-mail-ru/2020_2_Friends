@@ -14,11 +14,9 @@ export class BucketModel {
 
     async getBucketData () {
         const response = await getBucketRequest();
-        // console.log(response);
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            console.log(body);
             this.eventBus.call('SHOW_CART', {
                 products: body
             });
