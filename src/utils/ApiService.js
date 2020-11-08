@@ -4,6 +4,7 @@ import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipart
 // Servers configs
 const schema = 'http://';
 const host = '89.208.197.247';
+// const host = 'localhost';
 const backendPort = ':9000';
 const staticPort = ':9001';
 
@@ -210,4 +211,28 @@ export const pullPartnerAvatarRequest = (avatarName) => {
         url: staticUrl + '/data/img/' + avatarName
     }
     return ajaxGetUsingFetch(args);
+}
+
+/**
+ * Creating http get bucket request via ajax methods.
+ *
+ * @return {object} - Response object.
+ */
+export const getBucketRequest = () => {
+    const args = {
+        url: backendUrl + '/api/v1/carts'
+    }
+    return ajaxGetUsingFetch(args);
+}
+
+/**
+ * Creating http add to bucket request via ajax methods.
+ *
+ * @return {object} - Response object.
+ */
+export const addProductToBucket = (productId) => {
+    const args = {
+        url: backendUrl + '/api/v1/carts' + '?product_id=' + productId
+    }
+    return ajaxPutUsingFetch(args);
 }

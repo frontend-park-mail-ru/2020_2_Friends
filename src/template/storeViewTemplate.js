@@ -23,9 +23,9 @@ export const renderStoreView = () => window.Handlebars.compile(`
 </div>
 <div class="store__showcase">
 <div class="js-store-errors"></div>
-{{#each products}}
 
-<div class="product">
+{{#each products}}
+    <div class="product" id="{{ this.id }}">
         <img src="{{ this.picture }}" class="product__img" alt="assets/burger1.png">
         <div class="product__info">
             <div class="product__name"> {{ this.food_name }} </div>
@@ -33,9 +33,9 @@ export const renderStoreView = () => window.Handlebars.compile(`
             <div class="product__price">{{ this.food_calories }}</div>
         </div>
         <div class="product__descr">Описание вкусного обеда, которым можно насытиться и получить витамины и минералы.</div>
-        <button class="proceed-button">В корзину</button>
+        <button class="proceed-button" data-product-id="{{ this.id }}">В корзину</button>
     </div>
-    
 {{/each}}
+
 </div>
 </div>`);
