@@ -237,3 +237,17 @@ export const addProductToBucket = (productId) => {
     }
     return ajaxPutUsingFetch(args);
 }
+
+/**
+ * Creating http store request for store's owner via ajax methods.
+ *
+ * @param {string} id - Arguments that contains part of url for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const getStoreByIdDataPartnerRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}`
+    }
+    return ajaxGetUsingFetch(args);
+}

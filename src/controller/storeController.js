@@ -15,5 +15,7 @@ export class StoreController {
 
         this.model = new StoreModel(eventBus);
         this.view = new StoreView(root, eventBus);
+
+        eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
     }
 }

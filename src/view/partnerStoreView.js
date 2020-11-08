@@ -1,9 +1,9 @@
-import { renderStoreView } from '../template/storeViewTemplate.js';
-
-export class StoreView {
+import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
+import { renderItemEditView, renderItemNormalView } from '../template/editStoreItemTemplate.js';
+export class PartnerStoreView {
     /**
-     * Creating an StoreView instance.
-     * Allows to render store page and response correctly to user's interaction with page.
+     * Creating an PartnerStoreView instance.
+     * Allows to render store page for its owner and response correctly to user's interaction with page.
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
      * @param {object} root - Main html div object.
@@ -47,22 +47,36 @@ export class StoreView {
         this.addEventListeners();
     }
 
-    addEventListeners () {
-        const bucket = this.root.querySelector('.js-bucket-button');
-        bucket.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_BUCKET');
-        })
+    showItem () {
+        const Id = this.dataset.product_id;
+        const ItemBlock = document.getElementById(Id)
+        const Template = renderItemNormalView();
+        const hTML = Template(ItemBlock.dataset);
+        ItemBlock.innerHTML = hTML;
+        const saveChanges = ItemBlock.querySelector('.js-edit-item');
+        console.log(saveChanges);
+        saveChanges.addEventListener('click', this.showItemEditor);
+    }
 
+    showItemEditor () {
+        const id = this.dataset.product_id;
+        const itemBlock = document.getElementById(id);
+        const template = renderItemEditView();
+        const HTML = template(itemBlock.dataset);
+        itemBlock.innerHTML = HTML;
+        const saveChanges = itemBlock.querySelector('.js-save-item-changes');
+        console.log(saveChanges);
+        saveChanges.addEventListener('click', this.showItem);
+    }
+
+    addEventListeners () {
         const profile = this.root.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         })
-        const buttons = this.root.querySelectorAll('.js-add-to-cart');
+        const buttons = this.root.querySelectorAll('.js-edit-item');
         buttons.forEach(element => {
-            element.addEventListener('click', () => {
-                this.eventBus.call('ADD_TO_CART', element.dataset.productId);
-                element.innerHTML = 'Добавлено!';
-            })
+            element.addEventListener('click', this.showItemEditor);
         });
     }
-}
+};

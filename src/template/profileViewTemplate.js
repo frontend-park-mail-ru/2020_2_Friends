@@ -34,7 +34,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                  <form class="upload">
                 <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
                 <input type="submit" />
-            </form>
+                </form>
 
                     <div class="profile-page__bonus-points">Количество баллов: {{points}}</div>
                 </div>
@@ -57,18 +57,18 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <div class="profile-page__address-item-text">
                         Улица Пушкина Дом кукушкина
                     </div>
-                    <div class="profile-page__address-item-button"></div>
+                    <div class="round-delete-button"></div>
                 </div>
                 <div class="profile-page__address-item">
                     <div class="profile-page__address-item-text">
                         Улица Пушкина Дом кукушкина
                     </div>
-                    <div class="profile-page__address-item-button"></div>
+                    <div class="round-delete-button"></div>
                 </div>
                 <div class="profile-page__address-item">
                     <div class="profile-page__address-item-text">
                         Улица Пушкина Дом кукушкина</div>
-                    <div class="profile-page__address-item-button"></div>
+                    <div class="round-delete-button"></div>
                 </div>
                 <div class="profile-page__add-address-block">
                     <input type="text" class="common-input" placeholder="Добавьте новый адрес:"></input>

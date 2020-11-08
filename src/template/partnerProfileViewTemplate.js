@@ -6,7 +6,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
         <header class="header">
             <img class="header__logo">
             <div>
-                <button class="header__button js-profile-button">Профиль</button>
                 <button class="header__button js-logout-button">Выйти</button>
             </div>
         </header>
