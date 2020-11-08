@@ -84,7 +84,6 @@ export class PartnerProfileView {
     render (data) {
         const template = renderProfileView();
         const profileHTML = template(data);
-        console.log(data);
         this.root.innerHTML = profileHTML;
         this.addEventListeners();
         this.changeSubPage('.js-profile-info');

@@ -16,7 +16,7 @@ const staticUrl = schema + host + staticPort;
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const loginRequest = (input) => {
     const args = {
@@ -31,7 +31,7 @@ export const loginRequest = (input) => {
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const registerRequest = (input) => {
     const args = {
@@ -44,7 +44,7 @@ export const registerRequest = (input) => {
 /**
  * Creating http profile request via ajax methods.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const getProfileInfoRequest = () => {
     const args = {
@@ -58,7 +58,7 @@ export const getProfileInfoRequest = () => {
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const changePersonalInfoRequest = (input) => {
     const args = {
@@ -74,7 +74,7 @@ export const changePersonalInfoRequest = (input) => {
  *
  * @param {object} formAvatar - Form-data for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const uploadAvatarRequest = (formAvatar) => {
     const args = {
@@ -88,9 +88,9 @@ export const uploadAvatarRequest = (formAvatar) => {
  * Send http get avatar request via ajax methods.
  * Method was created to check is it possible to pull image from static server.
  *
- * @param {object} avatarName - Picture name for request.
+ * @param {string} avatarName - Picture name for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const pullAvatarRequest = (avatarName) => {
     const args = {
@@ -102,7 +102,7 @@ export const pullAvatarRequest = (avatarName) => {
 /**
  * Creating http bucket request via ajax methods.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const bucketRequest = () => {
 }
@@ -116,7 +116,7 @@ export const bucketRequest = () => {
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const partnerLoginRequest = (input) => {
     const args = {
@@ -131,7 +131,7 @@ export const partnerLoginRequest = (input) => {
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const partnerRegisterRequest = (input) => {
     const args = {
@@ -144,9 +144,9 @@ export const partnerRegisterRequest = (input) => {
 /**
  * Creating http login request via ajax methods.
  *
- * @param {object} id - Arguments that contains part of url for request.
+ * @param {string} id - Arguments that contains part of url for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const getStoreByIdDataRequest = (id) => {
     const args = {
@@ -158,7 +158,7 @@ export const getStoreByIdDataRequest = (id) => {
 /**
  * Creating http profile request via ajax methods.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const getPartnerProfileInfoRequest = () => {
     const args = {
@@ -172,7 +172,7 @@ export const getPartnerProfileInfoRequest = () => {
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const changePartnerPersonalInfoRequest = (input) => {
     const args = {
@@ -188,7 +188,7 @@ export const changePartnerPersonalInfoRequest = (input) => {
  *
  * @param {object} formAvatar - Form-data for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const uploadPartnerAvatarRequest = (formAvatar) => {
     const args = {
@@ -202,9 +202,9 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
  * Send http get avatar request via ajax methods.
  * Method was created to check is it possible to pull image from static server.
  *
- * @param {object} avatarName - Picture name for request.
+ * @param {string} avatarName - Picture name for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const pullPartnerAvatarRequest = (avatarName) => {
     const args = {
@@ -216,7 +216,7 @@ export const pullPartnerAvatarRequest = (avatarName) => {
 /**
  * Creating http get bucket request via ajax methods.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const getBucketRequest = () => {
     const args = {
@@ -228,7 +228,7 @@ export const getBucketRequest = () => {
 /**
  * Creating http add to bucket request via ajax methods.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const addProductToBucket = (productId) => {
     const args = {
