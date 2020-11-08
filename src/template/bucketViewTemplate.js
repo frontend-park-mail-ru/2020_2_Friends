@@ -16,17 +16,17 @@ export const renderBucketView = () => window.Handlebars.compile(`
 
         {{#each products}}
         <div class="bucket-item">
-            <img class="bucket-item__img" src="{{this.image}}"></img>
+            <img class="bucket-item__img" src="{{this.picture}}"></img>
             <div class="bucket-item__col">
-                <div class="bucket-item__name">{{this.name}}</div>
-                <div class="bucket-item__descr">{{this.descr}}</div>
+                <div class="bucket-item__name">{{this.food_name}}</div>
+                <div class="bucket-item__descr">{{this.food_price}}</div>
             </div>
             <div class="bucket-item__col">
                 <div class="bucket-item__row">
-                    <input class="bucket-item__quantity" type="number" value="{{this.amount}}">
+                    <input class="bucket-item__quantity" type="number" value="{{this.food_price}}">
                     <button class="bucket-item__delete"></button>
                 </div>
-                <div class="bucket-item__price">{{this.price}}</div>
+                <div class="bucket-item__price">{{this.food_price}}</div>
             </div>
         </div>
         {{/each}}

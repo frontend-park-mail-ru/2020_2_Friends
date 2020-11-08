@@ -1,4 +1,4 @@
-import { getStoreByIdDataRequest } from '../utils/ApiService.js';
+import { getStoreByIdDataRequest, addProductToBucket } from '../utils/ApiService.js';
 
 export class StoreModel {
     /**
@@ -8,8 +8,11 @@ export class StoreModel {
      */
     constructor (eventBus) {
         this.getData = this.getData.bind(this);
+        this.addToCart = this.addToCart.bind(this);
 
         this.eventBus = eventBus;
+
+        eventBus.subscribe('ADD_TO_CART', this.addToCart);
     };
 
     /**
@@ -38,4 +41,16 @@ export class StoreModel {
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
     }
+
+    async addToCart (productId) {
+        const response = await addProductToBucket(productId);
+
+        switch (response.status) {
+        case 200:
+            console.log('ADDED ' + productId);
+            break;
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
+    };
 }
