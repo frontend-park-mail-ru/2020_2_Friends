@@ -2,14 +2,18 @@
  * Templating html-code using handlebars templater for bucket.
  */
 export const renderBucketView = () => window.Handlebars.compile(`
-<div class="bucket__background">
-<header class="header__background">
+<div class="background">
+<header class="header">
     <img class="header__logo">
     <div>
-        <button class="header__button">Корзина</button>
+        <button class="header__button js-bucket-button">Корзина</button>
+        <button class="header__button js-profile-button">Профиль</button>
         <button class="header__button">Выйти</button>
     </div>
 </header>
+<div class="back-to-shopping">
+<button class="back-to-shopping__button">Все рестораны</button>
+</div>
 <div class="bucket-content">
     <div class="bucket">
         <div class="bucket__header">Моя корзина:</div>

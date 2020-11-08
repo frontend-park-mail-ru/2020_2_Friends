@@ -15,5 +15,7 @@ export class BucketController {
 
         this.model = new BucketModel(eventBus);
         this.view = new BucketView(root, eventBus);
+
+        eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
     }
 }

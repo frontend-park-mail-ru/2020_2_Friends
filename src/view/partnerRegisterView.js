@@ -1,6 +1,6 @@
-import { renderRegisterView } from '../template/registerViewTemplate.js';
+import { renderRegisterView } from '../template/partnerRegisterViewTemplate.js';
 
-export class RegisterView {
+export class PartnerRegisterView {
     /**
      * Creating an RegisterView instance.
      * Allows to render register page and response correctly to user's interaction with page.

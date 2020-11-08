@@ -1,6 +1,6 @@
-import { renderProfileView } from '../template/profileViewTemplate.js';
+import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
 
-export class ProfileView {
+export class PartnerProfileView {
     /**
      * Creating an ProfileView instance.
      * Allows to render profile page and response correctly to user's interaction with page.
@@ -116,7 +116,7 @@ export class ProfileView {
 
     changeSubPage (selector) {
         const seenBlock = this.root.querySelector(selector);
-        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-profile-addresses, .js-profile-coupons, .js-profile-orders');
+        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-mystores, .js-addstore-form');
         allBlocks.forEach(element => {
             element.style.display = 'none';
         });
@@ -125,7 +125,7 @@ export class ProfileView {
 
     focusOnNavButton (selector) {
         const seenBlock = this.root.querySelector(selector);
-        const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
+        const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-mystores-button, .js-addstore-button');
         allBlocks.forEach(element => {
             element.classList.remove('profile-page__navbar-button_focus');
         });
@@ -136,33 +136,22 @@ export class ProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
-        const favoriteStore = this.root.querySelector('.js-favstore-button');
-        favoriteStore.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORE');
-        })
-
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.changeSubPage('.js-profile-info');
             this.focusOnNavButton('.js-userdata-button');
         })
 
-        const addresses = this.root.querySelector('.js-addresses-button');
-        addresses.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-addresses');
-            this.focusOnNavButton('.js-addresses-button');
+        const myStores = this.root.querySelector('.js-mystores-button');
+        myStores.addEventListener('click', () => {
+            this.changeSubPage('.js-mystores');
+            this.focusOnNavButton('.js-mystores-button');
         })
 
-        const orders = this.root.querySelector('.js-myorders-button');
-        orders.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-orders');
-            this.focusOnNavButton('.js-myorders-button');
-        })
-
-        const coupons = this.root.querySelector('.js-coupons-button');
-        coupons.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-coupons');
-            this.focusOnNavButton('.js-coupons-button');
+        const addStore = this.root.querySelector('.js-addstore-button');
+        addStore.addEventListener('click', () => {
+            this.changeSubPage('.js-addstore-form');
+            this.focusOnNavButton('.js-addstore-button');
         })
 
         const logout = this.root.querySelector('.js-logout-button');
@@ -170,17 +159,12 @@ export class ProfileView {
             this.eventBus.call('REDIRECT_TO_LOGOUT');
         })
 
-        const bucket = this.root.querySelector('.js-bucket-button');
-        bucket.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_BUCKET');
-        })
-
         const profile = this.root.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         })
 
-        const uploadAvatar = this.root.querySelector('.upload');
+        const uploadAvatar = this.root.querySelector('.upload-avatar');
         uploadAvatar.addEventListener('submit', (e) => {
             e.preventDefault();
             const file = e.target.uploadFile.files[0];

@@ -1,5 +1,5 @@
 /**
- * Templating html-code using handlebars templater for login.
+ * Templating html-code using handlebars templater forpartner login.
  */
 export const renderLoginView = () => window.Handlebars.compile(`
 

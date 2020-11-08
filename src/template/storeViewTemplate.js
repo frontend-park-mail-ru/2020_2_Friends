@@ -2,11 +2,12 @@
  * Templating html-code using handlebars templater for store.
  */
 export const renderStoreView = () => window.Handlebars.compile(`
-<div class="store__background">
-<div class="header__background">
+<div class="background">
+<div class="header">
     <img class="header__logo">
     <div>
         <button class="header__button js-bucket-button">Корзина</button>
+        <button class="header__button js-profile-button">Профиль</button>
         <button class="header__button">Выйти</button>
     </div>
 </div>
@@ -37,6 +38,4 @@ export const renderStoreView = () => window.Handlebars.compile(`
 {{/each}}
 
 </div>
-</div>
-
-`)
+</div>`);

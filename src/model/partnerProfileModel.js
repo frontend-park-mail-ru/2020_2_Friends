@@ -3,7 +3,7 @@ import { regTemplates } from '../utils/reg_templates.js';
 import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
-export class ProfileModel {
+export class PartnerProfileModel {
     /**
      * Creating an LoginModel instance.
      *
@@ -31,12 +31,7 @@ export class ProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            var avatarUrl;
-            if (!body.avatar) {
-                avatarUrl = '../assets/img/default-avatar.png';
-            } else {
-                avatarUrl = makeAvatarUrl(body.avatar);
-            }
+            const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : '../assets/img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
                 points: body.points,
@@ -119,6 +114,7 @@ export class ProfileModel {
      */
     validate (input) {
         const { number } = input;
+        console.log(number);
         let isValid = true;
 
         const numberValidator = userFormValidator(number, regTemplates.number);

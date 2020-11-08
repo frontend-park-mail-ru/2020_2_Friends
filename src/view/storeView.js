@@ -48,6 +48,15 @@ export class StoreView {
     }
 
     addEventListeners () {
+        const bucket = this.root.querySelector('.js-bucket-button');
+        bucket.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_BUCKET');
+        })
+
+        const profile = this.root.querySelector('.js-profile-button');
+        profile.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_PROFILE');
+        })
         const buttons = this.root.querySelectorAll('.proceed-button');
         buttons.forEach(element => {
             element.addEventListener('click', () => {

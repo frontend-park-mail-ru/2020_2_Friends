@@ -16,7 +16,7 @@ const staticUrl = schema + host + staticPort;
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const loginRequest = (input) => {
     const args = {
@@ -27,11 +27,11 @@ export const loginRequest = (input) => {
 }
 
 /**
- * Creating http login request via ajax methods.
+ * Creating http register request via ajax methods.
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const registerRequest = (input) => {
     const args = {
@@ -42,23 +42,9 @@ export const registerRequest = (input) => {
 }
 
 /**
- * Creating http login request via ajax methods.
- *
- * @param {object} id - Arguments that contains part of url for request.
- *
- * @return {object} - Response object.
- */
-export const getStoreByIdDataRequest = (id) => {
-    const args = {
-        url: backendUrl + `/api/v1/vendors/${id}`
-    }
-    return ajaxGetUsingFetch(args);
-}
-
-/**
  * Creating http profile request via ajax methods.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const getProfileInfoRequest = () => {
     const args = {
@@ -72,7 +58,7 @@ export const getProfileInfoRequest = () => {
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const changePersonalInfoRequest = (input) => {
     const args = {
@@ -88,7 +74,7 @@ export const changePersonalInfoRequest = (input) => {
  *
  * @param {object} formAvatar - Form-data for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const uploadAvatarRequest = (formAvatar) => {
     const args = {
@@ -102,9 +88,9 @@ export const uploadAvatarRequest = (formAvatar) => {
  * Send http get avatar request via ajax methods.
  * Method was created to check is it possible to pull image from static server.
  *
- * @param {object} avatarName - Picture name for request.
+ * @param {string} avatarName - Picture name for request.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const pullAvatarRequest = (avatarName) => {
     const args = {
@@ -114,9 +100,123 @@ export const pullAvatarRequest = (avatarName) => {
 }
 
 /**
+ * Creating http bucket request via ajax methods.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const bucketRequest = () => {
+}
+/************************************
+ *        PARTNER REQUESTS          *
+ *                                  *
+ ***********************************/
+
+/**
+ * Creating http partner login request via ajax methods.
+ *
+ * @param {object} input - Arguments that contains url and body for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const partnerLoginRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/sessions',
+        body: input
+    }
+    return ajaxPostUsingFetch(args);
+}
+
+/**
+ * Creating http partner register request via ajax methods.
+ *
+ * @param {object} input - Arguments that contains url and body for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const partnerRegisterRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/users',
+        body: input
+    }
+    return ajaxPostUsingFetch(args);
+}
+
+/**
+ * Creating http store request via ajax methods.
+ *
+ * @param {string} id - Arguments that contains part of url for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const getStoreByIdDataRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}`
+    }
+    return ajaxGetUsingFetch(args);
+}
+
+/**
+ * Creating http partner profile request via ajax methods.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const getPartnerProfileInfoRequest = () => {
+    const args = {
+        url: backendUrl + '/api/v1/profiles'
+    }
+    return ajaxGetUsingFetch(args);
+}
+
+/**
+ * Creating http update partner profile info request via ajax methods.
+ *
+ * @param {object} input - Arguments that contains url and body for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const changePartnerPersonalInfoRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/profiles',
+        body: input
+    }
+    return ajaxPutUsingFetch(args);
+}
+
+/**
+ * Creating http upload avatar request for partner via ajax methods.
+ * Using multipart/form-data to send a picture.
+ *
+ * @param {object} formAvatar - Form-data for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const uploadPartnerAvatarRequest = (formAvatar) => {
+    const args = {
+        url: backendUrl + '/api/v1/profiles/avatars',
+        body: formAvatar
+    }
+    return ajaxMultipartUsingFetch(args);
+}
+
+/**
+ * Send http get avatar request for partner via ajax methods.
+ * Method was created to check is it possible to pull image from static server.
+ *
+ * @param {string} avatarName - Picture name for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const pullPartnerAvatarRequest = (avatarName) => {
+    const args = {
+        url: staticUrl + '/data/img/' + avatarName
+    }
+    return ajaxGetUsingFetch(args);
+}
+
+/**
  * Creating http get bucket request via ajax methods.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const getBucketRequest = () => {
     const args = {
@@ -127,8 +227,9 @@ export const getBucketRequest = () => {
 
 /**
  * Creating http add to bucket request via ajax methods.
+ *  @param {string} productId - Id of new item in bucket.
  *
- * @return {object} - Response object.
+ * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const addProductToBucket = (productId) => {
     const args = {
