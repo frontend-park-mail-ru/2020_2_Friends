@@ -40,20 +40,6 @@ export const registerRequest = (input) => {
     return ajaxPostUsingFetch(args);
 }
 
-// /**
-//  * Creating http login request via ajax methods.
-//  *
-//  * @param {object} id - Arguments that contains part of url for request.
-//  *
-//  * @return {object} - Response object.
-//  */
-// export const getStoreByIdDataRequest = (id) => {
-//     const args = {
-//         url: backendUrl + `/api/v1/vendors/${id}`
-//     }
-//     return ajaxGetUsingFetch(args);
-// }
-
 /**
  * Creating http profile request via ajax methods.
  *
