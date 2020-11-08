@@ -40,9 +40,9 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 </div>
                 <div class="profile-page__right-column">
                    <div class="js-login-errors text-error"></div>
-                    <input type="text" class="common-input js-login-input" placeholder="Имя: {{name}}" :></input>
+                    <input type="text" class="common-input js-login-input" placeholder="Имя:" value="{{name}}"></input>
                     <div class="js-number-errors text-error"></div>
-                    <input type="text" class="common-input js-number-input" placeholder="Номер: {{phone}}"></input>
+                    <input type="text" class="common-input js-number-input" placeholder="Номер телефона:" value="{{phone}}"></input>
                     <div class="js-email-errors text-error"></div>
                     <button class="proceed-button js-save-info">Сохранить</button>
                 </div>

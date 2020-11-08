@@ -117,7 +117,7 @@ export class PartnerProfileView {
 
     changeSubPage (selector) {
         const seenBlock = this.root.querySelector(selector);
-        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-mystores');
+        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-mystores, .js-addstore-form');
         allBlocks.forEach(element => {
             element.style.display = 'none';
         });
@@ -126,7 +126,7 @@ export class PartnerProfileView {
 
     focusOnNavButton (selector) {
         const seenBlock = this.root.querySelector(selector);
-        const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-mystores-button');
+        const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-mystores-button, .js-addstore-button');
         allBlocks.forEach(element => {
             element.classList.remove('profile-page__navbar-button_focus');
         });
@@ -137,11 +137,6 @@ export class PartnerProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
-        const favoriteStore = this.root.querySelector('.js-addstore-button');
-        favoriteStore.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_ADDSTORE');
-        })
-
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.changeSubPage('.js-profile-info');
@@ -154,6 +149,12 @@ export class PartnerProfileView {
             this.focusOnNavButton('.js-mystores-button');
         })
 
+        const addStore = this.root.querySelector('.js-addstore-button');
+        addStore.addEventListener('click', () => {
+            this.changeSubPage('.js-addstore-form');
+            this.focusOnNavButton('.js-addstore-button');
+        })
+
         const logout = this.root.querySelector('.js-logout-button');
         logout.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_LOGOUT');
@@ -164,7 +165,7 @@ export class PartnerProfileView {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         })
 
-        const uploadAvatar = this.root.querySelector('.upload');
+        const uploadAvatar = this.root.querySelector('.upload-avatar');
         uploadAvatar.addEventListener('submit', (e) => {
             e.preventDefault();
             const file = e.target.uploadFile.files[0];

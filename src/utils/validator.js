@@ -9,6 +9,7 @@
  */
 export const userFormValidator = (target, reg) => {
     const { value } = target;
+    console.log(value);
     if (!value) {
         return { status: false, message: 'Заполните поле' };
     }

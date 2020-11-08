@@ -2,3 +2,4 @@ body {
     margin: 0;
     padding: 0;
 }
+html {min-height: 100%; position: relative;}

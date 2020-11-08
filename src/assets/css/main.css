@@ -3,7 +3,6 @@
     width: 100%;
     flex-direction: column;
     background: #D7DEE5;
-    height: 100%;
 }
 .common-input {
     width: 350px;
@@ -25,7 +24,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
 .proceed-button, .info-button {
     padding: 10px;
     margin: 15px;

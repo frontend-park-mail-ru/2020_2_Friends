@@ -114,6 +114,7 @@ export class PartnerProfileModel {
      */
     validate (input) {
         const { number } = input;
+        console.log(number);
         let isValid = true;
 
         const numberValidator = userFormValidator(number, regTemplates.number);
