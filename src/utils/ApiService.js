@@ -27,7 +27,7 @@ export const loginRequest = (input) => {
 }
 
 /**
- * Creating http login request via ajax methods.
+ * Creating http register request via ajax methods.
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
@@ -112,7 +112,7 @@ export const bucketRequest = () => {
  ***********************************/
 
 /**
- * Creating http login request via ajax methods.
+ * Creating http partner login request via ajax methods.
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
@@ -127,7 +127,7 @@ export const partnerLoginRequest = (input) => {
 }
 
 /**
- * Creating http login request via ajax methods.
+ * Creating http partner register request via ajax methods.
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
@@ -142,7 +142,7 @@ export const partnerRegisterRequest = (input) => {
 }
 
 /**
- * Creating http login request via ajax methods.
+ * Creating http store request via ajax methods.
  *
  * @param {string} id - Arguments that contains part of url for request.
  *
@@ -156,7 +156,7 @@ export const getStoreByIdDataRequest = (id) => {
 }
 
 /**
- * Creating http profile request via ajax methods.
+ * Creating http partner profile request via ajax methods.
  *
  * @return {Promise} - Returning Promise, resolving with backend-response.
  */
@@ -168,7 +168,7 @@ export const getPartnerProfileInfoRequest = () => {
 }
 
 /**
- * Creating http update profile info request via ajax methods.
+ * Creating http update partner profile info request via ajax methods.
  *
  * @param {object} input - Arguments that contains url and body for request.
  *
@@ -183,7 +183,7 @@ export const changePartnerPersonalInfoRequest = (input) => {
 }
 
 /**
- * Creating http upload avatar request via ajax methods.
+ * Creating http upload avatar request for partner via ajax methods.
  * Using multipart/form-data to send a picture.
  *
  * @param {object} formAvatar - Form-data for request.
@@ -199,7 +199,7 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
 }
 
 /**
- * Send http get avatar request via ajax methods.
+ * Send http get avatar request for partner via ajax methods.
  * Method was created to check is it possible to pull image from static server.
  *
  * @param {string} avatarName - Picture name for request.
@@ -227,6 +227,7 @@ export const getBucketRequest = () => {
 
 /**
  * Creating http add to bucket request via ajax methods.
+ *  @param {string} productId - Id of new item in bucket.
  *
  * @return {Promise} - Returning Promise, resolving with backend-response.
  */
