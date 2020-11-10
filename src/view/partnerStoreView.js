@@ -48,11 +48,6 @@ export class PartnerStoreView {
     }
 
     addEventListeners () {
-        const profile = this.root.querySelector('.js-profile-button');
-        profile.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE');
-        })
-
         const editBtns = this.root.querySelectorAll('.js-edit-item');
         editBtns.forEach(editBtn => {
             editBtn.addEventListener('click', () => {

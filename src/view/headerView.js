@@ -39,7 +39,7 @@ export class HeaderView {
 
         const profile = this.header.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE');
+            this.eventBus.call('REDIRECT_TO_ADMIN_PROFILE');
         })
     }
 
