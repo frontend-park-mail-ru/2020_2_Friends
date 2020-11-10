@@ -81,14 +81,21 @@
 }
 
 .product {
+    margin-right: 50px;
+    margin-bottom: 40px;
+}
+.product-editor, .product-normal {
     width: 400px;
+    height: 700px;
     padding-bottom: 10px;
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    margin-right: 50px;
-    margin-bottom: 40px;
     align-items: center;
+    position:relative;
+}
+.product-editor {
+    display: none;
 }
 
 .product__info {
@@ -108,8 +115,7 @@
 
 .product__img {
     min-width: 100%;
-    height: 300px;
-    height: auto;
+    height: 370px;
     padding-bottom: 20px;
 }
 
@@ -121,6 +127,8 @@
     text-align: center;
     font-size: 18px;
     margin: 10px;
+    max-width: 400px;
+    white-space: pre-wrap;
 }
 
 .info_button {
@@ -143,4 +151,39 @@
     background-color: #c8e28d4f;
     box-shadow: 2px 0px 2px 1px #1111119a;
     outline: none;
+}
+
+.delete-button {
+    width: 40px;
+    height: 40px;
+    background-image: url("../img/cross.png");
+    background-size: cover;
+    border: none;
+    background-color: #FFFFFF;
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    margin: 10px;
+}
+
+.delete-button:hover {
+    background-color: #F6BEAA;
+}
+
+.delete-button:focus {
+    background-color: #F6BEAA;
+}
+
+.bottom-center-button {
+    justify-self: end;
+    align-self: center;
+}
+
+.product__items-input {
+    display: flex;
+    flex-direction: column;
+    justify-self: end;
+}
+
+.product__upload-img {
 }

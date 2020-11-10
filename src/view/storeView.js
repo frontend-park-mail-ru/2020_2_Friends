@@ -57,7 +57,7 @@ export class StoreView {
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         })
-        const buttons = this.root.querySelectorAll('.proceed-button');
+        const buttons = this.root.querySelectorAll('.js-add-to-cart');
         buttons.forEach(element => {
             element.addEventListener('click', () => {
                 this.eventBus.call('ADD_TO_CART', element.dataset.productId);

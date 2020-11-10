@@ -21,7 +21,6 @@ export class BucketView {
      */
     render (data) {
         const template = renderBucketView();
-        console.log(data.products);
         this.root.innerHTML = template(data);
         this.addEventListeners();
     }
@@ -31,6 +30,13 @@ export class BucketView {
         bucket.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_BUCKET');
         })
+
+        const delItemBtn = this.root.querySelectorAll('.js-delete-item')
+        delItemBtn.forEach(Btn => {
+            Btn.addEventListener('click', () => {
+                Btn.parentNode.parentNode.parentNode.style.display = 'none';
+            });
+        });
 
         const profile = this.root.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {

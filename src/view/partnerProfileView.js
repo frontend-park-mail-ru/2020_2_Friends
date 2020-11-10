@@ -85,9 +85,9 @@ export class PartnerProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.addEventListeners();
         this.changeSubPage('.js-profile-info');
         this.focusOnNavButton('.js-userdata-button');
+        this.addEventListeners();
     }
 
     /**
