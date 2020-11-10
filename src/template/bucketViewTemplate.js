@@ -3,14 +3,6 @@
  */
 export const renderBucketView = () => window.Handlebars.compile(`
 <div class="background">
-    <header class="header">
-        <img class="header__logo" src="/assets/img/logo.png">
-        <div>
-            <button class="header__button js-bucket-button">Корзина</button>
-            <button class="header__button js-profile-button">Профиль</button>
-            <button class="header__button">Выйти</button>
-        </div>
-    </header>
     <div class="back-to-shopping">
         <button class="back-to-shopping__button">Все рестораны</button>
     </div>
@@ -30,7 +22,6 @@ export const renderBucketView = () => window.Handlebars.compile(`
                         <input class="bucket-item__quantity" type="number" value="1">
                         <button class="bucket-item__delete js-delete-item"></button>
                     </div>
-                    <div class="bucket-item__price">{{this.food_price}}</div>
                 </div>
             </div>
             {{/each}}

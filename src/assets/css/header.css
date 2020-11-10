@@ -26,3 +26,7 @@
     height: 50px;
     width: 50px;
 }
+.header__logo-button {
+    background: #0A3200;    
+    border: none;
+}

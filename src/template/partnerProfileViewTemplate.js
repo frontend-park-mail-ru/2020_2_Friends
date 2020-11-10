@@ -3,12 +3,6 @@
  */
 export const renderProfileView = () => window.Handlebars.compile(`
 <div class="background">
-    <header class="header">
-        <img class="header__logo" src="/assets/img/logo.png">
-        <div>
-            <button class="header__button js-logout-button">Выйти</button>
-        </div>
-    </header>
     <div class="profile-page__profile-cart">
         <div class="profile-page__navbar">
             <button class="profile-page__navbar-button js-userdata-button link">О Вас</button>

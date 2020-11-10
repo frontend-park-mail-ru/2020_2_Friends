@@ -3,13 +3,6 @@
  */
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
-    <div class="header">
-        <img class="header__logo" src="/assets/img/logo.png">
-        <div>
-            <button class="header__button js-profile-button">Профиль</button>
-            <button class="header__button">Выйти</button>
-        </div>
-    </div>
     <div class="store__header">
         <img src="assets/store4.png" class="store__logo" alt="Store logo">
         <div class="store__header-headline">

@@ -1,5 +1,4 @@
 import { renderProfileView } from '../template/profileViewTemplate.js';
-
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -163,21 +162,6 @@ export class ProfileView {
         coupons.addEventListener('click', () => {
             this.changeSubPage('.js-profile-coupons');
             this.focusOnNavButton('.js-coupons-button');
-        })
-
-        const logout = this.root.querySelector('.js-logout-button');
-        logout.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_LOGOUT');
-        })
-
-        const bucket = this.root.querySelector('.js-bucket-button');
-        bucket.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_BUCKET');
-        })
-
-        const profile = this.root.querySelector('.js-profile-button');
-        profile.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE');
         })
 
         const uploadAvatar = this.root.querySelector('.upload');

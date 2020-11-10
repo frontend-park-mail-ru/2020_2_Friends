@@ -8,7 +8,6 @@ export class BucketModel {
      */
     constructor (eventBus) {
         this.eventBus = eventBus;
-
         this.getBucketData = this.getBucketData.bind(this);
     }
 

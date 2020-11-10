@@ -156,7 +156,7 @@ export class PartnerProfileView {
 
         const logout = this.root.querySelector('.js-logout-button');
         logout.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_LOGOUT');
+            this.eventBus.call('LOGOUT');
         })
 
         const profile = this.root.querySelector('.js-profile-button');

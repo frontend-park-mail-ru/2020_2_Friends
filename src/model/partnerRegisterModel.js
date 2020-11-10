@@ -14,7 +14,6 @@ export class PartnerRegisterModel {
         this.eventBus = eventBus;
 
         eventBus.subscribe('SUBMIT_REG', this.doRegistration);
-        eventBus.subscribe('LOGOUT', this.logOut);
     }
 
     /**

@@ -6,15 +6,15 @@ export class RegisterController {
     /**
      * Creating controller class for register entity.
      *
-     * @param {object} root - Main html div object.
+     * @param {object} baseElems - Main html div objects.
      * @param {router} router - An object that allows to route inside a site.
      */
-    constructor (root, router) {
+    constructor (baseElems, router) {
         const eventBus = new EventBus();
         this.router = router
 
         this.model = new RegisterModel(eventBus);
-        this.view = new RegisterView(root, eventBus);
+        this.view = new RegisterView(baseElems, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));

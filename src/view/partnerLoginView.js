@@ -5,7 +5,7 @@ export class PartnerLoginView {
      * Allows to render login page and response correctly to user's interaction with page.
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
-     * @param {object} root - Main html div object.
+     * @param {object} root - Main html div objects.
      */
     constructor (root, eventBus) {
         this.root = root;

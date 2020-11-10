@@ -1,5 +1,5 @@
 import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
-import { renderItemCreateView } from '../template/editStoreItemTemplate.js';
+import { renderItemCreateView } from '../template/createStoreItemTemplate.js';
 export class PartnerStoreView {
     /**
      * Creating an PartnerStoreView instance.

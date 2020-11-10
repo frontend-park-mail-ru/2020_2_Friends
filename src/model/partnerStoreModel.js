@@ -9,9 +9,7 @@ export class PartnerStoreModel {
     constructor (eventBus) {
         this.getData = this.getData.bind(this);
         this.addToCart = this.addToCart.bind(this);
-
         this.eventBus = eventBus;
-
         eventBus.subscribe('ADD_TO_CART', this.addToCart);
     };
 

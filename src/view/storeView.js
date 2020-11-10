@@ -1,15 +1,15 @@
 import { renderStoreView } from '../template/storeViewTemplate.js';
-
 export class StoreView {
     /**
      * Creating an StoreView instance.
      * Allows to render store page and response correctly to user's interaction with page.
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
-     * @param {object} root - Main html div object.
+     * @param {object} root - Main html div objects.
      */
     constructor (root, eventBus) {
         this.root = root;
+
         this.eventBus = eventBus;
 
         this.render = this.render.bind(this);
@@ -48,15 +48,6 @@ export class StoreView {
     }
 
     addEventListeners () {
-        const bucket = this.root.querySelector('.js-bucket-button');
-        bucket.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_BUCKET');
-        })
-
-        const profile = this.root.querySelector('.js-profile-button');
-        profile.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE');
-        })
         const buttons = this.root.querySelectorAll('.js-add-to-cart');
         buttons.forEach(element => {
             element.addEventListener('click', () => {

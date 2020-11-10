@@ -13,7 +13,6 @@ export class ProfileModel {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
-
         this.eventBus = eventBus;
 
         eventBus.subscribe('LOGOUT', this.logOut);

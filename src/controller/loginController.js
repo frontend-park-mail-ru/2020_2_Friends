@@ -6,15 +6,15 @@ export class LoginController {
     /**
      * Creating controller class for login entity.
      *
-     * @param {object} root - Main html div object.
+     * @param {object} baseElems - Main html div objects.
      * @param {router} router - An object that allows to route inside a site.
      */
-    constructor (root, router) {
+    constructor (baseElems, router) {
         const eventBus = new EventBus();
         this.router = router
 
         this.model = new LoginModel(eventBus);
-        this.view = new LoginView(root, eventBus);
+        this.view = new LoginView(baseElems, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_REG', () => this.router.redirect('register'));
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));

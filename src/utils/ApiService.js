@@ -1,5 +1,5 @@
 
-import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch } from '../utils/ajax.js';
+import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch, ajaxDeleteUsingFetch } from '../utils/ajax.js';
 
 // Servers configs
 const schema = 'http://';
@@ -24,6 +24,20 @@ export const loginRequest = (input) => {
         body: input
     }
     return ajaxPostUsingFetch(args);
+}
+
+/**
+ * Creating http logout request via ajax methods.
+ *
+ * @param {object} input - Arguments that contains url and body for request.
+ *
+ * @return {Promise} - Returning Promise, resolving with backend-response.
+ */
+export const logoutRequest = () => {
+    const args = {
+        url: backendUrl + '/api/v1/sessions'
+    }
+    return ajaxDeleteUsingFetch(args);
 }
 
 /**
