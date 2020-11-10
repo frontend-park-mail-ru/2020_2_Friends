@@ -4,7 +4,7 @@
 export const renderProfileView = () => window.Handlebars.compile(`
     <div class="background">
         <header class="header">
-            <img class="header__logo">
+            <img class="header__logo" src="/assets/img/logo.png">
             <div>
                 <button class="header__button js-bucket-button">Корзина</button>
                 <button class="header__button js-profile-button">Профиль</button>
@@ -57,18 +57,18 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <div class="profile-page__address-item-text">
                         Улица Пушкина Дом кукушкина
                     </div>
-                    <div class="round-delete-button"></div>
+                    <div class="round-delete-button js-delete-address"></div>
                 </div>
                 <div class="profile-page__address-item">
                     <div class="profile-page__address-item-text">
                         Улица Пушкина Дом кукушкина
                     </div>
-                    <div class="round-delete-button"></div>
+                    <div class="round-delete-button js-delete-address"></div>
                 </div>
                 <div class="profile-page__address-item">
                     <div class="profile-page__address-item-text">
                         Улица Пушкина Дом кукушкина</div>
-                    <div class="round-delete-button"></div>
+                    <div class="round-delete-button js-delete-address"></div>
                 </div>
                 <div class="profile-page__add-address-block">
                     <input type="text" class="common-input" placeholder="Добавьте новый адрес:"></input>

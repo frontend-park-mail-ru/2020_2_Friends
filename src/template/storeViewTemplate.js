@@ -4,7 +4,7 @@
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
 <div class="header">
-    <img class="header__logo">
+    <img class="header__logo" src="/assets/img/logo.png">
     <div>
         <button class="header__button js-bucket-button">Корзина</button>
         <button class="header__button js-profile-button">Профиль</button>
@@ -25,7 +25,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
 <div class="js-store-errors"></div>
 
 {{#each products}}
-    <div class="product" id="{{ this.id }}">
+    <div class="product-normal product" id="{{ this.id }}">
         <img src="{{ this.picture }}" class="product__img" alt="assets/burger1.png">
         <div class="product__info">
             <div class="product__name"> {{ this.food_name }} </div>

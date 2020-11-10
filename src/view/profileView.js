@@ -85,9 +85,9 @@ export class ProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.addEventListeners();
         this.changeSubPage('.js-profile-info');
         this.focusOnNavButton('.js-userdata-button');
+        this.addEventListeners();
     }
 
     /**
@@ -188,6 +188,12 @@ export class ProfileView {
             avatar.append('avatar', file);
             this.eventBus.call('UPLOAD_AVATAR', avatar);
         })
+        const delAddrBtn = this.root.querySelectorAll('.js-delete-address')
+        delAddrBtn.forEach(Btn => {
+            Btn.addEventListener('click', () => {
+                Btn.parentNode.style.display = 'none';
+            });
+        });
 
         const saveInfo = this.root.querySelector('.js-save-info');
         saveInfo.addEventListener('click', () => {

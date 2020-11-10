@@ -4,7 +4,7 @@
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
 <div class="header">
-    <img class="header__logo">
+    <img class="header__logo" src="/assets/img/logo.png">
     <div>
         <button class="header__button js-profile-button">Профиль</button>
         <button class="header__button">Выйти</button>

@@ -4,7 +4,7 @@
 export const renderProfileView = () => window.Handlebars.compile(`
     <div class="background">
         <header class="header">
-            <img class="header__logo">
+            <img class="header__logo" src="/assets/img/logo.png">
             <div>
                 <button class="header__button js-logout-button">Выйти</button>
             </div>
