@@ -53,23 +53,14 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 <img class="common-image" src="./assets/img/map.png">
             </div>
             <div class="profile-page__right-column">
+            {{#each addresses}}
                 <div class="profile-page__address-item">
                     <div class="profile-page__address-item-text">
-                        Улица Пушкина Дом кукушкина
+                        {{this}}
                     </div>
                     <div class="round-delete-button js-delete-address"></div>
                 </div>
-                <div class="profile-page__address-item">
-                    <div class="profile-page__address-item-text">
-                        Улица Пушкина Дом кукушкина
-                    </div>
-                    <div class="round-delete-button js-delete-address"></div>
-                </div>
-                <div class="profile-page__address-item">
-                    <div class="profile-page__address-item-text">
-                        Улица Пушкина Дом кукушкина</div>
-                    <div class="round-delete-button js-delete-address"></div>
-                </div>
+                {{/each}}
                 <div class="profile-page__add-address-block">
                     <input type="text" class="common-input" placeholder="Добавьте новый адрес:"></input>
                     <button class="proceed-button">Добавить</button>

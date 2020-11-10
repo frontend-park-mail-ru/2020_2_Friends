@@ -21,7 +21,6 @@ export class BucketView {
      */
     render (data) {
         const template = renderBucketView();
-        console.log(data.products);
         this.root.innerHTML = template(data);
         this.addEventListeners();
     }
