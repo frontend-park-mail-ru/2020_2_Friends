@@ -83,7 +83,6 @@ export class ProfileView {
      */
     render (data) {
         const template = renderProfileView();
-        console.log(data);
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
         this.changeSubPage('.js-profile-info');

@@ -85,7 +85,6 @@ export class PartnerStoreView {
             const template = renderItemCreateView();
             const HTML = template();
             product.innerHTML = HTML;
-            console.log(this); // КЛАСС
             const delBtn = product.querySelector('.js-delete-button');
             delBtn.addEventListener('click', () => {
                 product.remove();
