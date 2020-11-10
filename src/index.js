@@ -11,7 +11,6 @@ import { PartnerRegisterController } from './controller/partnerRegisterControlle
 import { PartnerProfileController } from './controller/partnerProfileController.js';
 import { PartnerStoreController } from './controller/partnerStoreController.js';
 const root = document.getElementById('root');
-
 // Creating router instance and passing it into page's controllers.
 const router = new Router();
 const regController = new RegisterController(root, router);

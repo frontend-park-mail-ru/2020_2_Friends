@@ -1,5 +1,5 @@
 import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
-import { renderItemEditView, renderItemNormalView } from '../template/editStoreItemTemplate.js';
+import { renderItemCreateView } from '../template/editStoreItemTemplate.js';
 export class PartnerStoreView {
     /**
      * Creating an PartnerStoreView instance.
@@ -47,36 +47,49 @@ export class PartnerStoreView {
         this.addEventListeners();
     }
 
-    showItem () {
-        const Id = this.dataset.product_id;
-        const ItemBlock = document.getElementById(Id)
-        const Template = renderItemNormalView();
-        const hTML = Template(ItemBlock.dataset);
-        ItemBlock.innerHTML = hTML;
-        const saveChanges = ItemBlock.querySelector('.js-edit-item');
-        console.log(saveChanges);
-        saveChanges.addEventListener('click', this.showItemEditor);
-    }
-
-    showItemEditor () {
-        const id = this.dataset.product_id;
-        const itemBlock = document.getElementById(id);
-        const template = renderItemEditView();
-        const HTML = template(itemBlock.dataset);
-        itemBlock.innerHTML = HTML;
-        const saveChanges = itemBlock.querySelector('.js-save-item-changes');
-        console.log(saveChanges);
-        saveChanges.addEventListener('click', this.showItem);
-    }
-
     addEventListeners () {
         const profile = this.root.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         })
-        const buttons = this.root.querySelectorAll('.js-edit-item');
-        buttons.forEach(element => {
-            element.addEventListener('click', this.showItemEditor);
+
+        const editBtns = this.root.querySelectorAll('.js-edit-item');
+        editBtns.forEach(editBtn => {
+            editBtn.addEventListener('click', () => {
+                editBtn.parentNode.style.display = 'none';
+                editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
+            });
         });
+
+        const saveChangesBtns = this.root.querySelectorAll('.js-save-item-changes');
+        saveChangesBtns.forEach(saveChangesBtn => {
+            saveChangesBtn.addEventListener('click', () => {
+                saveChangesBtn.parentNode.parentNode.style.display = 'none';
+                saveChangesBtn.parentNode.parentNode.parentNode.querySelector('.product-normal').style.display = 'flex';
+            });
+        });
+
+        const delBtns = this.root.querySelectorAll('.js-delete-button');
+        delBtns.forEach(element => {
+            element.addEventListener('click', () => {
+                element.parentNode.remove();
+                // УДАЛЕНИЕ НА БЕКЕ
+            })
+        });
+        const addItemBtn = this.root.querySelector('.js-add-item');
+        addItemBtn.addEventListener('click', () => {
+            const showcase = this.root.querySelector('.js-showcase');
+            const product = document.createElement('div');
+            product.className = 'product';
+            showcase.insertAdjacentElement('afterbegin', product);
+            const template = renderItemCreateView();
+            const HTML = template();
+            product.innerHTML = HTML;
+            console.log(this); // КЛАСС
+            const delBtn = product.querySelector('.js-delete-button');
+            delBtn.addEventListener('click', () => {
+                product.remove();
+            })
+        })
     }
 };

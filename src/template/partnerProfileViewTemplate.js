@@ -42,7 +42,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <div class="profile-page__content js-addstore-form">
             <div class="profile-page__left-column">
                 <div class="img-container">
-                    <img id="avatar" src="assets/img/default-avatar.png" alt="Italian Trulli" class="common-image profile-page__img">
+                    <img id="avatar" src="assets/img/question.png" alt="Italian Trulli" class="common-image profile-page__img">
                     <div class="avatar-errors"></div>
                 </div>
                 <button class="profile-page__img-upload-button">
