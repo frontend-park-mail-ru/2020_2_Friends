@@ -36,12 +36,8 @@ export class Router {
         }
 
         const url = window.location.pathname;
-
         for (const route of this.routes) {
-            console.log(route);
             const regexp = new RegExp(route.regexp);
-            console.log(regexp, url);
-            console.log(regexp.test(url));
             if (regexp.test(url)) {
                 const parsed = url.match(regexp);
                 route.handler(parsed.groups);
