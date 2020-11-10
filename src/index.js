@@ -31,7 +31,7 @@ router.setRoute('store', storeController.model.getData);
 router.setRoute('bucket', bucketController.model.getBucketData);
 router.setRoute('/', loginController.view.render);
 router.setRoute('', loginController.view.render);
-router.setRoute('bucket', bucketController.view.render);
+
 // Setting routes for partners to navigate inside an app
 router.setRoute('partners', partnerLoginController.view.render);
 router.setRoute('partners_register', partnerRegController.view.render);

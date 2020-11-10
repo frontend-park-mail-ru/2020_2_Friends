@@ -1,6 +1,6 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, addStore } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class PartnerProfileModel {
@@ -13,6 +13,7 @@ export class PartnerProfileModel {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
+        this.addStore = this.addStore.bind(this);
 
         this.eventBus = eventBus;
 
@@ -20,17 +21,35 @@ export class PartnerProfileModel {
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
+        eventBus.subscribe('ADD_STORE', this.addStore);
+    }
+
+    async addStore (data) {
+        const { name, description } = data;
+        const response = await addStore({ store_name: name.value, description: description.value });
+        switch (response.status) {
+        case 200:
+            console.log('ok added store');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
+        default:
+            console.log('Backend error');
+        }
     }
 
     /**
      * Getting user profile data with http-request.
      */
     async getProfileData () {
+        console.log(111111);
         const response = await getProfileInfoRequest();
 
         switch (response.status) {
         case 200: {
             const body = await response.json();
+            console.log(body);
             const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : '../assets/img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,

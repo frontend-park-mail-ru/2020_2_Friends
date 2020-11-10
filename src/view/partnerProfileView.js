@@ -136,6 +136,15 @@ export class PartnerProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
+        const storeDataButton = this.root.querySelector('.js-add-store');
+        storeDataButton.addEventListener('click', () => {
+            const name = this.root.querySelector('.js-addstore-name');
+            const description = this.root.querySelector('.js-addstore-descr');
+            const data = { name, description };
+            console.log(data);
+            this.eventBus.call('ADD_STORE', data);
+        })
+
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.changeSubPage('.js-profile-info');

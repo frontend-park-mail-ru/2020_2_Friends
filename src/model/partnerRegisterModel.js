@@ -32,6 +32,7 @@ export class PartnerRegisterModel {
             });
             switch (response.status) {
             case 201:
+                console.log('aa');
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:
