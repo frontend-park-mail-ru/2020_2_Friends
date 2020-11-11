@@ -240,7 +240,7 @@ export const addProductToBucket = (productId) => {
 
 export const addStore = (data) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/',
+        url: backendUrl + '/api/v1/vendors',
         body: data
     }
     return ajaxPostUsingFetch(args)

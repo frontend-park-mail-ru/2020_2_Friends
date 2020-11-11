@@ -26,7 +26,9 @@ export class PartnerProfileModel {
 
     async addStore (data) {
         const { name, description } = data;
-        const response = await addStore({ store_name: name.value, description: description.value });
+        const response = await addStore(
+            { store_name: name.value, description: description.value }
+        );
         switch (response.status) {
         case 200:
             console.log('ok added store');
@@ -43,13 +45,11 @@ export class PartnerProfileModel {
      * Getting user profile data with http-request.
      */
     async getProfileData () {
-        console.log(111111);
         const response = await getProfileInfoRequest();
 
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            console.log(body);
             const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : '../assets/img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {
                 avatar: avatarUrl,
@@ -133,7 +133,6 @@ export class PartnerProfileModel {
      */
     validate (input) {
         const { number } = input;
-        console.log(number);
         let isValid = true;
 
         const numberValidator = userFormValidator(number, regTemplates.number);

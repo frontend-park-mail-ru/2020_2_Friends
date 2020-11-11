@@ -141,7 +141,6 @@ export class PartnerProfileView {
             const name = this.root.querySelector('.js-addstore-name');
             const description = this.root.querySelector('.js-addstore-descr');
             const data = { name, description };
-            console.log(data);
             this.eventBus.call('ADD_STORE', data);
         })
 

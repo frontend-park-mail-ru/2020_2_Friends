@@ -47,7 +47,6 @@ export class StoreModel {
 
         switch (response.status) {
         case 200:
-            console.log('ADDED ' + productId);
             break;
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);

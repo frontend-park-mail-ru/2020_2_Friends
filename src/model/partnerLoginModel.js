@@ -31,7 +31,6 @@ export class PartnerLoginModel {
 
             switch (response.status) {
             case 200:
-                console.log(1111);
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:
