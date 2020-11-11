@@ -19,10 +19,7 @@ export class Router {
      * @param {Function} handler - Function that have to be call to show user a "path" page of the app.
      */
     setRoute (regexp, handler) {
-        this.routes.push({
-            regexp: regexp,
-            handler: handler
-        })
+        this.routes.push({ regexp, handler })
     }
 
     /**
@@ -41,6 +38,7 @@ export class Router {
             if (regexp.test(url)) {
                 const parsed = url.match(regexp);
                 route.handler(parsed.groups);
+                break;
             }
         }
     }
