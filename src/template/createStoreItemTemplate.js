@@ -21,7 +21,7 @@ export const renderItemCreateView = () => window.Handlebars.compile(`
 
 export const renderNewItemView = () => window.Handlebars.compile(`
 <div class="product-normal">
-                <img src="{{ this.picture }}" class="product__img" alt="assets/burger1.png">
+                <img src="{{ food_img }}" class="product__img"">
                 <button class="delete-button js-delete-button"></button>
                 <div class="product__info">
                     <div class="product__name"> {{ food_name }} </div>

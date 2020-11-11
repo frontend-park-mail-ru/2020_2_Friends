@@ -45,13 +45,14 @@ export class PartnerStoreModel {
     }
 
     async createProduct (input) {
-        const productInfo = { food_name: input.name, food_price: input.price, id: input.storeId };
+        const productInfo = { food_name: input.food_name, food_price: input.food_price, id: input.store_id };
         const response = await createProductRequest(productInfo);
-
+        var map = input;
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            this.changeProductImg({ food_id: body.id, food_img: input.img, storeId: input.storeId });
+            map.food_id = body.id;
+            this.changeProductImg(map);
             break;
         }
         default:
@@ -61,7 +62,7 @@ export class PartnerStoreModel {
     }
 
     async changeProduct (input) {
-        const productInfo = { food_name: input.name, food_price: input.price, food_id: input.id };
+        const productInfo = { food_name: input.name, food_price: input.food_price, food_id: input.food_id };
         const response = await changeProductRequest(productInfo);
 
         switch (response.status) {
@@ -79,10 +80,9 @@ export class PartnerStoreModel {
     }
 
     async changeProductImg (input) { // { food_id: body.id, food_img: input.img, storeId: input.storeId }
-        const response = await changeProductImgRequest({ food_id: input.food_id, store_id: input.storeId, food_img: input.food_img });
+        const response = await changeProductImgRequest({ food_id: input.food_id, store_id: input.store_id, food_img: input.food_img });
         switch (response.status) {
         case 200: {
-            // const body = await response.json();
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
         }

@@ -29,10 +29,16 @@ export class Router {
      */
     redirect (to, needPushState = true) {
         if (needPushState) {
+            if (!to.startsWith('/')) {
+                to = '/' + to;
+            }
             history.pushState({ to }, to, to);
         }
 
+        // const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
+        // const url = window.location.pathname.slice(firstSlashIndex);
         const url = window.location.pathname;
+        // console.log(to, 'pathname');
         for (const route of this.routes) {
             const regexp = new RegExp(route.regexp);
             if (regexp.test(url)) {
