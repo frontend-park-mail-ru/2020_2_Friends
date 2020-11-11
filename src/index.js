@@ -28,30 +28,32 @@ const partnerRegController = new PartnerRegisterController(root, router);
 const partnerProfileController = new PartnerProfileController(root, router);
 const partnerStoreController = new PartnerStoreController(root, router);
 // Setting routes to navigate inside an app.
-router.setRoute('register', regController.view.render);
-router.setRoute('login', loginController.view.render);
-router.setRoute('profile', () => {
+
+router.setRoute('^$', loginController.view.render);
+router.setRoute('^/$', loginController.view.render);
+router.setRoute('^/login$', loginController.view.render);
+router.setRoute('^/register$', regController.view.render);
+router.setRoute('^/profile$', () => {
     headerController.view.render(false);
     profileController.model.getProfileData();
 });
-router.setRoute('store', () => {
+router.setRoute('^/store$', () => {
     headerController.view.render(false);
     storeController.model.getData();
 });
-router.setRoute('bucket', () => {
+router.setRoute('^/stores/(?<id>\\d+)$', storeController.handler);
+router.setRoute('^/bucket$', () => {
     headerController.view.render(false);
     bucketController.model.getBucketData();
 });
-router.setRoute('/', loginController.view.render);
-router.setRoute('', loginController.view.render);
 // Setting routes for partners to navigate inside an app
-router.setRoute('partners', partnerLoginController.view.render);
-router.setRoute('partners_register', partnerRegController.view.render);
-router.setRoute('partners_profile', () => {
+router.setRoute('^/partners_login$', partnerLoginController.view.render);
+router.setRoute('^/partners_register$', partnerRegController.view.render);
+router.setRoute('^/partners_profile$', () => {
     headerController.view.render(true);
     partnerProfileController.model.getProfileData();
 });
-router.setRoute('partners_store', () => {
+router.setRoute('^/partners_store$', () => {
     headerController.view.render(true);
     partnerStoreController.model.getData();
 });
