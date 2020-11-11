@@ -30,14 +30,16 @@ export class PartnerProfileModel {
             { store_name: name.value, description: description.value }
         );
         switch (response.status) {
-        case 200:
-            console.log('ok added store');
+        case 200: {
+            const body = await response.json();
+            this.eventBus.call('STORE_REDIRECT', { id: body.id });
             break;
+        }
         case 500:
             this.eventBus.call('SERVER_INTERNAL_ERROR');
             break;
         default:
-            console.log('Backend error');
+            console.log(`Uncaught backend http-status: ${response.status}`);
         }
     }
 
