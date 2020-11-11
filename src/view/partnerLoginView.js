@@ -81,10 +81,10 @@ export class PartnerLoginView {
             passwordErrors.innerText = '';
             const data = { login, password };
             this.eventBus.call('SUBMIT_LOGIN', data);
-        })
+        });
 
         regButton.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_REG');
-        })
+        });
     }
 }

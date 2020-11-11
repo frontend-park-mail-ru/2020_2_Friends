@@ -29,7 +29,7 @@ export class LoginView {
     render () {
         const template = renderLoginView();
 
-        this.root.innerHTML = template()
+        this.root.innerHTML = template();
         this.addEventListeners();
     }
 
@@ -81,10 +81,10 @@ export class LoginView {
             passwordErrors.innerText = '';
             const data = { login, password };
             this.eventBus.call('SUBMIT_LOGIN', data);
-        })
+        });
 
         regButton.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_REG')
-        })
+            this.eventBus.call('REDIRECT_TO_REG');
+        });
     }
 }

@@ -1,6 +1,6 @@
 import { PartnerLoginModel } from '../model/partnerLoginModel.js';
 import { PartnerLoginView } from '../view/partnerLoginView.js';
-import { EventBus } from '../utils/eventBus.js'
+import { EventBus } from '../utils/eventBus.js';
 
 export class PartnerLoginController {
     /**
@@ -11,7 +11,7 @@ export class PartnerLoginController {
      */
     constructor (root, router) {
         const eventBus = new EventBus();
-        this.router = router
+        this.router = router;
 
         this.model = new PartnerLoginModel(eventBus);
         this.view = new PartnerLoginView(root, eventBus);

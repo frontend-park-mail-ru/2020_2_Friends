@@ -13,10 +13,7 @@ export class PartnerProfileModel {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
-
         this.eventBus = eventBus;
-
-        eventBus.subscribe('LOGOUT', this.logOut);
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
@@ -122,9 +119,5 @@ export class PartnerProfileModel {
             isValid = false;
         }
         return isValid;
-    }
-
-    logOut (input) {
-        console.log('logOut');
     }
 }

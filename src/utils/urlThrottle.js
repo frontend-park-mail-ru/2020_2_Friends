@@ -14,4 +14,4 @@ export const makeAvatarUrl = (avatarName) => {
 
     const avatarUrl = staticUrl + '/data/img/' + avatarName;
     return avatarUrl;
-}
+};

@@ -1,5 +1,4 @@
 import { renderProfileView } from '../template/profileViewTemplate.js';
-
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -139,46 +138,31 @@ export class ProfileView {
         const favoriteStore = this.root.querySelector('.js-favstore-button');
         favoriteStore.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_STORE');
-        })
+        });
 
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.changeSubPage('.js-profile-info');
             this.focusOnNavButton('.js-userdata-button');
-        })
+        });
 
         const addresses = this.root.querySelector('.js-addresses-button');
         addresses.addEventListener('click', () => {
             this.changeSubPage('.js-profile-addresses');
             this.focusOnNavButton('.js-addresses-button');
-        })
+        });
 
         const orders = this.root.querySelector('.js-myorders-button');
         orders.addEventListener('click', () => {
             this.changeSubPage('.js-profile-orders');
             this.focusOnNavButton('.js-myorders-button');
-        })
+        });
 
         const coupons = this.root.querySelector('.js-coupons-button');
         coupons.addEventListener('click', () => {
             this.changeSubPage('.js-profile-coupons');
             this.focusOnNavButton('.js-coupons-button');
-        })
-
-        const logout = this.root.querySelector('.js-logout-button');
-        logout.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_LOGOUT');
-        })
-
-        const bucket = this.root.querySelector('.js-bucket-button');
-        bucket.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_BUCKET');
-        })
-
-        const profile = this.root.querySelector('.js-profile-button');
-        profile.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE');
-        })
+        });
 
         const uploadAvatar = this.root.querySelector('.upload');
         uploadAvatar.addEventListener('submit', (e) => {
@@ -187,8 +171,8 @@ export class ProfileView {
             const avatar = new FormData();
             avatar.append('avatar', file);
             this.eventBus.call('UPLOAD_AVATAR', avatar);
-        })
-        const delAddrBtn = this.root.querySelectorAll('.js-delete-address')
+        });
+        const delAddrBtn = this.root.querySelectorAll('.js-delete-address');
         delAddrBtn.forEach(Btn => {
             Btn.addEventListener('click', () => {
                 Btn.parentNode.style.display = 'none';
@@ -206,6 +190,6 @@ export class ProfileView {
             numberErrors.innerText = '';
             const data = { name, number };
             this.eventBus.call('CHANGE_INFO', data);
-        })
+        });
     }
 }

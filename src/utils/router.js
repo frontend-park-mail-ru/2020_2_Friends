@@ -19,7 +19,7 @@ export class Router {
      * @param {Function} handler - Function that have to be call to show user a "path" page of the app.
      */
     setRoute (regexp, handler) {
-        this.routes.push({ regexp, handler })
+        this.routes.push({ regexp, handler });
     }
 
     /**
