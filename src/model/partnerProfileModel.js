@@ -30,7 +30,7 @@ export class PartnerProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            this.eventBus.call('STORE_REDIRECT', { id: body.id });
+            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: body.id });
             break;
         }
         case 500:

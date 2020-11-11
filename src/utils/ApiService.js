@@ -250,7 +250,7 @@ export const addProductToBucket = (productId) => {
         url: backendUrl + '/api/v1/carts' + '?product_id=' + productId
     };
     return ajaxPutUsingFetch(args);
-}
+};
 
 export const addStore = (data) => {
     const args = {
@@ -258,7 +258,7 @@ export const addStore = (data) => {
         body: data
     };
     return ajaxPostUsingFetch(args);
-}
+};
 
 /**
  * Creating http store request for store's owner via ajax methods.

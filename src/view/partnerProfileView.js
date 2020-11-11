@@ -142,7 +142,7 @@ export class PartnerProfileView {
             const description = this.root.querySelector('.js-addstore-descr');
             const data = { name, description };
             this.eventBus.call('ADD_STORE', data);
-        })
+        });
 
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
