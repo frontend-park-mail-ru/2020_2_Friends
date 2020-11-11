@@ -1,5 +1,4 @@
 import { renderBucketView } from '../template/bucketViewTemplate.js';
-
 export class BucketView {
     /**
      * Creating an BucketView instance.
@@ -26,14 +25,11 @@ export class BucketView {
     }
 
     addEventListeners () {
-        const bucket = this.root.querySelector('.js-bucket-button');
-        bucket.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_BUCKET');
-        })
-
-        const profile = this.root.querySelector('.js-profile-button');
-        profile.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE');
-        })
+        const delItemBtn = this.root.querySelectorAll('.js-delete-item');
+        delItemBtn.forEach(Btn => {
+            Btn.addEventListener('click', () => {
+                Btn.parentNode.parentNode.parentNode.style.display = 'none';
+            });
+        });
     }
 }

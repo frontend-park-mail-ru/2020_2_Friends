@@ -1,4 +1,4 @@
-import { getBucketRequest } from '../utils/ApiService.js'
+import { getBucketRequest } from '../utils/ApiService.js';
 
 export class BucketModel {
     /**
@@ -8,7 +8,6 @@ export class BucketModel {
      */
     constructor (eventBus) {
         this.eventBus = eventBus;
-
         this.getBucketData = this.getBucketData.bind(this);
     }
 

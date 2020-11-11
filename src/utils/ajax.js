@@ -11,7 +11,22 @@ export const ajaxGetUsingFetch = (ajaxArgs) => {
         method: 'GET',
         credentials: 'include'
     });
-}
+};
+
+/**
+ * Creating and sending http-request using fetch.
+ * DELETE request.
+ *
+ * @param {object} ajaxArgs - Arguments for http-request.
+ *
+ * @return {Promise} - Response object.
+ */
+export const ajaxDeleteUsingFetch = (ajaxArgs) => {
+    return fetch(ajaxArgs.url, {
+        method: 'DELETE',
+        credentials: 'include'
+    });
+};
 
 /**
  * Creating and sending http-request using fetch.
@@ -27,7 +42,7 @@ export const ajaxPostUsingFetch = (ajaxArgs) => {
         credentials: 'include',
         body: JSON.stringify(ajaxArgs.body)
     });
-}
+};
 
 /**
  * Creating and sending http-request using fetch.
@@ -42,8 +57,8 @@ export const ajaxPutUsingFetch = (ajaxArgs) => {
         method: 'PUT',
         credentials: 'include',
         body: JSON.stringify(ajaxArgs.body)
-    })
-}
+    });
+};
 
 /**
  * Creating and sending http-request using fetch.
@@ -59,5 +74,5 @@ export const ajaxMultipartUsingFetch = (ajaxArgs) => {
         method: 'PUT',
         credentials: 'include',
         body: ajaxArgs.body
-    })
-}
+    });
+};

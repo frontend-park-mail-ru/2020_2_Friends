@@ -1,10 +1,10 @@
-import { PartnerProfileModel } from '../model/partnerProfileModel.js';
-import { PartnerProfileView } from '../view/partnerProfileView.js';
+import { PartnerStoreModel } from '../model/partnerStoreModel.js';
+import { PartnerStoreView } from '../view/partnerStoreView.js';
 import { EventBus } from '../utils/eventBus.js';
 
-export class PartnerProfileController {
+export class PartnerStoreController {
     /**
-     * Creating controller class for profile entity.
+     * Creating controller class for store entity.
      *
      * @param {object} root - Main html div object.
      * @param {router} router - An object that allows to route inside a site.
@@ -13,10 +13,9 @@ export class PartnerProfileController {
         const eventBus = new EventBus();
         this.router = router;
 
-        this.model = new PartnerProfileModel(eventBus);
-        this.view = new PartnerProfileView(root, eventBus);
+        this.model = new PartnerStoreModel(eventBus);
+        this.view = new PartnerStoreView(root, eventBus);
 
-        eventBus.subscribe('REDIRECT_TO_STORE', () => this.router.redirect('store'));
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('partners_profile'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('partners'));
     }
