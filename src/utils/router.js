@@ -8,18 +8,18 @@ export class Router {
      */
     constructor (root) {
         this.root = root;
-        this.routes = new Map();
+        this.routes = [];
         this.redirect = this.redirect.bind(this);
     }
 
     /**
      * Setting rout in app.
      *
-     * @param {string} path - Name of resource inside the app.
+     * @param {string} regexp - Regular expression of resource inside the app.
      * @param {Function} handler - Function that have to be call to show user a "path" page of the app.
      */
-    setRoute (path, handler) {
-        this.routes.set(path, handler);
+    setRoute (regexp, handler) {
+        this.routes.push({ regexp, handler })
     }
 
     /**
@@ -31,6 +31,15 @@ export class Router {
         if (needPushState) {
             history.pushState({ to }, to, to);
         }
-        this.routes.get(to)();
+
+        const url = window.location.pathname;
+        for (const route of this.routes) {
+            const regexp = new RegExp(route.regexp);
+            if (regexp.test(url)) {
+                const parsed = url.match(regexp);
+                route.handler(parsed.groups);
+                break;
+            }
+        }
     }
 }
