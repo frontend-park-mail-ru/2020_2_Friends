@@ -283,6 +283,14 @@ export const addProductToBucket = (productId) => {
     return ajaxPutUsingFetch(args);
 };
 
+export const addStore = (data) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors',
+        body: data
+    };
+    return ajaxPostUsingFetch(args);
+};
+
 /**
  * Creating http store request for store's owner via ajax methods.
  *

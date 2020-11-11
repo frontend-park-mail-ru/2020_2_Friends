@@ -13,11 +13,22 @@ export class StoreController {
         const eventBus = new EventBus();
         this.router = router;
 
+        this.storePageHandler = this.storePageHandler.bind(this);
+
         this.model = new StoreModel(eventBus);
         this.view = new StoreView(root, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
+    }
+
+    /**
+     * Handling store page rendering.
+     *
+     * @param {Number} id - Id of requesting store.
+     */
+    storePageHandler ({ id }) {
+        this.model.getData(id);
     }
 }

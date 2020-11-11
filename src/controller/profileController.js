@@ -16,6 +16,7 @@ export class ProfileController {
         this.model = new ProfileModel(eventBus);
         this.view = new ProfileView(root, eventBus);
 
+        eventBus.subscribe('REDIRECT_TO_STORE_BY_ID', (value) => this.router.redirect('/stores/' + value.id));
         eventBus.subscribe('REDIRECT_TO_STORE', () => this.router.redirect('store'));
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
