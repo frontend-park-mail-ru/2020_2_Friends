@@ -13,7 +13,7 @@ export class StoreController {
         const eventBus = new EventBus();
         this.router = router;
 
-        this.handler = this.handler.bind(this);
+        this.storePageHandler = this.storePageHandler.bind(this);
 
         this.model = new StoreModel(eventBus);
         this.view = new StoreView(root, eventBus);
@@ -23,7 +23,7 @@ export class StoreController {
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
     }
 
-    handler (value) {
+    storePageHandler (value) {
         this.model.getData(value.id);
     }
 }

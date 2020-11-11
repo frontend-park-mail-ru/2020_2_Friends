@@ -40,7 +40,7 @@ router.setRoute('^/store$', () => {
     headerController.view.render(false);
     storeController.model.getData();
 });
-router.setRoute('^/stores/(?<id>\\d+)$', storeController.handler);
+router.setRoute('^/stores/(?<id>\\d+)$', storeController.storePageHandler);
 router.setRoute('^/bucket$', () => {
     headerController.view.render(false);
     bucketController.model.getBucketData();
