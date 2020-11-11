@@ -81,6 +81,7 @@ export class ProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
+        console.log(data);
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;

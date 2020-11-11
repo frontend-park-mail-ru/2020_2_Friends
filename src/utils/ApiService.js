@@ -197,9 +197,10 @@ export const changePartnerPersonalInfoRequest = (input) => {
 };
 
 export const createProductRequest = (input) => {
+    const productInfo = { food_name: input.food_name, food_price: input.food_price };
     const args = {
-        url: backendUrl + '/api/v1/vendors/products',
-        body: input
+        url: backendUrl + '/api/v1/vendors/' + input.id + '/products',
+        body: productInfo
     };
     return ajaxPostUsingFetch(args);
 };
@@ -219,12 +220,20 @@ export const changeProductRequest = (input) => {
     return ajaxPostUsingFetch(args);
 };
 
+export const deleteProductRequest = (input) => { // { store_id: storeId, product_id: productId }
+    const args = {
+        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.product_id,
+        body: input
+    };
+    return ajaxDeleteUsingFetch(args);
+};
+
 export const changeProductImgRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/products/' + input.food_id + '/picture',
-        body: input.productImg
+        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id + '/pictures',
+        body: input.food_img
     };
-    return ajaxPutUsingFetch(args);
+    return ajaxMultipartUsingFetch(args);
 };
 
 /**

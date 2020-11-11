@@ -1,4 +1,4 @@
-import { getStoreByIdDataPartnerRequest, createProductRequest, changeProductImgRequest, changeProductRequest } from '../utils/ApiService.js';
+import { getStoreByIdDataPartnerRequest, createProductRequest, changeProductImgRequest, changeProductRequest, deleteProductRequest } from '../utils/ApiService.js';
 
 export class PartnerStoreModel {
     /**
@@ -8,16 +8,19 @@ export class PartnerStoreModel {
      */
     constructor (eventBus) {
         this.getData = this.getData.bind(this);
+        this.createProduct = this.createProduct.bind(this);
+        this.changeProduct = this.changeProduct.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('CREATE_PRODUCT', this.createProduct);
         eventBus.subscribe('EDIT_PRODUCT', this.changeProduct);
+        eventBus.subscribe('DELETE_PRODUCT', this.deleteProduct);
     };
 
     /**
      * Getting store data with http-request.
      */
-    async getData () {
-        const response = await getStoreByIdDataPartnerRequest(1);
+    async getData (id) {
+        const response = await getStoreByIdDataPartnerRequest(id);
 
         switch (response.status) {
         case 200: {
@@ -25,6 +28,7 @@ export class PartnerStoreModel {
             this.eventBus.call('SHOW_STORE',
                 {
                     storeName: body.store_name,
+                    storeId: id,
                     products: body.products
                 });
             break;
@@ -41,15 +45,13 @@ export class PartnerStoreModel {
     }
 
     async createProduct (input) {
-        const productInfo = { food_name: input.name, food_price: input.price };
+        const productInfo = { food_name: input.name, food_price: input.price, id: input.storeId };
         const response = await createProductRequest(productInfo);
 
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            // достать из боди id
-            console.log('создать продукт удалось');
-            this.changeProductImg({ food_id: body.id, food_img: input.img });
+            this.changeProductImg({ food_id: body.id, food_img: input.img, storeId: input.storeId });
             break;
         }
         default:
@@ -76,8 +78,8 @@ export class PartnerStoreModel {
         }
     }
 
-    async changeProductImg (input) {
-        const response = await changeProductImgRequest({ food_id: input.id, food_img: input.img });
+    async changeProductImg (input) { // { food_id: body.id, food_img: input.img, storeId: input.storeId }
+        const response = await changeProductImgRequest({ food_id: input.food_id, store_id: input.storeId, food_img: input.food_img });
         switch (response.status) {
         case 200: {
             // const body = await response.json();
@@ -85,6 +87,18 @@ export class PartnerStoreModel {
             break;
         }
         default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
+    }
+
+    async deleteProduct (input) {
+        const response = await deleteProductRequest(input);
+        switch (response.status) {
+        case 200: {
+            break;
+        }
+        default:
+            console.log('изменить продукт не удалось');
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
     }

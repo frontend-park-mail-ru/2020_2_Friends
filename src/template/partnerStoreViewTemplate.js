@@ -3,7 +3,7 @@
  */
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
-    <div class="store__header">
+    <div id="storeHeader" data-store_id="{{storeId}}"class="store__header">
         <img src="assets/store4.png" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>
@@ -12,12 +12,13 @@ export const renderStoreView = () => window.Handlebars.compile(`
         </div>
     </div>
     <div class="store__showcase js-showcase">
-        <div class="js-store-errors"></div>
+    <div class="js-store-errors"></div>
+
 
         {{#each products}}
         <div class="product" data-product_id="{{ this.id }}">
             <div class="product-normal">
-                <img src="{{ this.picture }}" class="product__img" alt="assets/burger1.png">
+                <img src="http://89.208.197.247:9001/data/img/{{ this.picture }}" class="product__img" alt="assets/burger1.png">
                 <button class="delete-button js-delete-button"></button>
                 <div class="product__info">
                     <div class="product__name"> {{ this.food_name }} </div>
@@ -29,8 +30,8 @@ export const renderStoreView = () => window.Handlebars.compile(`
                     data-product_id="{{ this.id }}">Редактировать</button>
             </div>
 
-            <div class="product-editor" id="{{ this.id }}">
-                <img src="{{ this.picture }}" class="product__img">
+            <div class="product-editor" data-product_id="{{ this.id }} id="{{ this.id }}">
+                <img src="http://89.208.197.247:9001/data/img/{{ this.picture }}" class="product__img">
                 <form class="product__img-form">
                     <input value={{ this.picture }} id="product__img-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
                 </form>

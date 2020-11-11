@@ -154,7 +154,7 @@ export class PartnerProfileView {
         goToStoreBtns.forEach(element => {
             element.addEventListener('click', () => {
                 const storeId = element.dataset.store_id;
-                this.eventBus.call('REDIRECT_TO_STORE', storeId);
+                this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: storeId });
             });
         });
 

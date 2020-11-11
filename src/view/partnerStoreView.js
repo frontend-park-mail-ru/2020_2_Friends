@@ -15,7 +15,7 @@ export class PartnerStoreView {
         this.render = this.render.bind(this);
         this.storeDataError = this.storeDataError.bind(this);
         this.serverInternalError = this.serverInternalError.bind(this);
-
+        this.showNewProduct = this.showNewProduct.bind(this);
         eventBus.subscribe('SHOW_STORE', this.render);
         eventBus.subscribe('STORE_DATA_ERROR', this.storeDataError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
@@ -51,8 +51,10 @@ export class PartnerStoreView {
     showNewProduct (data) {
         const template = renderNewItemView();
         const itemHTML = template(data);
+        console.log(data);
         // передать id нового продукта
-        const newItem = this.root.querySelector();
+        const newItem = this.root.querySelector('.new-product');
+        newItem.classList.remove('new-product');
         newItem.innerHTML = itemHTML;
     }
 
@@ -78,8 +80,8 @@ export class PartnerStoreView {
                 const id = product.dataset.product_id;
                 const imgFile = document.getElementById('product__img-form').files[0];
                 const img = new FormData();
-                img.append('avatar', imgFile);
-                const data = { name: name.value, price: price.value, descr: descr.value, id: id, img: imgFile };
+                img.append('image', imgFile);
+                const data = { name: name.value, price: price.value, descr: descr.value, id: id, img: img };
                 this.eventBus.call('EDIT_PRODUCT', data);
             });
         });
@@ -87,8 +89,11 @@ export class PartnerStoreView {
         const delBtns = this.root.querySelectorAll('.js-delete-button');
         delBtns.forEach(element => {
             element.addEventListener('click', () => {
-                element.parentNode.remove();
-                // УДАЛЕНИЕ НА БЕКЕ
+                const storeId = document.getElementById('storeHeader').dataset.store_id;
+                const productId = element.parentNode.parentNode.dataset.product_id;
+                const data = { store_id: storeId, product_id: productId };
+                this.eventBus.call('DELETE_PRODUCT', data);
+                element.parentNode.parentNode.remove();
             });
         });
 
@@ -96,7 +101,7 @@ export class PartnerStoreView {
         addItemBtn.addEventListener('click', () => {
             const showcase = this.root.querySelector('.js-showcase');
             const product = document.createElement('div');
-            product.className = 'product';
+            product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
             const template = renderItemCreateView();
             const HTML = template();
@@ -113,8 +118,9 @@ export class PartnerStoreView {
                 const descr = product.querySelector('.js-descr-input');
                 const imgFile = document.getElementById('product__img-form').files[0];
                 const img = new FormData();
-                img.append('product_img', imgFile);
-                const data = { name: name.value, price: price.value, descr: descr.value, img: imgFile };
+                img.append('image', imgFile);
+                const storeHeader = document.getElementById('storeHeader');
+                const data = { name: name.value, price: price.value, descr: descr.value, img: img, storeId: storeHeader.dataset.store_id };
                 this.eventBus.call('CREATE_PRODUCT', data);
             });
         });
