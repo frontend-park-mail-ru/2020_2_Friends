@@ -15,7 +15,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
         <div class="js-store-errors"></div>
 
         {{#each products}}
-        <div class="product">
+        <div class="product" data-product_id="{{ this.id }}">
             <div class="product-normal">
                 <img src="{{ this.picture }}" class="product__img" alt="assets/burger1.png">
                 <button class="delete-button js-delete-button"></button>
@@ -31,8 +31,8 @@ export const renderStoreView = () => window.Handlebars.compile(`
 
             <div class="product-editor" id="{{ this.id }}">
                 <img src="{{ this.picture }}" class="product__img">
-                <form id="product__upload-img" class="product__upload-img">
-                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                <form class="product__img-form">
+                    <input value={{ this.picture }} id="product__img-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
                 </form>
                 <button class="delete-button js-delete-button"></button>
                 <div>
@@ -42,9 +42,9 @@ export const renderStoreView = () => window.Handlebars.compile(`
                         value="{{ this.descr }}"></input>
                     <input type="text" class="common-input  wide-input js-price-input" placeholder="Цена:"
                         value="{{ this.food_price }}"></input>
-                    <input type="submit" form="product__upload-img" value=Сохранить
+                    <button
                         class="proceed-button js-save-item-changes bottom-center-button"
-                        data-product_id="{{ this.id }}">
+                        data-product_id="{{ this.id }}">Сохранить</button>
                 </div>
             </div>
         </div>

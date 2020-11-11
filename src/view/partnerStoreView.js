@@ -1,5 +1,5 @@
 import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
-import { renderItemCreateView } from '../template/createStoreItemTemplate.js';
+import { renderItemCreateView, renderNewItemView } from '../template/createStoreItemTemplate.js';
 export class PartnerStoreView {
     /**
      * Creating an PartnerStoreView instance.
@@ -19,6 +19,7 @@ export class PartnerStoreView {
         eventBus.subscribe('SHOW_STORE', this.render);
         eventBus.subscribe('STORE_DATA_ERROR', this.storeDataError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
+        eventBus.subscribe('SHOW_NEW_PRODUCT', this.showNewProduct);
     }
 
     /**
@@ -47,6 +48,14 @@ export class PartnerStoreView {
         this.addEventListeners();
     }
 
+    showNewProduct (data) {
+        const template = renderNewItemView();
+        const itemHTML = template(data);
+        // передать id нового продукта
+        const newItem = this.root.querySelector();
+        newItem.innerHTML = itemHTML;
+    }
+
     addEventListeners () {
         const editBtns = this.root.querySelectorAll('.js-edit-item');
         editBtns.forEach(editBtn => {
@@ -62,20 +71,16 @@ export class PartnerStoreView {
                 saveChangesBtn.parentNode.parentNode.style.display = 'none';
                 const product = saveChangesBtn.parentNode.parentNode.parentNode;
                 product.querySelector('.product-normal').style.display = 'flex';
-                const createBtn = product.querySelector('.js-save-new-item');
-                createBtn.addEventListener('click', (e) => {
-                    const name = product.querySelector('.js-name-input');
-                    const price = product.querySelector('.js-price-input');
-                    const descr = product.querySelector('.js-descr-input');
-                    // ТУТ НУЖНО ID!!!
-                    const data = { name: name.value, price: price.value, descr: descr.value };
-                    this.eventBus.call('EDIT_PRODUCT', data);
-                    // отправка изображения
-                    const imgFile = document.getElementById('product__img-form').files[0];
-                    const img = new FormData();
-                    img.append('avatar', imgFile);
-                    this.eventBus.call('UPLOAD_PRODUCT_IMG', img);
-                });
+
+                const name = product.querySelector('.js-name-input');
+                const price = product.querySelector('.js-price-input');
+                const descr = product.querySelector('.js-descr-input');
+                const id = product.dataset.product_id;
+                const imgFile = document.getElementById('product__img-form').files[0];
+                const img = new FormData();
+                img.append('avatar', imgFile);
+                const data = { name: name.value, price: price.value, descr: descr.value, id: id, img: imgFile };
+                this.eventBus.call('EDIT_PRODUCT', data);
             });
         });
 
