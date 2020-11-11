@@ -149,7 +149,7 @@ export const partnerLoginRequest = (input) => {
  */
 export const partnerRegisterRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/users',
+        url: backendUrl + '/api/v1/partners',
         body: input
     };
     return ajaxPostUsingFetch(args);
@@ -250,6 +250,14 @@ export const addProductToBucket = (productId) => {
         url: backendUrl + '/api/v1/carts' + '?product_id=' + productId
     };
     return ajaxPutUsingFetch(args);
+};
+
+export const addStore = (data) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors',
+        body: data
+    };
+    return ajaxPostUsingFetch(args);
 };
 
 /**

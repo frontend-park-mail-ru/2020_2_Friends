@@ -16,8 +16,8 @@ export class StoreModel {
     /**
      * Getting store data with http-request.
      */
-    async getData () {
-        const response = await getStoreByIdDataRequest(1);
+    async getData (id) {
+        const response = await getStoreByIdDataRequest(id);
 
         switch (response.status) {
         case 200: {
@@ -45,7 +45,6 @@ export class StoreModel {
 
         switch (response.status) {
         case 200:
-            console.log('ADDED ' + productId);
             break;
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);

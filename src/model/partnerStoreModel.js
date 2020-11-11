@@ -1,4 +1,4 @@
-import { getStoreByIdDataPartnerRequest, createProductRequest } from '../utils/ApiService.js';
+import { getStoreByIdDataPartnerRequest } from '../utils/ApiService.js';
 
 export class PartnerStoreModel {
     /**
@@ -39,27 +39,27 @@ export class PartnerStoreModel {
         }
     }
 
-    async createProduct () {
-        const response = await createProductRequest(1);
+    // async createProduct () {
+    //     const response = await createProductRequest(1);
 
-        switch (response.status) {
-        case 200: {
-            const body = await response.json();
-            this.eventBus.call('SHOW_STORE',
-                {
-                    storeName: body.store_name,
-                    products: body.products
-                });
-            break;
-        }
-        case 400:
-            this.eventBus.call('STORE_DATA_ERROR');
-            break;
-        case 500:
-            this.eventBus.call('SERVER_INTERNAL_ERROR');
-            break;
-        default:
-            console.log(`Uncaught backend http-status: ${response.status}`);
-        }
-    }
+    //     switch (response.status) {
+    //     case 200: {
+    //         const body = await response.json();
+    //         this.eventBus.call('SHOW_STORE',
+    //             {
+    //                 storeName: body.store_name,
+    //                 products: body.products
+    //             });
+    //         break;
+    //     }
+    //     case 400:
+    //         this.eventBus.call('STORE_DATA_ERROR');
+    //         break;
+    //     case 500:
+    //         this.eventBus.call('SERVER_INTERNAL_ERROR');
+    //         break;
+    //     default:
+    //         console.log(`Uncaught backend http-status: ${response.status}`);
+    //     }
+    // }
 }

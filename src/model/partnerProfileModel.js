@@ -1,6 +1,6 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, addStore } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class PartnerProfileModel {
@@ -13,10 +13,32 @@ export class PartnerProfileModel {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
+        this.addStore = this.addStore.bind(this);
+
         this.eventBus = eventBus;
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
+        eventBus.subscribe('ADD_STORE', this.addStore);
+    }
+
+    async addStore (data) {
+        const { name, description } = data;
+        const response = await addStore(
+            { store_name: name.value, description: description.value }
+        );
+        switch (response.status) {
+        case 200: {
+            const body = await response.json();
+            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: body.id });
+            break;
+        }
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
     }
 
     /**
