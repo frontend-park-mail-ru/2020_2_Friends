@@ -35,4 +35,4 @@ export const renderBucketView = () => window.Handlebars.compile(`
         </div>
     </div>
 </div>
-`)
+`);

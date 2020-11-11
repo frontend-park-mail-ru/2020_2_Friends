@@ -1,10 +1,10 @@
 // import { response } from 'express';
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
-import { HeaderController } from './controller/headerController.js'
+import { HeaderController } from './controller/headerController.js';
 import { RegisterController } from './controller/registerController.js';
-import { StoreController } from './controller/storeController.js'
-import { BucketController } from './controller/bucketController.js'
+import { StoreController } from './controller/storeController.js';
+import { BucketController } from './controller/bucketController.js';
 import { Router } from './utils/router.js';
 
 import { PartnerLoginController } from './controller/partnerLoginController.js';
@@ -64,4 +64,4 @@ window.onpopstate = function () {
     const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
     const url = window.location.pathname.slice(firstSlashIndex);
     router.redirect(url, false);
-}
+};

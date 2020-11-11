@@ -9,7 +9,7 @@ export class HeaderView {
      * @param {object} header - Main html div object.
      */
     constructor (header, eventBus) {
-        this.header = header
+        this.header = header;
         this.eventBus = eventBus;
     }
 
@@ -35,28 +35,28 @@ export class HeaderView {
         const logout = this.header.querySelector('.js-logout-button');
         logout.addEventListener('click', () => {
             this.eventBus.call('LOGOUT');
-        })
+        });
 
         const profile = this.header.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_ADMIN_PROFILE');
-        })
+        });
     }
 
     addUserHeaderEventListeners () {
         const logout = this.header.querySelector('.js-logout-button');
         logout.addEventListener('click', () => {
             this.eventBus.call('LOGOUT');
-        })
+        });
 
         const bucket = this.header.querySelector('.js-bucket-button');
         bucket.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_BUCKET');
-        })
+        });
 
         const profile = this.header.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_PROFILE');
-        })
+        });
     }
 }

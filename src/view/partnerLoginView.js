@@ -5,7 +5,7 @@ export class PartnerLoginView {
      * Allows to render login page and response correctly to user's interaction with page.
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
-     * @param {object} root - Main html div objects.
+     * @param {object} root - Main html div object.
      */
     constructor (root, eventBus) {
         this.root = root;
@@ -81,10 +81,10 @@ export class PartnerLoginView {
             passwordErrors.innerText = '';
             const data = { login, password };
             this.eventBus.call('SUBMIT_LOGIN', data);
-        })
+        });
 
         regButton.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_REG');
-        })
+        });
     }
 }

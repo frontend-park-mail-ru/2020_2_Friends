@@ -1,4 +1,4 @@
-import { partnerLoginRequest } from '../utils/ApiService.js'
+import { partnerLoginRequest } from '../utils/ApiService.js';
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
 

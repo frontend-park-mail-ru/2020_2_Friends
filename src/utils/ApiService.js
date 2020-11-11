@@ -22,9 +22,9 @@ export const loginRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/sessions',
         body: input
-    }
+    };
     return ajaxPostUsingFetch(args);
-}
+};
 
 /**
  * Creating http logout request via ajax methods.
@@ -36,9 +36,9 @@ export const loginRequest = (input) => {
 export const logoutRequest = () => {
     const args = {
         url: backendUrl + '/api/v1/sessions'
-    }
+    };
     return ajaxDeleteUsingFetch(args);
-}
+};
 
 /**
  * Creating http register request via ajax methods.
@@ -51,9 +51,9 @@ export const registerRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/users',
         body: input
-    }
+    };
     return ajaxPostUsingFetch(args);
-}
+};
 
 /**
  * Creating http profile request via ajax methods.
@@ -63,9 +63,9 @@ export const registerRequest = (input) => {
 export const getProfileInfoRequest = () => {
     const args = {
         url: backendUrl + '/api/v1/profiles'
-    }
+    };
     return ajaxGetUsingFetch(args);
-}
+};
 
 /**
  * Creating http update profile info request via ajax methods.
@@ -78,9 +78,9 @@ export const changePersonalInfoRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/profiles',
         body: input
-    }
+    };
     return ajaxPutUsingFetch(args);
-}
+};
 
 /**
  * Creating http upload avatar request via ajax methods.
@@ -94,9 +94,9 @@ export const uploadAvatarRequest = (formAvatar) => {
     const args = {
         url: backendUrl + '/api/v1/profiles/avatars',
         body: formAvatar
-    }
+    };
     return ajaxMultipartUsingFetch(args);
-}
+};
 
 /**
  * Send http get avatar request via ajax methods.
@@ -109,9 +109,9 @@ export const uploadAvatarRequest = (formAvatar) => {
 export const pullAvatarRequest = (avatarName) => {
     const args = {
         url: staticUrl + '/data/img/' + avatarName
-    }
+    };
     return ajaxGetUsingFetch(args);
-}
+};
 
 /**
  * Creating http bucket request via ajax methods.
@@ -119,7 +119,7 @@ export const pullAvatarRequest = (avatarName) => {
  * @return {Promise} - Returning Promise, resolving with backend-response.
  */
 export const bucketRequest = () => {
-}
+};
 /************************************
  *        PARTNER REQUESTS          *
  *                                  *
@@ -136,9 +136,9 @@ export const partnerLoginRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/sessions',
         body: input
-    }
+    };
     return ajaxPostUsingFetch(args);
-}
+};
 
 /**
  * Creating http partner register request via ajax methods.
@@ -151,9 +151,9 @@ export const partnerRegisterRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/users',
         body: input
-    }
+    };
     return ajaxPostUsingFetch(args);
-}
+};
 
 /**
  * Creating http store request via ajax methods.
@@ -165,9 +165,9 @@ export const partnerRegisterRequest = (input) => {
 export const getStoreByIdDataRequest = (id) => {
     const args = {
         url: backendUrl + `/api/v1/vendors/${id}`
-    }
+    };
     return ajaxGetUsingFetch(args);
-}
+};
 
 /**
  * Creating http partner profile request via ajax methods.
@@ -177,9 +177,9 @@ export const getStoreByIdDataRequest = (id) => {
 export const getPartnerProfileInfoRequest = () => {
     const args = {
         url: backendUrl + '/api/v1/profiles'
-    }
+    };
     return ajaxGetUsingFetch(args);
-}
+};
 
 /**
  * Creating http update partner profile info request via ajax methods.
@@ -192,9 +192,9 @@ export const changePartnerPersonalInfoRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/profiles',
         body: input
-    }
+    };
     return ajaxPutUsingFetch(args);
-}
+};
 
 /**
  * Creating http upload avatar request for partner via ajax methods.
@@ -208,9 +208,9 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
     const args = {
         url: backendUrl + '/api/v1/profiles/avatars',
         body: formAvatar
-    }
+    };
     return ajaxMultipartUsingFetch(args);
-}
+};
 
 /**
  * Send http get avatar request for partner via ajax methods.
@@ -223,9 +223,9 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
 export const pullPartnerAvatarRequest = (avatarName) => {
     const args = {
         url: staticUrl + '/data/img/' + avatarName
-    }
+    };
     return ajaxGetUsingFetch(args);
-}
+};
 
 /**
  * Creating http get bucket request via ajax methods.
@@ -235,9 +235,9 @@ export const pullPartnerAvatarRequest = (avatarName) => {
 export const getBucketRequest = () => {
     const args = {
         url: backendUrl + '/api/v1/carts'
-    }
+    };
     return ajaxGetUsingFetch(args);
-}
+};
 
 /**
  * Creating http add to bucket request via ajax methods.
@@ -248,9 +248,9 @@ export const getBucketRequest = () => {
 export const addProductToBucket = (productId) => {
     const args = {
         url: backendUrl + '/api/v1/carts' + '?product_id=' + productId
-    }
+    };
     return ajaxPutUsingFetch(args);
-}
+};
 
 /**
  * Creating http store request for store's owner via ajax methods.
@@ -262,6 +262,6 @@ export const addProductToBucket = (productId) => {
 export const getStoreByIdDataPartnerRequest = (id) => {
     const args = {
         url: backendUrl + `/api/v1/vendors/${id}`
-    }
+    };
     return ajaxGetUsingFetch(args);
-}
+};

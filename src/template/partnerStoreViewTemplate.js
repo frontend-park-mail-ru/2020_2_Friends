@@ -36,11 +36,11 @@ export const renderStoreView = () => window.Handlebars.compile(`
                 </form>
                 <button class="delete-button js-delete-button"></button>
                 <div>
-                    <input type="text" class="common-input js-additem-name" placeholder="Название:"
+                    <input type="text" class="common-input js-name-input" placeholder="Название:"
                         value="{{ this.food_name }}"></input>
-                    <input type="text" class="common-input  wide-input js-additem-descr" placeholder="Описание:"
+                    <input type="text" class="common-input  wide-input js-descr-input" placeholder="Описание:"
                         value="{{ this.descr }}"></input>
-                    <input type="text" class="common-input  wide-input js-additem-price" placeholder="Цена:"
+                    <input type="text" class="common-input  wide-input js-price-input" placeholder="Цена:"
                         value="{{ this.food_price }}"></input>
                     <input type="submit" form="product__upload-img" value=Сохранить
                         class="proceed-button js-save-item-changes bottom-center-button"

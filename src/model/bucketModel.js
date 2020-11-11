@@ -1,4 +1,4 @@
-import { getBucketRequest } from '../utils/ApiService.js'
+import { getBucketRequest } from '../utils/ApiService.js';
 
 export class BucketModel {
     /**

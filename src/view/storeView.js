@@ -5,7 +5,7 @@ export class StoreView {
      * Allows to render store page and response correctly to user's interaction with page.
      *
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
-     * @param {object} root - Main html div objects.
+     * @param {object} root - Main html div object.
      */
     constructor (root, eventBus) {
         this.root = root;
@@ -53,7 +53,7 @@ export class StoreView {
             element.addEventListener('click', () => {
                 this.eventBus.call('ADD_TO_CART', element.dataset.productId);
                 element.innerHTML = 'Добавлено!';
-            })
+            });
         });
     }
 }

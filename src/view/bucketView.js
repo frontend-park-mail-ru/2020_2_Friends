@@ -3,10 +3,10 @@ export class BucketView {
     /**
      * Creating an BucketView instance.
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
-     * @param {object} root - Main html div objects.
+     * @param {object} root - Main html div object.
      */
     constructor (root, eventBus) {
-        this.root = root
+        this.root = root;
         this.eventBus = eventBus;
 
         this.render = this.render.bind(this);
@@ -25,7 +25,7 @@ export class BucketView {
     }
 
     addEventListeners () {
-        const delItemBtn = this.root.querySelectorAll('.js-delete-item')
+        const delItemBtn = this.root.querySelectorAll('.js-delete-item');
         delItemBtn.forEach(Btn => {
             Btn.addEventListener('click', () => {
                 Btn.parentNode.parentNode.parentNode.style.display = 'none';
