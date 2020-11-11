@@ -85,9 +85,9 @@ export class PartnerProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.addEventListeners();
         this.changeSubPage('.js-profile-info');
         this.focusOnNavButton('.js-userdata-button');
+        this.addEventListeners();
     }
 
     /**
@@ -148,29 +148,19 @@ export class PartnerProfileView {
         profileData.addEventListener('click', () => {
             this.changeSubPage('.js-profile-info');
             this.focusOnNavButton('.js-userdata-button');
-        })
+        });
 
         const myStores = this.root.querySelector('.js-mystores-button');
         myStores.addEventListener('click', () => {
             this.changeSubPage('.js-mystores');
             this.focusOnNavButton('.js-mystores-button');
-        })
+        });
 
         const addStore = this.root.querySelector('.js-addstore-button');
         addStore.addEventListener('click', () => {
             this.changeSubPage('.js-addstore-form');
             this.focusOnNavButton('.js-addstore-button');
-        })
-
-        const logout = this.root.querySelector('.js-logout-button');
-        logout.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_LOGOUT');
-        })
-
-        const profile = this.root.querySelector('.js-profile-button');
-        profile.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_PROFILE');
-        })
+        });
 
         const uploadAvatar = this.root.querySelector('.upload-avatar');
         uploadAvatar.addEventListener('submit', (e) => {
@@ -179,7 +169,7 @@ export class PartnerProfileView {
             const avatar = new FormData();
             avatar.append('avatar', file);
             this.eventBus.call('UPLOAD_AVATAR', avatar);
-        })
+        });
 
         const saveInfo = this.root.querySelector('.js-save-info');
         saveInfo.addEventListener('click', () => {
@@ -192,6 +182,6 @@ export class PartnerProfileView {
             numberErrors.innerText = '';
             const data = { name, number };
             this.eventBus.call('CHANGE_INFO', data);
-        })
+        });
     }
 }

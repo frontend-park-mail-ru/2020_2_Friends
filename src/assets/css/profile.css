@@ -149,18 +149,18 @@
     color: #878A86;
 }
 
-.profile-page__address-item-button {
+.round-delete-button {
     width: 24px;
     height: 24px;
     background-image: url("../img/cross.png");
     border-radius: 50%;
 }
 
-.profile-page__address-item-button:hover {
+.round-delete-button:hover {
     background-color: #F6BEAA;
 }
 
-.profile-page__address-item-button:focus {
+.round-delete-button:focus {
     background-color: #F6BEAA;
 }
 

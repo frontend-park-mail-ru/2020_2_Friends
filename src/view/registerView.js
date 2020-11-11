@@ -32,8 +32,7 @@ export class RegisterView {
      */
     render () {
         const template = renderRegisterView();
-
-        this.root.innerHTML = template()
+        this.root.innerHTML = template();
         this.addEventListeners();
     }
 
@@ -103,10 +102,10 @@ export class RegisterView {
             emailErrors.innerText = '';
             const data = { login, email, password, repeatPassword };
             this.eventBus.call('SUBMIT_REG', data);
-        })
+        });
         const toLogin = this.root.querySelector('.js-to-login');
         toLogin.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_LOGIN');
-        })
+        });
     }
 }
