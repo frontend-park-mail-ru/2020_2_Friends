@@ -23,7 +23,12 @@ export class StoreController {
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
     }
 
-    storePageHandler (value) {
-        this.model.getData(value.id);
+    /**
+     * Handling store page rendering.
+     *
+     * @param {Number} id - Id of requesting store.
+     */
+    storePageHandler ({ id }) {
+        this.model.getData(id);
     }
 }
