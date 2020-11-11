@@ -120,8 +120,4 @@ export class PartnerProfileModel {
         }
         return isValid;
     }
-
-    logOut () {
-        console.log('logOut');
-    }
 }

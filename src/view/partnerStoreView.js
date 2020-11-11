@@ -69,13 +69,12 @@ export class PartnerStoreView {
                     const descr = product.querySelector('.js-descr-input');
                     // ТУТ НУЖНО ID!!!
                     const data = { name: name.value, price: price.value, descr: descr.value };
-                    this.eventBus.call('EDIT_PRODUCT', data); // нету
+                    this.eventBus.call('EDIT_PRODUCT', data);
                     // отправка изображения
                     const imgFile = document.getElementById('product__img-form').files[0];
-                    console.log(imgFile);
                     const img = new FormData();
                     img.append('avatar', imgFile);
-                    this.eventBus.call('UPLOAD_PRODUCT_IMG', img); // нету
+                    this.eventBus.call('UPLOAD_PRODUCT_IMG', img);
                 });
             });
         });
@@ -107,14 +106,11 @@ export class PartnerStoreView {
                 const name = product.querySelector('.js-name-input');
                 const price = product.querySelector('.js-price-input');
                 const descr = product.querySelector('.js-descr-input');
-                const data = { name: name.value, price: price.value, descr: descr.value };
-                this.eventBus.call('CREATE_PRODUCT', data); // нету
-                // отправка изображения
                 const imgFile = document.getElementById('product__img-form').files[0];
-                console.log(imgFile);
                 const img = new FormData();
-                img.append('avatar', imgFile);
-                this.eventBus.call('UPLOAD_PRODUCT_IMG', img); // нету
+                img.append('product_img', imgFile);
+                const data = { name: name.value, price: price.value, descr: descr.value, img: imgFile };
+                this.eventBus.call('CREATE_PRODUCT', data);
             });
         });
     }

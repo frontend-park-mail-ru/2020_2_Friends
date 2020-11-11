@@ -13,7 +13,7 @@ export const renderItemCreateView = () => window.Handlebars.compile(`
         <input type="text" class="common-input  wide-input js-descr-input" placeholder="Описание:"></input>
         <input type="text" class="common-input  wide-input js-price-input" placeholder="Цена:"></input>
         <div>
-            <button value="Создать" class="proceed-button js-save-new-item bottom-center-button">
+            <button class="proceed-button js-save-new-item bottom-center-button">Создать</button>
         </div>
     </div>
 </div>
