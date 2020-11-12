@@ -16,6 +16,7 @@ export class BucketController {
         this.model = new BucketModel(eventBus);
         this.view = new BucketView(root, eventBus);
 
+        eventBus.subscribe('REDIRECT_TO_ORDER', () => this.router.redirect('order'));
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));

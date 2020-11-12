@@ -196,6 +196,46 @@ export const changePartnerPersonalInfoRequest = (input) => {
     return ajaxPutUsingFetch(args);
 };
 
+export const createProductRequest = (input) => {
+    const productInfo = { food_name: input.food_name, food_price: input.food_price };
+    const args = {
+        url: backendUrl + '/api/v1/vendors/' + input.id + '/products',
+        body: productInfo
+    };
+    return ajaxPostUsingFetch(args);
+};
+
+export const getPartnersStoresRequest = () => {
+    const args = {
+        url: backendUrl + '/api/v1/partners/vendors'
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const changeProductRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id,
+        body: input
+    };
+    return ajaxPutUsingFetch(args);
+};
+
+export const deleteProductRequest = (input) => { // { store_id: storeId, product_id: productId }
+    const args = {
+        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.product_id,
+        body: input
+    };
+    return ajaxDeleteUsingFetch(args);
+};
+
+export const changeProductImgRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id + '/pictures',
+        body: input.food_img
+    };
+    return ajaxMultipartUsingFetch(args);
+};
+
 /**
  * Creating http upload avatar request for partner via ajax methods.
  * Using multipart/form-data to send a picture.
@@ -222,7 +262,7 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
  */
 export const pullPartnerAvatarRequest = (avatarName) => {
     const args = {
-        url: staticUrl + '/data/img/' + avatarName
+        url: staticUrl + '/api/v1/data/img/' + avatarName
     };
     return ajaxGetUsingFetch(args);
 };

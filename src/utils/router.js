@@ -29,6 +29,9 @@ export class Router {
      */
     redirect (to, needPushState = true) {
         if (needPushState) {
+            if (!to.startsWith('/')) {
+                to = '/' + to;
+            }
             history.pushState({ to }, to, to);
         }
 

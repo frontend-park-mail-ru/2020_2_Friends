@@ -172,6 +172,7 @@ export class ProfileView {
             avatar.append('avatar', file);
             this.eventBus.call('UPLOAD_AVATAR', avatar);
         });
+
         const delAddrBtn = this.root.querySelectorAll('.js-delete-address');
         delAddrBtn.forEach(Btn => {
             Btn.addEventListener('click', () => {
