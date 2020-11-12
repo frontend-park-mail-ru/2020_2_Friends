@@ -1,6 +1,6 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, addStore } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getPartnersStoresRequest, addStore } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class PartnerProfileModel {
@@ -19,6 +19,7 @@ export class PartnerProfileModel {
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
         eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
+        eventBus.subscribe('REDIRECT_TO_STORE', (storeId) => this.router.redirect('/stores/' + storeId));
         eventBus.subscribe('ADD_STORE', this.addStore);
     }
 
@@ -46,9 +47,13 @@ export class PartnerProfileModel {
      */
     async getProfileData () {
         const response = await getProfileInfoRequest();
-
         switch (response.status) {
         case 200: {
+            const responseStores = await getPartnersStoresRequest();
+            if (responseStores.status !== 200) {
+                break;
+            }
+            const stores = await responseStores.json();
             const body = await response.json();
             const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : '../assets/img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {
@@ -56,7 +61,8 @@ export class PartnerProfileModel {
                 points: body.points,
                 addresses: body.addresses,
                 phone: body.phone,
-                name: body.name
+                name: body.name,
+                stores: stores
             });
             break;
         }

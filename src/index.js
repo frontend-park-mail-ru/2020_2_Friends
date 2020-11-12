@@ -45,7 +45,15 @@ router.setRoute('^/store/?$', () => {
     headerController.view.render(false);
     storeController.model.getData();
 });
-router.setRoute('^/stores/(?<id>\\d+)/?$', storeController.storePageHandler);
+
+router.setRoute('^/stores/(?<id>\\d+)/?$', (id) => {
+    headerController.view.render(true);
+    storeController.storePageHandler(id);
+});
+router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
+    headerController.view.render(true);
+    partnerStoreController.storePageHandler(id);
+});
 router.setRoute('^/bucket/?$', () => {
     headerController.view.render(false);
     bucketController.model.getBucketData();

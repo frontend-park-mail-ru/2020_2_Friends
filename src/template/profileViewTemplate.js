@@ -71,7 +71,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                             <p class="profile-page__order-cart__order-address">Улица Пушкина, дом
                                 Кукушкинаaaaaaaaaaaaaaaaaaaaaaaaa</p>
                         </div>
-                        <img class="profile-page__order-cart-resto-img" src="img/250px-CycleLayer2.png"></img>
+                        <div class="profile-page__order-cart-status">СТАТУС</div>
                     </div>
                     <div class="profile-page__order-cart__order-list">
                         <div class="profile-page__order-cart__order-item">
@@ -105,7 +105,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                             <p class="profile-page__order-cart__order-date">22.10.2020, 15:29</p>
                             <p class="profile-page__order-cart__order-address">Улица Пушкина, дом Кукушкина</p>
                         </div>
-                        <img class="profile-page__order-cart-resto-img" src="250px-CycleLayer2.png"></img>
+                        <div class="profile-page__order-cart-status">СТАТУС</div>
                     </div>
                     <div class="profile-page__order-cart__order-list">
                         <div class="profile-page__order-cart__order-item">

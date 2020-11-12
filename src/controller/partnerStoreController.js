@@ -13,10 +13,21 @@ export class PartnerStoreController {
         const eventBus = new EventBus();
         this.router = router;
 
+        this.storePageHandler = this.storePageHandler.bind(this);
+
         this.model = new PartnerStoreModel(eventBus);
         this.view = new PartnerStoreView(root, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('partners_profile'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('partners'));
+    }
+
+    /**
+     * Handling store page rendering.
+     *
+     * @param {Number} id - Id of requesting store.
+     */
+    storePageHandler ({ id }) {
+        this.model.getData(id);
     }
 }

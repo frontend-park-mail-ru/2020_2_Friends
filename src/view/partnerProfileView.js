@@ -150,6 +150,14 @@ export class PartnerProfileView {
             this.focusOnNavButton('.js-userdata-button');
         });
 
+        const goToStoreBtns = this.root.querySelectorAll('.js-goto-store');
+        goToStoreBtns.forEach(element => {
+            element.addEventListener('click', () => {
+                const storeId = element.dataset.store_id;
+                this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: storeId });
+            });
+        });
+
         const myStores = this.root.querySelector('.js-mystores-button');
         myStores.addEventListener('click', () => {
             this.changeSubPage('.js-mystores');

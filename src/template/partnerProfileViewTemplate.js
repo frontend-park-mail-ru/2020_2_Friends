@@ -59,38 +59,16 @@ export const renderProfileView = () => window.Handlebars.compile(`
 
         <div class="profile-page__content js-mystores">
             <div class="profile-page__content-column">
+            {{#each stores}}
                 <div class="my-store">
-                    <img class="my-store__img" src="assets/img/map.png"></img>
+                    <img class="my-store__img" src="{{this.picture}}"></img>
                     <div class="my-store__info">
-                        <p class="my-store__name">Имя магазина</p>
-                        <p class="my-store__descr">Описание магазина Описание магазина Описание
-                            магазина Описание магазина Описание магазина Описание магазина Описание магазина Описание
-                            магазина</p>
+                        <p class="my-store__name">{{this.store_name}}</p>
+                        <p class="my-store__descr">{{this.descr}}</p>
                     </div>
-                    <button class="proceed-button js-goto-store my-store__button">Перейти</button>
+                    <button data-store_id="{{ this.id }}" class="proceed-button js-goto-store my-store__button">Перейти</button>
                 </div>
-
-                <div class="my-store">
-                    <img class="my-store__img" src="assets/img/map.png"></img>
-                    <div class="my-store__info">
-                        <p class="my-store__name">Имя магазина</p>
-                        <p class="my-store__descr">Описание магазина Описание магазина Описание
-                            магазина Описание магазина Описание магазина Описание магазина Описание магазина Описание
-                            магазина</p>
-                    </div>
-                    <button class="proceed-button js-goto-store my-store__button">Перейти</button>
-                </div>
-
-                <div class="my-store">
-                    <img class="my-store__img" src="assets/img/map.png"></img>
-                    <div class="my-store__info">
-                        <p class="my-store__name">Имя магазина</p>
-                        <p class="my-store__descr">Описание магазина Описание магазина Описание
-                            магазина Описание магазина Описание магазина Описание магазина Описание магазина Описание
-                            магазина</p>
-                    </div>
-                    <button class="proceed-button js-goto-store my-store__button">Перейти</button>
-                </div>
+            {{/each}}
 
             </div>
 

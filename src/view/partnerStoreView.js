@@ -1,5 +1,5 @@
 import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
-import { renderItemCreateView } from '../template/createStoreItemTemplate.js';
+import { renderItemCreateView, renderNewItemView } from '../template/createStoreItemTemplate.js';
 export class PartnerStoreView {
     /**
      * Creating an PartnerStoreView instance.
@@ -15,10 +15,16 @@ export class PartnerStoreView {
         this.render = this.render.bind(this);
         this.storeDataError = this.storeDataError.bind(this);
         this.serverInternalError = this.serverInternalError.bind(this);
+        this.showNewProduct = this.showNewProduct.bind(this);
+        this.renderAvatar = this.renderAvatar.bind(this);
+
+        this.addProductEventListeners = this.addProductEventListeners.bind(this);
 
         eventBus.subscribe('SHOW_STORE', this.render);
         eventBus.subscribe('STORE_DATA_ERROR', this.storeDataError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
+        eventBus.subscribe('SHOW_NEW_PRODUCT', this.showNewProduct);
+        eventBus.subscribe('RENDER_AVATAR', this.renderAvatar);
     }
 
     /**
@@ -47,6 +53,61 @@ export class PartnerStoreView {
         this.addEventListeners();
     }
 
+    addProductEventListeners (product) {
+        const editBtn = product.querySelectorAll('.js-edit-item');
+        editBtn.addEventListener('click', () => {
+            editBtn.parentNode.style.display = 'none';
+            editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
+        });
+
+        const saveChangesBtn = product.querySelectorAll('.js-save-item-changes');
+        saveChangesBtn.addEventListener('click', () => {
+            saveChangesBtn.parentNode.parentNode.style.display = 'none';
+            const product = saveChangesBtn.parentNode.parentNode.parentNode;
+            product.querySelector('.product-normal').style.display = 'flex';
+
+            const name = product.querySelector('.js-name-input');
+            const price = product.querySelector('.js-price-input');
+            const descr = product.querySelector('.js-descr-input');
+            const id = product.dataset.product_id;
+            const imgFile = document.getElementById('product__img-form').files[0];
+            const img = new FormData();
+            img.append('image', imgFile);
+            const data = { name: name.value, price: price.value, descr: descr.value, food_id: id, food_img: img };
+            this.eventBus.call('EDIT_PRODUCT', data);
+        });
+
+        const delBtn = product.querySelectorAll('.js-delete-button');
+        delBtn.addEventListener('click', () => {
+            const storeId = document.getElementById('storeHeader').dataset.store_id;
+            const productId = delBtn.parentNode.parentNode.dataset.product_id;
+            const data = { store_id: storeId, product_id: productId };
+            this.eventBus.call('DELETE_PRODUCT', data);
+            delBtn.parentNode.parentNode.remove();
+        });
+    }
+
+    showNewProduct (data) {
+        const template = renderNewItemView();
+        const itemHTML = template(data);
+        // передать id нового продукта
+        const product = this.root.querySelector('.new-product');
+        product.classList.remove('new-product');
+        product.innerHTML = itemHTML;
+        this.addProductEventListeners(product);
+    }
+
+    /**
+     * Rendering profile product.
+     *
+     * @param {object} data - Avatar object, contains avatarUrl to rerender.
+     */
+    renderAvatar (data) {
+        const avatarElement = this.root.querySelector('#product__img');
+        avatarElement.src = data.avatarUrl;
+        console.log(avatarElement);
+    }
+
     addEventListeners () {
         const editBtns = this.root.querySelectorAll('.js-edit-item');
         editBtns.forEach(editBtn => {
@@ -62,28 +123,27 @@ export class PartnerStoreView {
                 saveChangesBtn.parentNode.parentNode.style.display = 'none';
                 const product = saveChangesBtn.parentNode.parentNode.parentNode;
                 product.querySelector('.product-normal').style.display = 'flex';
-                const createBtn = product.querySelector('.js-save-new-item');
-                createBtn.addEventListener('click', (e) => {
-                    const name = product.querySelector('.js-name-input');
-                    const price = product.querySelector('.js-price-input');
-                    const descr = product.querySelector('.js-descr-input');
-                    // ТУТ НУЖНО ID!!!
-                    const data = { name: name.value, price: price.value, descr: descr.value };
-                    this.eventBus.call('EDIT_PRODUCT', data);
-                    // отправка изображения
-                    const imgFile = document.getElementById('product__img-form').files[0];
-                    const img = new FormData();
-                    img.append('avatar', imgFile);
-                    this.eventBus.call('UPLOAD_PRODUCT_IMG', img);
-                });
+
+                const name = product.querySelector('.js-name-input');
+                const price = product.querySelector('.js-price-input');
+                const descr = product.querySelector('.js-descr-input');
+                const id = product.dataset.product_id;
+                const imgFile = document.getElementById('product__img-form').files[0];
+                const img = new FormData();
+                img.append('image', imgFile);
+                const data = { name: name.value, price: price.value, descr: descr.value, food_id: id, food_img: img };
+                this.eventBus.call('EDIT_PRODUCT', data);
             });
         });
 
         const delBtns = this.root.querySelectorAll('.js-delete-button');
         delBtns.forEach(element => {
             element.addEventListener('click', () => {
-                element.parentNode.remove();
-                // УДАЛЕНИЕ НА БЕКЕ
+                const storeId = document.getElementById('storeHeader').dataset.store_id;
+                const productId = element.parentNode.parentNode.dataset.product_id;
+                const data = { store_id: storeId, product_id: productId };
+                this.eventBus.call('DELETE_PRODUCT', data);
+                element.parentNode.parentNode.remove();
             });
         });
 
@@ -91,7 +151,7 @@ export class PartnerStoreView {
         addItemBtn.addEventListener('click', () => {
             const showcase = this.root.querySelector('.js-showcase');
             const product = document.createElement('div');
-            product.className = 'product';
+            product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
             const template = renderItemCreateView();
             const HTML = template();
@@ -108,8 +168,9 @@ export class PartnerStoreView {
                 const descr = product.querySelector('.js-descr-input');
                 const imgFile = document.getElementById('product__img-form').files[0];
                 const img = new FormData();
-                img.append('product_img', imgFile);
-                const data = { name: name.value, price: price.value, descr: descr.value, img: imgFile };
+                img.append('image', imgFile);
+                const storeHeader = document.getElementById('storeHeader');
+                const data = { food_name: name.value, food_price: price.value, food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
                 this.eventBus.call('CREATE_PRODUCT', data);
             });
         });

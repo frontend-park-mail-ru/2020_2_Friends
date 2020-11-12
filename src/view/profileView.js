@@ -81,6 +81,7 @@ export class ProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
+        console.log(data);
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
@@ -172,6 +173,7 @@ export class ProfileView {
             avatar.append('avatar', file);
             this.eventBus.call('UPLOAD_AVATAR', avatar);
         });
+
         const delAddrBtn = this.root.querySelectorAll('.js-delete-address');
         delAddrBtn.forEach(Btn => {
             Btn.addEventListener('click', () => {
