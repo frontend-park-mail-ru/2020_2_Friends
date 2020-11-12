@@ -56,7 +56,6 @@ export class PartnerStoreModel {
             break;
         }
         default:
-            console.log('создать продукт не удалось');
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
     }
@@ -67,14 +66,12 @@ export class PartnerStoreModel {
 
         switch (response.status) {
         case 200: {
-            console.log('изменить продукт удалось');
             if (input.food_img) {
                 this.changeProductImg(input);
             }
             break;
         }
         default:
-            console.log('изменить продукт не удалось');
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
     }
@@ -84,9 +81,7 @@ export class PartnerStoreModel {
         switch (response.status) {
         case 200: {
             const avatar = await response.json();
-            console.log(avatar);
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            console.log(avatarUrl);
             this.eventBus.call('RENDER_AVATAR', { avatarUrl: avatarUrl });
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
@@ -103,7 +98,6 @@ export class PartnerStoreModel {
             break;
         }
         default:
-            console.log('изменить продукт не удалось');
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
     }
