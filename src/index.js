@@ -5,6 +5,7 @@ import { HeaderController } from './controller/headerController.js';
 import { RegisterController } from './controller/registerController.js';
 import { StoreController } from './controller/storeController.js';
 import { BucketController } from './controller/bucketController.js';
+import { OrderController } from './controller/orderController.js';
 import { Router } from './utils/router.js';
 
 import { PartnerLoginController } from './controller/partnerLoginController.js';
@@ -22,15 +23,19 @@ const headerController = new HeaderController(header, router);
 const profileController = new ProfileController(root, router);
 const storeController = new StoreController(root, router);
 const bucketController = new BucketController(root, router);
+const orderController = new OrderController(root, router);
 
 const partnerLoginController = new PartnerLoginController(root, router);
 const partnerRegController = new PartnerRegisterController(root, router);
 const partnerProfileController = new PartnerProfileController(root, router);
 const partnerStoreController = new PartnerStoreController(root, router);
 // Setting routes to navigate inside an app.
-router.setRoute('^$', loginController.view.render);
 router.setRoute('^/?$', loginController.view.render);
 router.setRoute('^/login/?$', loginController.view.render);
+router.setRoute('^/order/?$', () => {
+    orderController.view.render(false);
+    orderController.view.render();
+});
 router.setRoute('^/register/?$', regController.view.render);
 router.setRoute('^/profile/?$', () => {
     headerController.view.render(false);

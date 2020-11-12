@@ -31,5 +31,10 @@ export class BucketView {
                 Btn.parentNode.parentNode.parentNode.style.display = 'none';
             });
         });
+
+        const orderButton = this.root.querySelector('.js-make-order');
+        orderButton.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_ORDER');
+        });
     }
 }

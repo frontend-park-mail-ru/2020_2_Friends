@@ -31,7 +31,7 @@ export const renderBucketView = () => window.Handlebars.compile(`
             <div class="bucket-total__header">Итого:</div>
             <div class="bucket-total__store-name">{{this.store_name}}</div>
             <div class="bucket-total__sum">Сумма заказа:{{total}}</div>
-            <div class="proceed-button bucket-total__order-button">Заказать</div>
+            <div class="proceed-button bucket-total__order-button js-make-order">Заказать</div>
         </div>
     </div>
 </div>
