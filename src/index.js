@@ -47,7 +47,7 @@ router.setRoute('^/store/?$', () => {
 });
 
 router.setRoute('^/stores/(?<id>\\d+)/?$', (id) => {
-    headerController.view.render(true);
+    headerController.view.render(false);
     storeController.storePageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
