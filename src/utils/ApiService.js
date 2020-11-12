@@ -214,10 +214,10 @@ export const getPartnersStoresRequest = () => {
 
 export const changeProductRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/products/' + input.food_id,
+        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id,
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPutUsingFetch(args);
 };
 
 export const deleteProductRequest = (input) => { // { store_id: storeId, product_id: productId }

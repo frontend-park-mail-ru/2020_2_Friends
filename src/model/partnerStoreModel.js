@@ -62,13 +62,13 @@ export class PartnerStoreModel {
     }
 
     async changeProduct (input) {
-        const productInfo = { food_name: input.name, food_price: input.food_price, food_id: input.food_id };
+        const productInfo = { food_name: input.food_name, food_price: input.food_price, food_id: input.food_id, store_id: input.store_id };
         const response = await changeProductRequest(productInfo);
 
         switch (response.status) {
         case 200: {
             console.log('изменить продукт удалось');
-            if (input.img) {
+            if (input.food_img) {
                 this.changeProductImg(input);
             }
             break;
