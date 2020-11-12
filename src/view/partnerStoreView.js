@@ -16,11 +16,15 @@ export class PartnerStoreView {
         this.storeDataError = this.storeDataError.bind(this);
         this.serverInternalError = this.serverInternalError.bind(this);
         this.showNewProduct = this.showNewProduct.bind(this);
+        this.renderAvatar = this.renderAvatar.bind(this);
+
         this.addProductEventListeners = this.addProductEventListeners.bind(this);
+
         eventBus.subscribe('SHOW_STORE', this.render);
         eventBus.subscribe('STORE_DATA_ERROR', this.storeDataError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
         eventBus.subscribe('SHOW_NEW_PRODUCT', this.showNewProduct);
+        eventBus.subscribe('RENDER_AVATAR', this.renderAvatar);
     }
 
     /**
@@ -85,16 +89,23 @@ export class PartnerStoreView {
 
     showNewProduct (data) {
         const template = renderNewItemView();
-        const img = data.food_img.get('image');
-        var input = data;
-        input.food_img = img;
-        const itemHTML = template(input);
-        console.log(input);
+        const itemHTML = template(data);
         // передать id нового продукта
         const product = this.root.querySelector('.new-product');
         product.classList.remove('new-product');
         product.innerHTML = itemHTML;
         this.addProductEventListeners(product);
+    }
+
+    /**
+     * Rendering profile product.
+     *
+     * @param {object} data - Avatar object, contains avatarUrl to rerender.
+     */
+    renderAvatar (data) {
+        const avatarElement = this.root.querySelector('#product__img');
+        avatarElement.src = data.avatarUrl;
+        console.log(avatarElement);
     }
 
     addEventListeners () {

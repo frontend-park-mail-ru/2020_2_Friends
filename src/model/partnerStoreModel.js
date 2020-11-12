@@ -1,5 +1,5 @@
 import { getStoreByIdDataPartnerRequest, createProductRequest, changeProductImgRequest, changeProductRequest, deleteProductRequest } from '../utils/ApiService.js';
-
+import { makeAvatarUrl } from '../utils/urlThrottle.js';
 export class PartnerStoreModel {
     /**
      * Creating an PartnerStoreModel instance.
@@ -83,6 +83,11 @@ export class PartnerStoreModel {
         const response = await changeProductImgRequest({ food_id: input.food_id, store_id: input.store_id, food_img: input.food_img });
         switch (response.status) {
         case 200: {
+            const avatar = await response.json();
+            console.log(avatar);
+            const avatarUrl = makeAvatarUrl(avatar.avatar);
+            console.log(avatarUrl);
+            this.eventBus.call('RENDER_AVATAR', { avatarUrl: avatarUrl });
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
         }
