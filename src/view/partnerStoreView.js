@@ -54,13 +54,21 @@ export class PartnerStoreView {
     }
 
     addProductEventListeners (product) {
-        const editBtn = product.querySelectorAll('.js-edit-item');
+        const delBtn = product.querySelector('.js-delete-button');
+        delBtn.addEventListener('click', () => {
+            const storeId = document.getElementById('storeHeader').dataset.store_id;
+            const productId = delBtn.parentNode.parentNode.dataset.product_id;
+            const data = { store_id: storeId, product_id: productId };
+            this.eventBus.call('DELETE_PRODUCT', data);
+            delBtn.parentNode.parentNode.remove();
+        });
+        const editBtn = product.querySelector('.js-edit-item');
         editBtn.addEventListener('click', () => {
             editBtn.parentNode.style.display = 'none';
             editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
         });
 
-        const saveChangesBtn = product.querySelectorAll('.js-save-item-changes');
+        const saveChangesBtn = product.querySelector('.js-save-item-changes');
         saveChangesBtn.addEventListener('click', () => {
             saveChangesBtn.parentNode.parentNode.style.display = 'none';
             const product = saveChangesBtn.parentNode.parentNode.parentNode;
@@ -73,17 +81,16 @@ export class PartnerStoreView {
             const imgFile = document.getElementById('product__img-form').files[0];
             const img = new FormData();
             img.append('image', imgFile);
-            const data = { name: name.value, price: price.value, descr: descr.value, food_id: id, food_img: img };
+            const storeHeader = document.getElementById('storeHeader');
+            const data = {
+                food_name: name.value,
+                food_price: price.value,
+                food_descr: descr.value,
+                food_img: img,
+                store_id: storeHeader.dataset.store_id,
+                food_id: id
+            };
             this.eventBus.call('EDIT_PRODUCT', data);
-        });
-
-        const delBtn = product.querySelectorAll('.js-delete-button');
-        delBtn.addEventListener('click', () => {
-            const storeId = document.getElementById('storeHeader').dataset.store_id;
-            const productId = delBtn.parentNode.parentNode.dataset.product_id;
-            const data = { store_id: storeId, product_id: productId };
-            this.eventBus.call('DELETE_PRODUCT', data);
-            delBtn.parentNode.parentNode.remove();
         });
     }
 
@@ -103,9 +110,8 @@ export class PartnerStoreView {
      * @param {object} data - Avatar object, contains avatarUrl to rerender.
      */
     renderAvatar (data) {
-        const avatarElement = this.root.querySelector('#product__img');
+        const avatarElement = this.root.querySelector('.product__img');
         avatarElement.src = data.avatarUrl;
-        console.log(avatarElement);
     }
 
     addEventListeners () {
@@ -131,7 +137,15 @@ export class PartnerStoreView {
                 const imgFile = document.getElementById('product__img-form').files[0];
                 const img = new FormData();
                 img.append('image', imgFile);
-                const data = { name: name.value, price: price.value, descr: descr.value, food_id: id, food_img: img };
+                const storeHeader = document.getElementById('storeHeader');
+                const data = {
+                    food_name: name.value,
+                    food_price: price.value,
+                    food_descr: descr.value,
+                    food_img: img,
+                    store_id: storeHeader.dataset.store_id,
+                    food_id: id
+                };
                 this.eventBus.call('EDIT_PRODUCT', data);
             });
         });
