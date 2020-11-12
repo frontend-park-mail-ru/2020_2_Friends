@@ -18,7 +18,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
 
         {{#each products}}
         <div class="product-normal product" id="{{ this.id }}">
-            <img src="{{ this.picture }}" class="product__img" alt="assets/burger1.png">
+            <img src="http://89.208.197.247:9001/data/img/{{ this.picture }}" class="product__img" alt="assets/burger1.png">
             <div class="product__info">
                 <div class="product__name"> {{ this.food_name }} </div>
                 <div class="product__price">{{ this.food_price }}</div>
