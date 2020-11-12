@@ -16,7 +16,8 @@ export class PartnerRegisterController {
         this.model = new PartnerRegisterModel(eventBus);
         this.view = new PartnerRegisterView(root, eventBus);
 
-        eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('partner_profile'));
+        eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('partners_login'));
+        eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('partners_profile'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('partners'));
     }
 }
