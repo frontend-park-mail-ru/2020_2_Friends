@@ -83,7 +83,7 @@
     margin: 10px 50px 10px 30px;
 }
 
-.order-cart__status {
+.order-cart__status, .order-cart__user-status {
     margin: 20px 20px auto auto;
     height: 40px;
     width: 130px;
@@ -91,4 +91,16 @@
     border-radius: 20px;
     padding-left: 10px;
     outline: none;
+}
+
+.order-cart__user-status {
+    margin: 10px 5px auto auto;
+    height: 40px;
+    width: 130px;
+    font-size: 30px;
+    border-radius: 20px;
+    padding-left: 10px;
+    outline: none;
+    color: #45d480;
+    white-space: nowrap;
 }

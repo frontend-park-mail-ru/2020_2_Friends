@@ -10,6 +10,7 @@ export class BucketView {
         this.eventBus = eventBus;
 
         this.render = this.render.bind(this);
+        this.createOrder = this.createOrder.bind(this);
 
         eventBus.subscribe('SHOW_CART', this.render);
     }
@@ -24,6 +25,17 @@ export class BucketView {
         this.addEventListeners();
     }
 
+    createOrder () {
+        var data = {};
+        const products = this.root.querySelectorAll('.bucket-item');
+        products.forEach(product => {
+            const name = product.querySelector('.bucket-item__name').innerHTML;
+            console.log(name);
+            // const name = product.querySelector('.bucket-item__name').innerHTML;
+        });
+        console.log(data);
+    }
+
     addEventListeners () {
         const delItemBtn = this.root.querySelectorAll('.js-delete-item');
         delItemBtn.forEach(Btn => {
@@ -34,7 +46,7 @@ export class BucketView {
 
         const orderButton = this.root.querySelector('.js-make-order');
         orderButton.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_ORDER');
+            this.createOrder();
         });
     }
 }

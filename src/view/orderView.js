@@ -11,6 +11,7 @@ export class OrderView {
         this.root = root;
         this.eventBus = eventBus;
         this.render = this.render.bind(this);
+        this.setStatus = this.setStatus.bind(this);
         eventBus.subscribe('SHOW_ORDERS', this.render);
     }
 
@@ -18,6 +19,14 @@ export class OrderView {
         const template = renderOrderView();
         this.root.innerHTML = template(data);
         this.addEventListeners();
+        this.setStatus(data.orders);
+    }
+
+    setStatus (orders) {
+        orders.forEach(order => {
+            const e = document.getElementById(order.orderId);
+            e.querySelector('.order-cart__status').value = order.orderStatus;
+        });
     }
 
     addEventListeners () {
@@ -25,6 +34,14 @@ export class OrderView {
         const storeId = document.getElementById('storeHeader').dataset.store_id;
         toStoreBtn.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { storeId });
+        });
+
+        const orderStatuses = this.root.querySelectorAll('.order-cart__status');
+        orderStatuses.forEach(status => {
+            status.addEventListener('change', () => {
+                const orderId = status.parentNode.parentNode.dataset.orderid;
+                this.eventBus.call('CHANGE_STATUS', { orderId: orderId, orderStatus: status.value });
+            });
         });
     }
 }

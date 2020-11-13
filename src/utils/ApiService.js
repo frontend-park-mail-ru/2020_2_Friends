@@ -313,3 +313,24 @@ export const getStoreByIdDataPartnerRequest = (id) => {
     };
     return ajaxGetUsingFetch(args);
 };
+
+export const getStoreOrdersDataRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getUserOrdersDataRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const changeOrderStatusRequest = (data) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${data.storeId}`
+    };
+    return ajaxPutUsingFetch(args);
+};

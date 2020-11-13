@@ -62,75 +62,8 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
 
         <div class="profile-page__content js-profile-orders">
-            <div class="profile-page__content-column">
-                <div class="profile-page__order-cart">
-                    <div class="profile-page__order-cart__header">
-                        <div class="profile-page__order-cart__order-info">
-                            <a class="profile-page__order-cart__shop-name" href="#">Имя магазина</a>
-                            <p class="profile-page__order-cart__order-date">22.10.2020, 15:29</p>
-                            <p class="profile-page__order-cart__order-address">Улица Пушкина, дом
-                                Кукушкинаaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                        </div>
-                        <div class="profile-page__order-cart-status">СТАТУС</div>
-                    </div>
-                    <div class="profile-page__order-cart__order-list">
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-                        </div>
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-                        </div>
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-                        </div>
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-
-                        </div>
-                        <div class="profile-page__order-cart__total">
-                            <p>Итого:</p>
-                            <p>Много рублей</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile-page__order-cart">
-                    <div class="profile-page__order-cart__header">
-                        <div class="profile-page__order-cart__order-info">
-                            <a class="profile-page__order-cart__shop-name" href="#">Имя магазина</a>
-                            <p class="profile-page__order-cart__order-date">22.10.2020, 15:29</p>
-                            <p class="profile-page__order-cart__order-address">Улица Пушкина, дом Кукушкина</p>
-                        </div>
-                        <div class="profile-page__order-cart-status">СТАТУС</div>
-                    </div>
-                    <div class="profile-page__order-cart__order-list">
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-                        </div>
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-                        </div>
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-                        </div>
-                        <div class="profile-page__order-cart__order-item">
-                            <div class="profile-page__order-cart__order-item-name">Название</div>
-                            <div class="profile-page__order-cart__order-item-price">100 p.</div>
-
-                        </div>
-                        <div class="profile-page__order-cart__total">
-                            <p>Итого:</p>
-                            <p>Много рублей</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="profile-page__content-column" id="orderColumn">
+                
             </div>
         </div>
 
