@@ -10,10 +10,21 @@ export class OrderView {
     constructor (root, eventBus) {
         this.root = root;
         this.eventBus = eventBus;
+        this.render = this.render.bind(this);
+        eventBus.subscribe('SHOW_ORDERS', this.render);
     }
 
-    render () {
+    render (data) {
         const template = renderOrderView();
-        this.root.innerHTML = template();
+        this.root.innerHTML = template(data);
+        this.addEventListeners();
+    }
+
+    addEventListeners () {
+        const toStoreBtn = this.root.querySelector('.js-to-store-button');
+        const storeId = document.getElementById('storeHeader').dataset.store_id;
+        toStoreBtn.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { storeId });
+        });
     }
 }

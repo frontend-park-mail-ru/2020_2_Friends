@@ -3,12 +3,15 @@
  */
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
-    <div id="storeHeader" data-store_id="{{storeId}}"class="store__header">
+    <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
         <img src="assets/store4.png" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>
-            <button class="info-button">Отзывы</button>
-            <button class="proceed-button js-add-item">Добавить блюдо</button>
+            <div class="store__functions">
+            <button class="info-button">Отзывы</button> 
+            <button class="info-button js-goto-orders orders-button">Заказы</button>
+            <button class="info-button js-add-item">Добавить блюдо</button>
+            </div>
         </div>
     </div>
     <div class="store__showcase js-showcase">

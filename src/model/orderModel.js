@@ -7,4 +7,14 @@ export class OrderModel {
     constructor (eventBus) {
         this.eventBus = eventBus;
     }
+
+    /**
+     * Getting store data with http-request.
+     */
+    async getData (id) {
+        this.eventBus.call('SHOW_ORDERS',
+            {
+                storeId: id
+            });
+    }
 }

@@ -92,6 +92,17 @@ export class PartnerStoreView {
             };
             this.eventBus.call('EDIT_PRODUCT', data);
         });
+
+        const delBtns = this.root.querySelectorAll('.js-delete-button');
+        delBtns.forEach(element => {
+            element.addEventListener('click', () => {
+                const storeId = document.getElementById('storeHeader').dataset.store_id;
+                const productId = element.parentNode.parentNode.dataset.product_id;
+                const data = { store_id: storeId, product_id: productId };
+                this.eventBus.call('DELETE_PRODUCT', data);
+                element.parentNode.parentNode.remove();
+            });
+        });
     }
 
     showNewProduct (data) {
@@ -115,52 +126,14 @@ export class PartnerStoreView {
     }
 
     addEventListeners () {
-        const editBtns = this.root.querySelectorAll('.js-edit-item');
-        editBtns.forEach(editBtn => {
-            editBtn.addEventListener('click', () => {
-                editBtn.parentNode.style.display = 'none';
-                editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
-            });
+        const products = this.root.querySelectorAll('.product');
+        products.forEach(product => { this.addProductEventListeners(product); });
+
+        const toOrdersBtn = this.root.querySelector('.js-goto-orders');
+        const storeId = document.getElementById('storeHeader').dataset.store_id;
+        toOrdersBtn.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_ORDERS', storeId);
         });
-
-        const saveChangesBtns = this.root.querySelectorAll('.js-save-item-changes');
-        saveChangesBtns.forEach(saveChangesBtn => {
-            saveChangesBtn.addEventListener('click', () => {
-                saveChangesBtn.parentNode.parentNode.style.display = 'none';
-                const product = saveChangesBtn.parentNode.parentNode.parentNode;
-                product.querySelector('.product-normal').style.display = 'flex';
-
-                const name = product.querySelector('.js-name-input');
-                const price = product.querySelector('.js-price-input');
-                const descr = product.querySelector('.js-descr-input');
-                const id = product.dataset.product_id;
-                const imgFile = document.getElementById('product__img-form').files[0];
-                const img = new FormData();
-                img.append('image', imgFile);
-                const storeHeader = document.getElementById('storeHeader');
-                const data = {
-                    food_name: name.value,
-                    food_price: price.value,
-                    food_descr: descr.value,
-                    food_img: img,
-                    store_id: storeHeader.dataset.store_id,
-                    food_id: id
-                };
-                this.eventBus.call('EDIT_PRODUCT', data);
-            });
-        });
-
-        const delBtns = this.root.querySelectorAll('.js-delete-button');
-        delBtns.forEach(element => {
-            element.addEventListener('click', () => {
-                const storeId = document.getElementById('storeHeader').dataset.store_id;
-                const productId = element.parentNode.parentNode.dataset.product_id;
-                const data = { store_id: storeId, product_id: productId };
-                this.eventBus.call('DELETE_PRODUCT', data);
-                element.parentNode.parentNode.remove();
-            });
-        });
-
         const addItemBtn = this.root.querySelector('.js-add-item');
         addItemBtn.addEventListener('click', () => {
             const showcase = this.root.querySelector('.js-showcase');
