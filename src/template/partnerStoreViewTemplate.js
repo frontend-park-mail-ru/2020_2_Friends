@@ -4,7 +4,7 @@
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
     <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
-        <img src="assets/store4.png" class="store__logo" alt="Store logo">
+        <img src="http://89.208.197.247:9001/data/img/{{picture}}" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>
             <div class="store__functions">

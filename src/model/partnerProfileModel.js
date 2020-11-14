@@ -1,6 +1,6 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getPartnersStoresRequest, addStore } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getPartnersStoresRequest, addStore, changeStoreImgRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class PartnerProfileModel {
@@ -31,7 +31,11 @@ export class PartnerProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: body.id });
+            const imgInput = { id: body.id, img: data.img };
+            const imgResponse = await changeStoreImgRequest(imgInput);
+            if (imgResponse.status === 200) {
+                this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: body.id });
+            }
             break;
         }
         case 500:

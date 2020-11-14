@@ -45,7 +45,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <img class="profile-page__img-upload-button-img">
                 </button>
                 <form class="addstore-avatar-form">
-                <input value={{ picture }} id="addstore-avatar-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                <input  id="addstore-avatar-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
             </form>
             </div>
             <div class="profile-page__right-column">

@@ -7,7 +7,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
         <button class="back-to-shopping__button">Все рестораны</button>
     </div>
     <div class="store__header">
-        <img src="assets/store4.png" class="store__logo" alt="Store logo">
+        <img src="http://89.208.197.247:9001/data/img/{{picture}}" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>
             <button class="info-button">Отзывы</button>

@@ -25,7 +25,8 @@ export class StoreModel {
             this.eventBus.call('SHOW_STORE',
                 {
                     storeName: body.store_name,
-                    products: body.products
+                    products: body.products,
+                    picture: body.picture
                 });
             break;
         }

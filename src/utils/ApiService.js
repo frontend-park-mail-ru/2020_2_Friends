@@ -236,6 +236,14 @@ export const changeProductImgRequest = (input) => {
     return ajaxMultipartUsingFetch(args);
 };
 
+export const changeStoreImgRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors/' + input.id + '/pictures',
+        body: input.img
+    };
+    return ajaxMultipartUsingFetch(args);
+};
+
 /**
  * Creating http upload avatar request for partner via ajax methods.
  * Using multipart/form-data to send a picture.

@@ -143,23 +143,9 @@ export class PartnerProfileView {
             const imgFile = document.getElementById('addstore-avatar-form').files[0];
             const img = new FormData();
             img.append('image', imgFile);
-            const data = { name, description };
+            const data = { name, description, img };
             this.eventBus.call('ADD_STORE', data);
         });
-
-        // логика добавления товара
-        // const createBtn = product.querySelector('.js-save-new-item');
-        // createBtn.addEventListener('click', (e) => {
-        //     const name = product.querySelector('.js-name-input');
-        //     const price = product.querySelector('.js-price-input');
-        //     const descr = product.querySelector('.js-descr-input');
-        //     const imgFile = document.getElementById('product__img-form').files[0];
-        //     const img = new FormData();
-        //     img.append('image', imgFile);
-        //     const storeHeader = document.getElementById('storeHeader');
-        //     const data = { food_name: name.value, food_price: price.value, food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
-        //     this.eventBus.call('CREATE_PRODUCT', data);
-        // });
 
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
