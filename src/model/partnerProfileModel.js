@@ -1,6 +1,6 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getPartnersStoresRequest, addStore, getStoreOrders } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getPartnersStoresRequest, addStore } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class PartnerProfileModel {
