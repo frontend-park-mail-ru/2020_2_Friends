@@ -220,7 +220,7 @@ export const changeProductRequest = (input) => {
     return ajaxPutUsingFetch(args);
 };
 
-export const deleteProductRequest = (input) => { // { store_id: storeId, product_id: productId }
+export const deleteProductRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.product_id,
         body: input
@@ -333,4 +333,12 @@ export const changeOrderStatusRequest = (data) => {
         url: backendUrl + `/api/v1/vendors/${data.storeId}`
     };
     return ajaxPutUsingFetch(args);
+};
+
+export const createOrderRequest = (data) => {
+    const args = {
+        url: backendUrl + '/api/v1/orders',
+        body: data
+    };
+    return ajaxPostUsingFetch(args);
 };

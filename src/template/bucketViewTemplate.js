@@ -11,7 +11,7 @@ export const renderBucketView = () => window.Handlebars.compile(`
             <div class="bucket__header">Моя корзина:</div>
 
             {{#each products}}
-            <div class="bucket-item">
+            <div class="bucket-item" data-id={{this.id}}>
                 <img class="bucket-item__img" src="{{this.picture}}"></img>
                 <div class="bucket-item__col">
                     <div class="bucket-item__name">{{this.food_name}}</div>
