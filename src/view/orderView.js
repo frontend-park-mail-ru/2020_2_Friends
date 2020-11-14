@@ -1,3 +1,4 @@
+// import { response } from 'express';
 import { renderOrderView } from '../template/orderViewTemplate.js';
 export class OrderView {
     /**
@@ -16,10 +17,11 @@ export class OrderView {
     }
 
     render (data) {
+        console.log('data', data);
         const template = renderOrderView();
         this.root.innerHTML = template(data);
         this.addEventListeners();
-        this.setStatus(data.orders);
+        this.setStatus(data);
     }
 
     setStatus (orders) {
@@ -36,11 +38,13 @@ export class OrderView {
             this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { storeId });
         });
 
+        const storeHeader = this.root.querySelector('#storeHeader');
         const orderStatuses = this.root.querySelectorAll('.order-cart__status');
         orderStatuses.forEach(status => {
             status.addEventListener('change', () => {
                 const orderId = status.parentNode.parentNode.dataset.orderid;
-                this.eventBus.call('CHANGE_STATUS', { orderId: orderId, orderStatus: status.value });
+                console.log(orderId, status.value, storeHeader.dataset.storeid, 'заказ статус магаз');
+                this.eventBus.call('CHANGE_STATUS', { orderId: orderId, status: status.value, vendorId: 41 });
             });
         });
     }

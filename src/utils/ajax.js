@@ -53,6 +53,7 @@ export const ajaxPostUsingFetch = (ajaxArgs) => {
  * @return {Promise} - Response object.
  */
 export const ajaxPutUsingFetch = (ajaxArgs) => {
+    console.log('otprav', JSON.stringify(ajaxArgs.body));
     return fetch(ajaxArgs.url, {
         method: 'PUT',
         credentials: 'include',

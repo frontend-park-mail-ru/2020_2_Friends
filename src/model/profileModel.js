@@ -109,40 +109,12 @@ export class ProfileModel {
         }
     }
 
-    async getOrders (id) {
-        const response = await getUserOrdersDataRequest(id);
-        const fakeResponse = {
-            status: 200,
-            body: {
-                orders: [{
-                    storeName: 'Название магазина',
-                    storeId: 5,
-                    orderId: 1,
-                    date: '22.04.1998',
-                    orderStatus: 'Готово',
-                    address: 'Улица пушкина дом кукушкина',
-                    orderItems: [{ productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' }],
-                    orderTotal: '100 p'
-                }, {
-                    storeName: 'Название магазина',
-                    storeId: 5,
-                    orderId: 2,
-                    date: '22.04.1998',
-                    orderStatus: 2,
-                    address: 'Улица пушкина дом кукушкина',
-                    orderItems: [{ productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' }],
-                    orderTotal: '100 p'
-                }]
-            }
-        };
-        switch (fakeResponse.status) {
+    async getOrders () {
+        const response = await getUserOrdersDataRequest();
+        switch (response.status) {
         case 200: {
-            // const body = await response.json();
-            this.eventBus.call('SHOW_ORDERS', fakeResponse.body);
+            const body = await response.json();
+            this.eventBus.call('SHOW_ORDERS', body);
             break;
         }
         case 400:

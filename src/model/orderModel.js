@@ -1,4 +1,4 @@
-import { getStoreOrdersDataRequest, changeOrderStatusRequest } from '../utils/ApiService.js';
+import { changeOrderStatusRequest, getStoreOrders } from '../utils/ApiService.js';
 export class OrderModel {
     /**
      * Creating an OrderModel instance.
@@ -7,13 +7,16 @@ export class OrderModel {
      */
     constructor (eventBus) {
         this.eventBus = eventBus;
+
+        this.changeStatus = this.changeStatus.bind(this);
+
         eventBus.subscribe('CHANGE_STATUS', this.changeStatus);
     }
 
     async changeStatus (data) {
-        const { orderStatus, orderId } = data;
+        const { status, orderId, vendorId } = data;
         console.log(data);
-        const response = await changeOrderStatusRequest({ orderStatus: orderStatus, orderId: orderId });
+        const response = await changeOrderStatusRequest({ status: status, orderId: orderId, vendorId: vendorId });
         switch (response.status) {
         case 200: {
             break;
@@ -34,36 +37,11 @@ export class OrderModel {
      * @param {object} id store id
      */
     async getData (id) {
-        const response = await getStoreOrdersDataRequest(id);
-        const fakeResponse = {
-            status: 200,
-            body: {
-                storeName: 'Название магазина',
-                orders: [{
-                    orderId: 1,
-                    date: '22.04.1998',
-                    orderStatus: 'Готовится',
-                    address: 'Улица пушкина дом кукушкина',
-                    orderItems: [{ productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' }],
-                    orderTotal: '100 p'
-                }, {
-                    orderId: 2,
-                    date: '22.04.1998',
-                    orderStatus: 'Доставка',
-                    address: 'Улица пушкина дом кукушкина',
-                    orderItems: [{ productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' },
-                        { productName: 'булочка', productPrice: '200 р' }],
-                    orderTotal: '100 p'
-                }]
-            }
-        };
-        switch (fakeResponse.status) {
+        const response = await getStoreOrders(id);
+        switch (response.status) {
         case 200: {
-            // const body = await response.json();
-            this.eventBus.call('SHOW_ORDERS', fakeResponse.body);
+            const body = await response.json();
+            this.eventBus.call('SHOW_ORDERS', body);
             break;
         }
         case 400:
