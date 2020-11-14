@@ -152,7 +152,7 @@ export class ProfileView {
     addEventListeners () {
         const favoriteStore = this.root.querySelector('.js-favstore-button');
         favoriteStore.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: 1 });
+            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: 42 });
         });
 
         const profileData = this.root.querySelector('.js-userdata-button');

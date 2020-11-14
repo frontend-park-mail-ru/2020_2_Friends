@@ -1,4 +1,4 @@
-import { getBucketRequest } from '../utils/ApiService.js';
+import { getBucketRequest, createOrderRequest } from '../utils/ApiService.js';
 
 export class BucketModel {
     /**
@@ -9,6 +9,7 @@ export class BucketModel {
     constructor (eventBus) {
         this.eventBus = eventBus;
         this.getBucketData = this.getBucketData.bind(this);
+        this.eventBus.subscribe('CREATE_ORDER', this.createOrder);
     }
 
     async getBucketData () {
@@ -19,6 +20,18 @@ export class BucketModel {
             this.eventBus.call('SHOW_CART', {
                 products: body
             });
+            break;
+        }
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
+    }
+
+    async createOrder (data) {
+        const response = await createOrderRequest(data);
+        switch (response.status) {
+        case 200: {
+            console.log('заказ создался');
             break;
         }
         default:

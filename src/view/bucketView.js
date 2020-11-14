@@ -27,13 +27,16 @@ export class BucketView {
 
     createOrder () {
         var data = {};
+        var productIds = [];
+        data.address = 'Москва, Красная площадь, дом 1';
         const products = this.root.querySelectorAll('.bucket-item');
         products.forEach(product => {
-            const name = product.querySelector('.bucket-item__name').innerHTML;
-            console.log(name);
-            // const name = product.querySelector('.bucket-item__name').innerHTML;
+            productIds.push(parseInt(product.dataset.id));
         });
-        console.log(data);
+        data.products = productIds;
+        data.vendor_id = 42;
+        data.vendor_name = 'Шоколадница';
+        this.eventBus.call('CREATE_ORDER', data);
     }
 
     addEventListeners () {

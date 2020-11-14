@@ -37,6 +37,7 @@ export const ajaxDeleteUsingFetch = (ajaxArgs) => {
  * @return {Promise} - Response object.
  */
 export const ajaxPostUsingFetch = (ajaxArgs) => {
+    console.log(JSON.stringify(ajaxArgs.body));
     return fetch(ajaxArgs.url, {
         method: 'POST',
         credentials: 'include',
