@@ -41,7 +41,8 @@ export class OrderModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            this.eventBus.call('SHOW_ORDERS', body);
+            const fullBody = { storeId: id, storeName: body[0].vendor_name, body: body };
+            this.eventBus.call('SHOW_ORDERS', fullBody);
             break;
         }
         case 400:

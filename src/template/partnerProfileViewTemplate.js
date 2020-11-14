@@ -44,10 +44,9 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 <button class="profile-page__img-upload-button">
                     <img class="profile-page__img-upload-button-img">
                 </button>
-                <form class="js-addstore-avatar">
-                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
-                    <input type="submit" />
-                </form>
+                <form class="addstore-avatar-form">
+                <input value={{ picture }} id="addstore-avatar-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+            </form>
             </div>
             <div class="profile-page__right-column">
                 <input type="text" class="common-input js-addstore-name" placeholder="Имя магазина:"></input>

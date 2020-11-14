@@ -62,7 +62,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
 
         <div class="profile-page__content js-profile-orders">
-            <div class="profile-page__content-column" id="orderColumn">
+            <div class=" order-column-profile " id="orderColumn">
                 
             </div>
         </div>

@@ -11,13 +11,12 @@ export const renderOrderView = () => window.Handlebars.compile(`
         </div>
     </div>
     <div class="order-column">
-        {{#each orders}}
-        <div class="order-cart" id={{this.orderId}} data-orderId={{this.orderId}}>
+        {{#each body}}
+        <div class="order-cart" id={{this.id}} data-orderId={{this.id}}>
             <div class="order-cart__header">
-                <img class="order-cart__resto-img" src="img/250px-CycleLayer2.png"></img>
                 <div class="order-cart__info">
-                    <a class="order-cart__shop-name" href="#">Имя магазина</a>
-                    <p class="order-cart__date">{{this.date}}</p>
+                    <a class="order-cart__shop-name" href="#">{{this.vendor_name}}</a>
+                    <p class="order-cart__date">{{this.created_at}}</p>
                     <p class="order-cart__address">{{this.address}}</p>
                 </div>
                 <select class="order-cart__status">
@@ -29,10 +28,10 @@ export const renderOrderView = () => window.Handlebars.compile(`
                 </select>
             </div>
             <div class="order-cart__order-list">
-            {{#each this.orderItems}}
+            {{#each this.products}}
                 <div class="order-list__order-item">
-                    <div class="order-item__name">{{this.productName}}</div>
-                    <div class="order-item__price">{{this.productPrice}}</div>
+                    <div class="order-item__name">{{this.food_name}}</div>
+                    <div class="order-item__price">{{this.food_price}}</div>
                 </div>
             {{/each}}
             </div>

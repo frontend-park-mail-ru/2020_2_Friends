@@ -21,20 +21,21 @@ export class OrderView {
         const template = renderOrderView();
         this.root.innerHTML = template(data);
         this.addEventListeners();
-        this.setStatus(data);
+        this.setStatus(data.body);
     }
 
     setStatus (orders) {
         orders.forEach(order => {
-            const e = document.getElementById(order.orderId);
-            e.querySelector('.order-cart__status').value = order.orderStatus;
+            const e = document.getElementById(order.id);
+            e.querySelector('.order-cart__status').value = order.status;
         });
     }
 
     addEventListeners () {
         const toStoreBtn = this.root.querySelector('.js-to-store-button');
-        const storeId = document.getElementById('storeHeader').dataset.store_id;
+        const storeId = document.getElementById('storeHeader').dataset.storeid;
         toStoreBtn.addEventListener('click', () => {
+            console.log(storeId);
             this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { storeId });
         });
 
@@ -44,7 +45,7 @@ export class OrderView {
             status.addEventListener('change', () => {
                 const orderId = status.parentNode.parentNode.dataset.orderid;
                 console.log(orderId, status.value, storeHeader.dataset.storeid, 'заказ статус магаз');
-                this.eventBus.call('CHANGE_STATUS', { orderId: orderId, status: status.value, vendorId: 41 });
+                this.eventBus.call('CHANGE_STATUS', { orderId: orderId, status: status.value, vendorId: storeHeader.dataset.storeid });
             });
         });
     }

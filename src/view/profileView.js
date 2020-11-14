@@ -138,9 +138,10 @@ export class ProfileView {
     }
 
     showOrders (data) {
+        console.log(data);
         const orderColumn = document.getElementById('orderColumn');
         const template = renderOrderView();
-        data.orders.forEach((order) => {
+        data.forEach((order) => {
             const orderHTML = template(order);
             orderColumn.innerHTML += orderHTML;
         });
