@@ -238,8 +238,8 @@ export const changeProductImgRequest = (input) => {
 
 export const changeStoreImgRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.id + '/pictures',
-        body: input.img
+        url: backendUrl + '/api/v1/vendors/' + input.storeId + '/pictures',
+        body: input.avatar
     };
     return ajaxMultipartUsingFetch(args);
 };

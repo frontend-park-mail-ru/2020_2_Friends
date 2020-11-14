@@ -195,3 +195,12 @@
 .store__functions {
     display: inline;
 }
+
+.editstore-avatar-form {
+    margin-top: auto;
+    max-width: 300px;
+    overflow: hidden;
+}
+.store__header-headline {
+    margin-right: auto;
+}

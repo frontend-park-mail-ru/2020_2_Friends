@@ -17,7 +17,6 @@ export class OrderView {
     }
 
     render (data) {
-        console.log('data', data);
         const template = renderOrderView();
         this.root.innerHTML = template(data);
         this.addEventListeners();

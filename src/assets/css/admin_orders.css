@@ -5,6 +5,7 @@
     margin-bottom: 40px;
     flex: 1;
     max-width: 800px;
+    min-width: 800px;
     border-radius: 20px;
     background-color: #FFFFFF;
 }

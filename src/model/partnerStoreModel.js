@@ -1,4 +1,4 @@
-import { getStoreByIdDataPartnerRequest, createProductRequest, changeProductImgRequest, changeProductRequest, deleteProductRequest } from '../utils/ApiService.js';
+import { getStoreByIdDataPartnerRequest, createProductRequest, changeProductImgRequest, changeProductRequest, deleteProductRequest, changeStoreImgRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 export class PartnerStoreModel {
     /**
@@ -10,10 +10,12 @@ export class PartnerStoreModel {
         this.getData = this.getData.bind(this);
         this.createProduct = this.createProduct.bind(this);
         this.changeProduct = this.changeProduct.bind(this);
+        this.uploadAvatar = this.uploadAvatar.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('CREATE_PRODUCT', this.createProduct);
         eventBus.subscribe('EDIT_PRODUCT', this.changeProduct);
         eventBus.subscribe('DELETE_PRODUCT', this.deleteProduct);
+        eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
     };
 
     /**
@@ -77,13 +79,13 @@ export class PartnerStoreModel {
         }
     }
 
-    async changeProductImg (input) { // { food_id: body.id, food_img: input.img, storeId: input.storeId }
+    async changeProductImg (input) {
         const response = await changeProductImgRequest({ food_id: input.food_id, store_id: input.store_id, food_img: input.food_img });
         switch (response.status) {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            this.eventBus.call('RENDER_AVATAR', { avatarUrl: avatarUrl });
+            this.eventBus.call('RENDER_PRODUCT_IMG', { avatarUrl: avatarUrl });
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
         }
@@ -98,6 +100,27 @@ export class PartnerStoreModel {
         case 200: {
             break;
         }
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
+    }
+
+    async uploadAvatar (data) {
+        const response = await changeStoreImgRequest(data);
+
+        switch (response.status) {
+        case 200: {
+            const avatar = await response.json();
+            const avatarUrl = makeAvatarUrl(avatar.avatar);
+            this.eventBus.call('RENDER_LOGO', { avatarUrl: avatarUrl });
+            break;
+        }
+        case 400:
+            this.eventBus.call('AVATAR_UPLOAD_ERROR');
+            break;
+        case 500:
+            this.eventBus.call('SERVER_INTERNAL_ERROR');
+            break;
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }

@@ -60,7 +60,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <div class="profile-page__content-column">
             {{#each stores}}
                 <div class="my-store">
-                    <img class="my-store__img" src="{{this.picture}}"></img>
+                    <img class="my-store__img" src="http://89.208.197.247:9001/data/img/{{this.picture}}"></img>
                     <div class="my-store__info">
                         <p class="my-store__name">{{this.store_name}}</p>
                         <p class="my-store__descr">{{this.descr}}</p>

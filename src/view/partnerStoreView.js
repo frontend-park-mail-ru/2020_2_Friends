@@ -16,7 +16,8 @@ export class PartnerStoreView {
         this.storeDataError = this.storeDataError.bind(this);
         this.serverInternalError = this.serverInternalError.bind(this);
         this.showNewProduct = this.showNewProduct.bind(this);
-        this.renderAvatar = this.renderAvatar.bind(this);
+        this.renderProductImg = this.renderProductImg.bind(this);
+        this.renderLogo = this.renderLogo.bind(this);
 
         this.addProductEventListeners = this.addProductEventListeners.bind(this);
 
@@ -24,7 +25,8 @@ export class PartnerStoreView {
         eventBus.subscribe('STORE_DATA_ERROR', this.storeDataError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
         eventBus.subscribe('SHOW_NEW_PRODUCT', this.showNewProduct);
-        eventBus.subscribe('RENDER_AVATAR', this.renderAvatar);
+        eventBus.subscribe('RENDER_PRODUCT_IMG', this.renderProductImg);
+        eventBus.subscribe('RENDER_LOGO', this.renderLogo);
     }
 
     /**
@@ -66,6 +68,16 @@ export class PartnerStoreView {
         editBtn.addEventListener('click', () => {
             editBtn.parentNode.style.display = 'none';
             editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
+        });
+
+        const editPic = this.root.querySelector('.editstore-avatar-form');
+        editPic.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const file = e.target.uploadFile.files[0];
+            const avatar = new FormData();
+            avatar.append('image', file);
+            const data = { avatar: avatar, storeId: editPic.parentNode.parentNode.dataset.store_id };
+            this.eventBus.call('UPLOAD_AVATAR', data);
         });
 
         const saveChangesBtn = product.querySelector('.js-save-item-changes');
@@ -120,8 +132,14 @@ export class PartnerStoreView {
      *
      * @param {object} data - Avatar object, contains avatarUrl to rerender.
      */
-    renderAvatar (data) {
+    renderProductImg (data) {
         const avatarElement = this.root.querySelector('.product__img');
+        avatarElement.src = data.avatarUrl;
+        console.log(data.avatarUrl);
+    }
+
+    renderLogo (data) {
+        const avatarElement = this.root.querySelector('.store__logo');
         avatarElement.src = data.avatarUrl;
     }
 
