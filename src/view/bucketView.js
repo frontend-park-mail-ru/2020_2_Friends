@@ -34,8 +34,6 @@ export class BucketView {
             productIds.push(parseInt(product.dataset.id));
         });
         data.products = productIds;
-        data.vendor_id = 42;
-        data.vendor_name = 'Шоколадница';
         this.eventBus.call('CREATE_ORDER', data);
     }
 
