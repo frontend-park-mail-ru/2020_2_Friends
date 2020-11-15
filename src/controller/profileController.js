@@ -20,5 +20,6 @@ export class ProfileController {
         eventBus.subscribe('REDIRECT_TO_STORE', () => this.router.redirect('store'));
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
+        eventBus.subscribe('REDIRECT_TO_STORES', () => this.router.redirect('/'));
     }
 }

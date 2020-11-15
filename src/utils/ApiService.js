@@ -365,3 +365,10 @@ export const createOrderRequest = (data) => {
     };
     return ajaxPostUsingFetch(args);
 };
+
+export const getStores = () => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors'
+    };
+    return ajaxGetUsingFetch(args);
+};

@@ -52,5 +52,10 @@ export class BucketView {
         orderButton.addEventListener('click', () => {
             this.createOrder();
         });
+
+        const back = this.root.querySelector('.back-to-shopping__button');
+        back.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_STORES');
+        });
     }
 }

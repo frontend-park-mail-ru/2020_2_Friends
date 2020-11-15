@@ -55,5 +55,10 @@ export class StoreView {
                 element.innerHTML = 'Добавлено!';
             });
         });
+
+        const back = this.root.querySelector('.back-to-shopping__button');
+        back.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_STORES');
+        });
     }
 }

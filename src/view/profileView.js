@@ -207,5 +207,10 @@ export class ProfileView {
             const data = { name, number };
             this.eventBus.call('CHANGE_INFO', data);
         });
+
+        const back = this.root.querySelector('.back-to-shopping__button');
+        back.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_STORES');
+        });
     }
 }
