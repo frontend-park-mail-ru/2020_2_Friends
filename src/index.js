@@ -1,4 +1,3 @@
-// import { response } from 'express';
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
 import { HeaderController } from './controller/headerController.js';
@@ -6,12 +5,14 @@ import { RegisterController } from './controller/registerController.js';
 import { StoreController } from './controller/storeController.js';
 import { BucketController } from './controller/bucketController.js';
 import { OrderController } from './controller/orderController.js';
-import { Router } from './utils/router.js';
+import { AllStoresController } from './controller/allStoresController.js';
 
 import { PartnerLoginController } from './controller/partnerLoginController.js';
 import { PartnerRegisterController } from './controller/partnerRegisterController.js';
 import { PartnerProfileController } from './controller/partnerProfileController.js';
 import { PartnerStoreController } from './controller/partnerStoreController.js';
+
+import { Router } from './utils/router.js';
 
 const root = document.getElementById('root');
 const header = document.getElementById('header');
@@ -24,13 +25,13 @@ const profileController = new ProfileController(root, router);
 const storeController = new StoreController(root, router);
 const bucketController = new BucketController(root, router);
 const orderController = new OrderController(root, router);
+const allStoresController = new AllStoresController(root, router);
 
 const partnerLoginController = new PartnerLoginController(root, router);
 const partnerRegController = new PartnerRegisterController(root, router);
 const partnerProfileController = new PartnerProfileController(root, router);
 const partnerStoreController = new PartnerStoreController(root, router);
 // Setting routes to navigate inside an app.
-router.setRoute('^/?$', loginController.view.render);
 router.setRoute('^/login/?$', loginController.view.render);
 router.setRoute('^/order/?$', () => {
     orderController.view.render(false);
@@ -45,7 +46,10 @@ router.setRoute('^/store/?$', () => {
     headerController.view.render(false);
     storeController.model.getData();
 });
-
+router.setRoute('^/?$', () => {
+    headerController.view.render(true);
+    allStoresController.model.getStoresData();
+});
 router.setRoute('^/stores/(?<id>\\d+)/?$', (id) => {
     headerController.view.render(false);
     storeController.storePageHandler(id);
