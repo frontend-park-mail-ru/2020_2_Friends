@@ -6,9 +6,10 @@ export const renderStoreView = () => window.Handlebars.compile(`
     <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
     <div>
         <img src="http://89.208.197.247:9001/data/img/{{picture}}" class="store__logo" alt="Store logo">
-        <form class="upload-avatar">
+        <form class="upload-logo">
         <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
         <input type="submit" />
+    </form>
     </form>
     </div>
         <div class="store__header-headline">

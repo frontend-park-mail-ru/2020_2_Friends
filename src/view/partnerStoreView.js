@@ -149,6 +149,18 @@ export class PartnerStoreView {
     }
 
     addEventListeners () {
+        const uploadLogo = this.root.querySelector('.upload-logo');
+        uploadLogo.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const file = e.target.uploadFile.files[0];
+            const avatar = new FormData();
+            avatar.append('image', file);
+            const storeId = document.getElementById('storeHeader').dataset.store_id;
+
+            const data = { avatar, storeId };
+            this.eventBus.call('UPLOAD_STORE_LOGO', data);
+        });
+
         const products = this.root.querySelectorAll('.product');
         products.forEach(product => { this.addProductEventListeners(product); });
 

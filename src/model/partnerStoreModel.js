@@ -10,12 +10,12 @@ export class PartnerStoreModel {
         this.getData = this.getData.bind(this);
         this.createProduct = this.createProduct.bind(this);
         this.changeProduct = this.changeProduct.bind(this);
-        this.uploadAvatar = this.uploadAvatar.bind(this);
+        this.uploadLogo = this.uploadLogo.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('CREATE_PRODUCT', this.createProduct);
         eventBus.subscribe('EDIT_PRODUCT', this.changeProduct);
         eventBus.subscribe('DELETE_PRODUCT', this.deleteProduct);
-        eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
+        eventBus.subscribe('UPLOAD_STORE_LOGO', this.uploadLogo);
     };
 
     /**
@@ -124,7 +124,7 @@ export class PartnerStoreModel {
         }
     }
 
-    async uploadAvatar (data) {
+    async uploadLogo (data) {
         const response = await changeStoreImgRequest(data);
 
         switch (response.status) {
