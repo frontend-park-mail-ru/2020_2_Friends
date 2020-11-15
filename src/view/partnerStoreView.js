@@ -140,7 +140,6 @@ export class PartnerStoreView {
     renderProductImg (data) {
         const avatarElement = this.root.querySelector('.product__img');
         avatarElement.src = data.avatarUrl;
-        console.log(data.avatarUrl);
     }
 
     renderLogo (data) {

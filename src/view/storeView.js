@@ -41,7 +41,6 @@ export class StoreView {
      * Rendering register page and setting event listeners.
      */
     render (data) {
-        console.log(data);
         const template = renderStoreView();
         const storeHTML = template(data);
         this.root.innerHTML = storeHTML;

@@ -15,7 +15,6 @@ export class OrderModel {
 
     async changeStatus (data) {
         const { status, orderId, vendorId } = data;
-        console.log(data);
         const response = await changeOrderStatusRequest({ status: status, orderId: orderId, vendorId: vendorId });
         switch (response.status) {
         case 200: {

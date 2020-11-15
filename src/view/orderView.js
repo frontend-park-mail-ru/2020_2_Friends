@@ -34,7 +34,6 @@ export class OrderView {
         const toStoreBtn = this.root.querySelector('.js-to-store-button');
         const storeId = document.getElementById('storeHeader').dataset.storeid;
         toStoreBtn.addEventListener('click', () => {
-            console.log(storeId);
             this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { storeId });
         });
 
@@ -43,7 +42,6 @@ export class OrderView {
         orderStatuses.forEach(status => {
             status.addEventListener('change', () => {
                 const orderId = status.parentNode.parentNode.dataset.orderid;
-                console.log(orderId, status.value, storeHeader.dataset.storeid, 'заказ статус магаз');
                 this.eventBus.call('CHANGE_STATUS', { orderId: orderId, status: status.value, vendorId: storeHeader.dataset.storeid });
             });
         });

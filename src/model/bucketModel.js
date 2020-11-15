@@ -33,7 +33,6 @@ export class BucketModel {
         const response = await createOrderRequest(data);
         switch (response.status) {
         case 200: {
-            console.log('заказ создался');
             break;
         }
         default:
