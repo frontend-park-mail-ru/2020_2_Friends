@@ -32,7 +32,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
                 <button class="delete-button js-delete-button" data-product_id="{{ this.id }}"></button>
                 <div class="product__info">
                     <div class="product__name"> {{ this.food_name }} </div>
-                    <div class="product__price">{{ this.food_price }}</div>
+                    <div class="product__price">{{ this.food_price }} p</div>
                     <div class="product__price">{{ this.food_calories }}</div>
                 </div>
                 <div class="product__descr">{{ this.descr }}</div>

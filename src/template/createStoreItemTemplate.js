@@ -25,7 +25,7 @@ export const renderNewItemView = () => window.Handlebars.compile(`
     <button class="delete-button js-delete-button" data-product_id="{{ food_id }}"></button>
     <div class="product__info">
         <div class="product__name"> {{ food_name }} </div>
-        <div class="product__price">{{ food_price }}</div>
+        <div class="product__price">{{ food_price }} p</div>
         <div class="product__price">{{ food_calories }}</div>
     </div>
     <div class="product__descr">{{ descr }}</div>

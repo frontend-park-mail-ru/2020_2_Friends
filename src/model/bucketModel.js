@@ -1,4 +1,4 @@
-import { getBucketRequest, createOrderRequest } from '../utils/ApiService.js';
+import { getBucketRequest, createOrderRequest, deleteProductFromBucket } from '../utils/ApiService.js';
 
 export class BucketModel {
     /**
@@ -9,7 +9,9 @@ export class BucketModel {
     constructor (eventBus) {
         this.eventBus = eventBus;
         this.getBucketData = this.getBucketData.bind(this);
+        this.deleteFromBucket = this.deleteFromBucket.bind(this);
         this.eventBus.subscribe('CREATE_ORDER', this.createOrder);
+        this.eventBus.subscribe('DELETE_FROM_BUCKET', this.deleteFromBucket);
     }
 
     async getBucketData () {
@@ -32,6 +34,17 @@ export class BucketModel {
         switch (response.status) {
         case 200: {
             console.log('заказ создался');
+            break;
+        }
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
+    }
+
+    async deleteFromBucket (productId) {
+        const response = await deleteProductFromBucket(productId);
+        switch (response.status) {
+        case 200: {
             break;
         }
         default:

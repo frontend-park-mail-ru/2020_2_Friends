@@ -300,6 +300,13 @@ export const addProductToBucket = (productId) => {
     return ajaxPutUsingFetch(args);
 };
 
+export const deleteProductFromBucket = (productId) => {
+    const args = {
+        url: backendUrl + '/api/v1/carts' + '?product_id=' + productId
+    };
+    return ajaxDeleteUsingFetch(args);
+};
+
 export const addStore = (data) => {
     const args = {
         url: backendUrl + '/api/v1/vendors',

@@ -43,7 +43,10 @@ export class BucketView {
         const delItemBtn = this.root.querySelectorAll('.js-delete-item');
         delItemBtn.forEach(Btn => {
             Btn.addEventListener('click', () => {
-                Btn.parentNode.parentNode.parentNode.style.display = 'none';
+                const item = Btn.closest('.bucket-item');
+                const productId = item.dataset.id;
+                item.remove();
+                this.eventBus.call('DELETE_FROM_BUCKET', productId);
             });
         });
 
