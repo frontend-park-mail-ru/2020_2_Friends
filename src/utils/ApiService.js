@@ -82,6 +82,14 @@ export const changePersonalInfoRequest = (input) => {
     return ajaxPutUsingFetch(args);
 };
 
+export const changeAddressesRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/profile/addresses',
+        body: input
+    };
+    return ajaxPutUsingFetch(args);
+};
+
 /**
  * Creating http upload avatar request via ajax methods.
  * Using multipart/form-data to send a picture.

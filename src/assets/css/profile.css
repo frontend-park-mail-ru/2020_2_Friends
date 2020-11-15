@@ -49,7 +49,7 @@
     align-items: flex-end;
 }
 
-.profile-page__add-address-block {
+.add-address-block {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -132,7 +132,7 @@
     color: #FFFFFF;
 }
 
-.profile-page__address-item {
+.address-item {
     display: flex;
     flex-direction: row;
     background-color: #FFFFFF;
@@ -140,7 +140,7 @@
     align-items: center;
 }
 
-.profile-page__address-item-text {
+.address-item-text {
     margin: 10px 30px 10px 10px;
     font-style: normal;
     font-weight: normal;

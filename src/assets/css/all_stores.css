@@ -82,6 +82,7 @@
 .store__img {
     height: 350px;
     max-height: 350px;
+    overflow: hidden;
     width: 450px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
