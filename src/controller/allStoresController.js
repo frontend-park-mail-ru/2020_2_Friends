@@ -16,6 +16,6 @@ export class AllStoresController {
         this.model = new AllStoresModel(eventBus);
         this.view = new AllStoresView(root, eventBus);
 
-        eventBus.subscribe('REDIRECT_TO_STORE', ({ id }) => this.router.redirect('store' + '/' + id));
+        eventBus.subscribe('REDIRECT_TO_STORE', (id) => this.router.redirect('stores' + '/' + id));
     }
 }

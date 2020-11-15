@@ -1,4 +1,4 @@
-import { } from '../utils/ApiService.js';
+import { getStores } from '../utils/ApiService.js';
 
 export class AllStoresModel {
     /**
@@ -8,16 +8,17 @@ export class AllStoresModel {
      */
     constructor (eventBus) {
         this.eventBus = eventBus;
-        this.getBucketData = this.getBucketData.bind(this);
+
+        this.getStoresData = this.getStoresData.bind(this);
     }
 
-    async getBucketData () {
-        const response = await fetch; // TODO: await request();
+    async getStoresData () {
+        const response = await getStores();
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            this.eventBus.call('SHOW_CART', {
-                products: body
+            this.eventBus.call('SHOW_STORES', {
+                stores: body
             });
             break;
         }
