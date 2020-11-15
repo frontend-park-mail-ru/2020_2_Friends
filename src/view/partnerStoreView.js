@@ -16,6 +16,7 @@ export class PartnerStoreView {
         this.storeDataError = this.storeDataError.bind(this);
         this.serverInternalError = this.serverInternalError.bind(this);
         this.showNewProduct = this.showNewProduct.bind(this);
+        this.showChangedProduct = this.showChangedProduct.bind(this);
         this.renderProductImg = this.renderProductImg.bind(this);
         this.renderLogo = this.renderLogo.bind(this);
 
@@ -25,6 +26,7 @@ export class PartnerStoreView {
         eventBus.subscribe('STORE_DATA_ERROR', this.storeDataError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
         eventBus.subscribe('SHOW_NEW_PRODUCT', this.showNewProduct);
+        eventBus.subscribe('SHOW_CHANGED_PRODUCT', this.showChangedProduct);
         eventBus.subscribe('RENDER_PRODUCT_IMG', this.renderProductImg);
         eventBus.subscribe('RENDER_LOGO', this.renderLogo);
     }
@@ -59,25 +61,15 @@ export class PartnerStoreView {
         const delBtn = product.querySelector('.js-delete-button');
         delBtn.addEventListener('click', () => {
             const storeId = document.getElementById('storeHeader').dataset.store_id;
-            const productId = delBtn.parentNode.parentNode.dataset.product_id;
+            const productId = delBtn.dataset.product_id;
             const data = { store_id: storeId, product_id: productId };
             this.eventBus.call('DELETE_PRODUCT', data);
-            delBtn.parentNode.parentNode.remove();
+            delBtn.closest('.product').remove();
         });
         const editBtn = product.querySelector('.js-edit-item');
         editBtn.addEventListener('click', () => {
             editBtn.parentNode.style.display = 'none';
             editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
-        });
-
-        const editPic = this.root.querySelector('.editstore-avatar-form');
-        editPic.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const file = e.target.uploadFile.files[0];
-            const avatar = new FormData();
-            avatar.append('image', file);
-            const data = { avatar: avatar, storeId: editPic.parentNode.parentNode.dataset.store_id };
-            this.eventBus.call('UPLOAD_AVATAR', data);
         });
 
         const saveChangesBtn = product.querySelector('.js-save-item-changes');
@@ -89,10 +81,15 @@ export class PartnerStoreView {
             const name = product.querySelector('.js-name-input');
             const price = product.querySelector('.js-price-input');
             const descr = product.querySelector('.js-descr-input');
-            const id = product.dataset.product_id;
-            const imgFile = document.getElementById('product__img-form').files[0];
-            const img = new FormData();
-            img.append('image', imgFile);
+            const id = product.querySelector('.product-normal').dataset.product_id;
+            const imgFile = product.querySelector('input[name="product__img-form"]').files[0];
+            var img;
+            if (imgFile) {
+                img = new FormData();
+                img.append('image', imgFile);
+            } else {
+                img = null;
+            }
             const storeHeader = document.getElementById('storeHeader');
             const data = {
                 food_name: name.value,
@@ -104,17 +101,6 @@ export class PartnerStoreView {
             };
             this.eventBus.call('EDIT_PRODUCT', data);
         });
-
-        const delBtns = this.root.querySelectorAll('.js-delete-button');
-        delBtns.forEach(element => {
-            element.addEventListener('click', () => {
-                const storeId = document.getElementById('storeHeader').dataset.store_id;
-                const productId = element.parentNode.parentNode.dataset.product_id;
-                const data = { store_id: storeId, product_id: productId };
-                this.eventBus.call('DELETE_PRODUCT', data);
-                element.parentNode.parentNode.remove();
-            });
-        });
     }
 
     showNewProduct (data) {
@@ -124,7 +110,26 @@ export class PartnerStoreView {
         const product = this.root.querySelector('.new-product');
         product.classList.remove('new-product');
         product.innerHTML = itemHTML;
-        this.addProductEventListeners(product);
+        product.setAttribute('id', data.food_id);
+        const avatarElement = product.querySelector('.product__img');
+        if (data.avatarUrl) {
+            avatarElement.src = data.avatarUrl;
+            this.addProductEventListeners(product);
+        }
+    }
+
+    showChangedProduct (data) {
+        const product = document.getElementById(data.food_id);
+        const name = product.querySelector('.product__name');
+        const price = product.querySelector('.product__price');
+        const descr = product.querySelector('.product__descr');
+        name.innerHTML = data.food_name;
+        price.innerHTML = data.food_price;
+        descr.innerHTML = data.food_descr;
+        if (data.avatarUrl) {
+            const avatarElement = product.querySelector('.product__img');
+            avatarElement.src = data.avatarUrl;
+        }
     }
 
     /**
@@ -165,7 +170,6 @@ export class PartnerStoreView {
             delBtn.addEventListener('click', () => {
                 product.remove();
             });
-            // логика добавления товара
             const createBtn = product.querySelector('.js-save-new-item');
             createBtn.addEventListener('click', (e) => {
                 const name = product.querySelector('.js-name-input');
@@ -175,7 +179,7 @@ export class PartnerStoreView {
                 const img = new FormData();
                 img.append('image', imgFile);
                 const storeHeader = document.getElementById('storeHeader');
-                const data = { food_name: name.value, food_price: price.value, food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
+                const data = { food_name: name.value, food_price: parseInt(price.value), food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
                 this.eventBus.call('CREATE_PRODUCT', data);
             });
         });

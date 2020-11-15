@@ -64,13 +64,15 @@ export class PartnerStoreModel {
     }
 
     async changeProduct (input) {
-        const productInfo = { food_name: input.food_name, food_price: input.food_price, food_id: input.food_id, store_id: input.store_id };
+        const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), food_id: input.food_id, store_id: input.store_id };
         const response = await changeProductRequest(productInfo);
 
         switch (response.status) {
         case 200: {
             if (input.food_img) {
-                this.changeProductImg(input);
+                this.changeExistingProductImg(input);
+            } else {
+                this.eventBus.call('SHOW_CHANGED_PRODUCT', input);
             }
             break;
         }
@@ -85,8 +87,25 @@ export class PartnerStoreModel {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            this.eventBus.call('RENDER_PRODUCT_IMG', { avatarUrl: avatarUrl });
+            var data = input;
+            data.avatarUrl = avatarUrl;
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
+            break;
+        }
+        default:
+            console.log(`Uncaught backend http-status: ${response.status}`);
+        }
+    }
+
+    async changeExistingProductImg (input) {
+        const response = await changeProductImgRequest({ food_id: input.food_id, store_id: input.store_id, food_img: input.food_img });
+        switch (response.status) {
+        case 200: {
+            const avatar = await response.json();
+            const avatarUrl = makeAvatarUrl(avatar.avatar);
+            var data = input;
+            data.avatarUrl = avatarUrl;
+            this.eventBus.call('SHOW_CHANGED_PRODUCT', input);
             break;
         }
         default:
