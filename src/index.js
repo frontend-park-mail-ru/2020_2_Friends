@@ -1,4 +1,3 @@
-// import { response } from 'express';
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
 import { HeaderController } from './controller/headerController.js';

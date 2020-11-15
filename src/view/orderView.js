@@ -1,4 +1,3 @@
-// import { response } from 'express';
 import { renderOrderView } from '../template/orderViewTemplate.js';
 export class OrderView {
     /**

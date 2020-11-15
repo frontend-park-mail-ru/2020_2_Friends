@@ -106,7 +106,6 @@ export class PartnerStoreView {
     showNewProduct (data) {
         const template = renderNewItemView();
         const itemHTML = template(data);
-        // передать id нового продукта
         const product = this.root.querySelector('.new-product');
         product.classList.remove('new-product');
         product.innerHTML = itemHTML;
