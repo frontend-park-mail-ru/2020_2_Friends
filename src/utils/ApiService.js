@@ -220,7 +220,7 @@ export const changeProductRequest = (input) => {
     return ajaxPutUsingFetch(args);
 };
 
-export const deleteProductRequest = (input) => { // { store_id: storeId, product_id: productId }
+export const deleteProductRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.product_id,
         body: input
@@ -232,6 +232,14 @@ export const changeProductImgRequest = (input) => {
     const args = {
         url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id + '/pictures',
         body: input.food_img
+    };
+    return ajaxMultipartUsingFetch(args);
+};
+
+export const changeStoreImgRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors/' + input.storeId + '/pictures',
+        body: input.avatar
     };
     return ajaxMultipartUsingFetch(args);
 };
@@ -292,6 +300,13 @@ export const addProductToBucket = (productId) => {
     return ajaxPutUsingFetch(args);
 };
 
+export const deleteProductFromBucket = (productId) => {
+    const args = {
+        url: backendUrl + '/api/v1/carts' + '?product_id=' + productId
+    };
+    return ajaxDeleteUsingFetch(args);
+};
+
 export const addStore = (data) => {
     const args = {
         url: backendUrl + '/api/v1/vendors',
@@ -319,4 +334,40 @@ export const getStores = () => {
         url: backendUrl + '/api/v1/vendors'
     };
     return ajaxGetUsingFetch(args);
+};
+export const getUserOrdersDataRequest = () => {
+    const args = {
+        url: backendUrl + '/api/v1/orders'
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const changeOrderStatusRequest = (data) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${data.vendorId}/orders/${data.orderId}`,
+        body: { status: data.status }
+    };
+    return ajaxPutUsingFetch(args);
+};
+
+export const getStoreOrders = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/orders`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getOrder = (data) => {
+    const args = {
+        url: backendUrl + `/api/v1/orders/${data.id}`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const createOrderRequest = (data) => {
+    const args = {
+        url: backendUrl + '/api/v1/orders',
+        body: data
+    };
+    return ajaxPostUsingFetch(args);
 };

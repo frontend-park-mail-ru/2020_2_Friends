@@ -33,10 +33,7 @@ const partnerProfileController = new PartnerProfileController(root, router);
 const partnerStoreController = new PartnerStoreController(root, router);
 // Setting routes to navigate inside an app.
 router.setRoute('^/login/?$', loginController.view.render);
-router.setRoute('^/order/?$', () => {
-    orderController.view.render(false);
-    orderController.view.render();
-});
+
 router.setRoute('^/register/?$', regController.view.render);
 router.setRoute('^/profile/?$', () => {
     headerController.view.render(false);
@@ -57,6 +54,10 @@ router.setRoute('^/stores/(?<id>\\d+)/?$', (id) => {
 router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
     headerController.view.render(true);
     partnerStoreController.storePageHandler(id);
+});
+router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
+    headerController.view.render(true);
+    orderController.orderPageHandler(id);
 });
 router.setRoute('^/bucket/?$', () => {
     headerController.view.render(false);

@@ -3,12 +3,41 @@
  */
 export const renderOrderView = () => window.Handlebars.compile(`
 <div class="background">
-    <div class="order"> 
-        <div class="order__text">
-            <h1> Спасибо! Ваш заказ принят. </h1>
-            <h2> Наши повара начали его готовить. </h2>
-            <h2> Примерное время ожидания составляет 42 минуты! </h2>
+    <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
+        <img src="http://89.208.197.247:9001/data/img/{{picture}}" class="store__logo" alt="Store logo">
+        <div class="store__header-headline">
+            <div class="store__name">{{storeName}}</div>
+            <button class="info-button js-to-store-button">К магазину</button>
         </div>
+    </div>
+    <div class="order-column">
+        {{#each body}}
+        <div class="order-cart" id={{this.id}} data-orderId={{this.id}}>
+            <div class="order-cart__header">
+                <div class="order-cart__info">
+                    <a class="order-cart__shop-name" href="#">{{this.vendor_name}}</a>
+                    <p class="order-cart__date">{{this.created_at}}</p>
+                    <p class="order-cart__address">{{this.address}}</p>
+                </div>
+                <select class="order-cart__status">
+                    <option value="Новый" class="status__option">Новый</option>
+                    <option value="Принят" class="status__option">Принят</option>
+                    <option value="Готовится" class="status__option">Готовится</option>
+                    <option value="Доставка" class="status__option">Доставка</option>
+                    <option value="Завершён" class="status__option">Завершён</option>
+                </select>
+            </div>
+            <div class="order-cart__order-list">
+            {{#each this.products}}
+                <div class="order-list__order-item">
+                    <div class="order-item__name">{{this.food_name}}</div>
+                    <div class="order-item__price">{{this.food_price}}</div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+        {{/each}}
+
     </div>
 </div>
 `);

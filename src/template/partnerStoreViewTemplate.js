@@ -3,12 +3,22 @@
  */
 export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
-    <div id="storeHeader" data-store_id="{{storeId}}"class="store__header">
-        <img src="assets/store4.png" class="store__logo" alt="Store logo">
+    <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
+    <div>
+        <img src="http://89.208.197.247:9001/data/img/{{picture}}" class="store__logo" alt="Store logo">
+        <form class="upload-logo">
+        <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+        <input type="submit" />
+    </form>
+    </form>
+    </div>
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>
-            <button class="info-button">Отзывы</button>
-            <button class="proceed-button js-add-item">Добавить блюдо</button>
+            <div class="store__functions">
+            <button class="info-button">Отзывы</button> 
+            <button class="info-button js-goto-orders orders-button">Заказы</button>
+            <button class="info-button js-add-item">Добавить блюдо</button>
+            </div>
         </div>
     </div>
     <div class="store__showcase js-showcase">
@@ -16,13 +26,13 @@ export const renderStoreView = () => window.Handlebars.compile(`
 
 
         {{#each products}}
-        <div class="product" data-product_id="{{ this.id }}">
-            <div class="product-normal">
+        <div class="product" id="{{ this.id }}" data-product_id="{{ this.id }}">
+            <div class="product-normal" data-product_id="{{ this.id }}">
                 <img src="http://89.208.197.247:9001/data/img/{{ this.picture }}" class="product__img" alt="assets/burger1.png">
-                <button class="delete-button js-delete-button"></button>
+                <button class="delete-button js-delete-button" data-product_id="{{ this.id }}"></button>
                 <div class="product__info">
                     <div class="product__name"> {{ this.food_name }} </div>
-                    <div class="product__price">{{ this.food_price }}</div>
+                    <div class="product__price">{{ this.food_price }} p</div>
                     <div class="product__price">{{ this.food_calories }}</div>
                 </div>
                 <div class="product__descr">{{ this.descr }}</div>
@@ -33,7 +43,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
             <div class="product-editor" data-product_id="{{ this.id }} id="{{ this.id }}">
                 <img src="http://89.208.197.247:9001/data/img/{{ this.picture }}" class="product__img">
                 <form class="product__img-form">
-                    <input value={{ this.picture }} id="product__img-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+                    <input value={{ this.picture }} id="product__img-form" type="file" name="product__img-form" accept=".png, .jpg, .jpeg">
                 </form>
                 <button class="delete-button js-delete-button"></button>
                 <div>

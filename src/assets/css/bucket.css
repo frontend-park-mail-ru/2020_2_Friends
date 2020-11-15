@@ -26,7 +26,7 @@
     flex-direction: row;
     border: 3px solid #C4C4C4;
     margin: 20px;
-    flex: 1;
+    height: fit-content;
 }
 
 .bucket-item__img {
@@ -46,6 +46,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 10px 10px auto auto;
 }
 
 .bucket-item__name {

@@ -39,7 +39,7 @@
     flex-direction: row;
     width: 100%;
     margin-bottom: 40px;
-    padding: 20px 40px 20px 40px;
+    padding: 20px 0px 20px 0px;
 }
 
 .store__header-headline {
@@ -188,5 +188,19 @@
     justify-self: end;
 }
 
-.product__upload-img {
+.orders-button {
+    margin: 20px;
+}
+
+.store__functions {
+    display: inline;
+}
+
+.editstore-avatar-form {
+    margin-top: auto;
+    max-width: 300px;
+    overflow: hidden;
+}
+.store__header-headline {
+    margin-right: auto;
 }

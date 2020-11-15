@@ -36,9 +36,10 @@
     border-radius: 50%;
     margin: 10px;
     padding: 10px;
-    justify-self: start;
+    margin-right: auto;
 }
 
 .my-store__button {
-    align-self: end;
+    margin-top: auto;
+    margin-left: auto;
 }

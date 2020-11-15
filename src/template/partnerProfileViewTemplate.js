@@ -44,10 +44,9 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 <button class="profile-page__img-upload-button">
                     <img class="profile-page__img-upload-button-img">
                 </button>
-                <form class="js-addstore-avatar">
-                    <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
-                    <input type="submit" />
-                </form>
+                <form class="addstore-avatar-form">
+                <input  id="addstore-avatar-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+            </form>
             </div>
             <div class="profile-page__right-column">
                 <input type="text" class="common-input js-addstore-name" placeholder="Имя магазина:"></input>
@@ -61,7 +60,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <div class="profile-page__content-column">
             {{#each stores}}
                 <div class="my-store">
-                    <img class="my-store__img" src="{{this.picture}}"></img>
+                    <img class="my-store__img" src="http://89.208.197.247:9001/data/img/{{this.picture}}"></img>
                     <div class="my-store__info">
                         <p class="my-store__name">{{this.store_name}}</p>
                         <p class="my-store__descr">{{this.descr}}</p>

@@ -140,7 +140,10 @@ export class PartnerProfileView {
         storeDataButton.addEventListener('click', () => {
             const name = this.root.querySelector('.js-addstore-name');
             const description = this.root.querySelector('.js-addstore-descr');
-            const data = { name, description };
+            const imgFile = document.getElementById('addstore-avatar-form').files[0];
+            const img = new FormData();
+            img.append('image', imgFile);
+            const data = { name, description, img };
             this.eventBus.call('ADD_STORE', data);
         });
 
