@@ -54,12 +54,11 @@ export class PartnerStoreModel {
     async createProduct (input) {
         const productInfo = { food_name: input.food_name, food_price: input.food_price, id: input.store_id };
         const response = await createProductRequest(productInfo);
-        var map = input;
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            map.food_id = body.id;
-            this.changeProductImg(map);
+            input.food_id = body.id;
+            this.changeProductImg(input);
             break;
         }
         default:
@@ -91,8 +90,7 @@ export class PartnerStoreModel {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            var data = input;
-            data.avatarUrl = avatarUrl;
+            input.avatarUrl = avatarUrl;
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
         }
@@ -107,9 +105,8 @@ export class PartnerStoreModel {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            var data = input;
-            data.avatarUrl = avatarUrl;
-            this.eventBus.call('SHOW_CHANGED_PRODUCT', data);
+            input.avatarUrl = avatarUrl;
+            this.eventBus.call('SHOW_CHANGED_PRODUCT', input);
             break;
         }
         default:

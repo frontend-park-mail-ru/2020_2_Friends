@@ -26,8 +26,8 @@ export class BucketView {
     }
 
     createOrder () {
-        var data = {};
-        var productIds = [];
+        const data = {};
+        const productIds = [];
         const addrSelect = document.getElementById('js-address');
         data.address = addrSelect.value;
         const products = this.root.querySelectorAll('.bucket-item');
