@@ -12,7 +12,7 @@ export const renderBucketView = () => window.Handlebars.compile(`
 
             {{#each products}}
             <div class="bucket-item" data-id={{this.id}}>
-                <img class="bucket-item__img" src="http://89.208.197.247:9001/data/img/{{this.picture}}"></img>
+                <img class="bucket-item__img" src="{{this.picture}}"></img>
                 <div class="bucket-item__col">
                     <div class="bucket-item__name">{{this.food_name}}</div>
                     <div class="bucket-item__descr">{{this.food_price}}</div>
@@ -27,6 +27,12 @@ export const renderBucketView = () => window.Handlebars.compile(`
 
         <div class="bucket-total">
             <div class="bucket-total__header">Итого:</div>
+            <div class="bucket-total__store-name">Выберете адрес:</div>
+            <select id="js-address">
+            {{#each address}}
+            <option value="{{this}}" class="status__option">{{this}}</option>
+            {{/each}}
+        </select>
             <div class="bucket-total__store-name">{{this.store_name}}</div>
             <div class="bucket-total__sum">Сумма заказа:{{total}}</div>
             <div class="proceed-button bucket-total__order-button js-make-order">Заказать</div>

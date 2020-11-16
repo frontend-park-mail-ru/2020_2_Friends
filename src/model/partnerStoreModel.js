@@ -27,6 +27,10 @@ export class PartnerStoreModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
+            body.picture = makeAvatarUrl(body.picture);
+            body.products.forEach((product) => {
+                product.picture = makeAvatarUrl(product.picture);
+            });
             this.eventBus.call('SHOW_STORE',
                 {
                     storeName: body.store_name,
@@ -64,7 +68,7 @@ export class PartnerStoreModel {
     }
 
     async changeProduct (input) {
-        const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), food_id: input.food_id, store_id: input.store_id };
+        const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price) ? parseInt(input.food_price) : 0, food_id: input.food_id, store_id: input.store_id };
         const response = await changeProductRequest(productInfo);
 
         switch (response.status) {
@@ -105,7 +109,7 @@ export class PartnerStoreModel {
             const avatarUrl = makeAvatarUrl(avatar.avatar);
             var data = input;
             data.avatarUrl = avatarUrl;
-            this.eventBus.call('SHOW_CHANGED_PRODUCT', input);
+            this.eventBus.call('SHOW_CHANGED_PRODUCT', data);
             break;
         }
         default:
@@ -131,7 +135,7 @@ export class PartnerStoreModel {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            this.eventBus.call('RENDER_LOGO', { avatarUrl: avatarUrl });
+            this.eventBus.call('RENDER_LOGO', { avatarUrl });
             break;
         }
         case 400:

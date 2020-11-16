@@ -1,4 +1,5 @@
 import { getStores } from '../utils/ApiService.js';
+import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class AllStoresModel {
     /**
@@ -17,6 +18,9 @@ export class AllStoresModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
+            body.forEach((store) => {
+                store.picture = makeAvatarUrl(store.picture);
+            });
             this.eventBus.call('SHOW_STORES', {
                 stores: body
             });

@@ -199,7 +199,7 @@ export const changePartnerPersonalInfoRequest = (input) => {
 export const createProductRequest = (input) => {
     const productInfo = { food_name: input.food_name, food_price: input.food_price };
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.id + '/products',
+        url: backendUrl + `/api/v1/vendors/${input.id}/products`,
         body: productInfo
     };
     return ajaxPostUsingFetch(args);
@@ -214,7 +214,7 @@ export const getPartnersStoresRequest = () => {
 
 export const changeProductRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id,
+        url: backendUrl + `/api/v1/vendors/${input.store_id}/products/${input.food_id}`,
         body: input
     };
     return ajaxPutUsingFetch(args);
@@ -222,7 +222,7 @@ export const changeProductRequest = (input) => {
 
 export const deleteProductRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.product_id,
+        url: backendUrl + `/api/v1/vendors/${input.store_id}/products/${input.product_id}`,
         body: input
     };
     return ajaxDeleteUsingFetch(args);
@@ -230,7 +230,7 @@ export const deleteProductRequest = (input) => {
 
 export const changeProductImgRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id + '/pictures',
+        url: backendUrl + `/api/v1/vendors/${input.store_id}/products/${input.food_id}/pictures`,
         body: input.food_img
     };
     return ajaxMultipartUsingFetch(args);
@@ -238,7 +238,7 @@ export const changeProductImgRequest = (input) => {
 
 export const changeStoreImgRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.storeId + '/pictures',
+        url: backendUrl + `/api/v1/vendors/${input.storeId}/pictures`,
         body: input.avatar
     };
     return ajaxMultipartUsingFetch(args);
@@ -270,7 +270,7 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
  */
 export const pullPartnerAvatarRequest = (avatarName) => {
     const args = {
-        url: staticUrl + '/api/v1/data/img/' + avatarName
+        url: staticUrl + `/api/v1/data/img/${avatarName}`
     };
     return ajaxGetUsingFetch(args);
 };
@@ -302,7 +302,7 @@ export const addProductToBucket = (productId) => {
 
 export const deleteProductFromBucket = (productId) => {
     const args = {
-        url: backendUrl + '/api/v1/carts' + '?product_id=' + productId
+        url: backendUrl + `/api/v1/carts?product_id=${productId}`
     };
     return ajaxDeleteUsingFetch(args);
 };

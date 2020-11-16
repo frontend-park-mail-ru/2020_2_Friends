@@ -58,6 +58,9 @@ export class PartnerProfileModel {
                 break;
             }
             const stores = await responseStores.json();
+            stores.forEach((store) => {
+                store.picture = makeAvatarUrl(store.picture);
+            });
             const body = await response.json();
             const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : '../assets/img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {
