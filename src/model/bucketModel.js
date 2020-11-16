@@ -49,9 +49,8 @@ export class BucketModel {
     async deleteFromBucket (productId) {
         const response = await deleteProductFromBucket(productId);
         switch (response.status) {
-        case 200: {
+        case 200:
             break;
-        }
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }

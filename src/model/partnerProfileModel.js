@@ -17,7 +17,6 @@ export class PartnerProfileModel {
 
         this.eventBus = eventBus;
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
-        eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
         eventBus.subscribe('REDIRECT_TO_STORE', (storeId) => this.router.redirect('/stores/' + storeId));
         eventBus.subscribe('ADD_STORE', this.addStore);

@@ -16,7 +16,6 @@ export class ProfileModel {
         this.getOrders = this.getOrders.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
-        eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
         eventBus.subscribe('GET_ORDERS', this.getOrders);
     }

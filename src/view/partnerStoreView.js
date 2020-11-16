@@ -19,7 +19,7 @@ export class PartnerStoreView {
         this.showChangedProduct = this.showChangedProduct.bind(this);
         this.renderProductImg = this.renderProductImg.bind(this);
         this.renderLogo = this.renderLogo.bind(this);
-
+        this.priceNotValid = this.priceNotValid.bind(this);
         this.addProductEventListeners = this.addProductEventListeners.bind(this);
 
         eventBus.subscribe('SHOW_STORE', this.render);
@@ -29,6 +29,7 @@ export class PartnerStoreView {
         eventBus.subscribe('SHOW_CHANGED_PRODUCT', this.showChangedProduct);
         eventBus.subscribe('RENDER_PRODUCT_IMG', this.renderProductImg);
         eventBus.subscribe('RENDER_LOGO', this.renderLogo);
+        this.eventBus.subscribe('PRICE_NOT_VALID', this.priceNotValid);
     }
 
     /**
@@ -45,6 +46,18 @@ export class PartnerStoreView {
     storeDataError () {
         const storeErrors = this.root.querySelector('.js-store-errors');
         storeErrors.innerHTML = 'Произошла ошибка при загрузке данных магазина!';
+    }
+
+    priceNotValid (id) {
+        if (id) {
+            const product = document.getElementById(id);
+            const priceErr = product.querySelector('.js-price-error');
+            priceErr.innerHTML = 'Введите корректную цену!';
+        } else {
+            const product = this.root.querySelector('.new-product');
+            const priceErr = product.querySelector('.js-price-error');
+            priceErr.innerHTML = 'Введите корректную цену!';
+        }
     }
 
     /**
@@ -68,16 +81,14 @@ export class PartnerStoreView {
         });
         const editBtn = product.querySelector('.js-edit-item');
         editBtn.addEventListener('click', () => {
+            // const priceErr = editBtn.closest('.js-price-error');
+            // priceErr.innerHTML = '';
             editBtn.parentNode.style.display = 'none';
             editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
         });
 
         const saveChangesBtn = product.querySelector('.js-save-item-changes');
         saveChangesBtn.addEventListener('click', () => {
-            saveChangesBtn.parentNode.parentNode.style.display = 'none';
-            const product = saveChangesBtn.parentNode.parentNode.parentNode;
-            product.querySelector('.product-normal').style.display = 'flex';
-
             const name = product.querySelector('.js-name-input');
             const price = product.querySelector('.js-price-input');
             const descr = product.querySelector('.js-descr-input');
@@ -122,6 +133,8 @@ export class PartnerStoreView {
         const name = product.querySelector('.product__name');
         const price = product.querySelector('.product__price');
         const descr = product.querySelector('.product__descr');
+        const priceErr = product.querySelector('.js-price-error');
+        priceErr.innerHTML = '';
         name.innerHTML = data.food_name;
         price.innerHTML = data.food_price;
         descr.innerHTML = data.food_descr;
@@ -129,6 +142,8 @@ export class PartnerStoreView {
             const avatarElement = product.querySelector('.product__img');
             avatarElement.src = data.avatarUrl;
         }
+        product.querySelector('.product-normal').style.display = 'flex';
+        product.querySelector('.product-editor').style.display = 'none';
     }
 
     /**

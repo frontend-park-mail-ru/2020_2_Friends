@@ -11,6 +11,7 @@ export const renderItemCreateView = () => window.Handlebars.compile(`
     <div class="product__items-input">
         <input type="text" class="common-input js-name-input" placeholder="Название:"></input>
         <input type="text" class="common-input  wide-input js-descr-input" placeholder="Описание:"></input>
+        <div class="js-price-error text-error"></div>
         <input type="text" class="common-input  wide-input js-price-input" placeholder="Цена:"></input>
         <div>
             <button class="proceed-button js-save-new-item bottom-center-button">Создать</button>
@@ -41,6 +42,7 @@ export const renderNewItemView = () => window.Handlebars.compile(`
     <div>
         <input type="text" class="common-input js-name-input" placeholder="Название:" value="{{ food_name }}"></input>
         <input type="text" class="common-input  wide-input js-descr-input" placeholder="Описание:" value="{{ descr }}"></input>
+        <div class="js-price-error text-error"></div>
         <input type="text" class="common-input  wide-input js-price-input" placeholder="Цена:" value="{{ food_price }}"></input>
         <button class="proceed-button js-save-item-changes bottom-center-button" data-product_id="{{ id }}">Сохранить</button>
     </div>
