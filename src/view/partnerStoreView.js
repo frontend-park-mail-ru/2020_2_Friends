@@ -83,7 +83,7 @@ export class PartnerStoreView {
             const descr = product.querySelector('.js-descr-input');
             const id = product.querySelector('.product-normal').dataset.product_id;
             const imgFile = product.querySelector('input[name="product__img-form"]').files[0];
-            var img;
+            let img;
             if (imgFile) {
                 img = new FormData();
                 img.append('image', imgFile);

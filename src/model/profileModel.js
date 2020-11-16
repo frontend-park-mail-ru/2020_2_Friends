@@ -30,7 +30,7 @@ export class ProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            var avatarUrl;
+            let avatarUrl;
             if (!body.avatar) {
                 avatarUrl = '../assets/img/default-avatar.png';
             } else {
