@@ -38,9 +38,9 @@ export class BucketModel {
     async createOrder (data) {
         const response = await createOrderRequest(data);
         switch (response.status) {
-        case 200: {
+        case 200:
             break;
-        }
+
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
