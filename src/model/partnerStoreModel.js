@@ -30,6 +30,7 @@ export class PartnerStoreModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
+            console.log(body);
             body.picture = makeAvatarUrl(body.picture);
             body.products.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
@@ -62,7 +63,13 @@ export class PartnerStoreModel {
             case 200: {
                 const body = await response.json();
                 input.food_id = body.id;
-                this.changeProductImg(input);
+                if (input.food_img) {
+                    console.log(input.food_img);
+                    this.changeProductImg(input);
+                } else {
+                    console.log('SHOW_NEW_PRODUCT');
+                    this.eventBus.call('SHOW_NEW_PRODUCT', input);
+                }
                 break;
             }
             default:
@@ -98,6 +105,7 @@ export class PartnerStoreModel {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
             input.avatarUrl = avatarUrl;
+            console.log('SHOW_NEW_PRODUCT');
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
         }
@@ -159,6 +167,7 @@ export class PartnerStoreModel {
 
         const priceValidator = userFormValidator({ value: foodPrice }, regTemplates.price);
         if (!priceValidator.status) {
+            console.log(foodPrice);
             this.eventBus.call('PRICE_NOT_VALID', foodId);
             isValid = false;
         }

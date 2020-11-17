@@ -81,8 +81,6 @@ export class PartnerStoreView {
         });
         const editBtn = product.querySelector('.js-edit-item');
         editBtn.addEventListener('click', () => {
-            // const priceErr = editBtn.closest('.js-price-error');
-            // priceErr.innerHTML = '';
             editBtn.parentNode.style.display = 'none';
             editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
         });
@@ -201,8 +199,13 @@ export class PartnerStoreView {
                 const price = product.querySelector('.js-price-input');
                 const descr = product.querySelector('.js-descr-input');
                 const imgFile = document.getElementById('product__img-form').files[0];
-                const img = new FormData();
-                img.append('image', imgFile);
+                let img;
+                if (imgFile) {
+                    img = new FormData();
+                    img.append('image', imgFile);
+                } else {
+                    img = null;
+                }
                 const storeHeader = document.getElementById('storeHeader');
                 const data = { food_name: name.value, food_price: parseInt(price.value), food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
                 this.eventBus.call('CREATE_PRODUCT', data);
