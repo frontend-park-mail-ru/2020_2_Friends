@@ -174,7 +174,7 @@ export class ProfileView {
             btn.addEventListener('click', () => {
                 btn.closest('.address-item').remove();
                 const oldAddrs = this.root.querySelectorAll('.address-item-text');
-                const addrs = [...([...oldAddrs].map(oldAddr => oldAddr.innerText))];
+                const addrs = [...oldAddrs].map(oldAddr => oldAddr.innerText);
                 this.eventBus.call('CHANGE_ADDRS', addrs);
             });
         });
