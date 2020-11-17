@@ -171,11 +171,9 @@ export class ProfileModel {
 
     validateAddress (addresses) {
         let isValid = true;
-        let addressValidator;
         addresses.forEach((addr) => {
             const data = { value: addr };
-            addressValidator = userFormValidator(data, regTemplates.address);
-            console.log(addressValidator.status, addr);
+            const addressValidator = userFormValidator(data, regTemplates.address);
             if (!addressValidator.status) {
                 isValid = false;
             }

@@ -170,29 +170,14 @@ export class ProfileView {
         if (!deleteBtns) {
             return;
         }
-        if (deleteBtns.length > 1) {
-            deleteBtns.forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    btn.closest('.address-item').remove();
-                    const addrs = [];
-                    const oldAddrs = this.root.querySelectorAll('.address-item-text');
-                    oldAddrs.forEach((addr) => {
-                        addrs.push(addr.innerHTML);
-                    });
-                    this.eventBus.call('CHANGE_ADDRS', addrs);
-                });
-            });
-        } else {
-            deleteBtns[0].addEventListener('click', () => {
-                deleteBtns.closest('.address-item').remove();
-                const addrs = [];
+        deleteBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                btn.closest('.address-item').remove();
                 const oldAddrs = this.root.querySelectorAll('.address-item-text');
-                oldAddrs.forEach((addr) => {
-                    addrs.push(addr.innerHTML);
-                });
+                const addrs = [...([...oldAddrs].map(oldAddr => oldAddr.innerText))];
                 this.eventBus.call('CHANGE_ADDRS', addrs);
             });
-        }
+        });
     }
 
     /**
@@ -234,15 +219,9 @@ export class ProfileView {
 
         const addAddrBtn = this.root.querySelector('.js-add-address');
         addAddrBtn.addEventListener('click', () => {
-            const addrs = [];
             const addrsInput = this.root.querySelector('.js-address-input').value;
-            addrs.push(addrsInput);
             const oldAddrs = this.root.querySelectorAll('.address-item-text');
-            oldAddrs.forEach((addr) => {
-                addrs.push(addr.innerHTML);
-            });
-            // отобразить элемент
-            // отослать
+            const addrs = [addrsInput, ...([...oldAddrs].map(oldAddr => oldAddr.innerText))];
             this.eventBus.call('CHANGE_ADDRS', addrs);
         });
 
