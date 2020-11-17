@@ -115,10 +115,10 @@
 }
 
 .product__img {
-    /* min-width: 100%; */
+    min-width: 100%;
     height: 370px;
     object-fit: cover;
-    /* overflow: hidden; */
+    overflow: hidden;
     padding-bottom: 20px;
 }
 
