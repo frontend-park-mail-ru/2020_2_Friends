@@ -52,7 +52,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
                     <input type="text" class="common-input  wide-input js-descr-input" placeholder="Описание:"
                         value="{{ this.descr }}"></input>
                         <div class="js-price-error text-error"></div>
-                    <input type="text" class="common-input  wide-input js-price-input" placeholder="Цена:"
+                    <input type="number" class="common-input  wide-input js-price-input" placeholder="Цена:"
                         value="{{ this.food_price }}"></input>
                     <button
                         class="proceed-button js-save-item-changes bottom-center-button"

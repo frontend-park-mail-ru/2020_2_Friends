@@ -1,7 +1,5 @@
 import { getStoreByIdDataPartnerRequest, createProductRequest, changeProductImgRequest, changeProductRequest, deleteProductRequest, changeStoreImgRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
-import { userFormValidator } from '../utils/validator.js';
-import { regTemplates } from '../utils/reg_templates.js';
 
 export class PartnerStoreModel {
     /**
@@ -164,10 +162,7 @@ export class PartnerStoreModel {
     validate (input) {
         const { foodPrice, foodId } = input;
         let isValid = true;
-
-        const priceValidator = userFormValidator({ value: foodPrice }, regTemplates.price);
-        if (!priceValidator.status) {
-            console.log(foodPrice);
+        if (Number.isNaN(parseInt(foodPrice))) {
             this.eventBus.call('PRICE_NOT_VALID', foodId);
             isValid = false;
         }

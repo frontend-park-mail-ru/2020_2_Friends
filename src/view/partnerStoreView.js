@@ -122,8 +122,8 @@ export class PartnerStoreView {
         const avatarElement = product.querySelector('.product__img');
         if (data.avatarUrl) {
             avatarElement.src = data.avatarUrl;
-            this.addProductEventListeners(product);
         }
+        this.addProductEventListeners(product);
     }
 
     showChangedProduct (data) {
