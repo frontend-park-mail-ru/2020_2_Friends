@@ -82,6 +82,14 @@ export const changePersonalInfoRequest = (input) => {
     return ajaxPutUsingFetch(args);
 };
 
+export const changeAddressesRequest = (input) => {
+    const args = {
+        url: backendUrl + '/api/v1/profiles/addresses',
+        body: input
+    };
+    return ajaxPutUsingFetch(args);
+};
+
 /**
  * Creating http upload avatar request via ajax methods.
  * Using multipart/form-data to send a picture.
@@ -329,6 +337,12 @@ export const getStoreByIdDataPartnerRequest = (id) => {
     return ajaxGetUsingFetch(args);
 };
 
+export const getStores = () => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors'
+    };
+    return ajaxGetUsingFetch(args);
+};
 export const getUserOrdersDataRequest = () => {
     const args = {
         url: backendUrl + '/api/v1/orders'
@@ -364,11 +378,4 @@ export const createOrderRequest = (data) => {
         body: data
     };
     return ajaxPostUsingFetch(args);
-};
-
-export const getStores = () => {
-    const args = {
-        url: backendUrl + '/api/v1/vendors'
-    };
-    return ajaxGetUsingFetch(args);
 };

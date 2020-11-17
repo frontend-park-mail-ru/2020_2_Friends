@@ -11,7 +11,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <button class="profile-page__navbar-button js-userdata-button link">О Вас</button>
             <button class="profile-page__navbar-button js-addresses-button link">Адреса</button>
             <button class="profile-page__navbar-button js-myorders-button link">Мои заказы</button>
-            <button class="profile-page__navbar-button js-favstore-button link">Избранный магазин</button>
             <button class="profile-page__navbar-button js-coupons-button link">Мои скидки</button>
         </div>
         <div class="profile-page__content js-profile-info">
@@ -46,24 +45,26 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 <img class="common-image" src="./assets/img/map.png">
             </div>
             <div class="profile-page__right-column">
-                {{#each addresses}}
-                <div class="profile-page__address-item">
-                    <div class="profile-page__address-item-text">
-                        {{this}}
+                <div id="address-column">
+                    <div class="js-addr-errors text-error"></div>
+                    {{#each addresses}}
+                    <div class="address-item">
+                        <div class="address-item-text">{{this}}</div>
+                        <div class=" address-delete-butoon round-delete-button js-delete-address"></div>
                     </div>
-                    <div class="round-delete-button js-delete-address"></div>
+                    {{/each}}
                 </div>
-                {{/each}}
-                <div class="profile-page__add-address-block">
-                    <input type="text" class="common-input" placeholder="Добавьте новый адрес:"></input>
-                    <button class="proceed-button">Добавить</button>
+                <div class="add-address-block">
+                    <input type="text" class="common-input js-address-input"
+                        placeholder="Добавьте новый адрес:"></input>
+                    <button class="proceed-button js-add-address">Добавить</button>
                 </div>
             </div>
         </div>
 
         <div class="profile-page__content js-profile-orders">
             <div class=" order-column-profile " id="orderColumn">
-                
+
             </div>
         </div>
 

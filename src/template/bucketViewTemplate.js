@@ -15,7 +15,7 @@ export const renderBucketView = () => window.Handlebars.compile(`
                 <img class="bucket-item__img" src="{{this.picture}}"></img>
                 <div class="bucket-item__col">
                     <div class="bucket-item__name">{{this.food_name}}</div>
-                    <div class="bucket-item__descr">{{this.food_price}}</div>
+                    <div class="bucket-item__descr">{{this.food_price}} p</div>
                 </div>
                 <div class="bucket-item__row">
                     <input class="bucket-item__quantity" type="number" value="1">
@@ -28,13 +28,13 @@ export const renderBucketView = () => window.Handlebars.compile(`
         <div class="bucket-total">
             <div class="bucket-total__header">Итого:</div>
             <div class="bucket-total__store-name">Выберете адрес:</div>
-            <select id="js-address">
-                {{#each address}}
+            <select class="bucket-total__select-address"id="js-address">
+                {{#each addresses}}
                 <option value="{{this}}" class="status__option">{{this}}</option>
                 {{/each}}
             </select>
             <div class="bucket-total__store-name">{{this.store_name}}</div>
-            <div class="bucket-total__sum">Сумма заказа:{{total}}</div>
+            <div class="bucket-total__sum">Сумма заказа: {{total}} p</div>
             <div class="proceed-button bucket-total__order-button js-make-order">Заказать</div>
         </div>
     </div>

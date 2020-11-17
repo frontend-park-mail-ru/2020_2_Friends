@@ -1,5 +1,6 @@
 import { renderProfileView } from '../template/profileViewTemplate.js';
 import { renderOrderView } from '../template/singleOrderViewTemplate.js';
+import { renderAddrListView } from '../template/addresListViewTemplate.js';
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -15,6 +16,7 @@ export class ProfileView {
         this.defaultErrorMessage = 'Перезагрузите страницу и попробуйте заново!'; //  TODO: Create exceptions module
 
         this.loginNotValid = this.loginNotValid.bind(this);
+        this.addrNotValid = this.addrNotValid.bind(this);
         this.numberNotValid = this.numberNotValid.bind(this);
         this.infoChanged = this.infoChanged.bind(this);
         this.render = this.render.bind(this);
@@ -25,6 +27,7 @@ export class ProfileView {
         this.getProfileError = this.getProfileError.bind(this);
         this.changeSubPage = this.changeSubPage.bind(this);
         this.showOrders = this.showOrders.bind(this);
+        this.showAddressList = this.showAddressList.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
@@ -36,6 +39,8 @@ export class ProfileView {
         eventBus.subscribe('CHANGE_PROFILE_ERROR', this.changeProfileError);
         eventBus.subscribe('GET_PROFILE_ERROR', this.getProfileError);
         eventBus.subscribe('SHOW_ORDERS', this.showOrders);
+        eventBus.subscribe('ADDRESS_NOT_VALID', this.addrNotValid);
+        eventBus.subscribe('SHOW_ADDRESS_LIST', this.showAddressList);
     }
 
     /**
@@ -100,6 +105,11 @@ export class ProfileView {
         loginErrors.innerText = 'Имя может содержать только буквы и цифры';
     }
 
+    addrNotValid () {
+        const addrErrors = this.root.querySelector('.js-addr-errors');
+        addrErrors.innerText = 'Введите корректный адрес!';
+    }
+
     /**
      * Reacting to phone number not valid error.
      */
@@ -139,6 +149,7 @@ export class ProfileView {
 
     showOrders (data) {
         const orderColumn = document.getElementById('orderColumn');
+        orderColumn.innerHTML = '';
         const template = renderOrderView();
         data.forEach((order) => {
             const orderHTML = template(order);
@@ -146,15 +157,33 @@ export class ProfileView {
         });
     }
 
+    showAddressList (input) {
+        const addrColumn = document.getElementById('address-column');
+        const template = renderAddrListView();
+        const addrHTML = template(input);
+        addrColumn.innerHTML = addrHTML;
+        this.addAddrsEventListeners();
+    }
+
+    addAddrsEventListeners () {
+        const deleteBtns = this.root.querySelectorAll('.js-delete-address');
+        if (!deleteBtns) {
+            return;
+        }
+        deleteBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                btn.closest('.address-item').remove();
+                const oldAddrs = this.root.querySelectorAll('.address-item-text');
+                const addrs = [...oldAddrs].map(oldAddr => oldAddr.innerText);
+                this.eventBus.call('CHANGE_ADDRS', addrs);
+            });
+        });
+    }
+
     /**
      * Setting event listeners for profile page.
      */
     addEventListeners () {
-        const favoriteStore = this.root.querySelector('.js-favstore-button');
-        favoriteStore.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: 42 });
-        });
-
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.changeSubPage('.js-profile-info');
@@ -188,11 +217,12 @@ export class ProfileView {
             this.eventBus.call('UPLOAD_AVATAR', avatar);
         });
 
-        const delAddrBtn = this.root.querySelectorAll('.js-delete-address');
-        delAddrBtn.forEach(Btn => {
-            Btn.addEventListener('click', () => {
-                Btn.parentNode.style.display = 'none';
-            });
+        const addAddrBtn = this.root.querySelector('.js-add-address');
+        addAddrBtn.addEventListener('click', () => {
+            const addrsInput = this.root.querySelector('.js-address-input').value;
+            const oldAddrs = this.root.querySelectorAll('.address-item-text');
+            const addrs = [addrsInput, ...[...oldAddrs].map(oldAddr => oldAddr.innerText)];
+            this.eventBus.call('CHANGE_ADDRS', addrs);
         });
 
         const saveInfo = this.root.querySelector('.js-save-info');
@@ -212,5 +242,7 @@ export class ProfileView {
         back.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_STORES');
         });
+
+        this.addAddrsEventListeners();
     }
 }
