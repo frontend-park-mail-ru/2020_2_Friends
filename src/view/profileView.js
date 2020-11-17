@@ -221,7 +221,7 @@ export class ProfileView {
         addAddrBtn.addEventListener('click', () => {
             const addrsInput = this.root.querySelector('.js-address-input').value;
             const oldAddrs = this.root.querySelectorAll('.address-item-text');
-            const addrs = [addrsInput, ...([...oldAddrs].map(oldAddr => oldAddr.innerText))];
+            const addrs = [addrsInput, ...[...oldAddrs].map(oldAddr => oldAddr.innerText)];
             this.eventBus.call('CHANGE_ADDRS', addrs);
         });
 
