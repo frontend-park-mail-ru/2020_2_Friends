@@ -115,3 +115,22 @@
 .bucket-total__order-button {
     align-self: flex-end;
 }
+
+.bucket-total__select-address input::-webkit-outer-spin-button,
+.bucket-total__select-addressinput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.bucket-total__select-address input[type=number] {
+  -moz-appearance: textfield;
+}
+.bucket-total__select-address {
+    font-size: 20px;
+    height: max-content;
+    padding: 10px;
+    margin: 10px;
+    width: 400px;
+    overflow: hidden;
+}

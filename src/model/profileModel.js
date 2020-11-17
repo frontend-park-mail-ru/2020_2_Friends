@@ -1,6 +1,6 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getUserOrdersDataRequest } from '../utils/ApiService.js';
+import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getUserOrdersDataRequest, changeAddressesRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class ProfileModel {
@@ -11,11 +11,14 @@ export class ProfileModel {
      */
     constructor (eventBus) {
         this.changePersonalInfo = this.changePersonalInfo.bind(this);
+        this.changeAddresses = this.changeAddresses.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
         this.getOrders = this.getOrders.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
+        eventBus.subscribe('CHANGE_ADDRS', this.changeAddresses);
+        eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
         eventBus.subscribe('GET_ORDERS', this.getOrders);
     }
@@ -108,6 +111,26 @@ export class ProfileModel {
         }
     }
 
+    async changeAddresses (input) {
+        if (this.validateAddress(input)) {
+            const response = await changeAddressesRequest({ addresses: input });
+
+            switch (response.status) {
+            case 200:
+                this.eventBus.call('SHOW_ADDRESS_LIST', input);
+                break;
+            case 400:
+                this.eventBus.call('CHANGE_ADDRESS_ERROR');
+                break;
+            case 500:
+                this.eventBus.call('SERVER_INTERNAL_ERROR');
+                break;
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
+            }
+        }
+    }
+
     async getOrders () {
         const response = await getUserOrdersDataRequest();
         switch (response.status) {
@@ -142,6 +165,21 @@ export class ProfileModel {
         if (!numberValidator.status) {
             this.eventBus.call('NUMBER_NOT_VALID');
             isValid = false;
+        }
+        return isValid;
+    }
+
+    validateAddress (addresses) {
+        let isValid = true;
+        addresses.forEach((addr) => {
+            const data = { value: addr };
+            const addressValidator = userFormValidator(data, regTemplates.address);
+            if (!addressValidator.status) {
+                isValid = false;
+            }
+        });
+        if (!isValid) {
+            this.eventBus.call('ADDRESS_NOT_VALID');
         }
         return isValid;
     }
