@@ -32,46 +32,50 @@ const partnerRegController = new PartnerRegisterController(root, router);
 const partnerProfileController = new PartnerProfileController(root, router);
 const partnerStoreController = new PartnerStoreController(root, router);
 // Setting routes to navigate inside an app.
-router.setRoute('^/login/?$', loginController.view.render);
 
+function isAdmin () {
+    return document.cookie.includes('isAdmin');
+}
+
+router.setRoute('^/login/?$', loginController.view.render);
 router.setRoute('^/register/?$', regController.view.render);
 router.setRoute('^/profile/?$', () => {
-    headerController.view.render(false);
+    headerController.view.render(!isAdmin);
     profileController.model.getProfileData();
 });
 router.setRoute('^/store/?$', () => {
-    headerController.view.render(false);
+    headerController.view.render(!isAdmin);
     storeController.model.getData();
 });
 router.setRoute('^/?$', () => {
-    headerController.view.render(true);
+    headerController.view.render(!isAdmin);
     allStoresController.model.getStoresData();
 });
 router.setRoute('^/stores/(?<id>\\d+)/?$', (id) => {
-    headerController.view.render(false);
+    headerController.view.render(!isAdmin);
     storeController.storePageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
-    headerController.view.render(true);
+    headerController.view.render(!isAdmin);
     partnerStoreController.storePageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
-    headerController.view.render(true);
+    headerController.view.render(!isAdmin);
     orderController.orderPageHandler(id);
 });
 router.setRoute('^/bucket/?$', () => {
-    headerController.view.render(false);
+    headerController.view.render(!isAdmin);
     bucketController.model.getBucketData();
 });
 // Setting routes for partners to navigate inside an app
 router.setRoute('^/partners_login/?$', partnerLoginController.view.render);
 router.setRoute('^/partners_register/?$', partnerRegController.view.render);
 router.setRoute('^/partners_profile/?$', () => {
-    headerController.view.render(true);
+    headerController.view.render(!isAdmin);
     partnerProfileController.model.getProfileData();
 });
 router.setRoute('^/partners_store/?$', () => {
-    headerController.view.render(true);
+    headerController.view.render(!isAdmin);
     partnerStoreController.model.getData();
 });
 
