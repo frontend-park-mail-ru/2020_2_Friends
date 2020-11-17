@@ -28,7 +28,6 @@ export class PartnerStoreModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            console.log(body);
             body.picture = makeAvatarUrl(body.picture);
             body.products.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
@@ -65,7 +64,6 @@ export class PartnerStoreModel {
                     console.log(input.food_img);
                     this.changeProductImg(input);
                 } else {
-                    console.log('SHOW_NEW_PRODUCT');
                     this.eventBus.call('SHOW_NEW_PRODUCT', input);
                 }
                 break;
@@ -103,7 +101,6 @@ export class PartnerStoreModel {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
             input.avatarUrl = avatarUrl;
-            console.log('SHOW_NEW_PRODUCT');
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
         }

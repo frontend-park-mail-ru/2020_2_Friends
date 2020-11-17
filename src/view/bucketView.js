@@ -20,7 +20,6 @@ export class BucketView {
      * @param {Array} data - Array of cart's items.
      */
     render (data) {
-        console.log(data);
         const template = renderBucketView();
         this.root.innerHTML = template(data);
         this.addEventListeners();
