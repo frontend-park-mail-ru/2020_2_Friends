@@ -1,5 +1,5 @@
 import { getStoreByIdDataRequest, addProductToBucket } from '../utils/ApiService.js';
-
+import { makeAvatarUrl } from '../utils/urlThrottle.js';
 export class StoreModel {
     /**
      * Creating an StoreModel instance.
@@ -22,10 +22,14 @@ export class StoreModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
+            body.products.forEach((product) => {
+                product.picture = makeAvatarUrl(product.picture);
+            });
             this.eventBus.call('SHOW_STORE',
                 {
                     storeName: body.store_name,
-                    products: body.products
+                    products: body.products,
+                    picture: body.picture
                 });
             break;
         }

@@ -1,4 +1,5 @@
 import { renderProfileView } from '../template/profileViewTemplate.js';
+import { renderOrderView } from '../template/singleOrderViewTemplate.js';
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -23,6 +24,7 @@ export class ProfileView {
         this.changeProfileError = this.changeProfileError.bind(this);
         this.getProfileError = this.getProfileError.bind(this);
         this.changeSubPage = this.changeSubPage.bind(this);
+        this.showOrders = this.showOrders.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
@@ -33,6 +35,7 @@ export class ProfileView {
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
         eventBus.subscribe('CHANGE_PROFILE_ERROR', this.changeProfileError);
         eventBus.subscribe('GET_PROFILE_ERROR', this.getProfileError);
+        eventBus.subscribe('SHOW_ORDERS', this.showOrders);
     }
 
     /**
@@ -115,6 +118,9 @@ export class ProfileView {
 
     changeSubPage (selector) {
         const seenBlock = this.root.querySelector(selector);
+        if (selector === '.js-profile-orders') {
+            this.eventBus.call('GET_ORDERS');
+        }
         const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-profile-addresses, .js-profile-coupons, .js-profile-orders');
         allBlocks.forEach(element => {
             element.style.display = 'none';
@@ -131,13 +137,22 @@ export class ProfileView {
         seenBlock.classList.add('profile-page__navbar-button_focus');
     }
 
+    showOrders (data) {
+        const orderColumn = document.getElementById('orderColumn');
+        const template = renderOrderView();
+        data.forEach((order) => {
+            const orderHTML = template(order);
+            orderColumn.innerHTML += orderHTML;
+        });
+    }
+
     /**
      * Setting event listeners for profile page.
      */
     addEventListeners () {
         const favoriteStore = this.root.querySelector('.js-favstore-button');
         favoriteStore.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: 1 });
+            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: 42 });
         });
 
         const profileData = this.root.querySelector('.js-userdata-button');

@@ -199,7 +199,7 @@ export const changePartnerPersonalInfoRequest = (input) => {
 export const createProductRequest = (input) => {
     const productInfo = { food_name: input.food_name, food_price: input.food_price };
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.id + '/products',
+        url: backendUrl + `/api/v1/vendors/${input.id}/products`,
         body: productInfo
     };
     return ajaxPostUsingFetch(args);
@@ -214,15 +214,15 @@ export const getPartnersStoresRequest = () => {
 
 export const changeProductRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id,
+        url: backendUrl + `/api/v1/vendors/${input.store_id}/products/${input.food_id}`,
         body: input
     };
     return ajaxPutUsingFetch(args);
 };
 
-export const deleteProductRequest = (input) => { // { store_id: storeId, product_id: productId }
+export const deleteProductRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.product_id,
+        url: backendUrl + `/api/v1/vendors/${input.store_id}/products/${input.product_id}`,
         body: input
     };
     return ajaxDeleteUsingFetch(args);
@@ -230,8 +230,16 @@ export const deleteProductRequest = (input) => { // { store_id: storeId, product
 
 export const changeProductImgRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/vendors/' + input.store_id + '/products/' + input.food_id + '/pictures',
+        url: backendUrl + `/api/v1/vendors/${input.store_id}/products/${input.food_id}/pictures`,
         body: input.food_img
+    };
+    return ajaxMultipartUsingFetch(args);
+};
+
+export const changeStoreImgRequest = (input) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${input.storeId}/pictures`,
+        body: input.avatar
     };
     return ajaxMultipartUsingFetch(args);
 };
@@ -262,7 +270,7 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
  */
 export const pullPartnerAvatarRequest = (avatarName) => {
     const args = {
-        url: staticUrl + '/api/v1/data/img/' + avatarName
+        url: staticUrl + `/api/v1/data/img/${avatarName}`
     };
     return ajaxGetUsingFetch(args);
 };
@@ -292,6 +300,13 @@ export const addProductToBucket = (productId) => {
     return ajaxPutUsingFetch(args);
 };
 
+export const deleteProductFromBucket = (productId) => {
+    const args = {
+        url: backendUrl + `/api/v1/carts?product_id=${productId}`
+    };
+    return ajaxDeleteUsingFetch(args);
+};
+
 export const addStore = (data) => {
     const args = {
         url: backendUrl + '/api/v1/vendors',
@@ -312,6 +327,43 @@ export const getStoreByIdDataPartnerRequest = (id) => {
         url: backendUrl + `/api/v1/vendors/${id}`
     };
     return ajaxGetUsingFetch(args);
+};
+
+export const getUserOrdersDataRequest = () => {
+    const args = {
+        url: backendUrl + '/api/v1/orders'
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const changeOrderStatusRequest = (data) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${data.vendorId}/orders/${data.orderId}`,
+        body: { status: data.status }
+    };
+    return ajaxPutUsingFetch(args);
+};
+
+export const getStoreOrders = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/orders`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getOrder = (data) => {
+    const args = {
+        url: backendUrl + `/api/v1/orders/${data.id}`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const createOrderRequest = (data) => {
+    const args = {
+        url: backendUrl + '/api/v1/orders',
+        body: data
+    };
+    return ajaxPostUsingFetch(args);
 };
 
 export const getStores = () => {

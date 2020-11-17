@@ -10,10 +10,39 @@ export class OrderView {
     constructor (root, eventBus) {
         this.root = root;
         this.eventBus = eventBus;
+        this.render = this.render.bind(this);
+        this.setStatus = this.setStatus.bind(this);
+        eventBus.subscribe('SHOW_ORDERS', this.render);
     }
 
-    render () {
+    render (data) {
         const template = renderOrderView();
-        this.root.innerHTML = template();
+        this.root.innerHTML = template(data);
+        this.addEventListeners();
+        this.setStatus(data.body);
+    }
+
+    setStatus (orders) {
+        orders.forEach(order => {
+            const e = document.getElementById(order.id);
+            e.querySelector('.order-cart__status').value = order.status;
+        });
+    }
+
+    addEventListeners () {
+        const toStoreBtn = this.root.querySelector('.js-to-store-button');
+        const storeId = document.getElementById('storeHeader').dataset.storeid;
+        toStoreBtn.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { storeId });
+        });
+
+        const storeHeader = this.root.querySelector('#storeHeader');
+        const orderStatuses = this.root.querySelectorAll('.order-cart__status');
+        orderStatuses.forEach(status => {
+            status.addEventListener('change', () => {
+                const orderId = status.parentNode.parentNode.dataset.orderid;
+                this.eventBus.call('CHANGE_STATUS', { orderId: orderId, status: status.value, vendorId: storeHeader.dataset.storeid });
+            });
+        });
     }
 }
