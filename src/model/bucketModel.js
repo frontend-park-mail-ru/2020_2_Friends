@@ -39,6 +39,7 @@ export class BucketModel {
         const response = await createOrderRequest(data);
         switch (response.status) {
         case 200:
+            this.eventBus.call('REDIRECT_TO_ORDERS');
             break;
 
         default:

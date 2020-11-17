@@ -21,5 +21,6 @@ export class BucketController {
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
         eventBus.subscribe('REDIRECT_TO_STORES', () => this.router.redirect('/'));
+        eventBus.subscribe('REDIRECT_TO_ORDERS', () => this.router.redirect('profile/orders'));
     }
 }

@@ -39,6 +39,10 @@ router.setRoute('^/profile/?$', () => {
     headerController.view.render(false);
     profileController.model.getProfileData();
 });
+router.setRoute('^/profile/orders?$', () => {
+    headerController.view.render(false);
+    profileController.model.getProfileOrdersData();
+});
 router.setRoute('^/store/?$', () => {
     headerController.view.render(false);
     storeController.model.getData();

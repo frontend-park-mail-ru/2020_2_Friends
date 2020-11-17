@@ -18,6 +18,7 @@ export class PartnerProfileView {
         this.numberNotValid = this.numberNotValid.bind(this);
         this.infoChanged = this.infoChanged.bind(this);
         this.render = this.render.bind(this);
+        this.showOrders = this.showOrders.bind(this);
         this.renderAvatar = this.renderAvatar.bind(this);
         this.avatarUploadError = this.avatarUploadError.bind(this);
         this.serverInternalError = this.serverInternalError.bind(this);
@@ -82,6 +83,15 @@ export class PartnerProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
+        const template = renderProfileView();
+        const profileHTML = template(data);
+        this.root.innerHTML = profileHTML;
+        this.changeSubPage('.js-profile-info');
+        this.focusOnNavButton('.js-userdata-button');
+        this.addEventListeners();
+    }
+
+    showOrders (data) {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;

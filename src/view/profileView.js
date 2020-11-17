@@ -25,11 +25,12 @@ export class ProfileView {
         this.getProfileError = this.getProfileError.bind(this);
         this.changeSubPage = this.changeSubPage.bind(this);
         this.showOrders = this.showOrders.bind(this);
-
+        this.showOrdersSubPage = this.showOrdersSubPage.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
         eventBus.subscribe('SHOW_PROFILE', this.render);
+        eventBus.subscribe('SHOW_PROFILE_ORDERS', this.showOrdersSubPage);
         eventBus.subscribe('RENDER_AVATAR', this.renderAvatar);
         eventBus.subscribe('AVATAR_UPLOAD_ERROR', this.avatarUploadError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
@@ -89,6 +90,16 @@ export class ProfileView {
         this.root.innerHTML = profileHTML;
         this.changeSubPage('.js-profile-info');
         this.focusOnNavButton('.js-userdata-button');
+        this.addEventListeners();
+    }
+
+    showOrdersSubPage (data) {
+        const template = renderProfileView();
+        const profileHTML = template(data);
+        this.root.innerHTML = profileHTML;
+        this.changeSubPage('.js-profile-orders');
+        this.focusOnNavButton('.js-myorders-button');
+        this.eventBus.call('GET_ORDERS');
         this.addEventListeners();
     }
 
