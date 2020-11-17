@@ -157,6 +157,10 @@
     border-radius: 50%;
 }
 
+.address-delete-butoon {
+    margin-left: auto;
+}
+
 .round-delete-button:hover {
     background-color: #F6BEAA;
 }

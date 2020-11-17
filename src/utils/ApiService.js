@@ -84,7 +84,7 @@ export const changePersonalInfoRequest = (input) => {
 
 export const changeAddressesRequest = (input) => {
     const args = {
-        url: backendUrl + '/api/v1/profile/addresses',
+        url: backendUrl + '/api/v1/profiles/addresses',
         body: input
     };
     return ajaxPutUsingFetch(args);

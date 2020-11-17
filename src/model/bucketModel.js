@@ -24,15 +24,24 @@ export class BucketModel {
             body.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
             });
-            body.addresses = info.addresses;
-            this.eventBus.call('SHOW_CART', {
-                products: body
-            });
+            const total = this.getTotal(body);
+            this.eventBus.call('SHOW_CART',
+                { total: total, products: body, addresses: info.addresses });
             break;
         }
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
+    }
+
+    getTotal (body) {
+        console.log(body);
+        let sum = 0;
+        body.forEach((product) => {
+            console.log(product.food_price);
+            sum += product.food_price;
+        });
+        return sum;
     }
 
     async createOrder (data) {

@@ -149,6 +149,7 @@ export class ProfileView {
 
     showOrders (data) {
         const orderColumn = document.getElementById('orderColumn');
+        orderColumn.innerHTML = '';
         const template = renderOrderView();
         data.forEach((order) => {
             const orderHTML = template(order);
@@ -165,10 +166,25 @@ export class ProfileView {
     }
 
     addAddrsEventListeners () {
-        const deleteBtns = this.root.querySelector('.js-delete-address');
-        deleteBtns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                btn.closest('.address-item').remove();
+        const deleteBtns = this.root.querySelectorAll('.js-delete-address');
+        if (!deleteBtns) {
+            return;
+        }
+        if (deleteBtns.length > 1) {
+            deleteBtns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    btn.closest('.address-item').remove();
+                    const addrs = [];
+                    const oldAddrs = this.root.querySelectorAll('.address-item-text');
+                    oldAddrs.forEach((addr) => {
+                        addrs.push(addr.innerHTML);
+                    });
+                    this.eventBus.call('CHANGE_ADDRS', addrs);
+                });
+            });
+        } else {
+            deleteBtns[0].addEventListener('click', () => {
+                deleteBtns.closest('.address-item').remove();
                 const addrs = [];
                 const oldAddrs = this.root.querySelectorAll('.address-item-text');
                 oldAddrs.forEach((addr) => {
@@ -176,7 +192,7 @@ export class ProfileView {
                 });
                 this.eventBus.call('CHANGE_ADDRS', addrs);
             });
-        });
+        }
     }
 
     /**

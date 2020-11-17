@@ -175,12 +175,14 @@ export class ProfileModel {
         addresses.forEach((addr) => {
             const data = { value: addr };
             addressValidator = userFormValidator(data, regTemplates.address);
+            console.log(addressValidator.status, addr);
             if (!addressValidator.status) {
-                this.eventBus.call('ADDRESS_NOT_VALID');
                 isValid = false;
-                return isValid;
             }
         });
+        if (!isValid) {
+            this.eventBus.call('ADDRESS_NOT_VALID');
+        }
         return isValid;
     }
 }
