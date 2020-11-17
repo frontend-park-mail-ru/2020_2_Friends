@@ -19,7 +19,7 @@ export class PartnerStoreView {
         this.showChangedProduct = this.showChangedProduct.bind(this);
         this.renderProductImg = this.renderProductImg.bind(this);
         this.renderLogo = this.renderLogo.bind(this);
-
+        this.priceNotValid = this.priceNotValid.bind(this);
         this.addProductEventListeners = this.addProductEventListeners.bind(this);
 
         eventBus.subscribe('SHOW_STORE', this.render);
@@ -29,6 +29,7 @@ export class PartnerStoreView {
         eventBus.subscribe('SHOW_CHANGED_PRODUCT', this.showChangedProduct);
         eventBus.subscribe('RENDER_PRODUCT_IMG', this.renderProductImg);
         eventBus.subscribe('RENDER_LOGO', this.renderLogo);
+        this.eventBus.subscribe('PRICE_NOT_VALID', this.priceNotValid);
     }
 
     /**
@@ -45,6 +46,18 @@ export class PartnerStoreView {
     storeDataError () {
         const storeErrors = this.root.querySelector('.js-store-errors');
         storeErrors.innerHTML = 'Произошла ошибка при загрузке данных магазина!';
+    }
+
+    priceNotValid (id) {
+        if (id) {
+            const product = document.getElementById(id);
+            const priceErr = product.querySelector('.js-price-error');
+            priceErr.innerHTML = 'Введите корректную цену!';
+        } else {
+            const product = this.root.querySelector('.new-product');
+            const priceErr = product.querySelector('.js-price-error');
+            priceErr.innerHTML = 'Введите корректную цену!';
+        }
     }
 
     /**
@@ -74,16 +87,12 @@ export class PartnerStoreView {
 
         const saveChangesBtn = product.querySelector('.js-save-item-changes');
         saveChangesBtn.addEventListener('click', () => {
-            saveChangesBtn.parentNode.parentNode.style.display = 'none';
-            const product = saveChangesBtn.parentNode.parentNode.parentNode;
-            product.querySelector('.product-normal').style.display = 'flex';
-
             const name = product.querySelector('.js-name-input');
             const price = product.querySelector('.js-price-input');
             const descr = product.querySelector('.js-descr-input');
             const id = product.querySelector('.product-normal').dataset.product_id;
             const imgFile = product.querySelector('input[name="product__img-form"]').files[0];
-            var img;
+            let img;
             if (imgFile) {
                 img = new FormData();
                 img.append('image', imgFile);
@@ -113,8 +122,8 @@ export class PartnerStoreView {
         const avatarElement = product.querySelector('.product__img');
         if (data.avatarUrl) {
             avatarElement.src = data.avatarUrl;
-            this.addProductEventListeners(product);
         }
+        this.addProductEventListeners(product);
     }
 
     showChangedProduct (data) {
@@ -122,6 +131,8 @@ export class PartnerStoreView {
         const name = product.querySelector('.product__name');
         const price = product.querySelector('.product__price');
         const descr = product.querySelector('.product__descr');
+        const priceErr = product.querySelector('.js-price-error');
+        priceErr.innerHTML = '';
         name.innerHTML = data.food_name;
         price.innerHTML = data.food_price;
         descr.innerHTML = data.food_descr;
@@ -129,6 +140,8 @@ export class PartnerStoreView {
             const avatarElement = product.querySelector('.product__img');
             avatarElement.src = data.avatarUrl;
         }
+        product.querySelector('.product-normal').style.display = 'flex';
+        product.querySelector('.product-editor').style.display = 'none';
     }
 
     /**
@@ -186,8 +199,13 @@ export class PartnerStoreView {
                 const price = product.querySelector('.js-price-input');
                 const descr = product.querySelector('.js-descr-input');
                 const imgFile = document.getElementById('product__img-form').files[0];
-                const img = new FormData();
-                img.append('image', imgFile);
+                let img;
+                if (imgFile) {
+                    img = new FormData();
+                    img.append('image', imgFile);
+                } else {
+                    img = null;
+                }
                 const storeHeader = document.getElementById('storeHeader');
                 const data = { food_name: name.value, food_price: parseInt(price.value), food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
                 this.eventBus.call('CREATE_PRODUCT', data);

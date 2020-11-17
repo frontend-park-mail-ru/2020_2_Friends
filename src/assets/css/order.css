@@ -30,12 +30,11 @@
     color: aliceblue;
 }
 
-.order-column-profile 
-    {
-        align-self: center;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 40px;
-        flex-direction: column-reverse;
-    }
+.order-column-profile {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 40px;
+    flex-direction: column-reverse;
+}

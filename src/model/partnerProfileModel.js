@@ -17,7 +17,6 @@ export class PartnerProfileModel {
 
         this.eventBus = eventBus;
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
-        eventBus.subscribe('VALIDATE', this.validate);
         eventBus.subscribe('UPLOAD_AVATAR', this.uploadAvatar);
         eventBus.subscribe('REDIRECT_TO_STORE', (storeId) => this.router.redirect('/stores/' + storeId));
         eventBus.subscribe('ADD_STORE', this.addStore);
@@ -58,6 +57,9 @@ export class PartnerProfileModel {
                 break;
             }
             const stores = await responseStores.json();
+            stores.forEach((store) => {
+                store.picture = makeAvatarUrl(store.picture);
+            });
             const body = await response.json();
             const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : '../assets/img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {

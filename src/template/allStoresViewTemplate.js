@@ -12,7 +12,7 @@ export const renderAllStores = () => window.Handlebars.compile(`
     <div class="stores__showcase">
         {{#each stores}}
         <div class="store__block" id="{{ this.id }}">
-            <img src="http://89.208.197.247:9001/data/img/{{ this.picture }}" class="store__img" alt="Фото ресторана">
+            <img src="{{ this.picture }}" class="store__img" alt="Фото ресторана">
             <div class="product__info">
                 <div class="store-block__store-name"> {{ this.store_name }} </div>
             </div>

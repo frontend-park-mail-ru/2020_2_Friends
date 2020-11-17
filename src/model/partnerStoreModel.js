@@ -1,5 +1,6 @@
 import { getStoreByIdDataPartnerRequest, createProductRequest, changeProductImgRequest, changeProductRequest, deleteProductRequest, changeStoreImgRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
+
 export class PartnerStoreModel {
     /**
      * Creating an PartnerStoreModel instance.
@@ -27,6 +28,11 @@ export class PartnerStoreModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
+            console.log(body);
+            body.picture = makeAvatarUrl(body.picture);
+            body.products.forEach((product) => {
+                product.picture = makeAvatarUrl(product.picture);
+            });
             this.eventBus.call('SHOW_STORE',
                 {
                     storeName: body.store_name,
@@ -48,36 +54,45 @@ export class PartnerStoreModel {
     }
 
     async createProduct (input) {
-        const productInfo = { food_name: input.food_name, food_price: input.food_price, id: input.store_id };
-        const response = await createProductRequest(productInfo);
-        var map = input;
-        switch (response.status) {
-        case 200: {
-            const body = await response.json();
-            map.food_id = body.id;
-            this.changeProductImg(map);
-            break;
-        }
-        default:
-            console.log(`Uncaught backend http-status: ${response.status}`);
+        if (this.validate({ foodPrice: input.food_price })) {
+            const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), id: input.store_id };
+            const response = await createProductRequest(productInfo);
+            switch (response.status) {
+            case 200: {
+                const body = await response.json();
+                input.food_id = body.id;
+                if (input.food_img) {
+                    console.log(input.food_img);
+                    this.changeProductImg(input);
+                } else {
+                    console.log('SHOW_NEW_PRODUCT');
+                    this.eventBus.call('SHOW_NEW_PRODUCT', input);
+                }
+                break;
+            }
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
+            }
         }
     }
 
     async changeProduct (input) {
-        const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), food_id: input.food_id, store_id: input.store_id };
-        const response = await changeProductRequest(productInfo);
+        if (this.validate({ foodPrice: input.food_price, foodId: input.food_id })) {
+            const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), food_id: input.food_id, store_id: input.store_id };
+            const response = await changeProductRequest(productInfo);
 
-        switch (response.status) {
-        case 200: {
-            if (input.food_img) {
-                this.changeExistingProductImg(input);
-            } else {
-                this.eventBus.call('SHOW_CHANGED_PRODUCT', input);
+            switch (response.status) {
+            case 200: {
+                if (input.food_img) {
+                    this.changeExistingProductImg(input);
+                } else {
+                    this.eventBus.call('SHOW_CHANGED_PRODUCT', input);
+                }
+                break;
             }
-            break;
-        }
-        default:
-            console.log(`Uncaught backend http-status: ${response.status}`);
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
+            }
         }
     }
 
@@ -87,8 +102,8 @@ export class PartnerStoreModel {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            var data = input;
-            data.avatarUrl = avatarUrl;
+            input.avatarUrl = avatarUrl;
+            console.log('SHOW_NEW_PRODUCT');
             this.eventBus.call('SHOW_NEW_PRODUCT', input);
             break;
         }
@@ -103,8 +118,7 @@ export class PartnerStoreModel {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            var data = input;
-            data.avatarUrl = avatarUrl;
+            input.avatarUrl = avatarUrl;
             this.eventBus.call('SHOW_CHANGED_PRODUCT', input);
             break;
         }
@@ -131,7 +145,7 @@ export class PartnerStoreModel {
         case 200: {
             const avatar = await response.json();
             const avatarUrl = makeAvatarUrl(avatar.avatar);
-            this.eventBus.call('RENDER_LOGO', { avatarUrl: avatarUrl });
+            this.eventBus.call('RENDER_LOGO', { avatarUrl });
             break;
         }
         case 400:
@@ -143,5 +157,15 @@ export class PartnerStoreModel {
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
+    }
+
+    validate (input) {
+        const { foodPrice, foodId } = input;
+        let isValid = true;
+        if (Number.isNaN(parseInt(foodPrice))) {
+            this.eventBus.call('PRICE_NOT_VALID', foodId);
+            isValid = false;
+        }
+        return isValid;
     }
 }

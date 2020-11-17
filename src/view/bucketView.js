@@ -26,9 +26,10 @@ export class BucketView {
     }
 
     createOrder () {
-        var data = {};
-        var productIds = [];
-        data.address = 'Москва, Красная площадь, дом 1';
+        const data = {};
+        const productIds = [];
+        const addrSelect = document.getElementById('js-address');
+        data.address = addrSelect.value;
         const products = this.root.querySelectorAll('.bucket-item');
         products.forEach(product => {
             productIds.push(parseInt(product.dataset.id));
