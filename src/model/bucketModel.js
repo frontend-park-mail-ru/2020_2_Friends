@@ -24,10 +24,8 @@ export class BucketModel {
             body.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
             });
-            body.addresses = info.addresses;
-            this.eventBus.call('SHOW_CART', {
-                products: body
-            });
+            const total = body.reduce((a, b) => a + b.food_price, 0);
+            this.eventBus.call('SHOW_CART', { total: total, products: body, addresses: info.addresses });
             break;
         }
         default:
