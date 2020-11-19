@@ -14,7 +14,6 @@ export class ProfileModel {
         this.changeAddresses = this.changeAddresses.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.getProfileData = this.getProfileData.bind(this);
-        this.getProfileOrdersData = this.getProfileOrdersData.bind(this);
         this.getOrders = this.getOrders.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('CHANGE_INFO', this.changePersonalInfo);
