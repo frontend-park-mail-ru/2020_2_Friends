@@ -34,7 +34,7 @@ const partnerStoreController = new PartnerStoreController(root, router);
 // Setting routes to navigate inside an app.
 
 function isAdmin () {
-    return document.cookie.includes('isAdmin');
+    return localStorage.getItem('isAdmin');
 }
 
 router.setRoute('^/login/?$', loginController.view.render);
