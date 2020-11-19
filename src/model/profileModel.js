@@ -27,7 +27,7 @@ export class ProfileModel {
     /**
      * Getting user profile data with http-request.
      */
-    async getProfileData () {
+    async getProfileData (subpage = 'profile') {
         const response = await getProfileInfoRequest();
 
         switch (response.status) {
@@ -39,48 +39,25 @@ export class ProfileModel {
             } else {
                 avatarUrl = makeAvatarUrl(body.avatar);
             }
-            this.eventBus.call('SHOW_PROFILE', {
-                avatar: avatarUrl,
-                points: body.points,
-                addresses: body.addresses,
-                phone: body.phone,
-                name: body.name
-            });
-            break;
-        }
-        case 400:
-            this.eventBus.call('GET_PROFILE_ERROR');
-            break;
-        case 500:
-            this.eventBus.call('SERVER_INTERNAL_ERROR');
-            break;
-        default:
-            console.log('Backend error');
-        }
-    }
-
-    /**
-     * Getting user profile data and going to orders subpage with http-request.
-     */
-    async getProfileOrdersData () {
-        const response = await getProfileInfoRequest();
-
-        switch (response.status) {
-        case 200: {
-            const body = await response.json();
-            let avatarUrl;
-            if (!body.avatar) {
-                avatarUrl = '../assets/img/default-avatar.png';
-            } else {
-                avatarUrl = makeAvatarUrl(body.avatar);
+            switch (subpage) {
+            case 'profile':
+                this.eventBus.call('SHOW_PROFILE', {
+                    avatar: avatarUrl,
+                    points: body.points,
+                    addresses: body.addresses,
+                    phone: body.phone,
+                    name: body.name
+                });
+                break;
+            case 'orders':
+                this.eventBus.call('SHOW_PROFILE_ORDERS', {
+                    avatar: avatarUrl,
+                    points: body.points,
+                    addresses: body.addresses,
+                    phone: body.phone,
+                    name: body.name
+                });
             }
-            this.eventBus.call('SHOW_PROFILE_ORDERS', {
-                avatar: avatarUrl,
-                points: body.points,
-                addresses: body.addresses,
-                phone: body.phone,
-                name: body.name
-            });
             break;
         }
         case 400:

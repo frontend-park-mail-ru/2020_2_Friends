@@ -10,6 +10,7 @@ export class BucketModel {
         this.eventBus = eventBus;
         this.getBucketData = this.getBucketData.bind(this);
         this.deleteFromBucket = this.deleteFromBucket.bind(this);
+        this.createOrder = this.createOrder.bind(this);
         this.eventBus.subscribe('CREATE_ORDER', this.createOrder);
         this.eventBus.subscribe('DELETE_FROM_BUCKET', this.deleteFromBucket);
     }
