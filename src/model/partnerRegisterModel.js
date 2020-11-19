@@ -31,6 +31,7 @@ export class PartnerRegisterModel {
             });
             switch (response.status) {
             case 201:
+                localStorage.setItem('isAdmin', true);
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:

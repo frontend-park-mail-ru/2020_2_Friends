@@ -31,6 +31,7 @@ export class LoginModel {
 
             switch (response.status) {
             case 200:
+                localStorage.removeItem('isAdmin');
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:

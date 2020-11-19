@@ -31,6 +31,7 @@ export class PartnerLoginModel {
 
             switch (response.status) {
             case 200:
+                localStorage.setItem('isAdmin', true);
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:
