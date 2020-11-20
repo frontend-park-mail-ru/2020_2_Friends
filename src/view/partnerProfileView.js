@@ -125,26 +125,25 @@ export class PartnerProfileView {
         let seenBlock;
         let activeButton;
         switch (page) {
-        case 'profile': {
+        case 'profile':
             activeButton = this.root.querySelector('.js-userdata-button');
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
-        }
-        case 'mystores': {
+
+        case 'mystores':
             activeButton = this.root.querySelector('.js-mystores-button');
             seenBlock = this.root.querySelector('.js-mystores');
             break;
-        }
-        case 'addstore': {
+
+        case 'addstore':
             activeButton = this.root.querySelector('.js-addstore-button');
             seenBlock = this.root.querySelector('.js-addstore-form');
             break;
-        }
-        default: {
+
+        default:
             activeButton = this.root.querySelector('.js-userdata-button');
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
-        }
         }
         seenBlock.style.display = 'flex';
         activeButton.classList.add('profile-page__navbar-button_focus');

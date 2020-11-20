@@ -41,6 +41,7 @@ export class ProfileModel {
             switch (subpage) {
             case 'profile':
                 this.eventBus.call('SHOW_PROFILE', {
+                    subpage: 'profile',
                     avatar: avatarUrl,
                     points: body.points,
                     addresses: body.addresses,
@@ -49,7 +50,8 @@ export class ProfileModel {
                 });
                 break;
             case 'orders':
-                this.eventBus.call('SHOW_PROFILE_ORDERS', {
+                this.eventBus.call('SHOW_PROFILE', {
+                    subpage: 'orders',
                     avatar: avatarUrl,
                     points: body.points,
                     addresses: body.addresses,

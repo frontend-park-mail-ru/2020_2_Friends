@@ -1,0 +1,19 @@
+.star-rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 35px;
+    white-space: nowrap;
+  }
+  .star-rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1em;
+  }
+  .star-rating > span:hover:before,
+  .star-rating > span:hover ~ span:before {
+     content: "\2605";
+     position: absolute;
+  }
+
+  /* <div class="star-rating">
+  <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div> */

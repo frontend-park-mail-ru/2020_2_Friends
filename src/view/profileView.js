@@ -27,13 +27,11 @@ export class ProfileView {
         this.getProfileError = this.getProfileError.bind(this);
         this.сhangeSubPage = this.сhangeSubPage.bind(this);
         this.showOrders = this.showOrders.bind(this);
-        this.showOrdersSubPage = this.showOrdersSubPage.bind(this);
         this.showAddressList = this.showAddressList.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
         eventBus.subscribe('SHOW_PROFILE', this.render);
-        eventBus.subscribe('SHOW_PROFILE_ORDERS', this.showOrdersSubPage);
         eventBus.subscribe('RENDER_AVATAR', this.renderAvatar);
         eventBus.subscribe('AVATAR_UPLOAD_ERROR', this.avatarUploadError);
         eventBus.subscribe('SERVER_INTERNAL_ERROR', this.serverInternalError);
@@ -93,15 +91,7 @@ export class ProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.сhangeSubPage('profile');
-        this.addEventListeners();
-    }
-
-    showOrdersSubPage (data) {
-        const template = renderProfileView();
-        const profileHTML = template(data);
-        this.root.innerHTML = profileHTML;
-        this.сhangeSubPage('orders');
+        this.сhangeSubPage(data.subpage);
         this.addEventListeners();
     }
 
@@ -146,32 +136,31 @@ export class ProfileView {
         let seenBlock;
         let activeButton;
         switch (page) {
-        case 'profile': {
+        case 'profile':
             activeButton = this.root.querySelector('.js-userdata-button');
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
-        }
-        case 'orders': {
+
+        case 'orders':
             this.eventBus.call('GET_ORDERS');
             activeButton = this.root.querySelector('.js-myorders-button');
             seenBlock = this.root.querySelector('.js-profile-orders');
             break;
-        }
-        case 'addresses': {
+
+        case 'addresses':
             activeButton = this.root.querySelector('.js-addresses-button');
             seenBlock = this.root.querySelector('.js-profile-addresses');
             break;
-        }
-        case 'coupons': {
+
+        case 'coupons':
             activeButton = this.root.querySelector('.js-coupons-button');
             seenBlock = this.root.querySelector('.js-profile-coupons');
             break;
-        }
-        default: {
+
+        default:
             activeButton = this.root.querySelector('.js-userdata-button');
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
-        }
         }
         seenBlock.style.display = 'flex';
         activeButton.classList.add('profile-page__navbar-button_focus');
