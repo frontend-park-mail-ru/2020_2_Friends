@@ -15,6 +15,7 @@ export class HeaderModel {
         const response = await logoutRequest();
         switch (response.status) {
         case 200:
+            localStorage.removeItem('isAdmin');
             this.eventBus.call('REDIRECT_TO_LOGIN');
             break;
         default:

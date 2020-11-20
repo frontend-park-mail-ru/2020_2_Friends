@@ -32,6 +32,7 @@ export class RegisterModel {
             });
             switch (response.status) {
             case 201:
+                localStorage.removeItem('isAdmin');
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;
             case 400:
