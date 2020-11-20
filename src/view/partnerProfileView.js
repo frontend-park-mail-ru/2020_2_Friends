@@ -85,8 +85,7 @@ export class PartnerProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.changeSubPage('.js-profile-info');
-        this.focusOnNavButton('.js-userdata-button');
+        this.changeSubPage('profile');
         this.addEventListeners();
     }
 
@@ -114,22 +113,40 @@ export class PartnerProfileView {
         infoText.innerText = 'Данные успешно обновлены!';
     }
 
-    changeSubPage (selector) {
-        const seenBlock = this.root.querySelector(selector);
+    changeSubPage (page) {
+        const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-mystores-button, .js-addstore-button');
+        allButtons.forEach(element => {
+            element.classList.remove('profile-page__navbar-button_focus');
+        });
         const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-mystores, .js-addstore-form');
         allBlocks.forEach(element => {
             element.style.display = 'none';
         });
-        seenBlock.style.display = 'flex';
-    }
+        let seenBlock;
+        let activeButton;
+        switch (page) {
+        case 'profile':
+            activeButton = this.root.querySelector('.js-userdata-button');
+            seenBlock = this.root.querySelector('.js-profile-info');
+            break;
 
-    focusOnNavButton (selector) {
-        const seenBlock = this.root.querySelector(selector);
-        const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-mystores-button, .js-addstore-button');
-        allBlocks.forEach(element => {
-            element.classList.remove('profile-page__navbar-button_focus');
-        });
-        seenBlock.classList.add('profile-page__navbar-button_focus');
+        case 'mystores':
+            activeButton = this.root.querySelector('.js-mystores-button');
+            seenBlock = this.root.querySelector('.js-mystores');
+            break;
+
+        case 'addstore':
+            activeButton = this.root.querySelector('.js-addstore-button');
+            seenBlock = this.root.querySelector('.js-addstore-form');
+            break;
+
+        default:
+            activeButton = this.root.querySelector('.js-userdata-button');
+            seenBlock = this.root.querySelector('.js-profile-info');
+            break;
+        }
+        seenBlock.style.display = 'flex';
+        activeButton.classList.add('profile-page__navbar-button_focus');
     }
 
     /**
@@ -149,8 +166,7 @@ export class PartnerProfileView {
 
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-info');
-            this.focusOnNavButton('.js-userdata-button');
+            this.changeSubPage('profile');
         });
 
         const goToStoreBtns = this.root.querySelectorAll('.js-goto-store');
@@ -163,14 +179,12 @@ export class PartnerProfileView {
 
         const myStores = this.root.querySelector('.js-mystores-button');
         myStores.addEventListener('click', () => {
-            this.changeSubPage('.js-mystores');
-            this.focusOnNavButton('.js-mystores-button');
+            this.changeSubPage('mystores');
         });
 
         const addStore = this.root.querySelector('.js-addstore-button');
         addStore.addEventListener('click', () => {
-            this.changeSubPage('.js-addstore-form');
-            this.focusOnNavButton('.js-addstore-button');
+            this.changeSubPage('addstore');
         });
 
         const uploadAvatar = this.root.querySelector('.upload-avatar');

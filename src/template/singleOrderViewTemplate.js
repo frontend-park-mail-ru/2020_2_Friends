@@ -9,7 +9,7 @@ export const renderOrderView = () => window.Handlebars.compile(`
             <p class="order-cart__date">{{created_at}}</p>
             <p class="order-cart__address">{{address}}</p>
         </div>
-        <div class="order-cart__user-status">{{status}} </div>
+        <div class="order-cart__user-status">{{status}}</div>
     </div>
     <div class="order-cart__order-list">
         {{#each products}}

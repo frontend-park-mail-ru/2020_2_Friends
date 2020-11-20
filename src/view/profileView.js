@@ -25,10 +25,9 @@ export class ProfileView {
         this.serverInternalError = this.serverInternalError.bind(this);
         this.changeProfileError = this.changeProfileError.bind(this);
         this.getProfileError = this.getProfileError.bind(this);
-        this.changeSubPage = this.changeSubPage.bind(this);
+        this.сhangeSubPage = this.сhangeSubPage.bind(this);
         this.showOrders = this.showOrders.bind(this);
         this.showAddressList = this.showAddressList.bind(this);
-
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
@@ -92,8 +91,7 @@ export class ProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.changeSubPage('.js-profile-info');
-        this.focusOnNavButton('.js-userdata-button');
+        this.сhangeSubPage(data.subpage);
         this.addEventListeners();
     }
 
@@ -126,25 +124,46 @@ export class ProfileView {
         infoText.innerText = 'Данные успешно обновлены!';
     }
 
-    changeSubPage (selector) {
-        const seenBlock = this.root.querySelector(selector);
-        if (selector === '.js-profile-orders') {
-            this.eventBus.call('GET_ORDERS');
-        }
+    сhangeSubPage (page) {
+        const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
+        allButtons.forEach(element => {
+            element.classList.remove('profile-page__navbar-button_focus');
+        });
         const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-profile-addresses, .js-profile-coupons, .js-profile-orders');
         allBlocks.forEach(element => {
             element.style.display = 'none';
         });
-        seenBlock.style.display = 'flex';
-    }
+        let seenBlock;
+        let activeButton;
+        switch (page) {
+        case 'profile':
+            activeButton = this.root.querySelector('.js-userdata-button');
+            seenBlock = this.root.querySelector('.js-profile-info');
+            break;
 
-    focusOnNavButton (selector) {
-        const seenBlock = this.root.querySelector(selector);
-        const allBlocks = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
-        allBlocks.forEach(element => {
-            element.classList.remove('profile-page__navbar-button_focus');
-        });
-        seenBlock.classList.add('profile-page__navbar-button_focus');
+        case 'orders':
+            this.eventBus.call('GET_ORDERS');
+            activeButton = this.root.querySelector('.js-myorders-button');
+            seenBlock = this.root.querySelector('.js-profile-orders');
+            break;
+
+        case 'addresses':
+            activeButton = this.root.querySelector('.js-addresses-button');
+            seenBlock = this.root.querySelector('.js-profile-addresses');
+            break;
+
+        case 'coupons':
+            activeButton = this.root.querySelector('.js-coupons-button');
+            seenBlock = this.root.querySelector('.js-profile-coupons');
+            break;
+
+        default:
+            activeButton = this.root.querySelector('.js-userdata-button');
+            seenBlock = this.root.querySelector('.js-profile-info');
+            break;
+        }
+        seenBlock.style.display = 'flex';
+        activeButton.classList.add('profile-page__navbar-button_focus');
     }
 
     showOrders (data) {
@@ -186,26 +205,22 @@ export class ProfileView {
     addEventListeners () {
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-info');
-            this.focusOnNavButton('.js-userdata-button');
+            this.сhangeSubPage('profile');
         });
 
         const addresses = this.root.querySelector('.js-addresses-button');
         addresses.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-addresses');
-            this.focusOnNavButton('.js-addresses-button');
+            this.сhangeSubPage('addresses');
         });
 
         const orders = this.root.querySelector('.js-myorders-button');
         orders.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-orders');
-            this.focusOnNavButton('.js-myorders-button');
+            this.сhangeSubPage('orders');
         });
 
         const coupons = this.root.querySelector('.js-coupons-button');
         coupons.addEventListener('click', () => {
-            this.changeSubPage('.js-profile-coupons');
-            this.focusOnNavButton('.js-coupons-button');
+            this.сhangeSubPage('coupons');
         });
 
         const uploadAvatar = this.root.querySelector('.upload');

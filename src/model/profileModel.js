@@ -26,7 +26,7 @@ export class ProfileModel {
     /**
      * Getting user profile data with http-request.
      */
-    async getProfileData () {
+    async getProfileData (subpage = 'profile') {
         const response = await getProfileInfoRequest();
 
         switch (response.status) {
@@ -38,13 +38,27 @@ export class ProfileModel {
             } else {
                 avatarUrl = makeAvatarUrl(body.avatar);
             }
-            this.eventBus.call('SHOW_PROFILE', {
-                avatar: avatarUrl,
-                points: body.points,
-                addresses: body.addresses,
-                phone: body.phone,
-                name: body.name
-            });
+            switch (subpage) {
+            case 'profile':
+                this.eventBus.call('SHOW_PROFILE', {
+                    subpage: 'profile',
+                    avatar: avatarUrl,
+                    points: body.points,
+                    addresses: body.addresses,
+                    phone: body.phone,
+                    name: body.name
+                });
+                break;
+            case 'orders':
+                this.eventBus.call('SHOW_PROFILE', {
+                    subpage: 'orders',
+                    avatar: avatarUrl,
+                    points: body.points,
+                    addresses: body.addresses,
+                    phone: body.phone,
+                    name: body.name
+                });
+            }
             break;
         }
         case 400:
