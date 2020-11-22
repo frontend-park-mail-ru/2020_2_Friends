@@ -74,10 +74,10 @@
 
 .store__logo {
     max-width: 100%;
-    width: 230px;
-    height: 230px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    margin: 30px;
+    margin: 10px;
 }
 
 .product {

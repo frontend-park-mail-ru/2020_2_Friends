@@ -1,8 +1,10 @@
 .background {
     display: flex;
-    width: 100%;
     flex-direction: column;
     background: #D7DEE5;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100vh;
 }
 .common-input {
     width: 350px;
@@ -34,7 +36,9 @@
     border: none;
     font-family: sans-serif;
     width: fit-content;
-    height: min-content;
+    height: fit-content;
+    white-space: nowrap;
+    cursor: pointer;
 }
 .info-button {
     font-size: 20px;
@@ -79,4 +83,8 @@
     color: #878A86;
     max-width: 350px;
     margin: 15px;
+}
+
+* {
+    font-family: sans-serif;
 }

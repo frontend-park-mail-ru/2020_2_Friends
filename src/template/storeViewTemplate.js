@@ -6,11 +6,11 @@ export const renderStoreView = () => window.Handlebars.compile(`
     <div class="back-to-shopping">
         <button class="back-to-shopping__button">Все рестораны</button>
     </div>
-    <div class="store__header">
+    <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
         <img src="{{picture}}" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>
-            <button class="info-button">Отзывы</button>
+            <button class="info-button js-goto-reviews">Отзывы</button>
         </div>
     </div>
     <div class="store__showcase">

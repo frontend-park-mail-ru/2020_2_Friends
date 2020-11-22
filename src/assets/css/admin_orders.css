@@ -10,7 +10,7 @@
     background-color: #FFFFFF;
 }
 
-.order-column {
+.order-column, .review-column{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
@@ -84,8 +84,8 @@
     margin: 10px 50px 10px 30px;
 }
 
-.order-cart__status, .order-cart__user-status {
-    margin: 20px 20px auto auto;
+.order-cart__status {
+    margin: 20px 20px 20px auto;
     height: 40px;
     width: 130px;
     font-size: 20px;

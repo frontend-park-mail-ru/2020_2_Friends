@@ -379,3 +379,10 @@ export const createOrderRequest = (data) => {
     };
     return ajaxPostUsingFetch(args);
 };
+
+export const getStoreReviewsRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/reviews`
+    };
+    return ajaxGetUsingFetch(args);
+};

@@ -1,0 +1,48 @@
+.order-cart__review-button {
+    font-size: 25px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.order-cart__info-right {
+    position: relative;
+}
+
+.review-cart {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #C4C4C4;
+    margin-bottom: 40px;
+    padding: 20px;
+    flex: 1;
+    max-width: 800px;
+    min-width: 800px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+}
+
+.review-cart__review-header {
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+}
+.review-header__name, .review-header__date, .review-header__rating {
+    color: #000000;
+    font-weight: normal;
+    white-space: nowrap;
+    font-size: 25px;
+}
+
+.review-header__date {
+    margin: 10px 10px 10px auto;
+}
+
+.review-header__rating, .review-header__name {
+    margin: 10px;
+}
+
+.review-cart__text {
+    margin: 20px;
+    font-size: 30px;
+}
