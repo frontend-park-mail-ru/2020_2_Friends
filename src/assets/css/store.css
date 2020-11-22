@@ -1,9 +1,6 @@
 .back-to-shopping {
     background: #FFFFFF;
     display: flex;
-    justify-self: start;
-    flex-direction: row;
-    width: 100%;
     padding: 10px 40px 20px 40px;
     border: 1px solid #C4C4C4;
 }
