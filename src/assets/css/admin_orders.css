@@ -1,7 +1,7 @@
 .order-cart {
     display: flex;
     flex-direction: column;
-    border: 3px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
     margin-bottom: 40px;
     flex: 1;
     max-width: 800px;
@@ -17,7 +17,7 @@
 }
 
 .order-cart__header {
-    border-bottom: 3px solid #C4C4C4;
+    border-bottom: 1px solid #C4C4C4;
     display: flex;
     padding: 10px;
     flex-direction: row;
