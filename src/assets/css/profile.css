@@ -162,6 +162,7 @@
 }
 
 .round-delete-button:hover {
+    cursor: pointer;
     background-color: #F6BEAA;
 }
 

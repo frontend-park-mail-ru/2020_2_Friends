@@ -40,6 +40,7 @@ export class ProfileView {
         eventBus.subscribe('SHOW_ORDERS', this.showOrders);
         eventBus.subscribe('ADDRESS_NOT_VALID', this.addrNotValid);
         eventBus.subscribe('SHOW_ADDRESS_LIST', this.showAddressList);
+        eventBus.subscribe('REVIEW_COMPLETED', this.reviewCompleted);
     }
 
     /**
@@ -174,6 +175,40 @@ export class ProfileView {
             const orderHTML = template(order);
             orderColumn.innerHTML += orderHTML;
         });
+        const reviewBtns = this.root.querySelectorAll('.js-review-button');
+        reviewBtns.forEach(Btn => {
+            Btn.addEventListener('click', () => {
+                const id = Btn.closest('.order-cart').dataset.orderid;
+                document.getElementById('review-form').dataset.orderid = id;
+                document.getElementById('overlay').style.display = 'flex';
+            });
+        });
+    }
+
+    createReview () {
+        const id = document.getElementById('review-form').dataset.orderid;
+        const rating = document.getElementById('review-form__rating').value;
+        const text = document.getElementById('review-form__text').value;
+        const data = { order_id: parseInt(id), rating: parseInt(rating), text: text };
+        this.eventBus.call('CREATE_REVIEW', data);
+    }
+
+    reviewCompleted (id) {
+        this.closeOverlay();
+        this.thanksForTheReview(id);
+    }
+
+    thanksForTheReview (id) {
+        const order = document.getElementById(id);
+        const reviewBtn = order.querySelector('.js-review-button');
+        reviewBtn.classList.toggle('proceed-button');
+        reviewBtn.innerHTML = 'Благодарим за отзыв!';
+    }
+
+    closeOverlay () {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('review-form__text').value = '';
+        document.getElementById('review-form__rating').value = '1';
     }
 
     showAddressList (input) {
@@ -203,6 +238,14 @@ export class ProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
+        const offOverlay = this.root.querySelector('.js-close-overlay');
+        offOverlay.addEventListener('click', () => {
+            this.closeOverlay();
+        });
+        document.getElementById('js-add-review').addEventListener('click', () => {
+            this.createReview();
+        });
+
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.сhangeSubPage('profile');
