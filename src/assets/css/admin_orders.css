@@ -1,7 +1,7 @@
 .order-cart {
     display: flex;
     flex-direction: column;
-    border: 3px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
     margin-bottom: 40px;
     flex: 1;
     max-width: 800px;
@@ -10,14 +10,14 @@
     background-color: #FFFFFF;
 }
 
-.order-column {
+.order-column, .review-column{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
 }
 
 .order-cart__header {
-    border-bottom: 3px solid #C4C4C4;
+    border-bottom: 1px solid #C4C4C4;
     display: flex;
     padding: 10px;
     flex-direction: row;
@@ -84,8 +84,8 @@
     margin: 10px 50px 10px 30px;
 }
 
-.order-cart__status, .order-cart__user-status {
-    margin: 20px 20px auto auto;
+.order-cart__status {
+    margin: 20px 20px 20px auto;
     height: 40px;
     width: 130px;
     font-size: 20px;
@@ -95,7 +95,7 @@
 }
 
 .order-cart__user-status {
-    margin: 10px 5px auto auto;
+    margin: 10px 15px auto auto;
     height: 40px;
     width: 130px;
     font-size: 30px;

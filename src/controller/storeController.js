@@ -22,6 +22,7 @@ export class StoreController {
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
         eventBus.subscribe('REDIRECT_TO_STORES', () => this.router.redirect('/'));
+        eventBus.subscribe('REDIRECT_TO_REVIEWS', (storeId) => this.router.redirect('stores/' + storeId + '/reviews'));
     }
 
     /**

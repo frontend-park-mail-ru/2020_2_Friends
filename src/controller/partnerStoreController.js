@@ -21,6 +21,7 @@ export class PartnerStoreController {
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('partners_profile'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('partners'));
         eventBus.subscribe('REDIRECT_TO_ORDERS', (storeId) => this.router.redirect('partners_stores/' + storeId + '/orders'));
+        eventBus.subscribe('REDIRECT_TO_REVIEWS', (storeId) => this.router.redirect('partners_stores/' + storeId + '/reviews'));
     }
 
     /**
