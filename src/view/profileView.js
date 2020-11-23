@@ -178,9 +178,9 @@ export class ProfileView {
             orderColumn.innerHTML += orderHTML;
         });
         const reviewBtns = this.root.querySelectorAll('.js-review-button');
-        reviewBtns.forEach(Btn => {
-            Btn.addEventListener('click', () => {
-                const id = Btn.closest('.order-cart').dataset.orderid;
+        reviewBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.closest('.order-cart').dataset.orderid;
                 document.getElementById('review-form').dataset.orderid = id;
                 document.getElementById('overlay').style.display = 'flex';
             });
@@ -245,9 +245,7 @@ export class ProfileView {
             this.closeOverlay();
         });
 
-        document.getElementById('js-add-review').addEventListener('click', () => {
-            this.createReview();
-        });
+        document.getElementById('js-add-review').addEventListener('click', this.createReview());
 
         const fileInput = document.getElementById('file');
         document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
