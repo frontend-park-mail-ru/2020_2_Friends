@@ -4,6 +4,7 @@
     flex-direction: column;
     background: #D7DEE5;
 }
+
 .common-input {
     width: 350px;
     height: 40px;
@@ -26,8 +27,9 @@
 }
 
 .none {
-    display:none;
+    display: none;
 }
+
 .proceed-button, .info-button {
     padding: 10px;
     margin: 15px;
@@ -40,6 +42,7 @@
     width: fit-content;
     height: min-content;
 }
+
 .info-button {
     font-size: 20px;
 }

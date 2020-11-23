@@ -19,7 +19,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli" class="common-image profile-page__img">
                     <div class="avatar-errors"></div>
                     <button id="js-upload-avatar" class="img-upload-button"></button>
-                    <input  type="file" name="uploadFile"  id="file" accept=".png, .jpg, .jpeg"  class="none">
+                    <input type="file" name="uploadFile" id="file" accept=".png, .jpg, .jpeg"  class="none">
                 </div>
 
                 <div class="profile-page__bonus-points">Количество баллов: {{points}}</div>

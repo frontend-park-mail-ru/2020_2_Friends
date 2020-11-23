@@ -8,7 +8,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
     <div class="img-container">
         <img src="{{picture}}" class="store__logo" alt="Store logo">
         <button id="js-upload-avatar" class="img-upload-button"></button>
-        <input  type="file" name="uploadFile"  id="file" accept=".png, .jpg, .jpeg"  class="none">
+        <input type="file" name="uploadFile" id="file" accept=".png, .jpg, .jpeg"  class="none">
     </div>
     </div>
         <div class="store__header-headline">
