@@ -25,7 +25,7 @@ export class ProfileView {
         this.serverInternalError = this.serverInternalError.bind(this);
         this.changeProfileError = this.changeProfileError.bind(this);
         this.getProfileError = this.getProfileError.bind(this);
-        this.сhangeSubPage = this.сhangeSubPage.bind(this);
+        this.сhangeSubPage = this.changeSubPage.bind(this);
         this.showOrders = this.showOrders.bind(this);
         this.showAddressList = this.showAddressList.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
@@ -91,7 +91,7 @@ export class ProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.сhangeSubPage(data.subpage);
+        this.changeSubPage(data.subpage);
         this.addEventListeners();
     }
 
@@ -124,7 +124,7 @@ export class ProfileView {
         infoText.innerText = 'Данные успешно обновлены!';
     }
 
-    сhangeSubPage (page) {
+    changeSubPage (page) {
         const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
         allButtons.forEach(element => {
             element.classList.remove('profile-page__navbar-button_focus');
@@ -217,22 +217,22 @@ export class ProfileView {
 
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
-            this.сhangeSubPage('profile');
+            this.changeSubPage('profile');
         });
 
         const addresses = this.root.querySelector('.js-addresses-button');
         addresses.addEventListener('click', () => {
-            this.сhangeSubPage('addresses');
+            this.changeSubPage('addresses');
         });
 
         const orders = this.root.querySelector('.js-myorders-button');
         orders.addEventListener('click', () => {
-            this.сhangeSubPage('orders');
+            this.changeSubPage('orders');
         });
 
         const coupons = this.root.querySelector('.js-coupons-button');
         coupons.addEventListener('click', () => {
-            this.сhangeSubPage('coupons');
+            this.changeSubPage('coupons');
         });
 
         const addAddrBtn = this.root.querySelector('.js-add-address');
