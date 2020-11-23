@@ -203,6 +203,18 @@ export class ProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
+        const fileInput = document.getElementById('file');
+        document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
+            e.preventDefault();
+            fileInput.click();
+        });
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            const avatar = new FormData();
+            avatar.append('avatar', file);
+            this.eventBus.call('UPLOAD_AVATAR', avatar);
+        });
+
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.сhangeSubPage('profile');
@@ -221,15 +233,6 @@ export class ProfileView {
         const coupons = this.root.querySelector('.js-coupons-button');
         coupons.addEventListener('click', () => {
             this.сhangeSubPage('coupons');
-        });
-
-        const uploadAvatar = this.root.querySelector('.upload');
-        uploadAvatar.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const file = e.target.uploadFile.files[0];
-            const avatar = new FormData();
-            avatar.append('avatar', file);
-            this.eventBus.call('UPLOAD_AVATAR', avatar);
         });
 
         const addAddrBtn = this.root.querySelector('.js-add-address');
