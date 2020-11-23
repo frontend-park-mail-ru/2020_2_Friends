@@ -25,10 +25,9 @@ export class ProfileView {
         this.serverInternalError = this.serverInternalError.bind(this);
         this.changeProfileError = this.changeProfileError.bind(this);
         this.getProfileError = this.getProfileError.bind(this);
-        this.сhangeSubPage = this.сhangeSubPage.bind(this);
+        this.сhangeSubPage = this.changeSubPage.bind(this);
         this.showOrders = this.showOrders.bind(this);
         this.showAddressList = this.showAddressList.bind(this);
-        this.reviewCompleted = this.reviewCompleted.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
@@ -41,7 +40,6 @@ export class ProfileView {
         eventBus.subscribe('SHOW_ORDERS', this.showOrders);
         eventBus.subscribe('ADDRESS_NOT_VALID', this.addrNotValid);
         eventBus.subscribe('SHOW_ADDRESS_LIST', this.showAddressList);
-        eventBus.subscribe('REVIEW_COMPLETED', this.reviewCompleted);
     }
 
     /**
@@ -93,7 +91,7 @@ export class ProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
-        this.сhangeSubPage(data.subpage);
+        this.changeSubPage(data.subpage);
         this.addEventListeners();
     }
 
@@ -126,7 +124,7 @@ export class ProfileView {
         infoText.innerText = 'Данные успешно обновлены!';
     }
 
-    сhangeSubPage (page) {
+    changeSubPage (page) {
         const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
         allButtons.forEach(element => {
             element.classList.remove('profile-page__navbar-button_focus');
@@ -176,40 +174,6 @@ export class ProfileView {
             const orderHTML = template(order);
             orderColumn.innerHTML += orderHTML;
         });
-        const reviewBtns = this.root.querySelectorAll('.js-review-button');
-        reviewBtns.forEach(Btn => {
-            Btn.addEventListener('click', () => {
-                const id = Btn.closest('.order-cart').dataset.orderid;
-                document.getElementById('review-form').dataset.orderid = id;
-                document.getElementById('overlay').style.display = 'flex';
-            });
-        });
-    }
-
-    createReview () {
-        const id = document.getElementById('review-form').dataset.orderid;
-        const rating = document.getElementById('review-form__rating').value;
-        const text = document.getElementById('review-form__text').value;
-        const data = { order_id: parseInt(id), rating: parseInt(rating), text: text };
-        this.eventBus.call('CREATE_REVIEW', data);
-    }
-
-    reviewCompleted (id) {
-        this.closeOverlay();
-        this.thanksForTheReview(id);
-    }
-
-    thanksForTheReview (id) {
-        const order = document.getElementById(id);
-        const reviewBtn = order.querySelector('.js-review-button');
-        reviewBtn.classList.toggle('proceed-button');
-        reviewBtn.innerHTML = 'Благодарим за отзыв!';
-    }
-
-    closeOverlay () {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('review-form__text').value = '';
-        document.getElementById('review-form__rating').value = '1';
     }
 
     showAddressList (input) {
@@ -239,41 +203,36 @@ export class ProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
-        const offOverlay = this.root.querySelector('.js-close-overlay');
-        offOverlay.addEventListener('click', () => {
-            this.closeOverlay();
+        const fileInput = document.getElementById('file');
+        document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
+            e.preventDefault();
+            fileInput.click();
         });
-        document.getElementById('js-add-review').addEventListener('click', () => {
-            this.createReview();
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            const avatar = new FormData();
+            avatar.append('avatar', file);
+            this.eventBus.call('UPLOAD_AVATAR', avatar);
         });
 
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
-            this.сhangeSubPage('profile');
+            this.changeSubPage('profile');
         });
 
         const addresses = this.root.querySelector('.js-addresses-button');
         addresses.addEventListener('click', () => {
-            this.сhangeSubPage('addresses');
+            this.changeSubPage('addresses');
         });
 
         const orders = this.root.querySelector('.js-myorders-button');
         orders.addEventListener('click', () => {
-            this.сhangeSubPage('orders');
+            this.changeSubPage('orders');
         });
 
         const coupons = this.root.querySelector('.js-coupons-button');
         coupons.addEventListener('click', () => {
-            this.сhangeSubPage('coupons');
-        });
-
-        const uploadAvatar = this.root.querySelector('.upload');
-        uploadAvatar.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const file = e.target.uploadFile.files[0];
-            const avatar = new FormData();
-            avatar.append('avatar', file);
-            this.eventBus.call('UPLOAD_AVATAR', avatar);
+            this.changeSubPage('coupons');
         });
 
         const addAddrBtn = this.root.querySelector('.js-add-address');

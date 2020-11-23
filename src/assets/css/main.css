@@ -6,6 +6,7 @@
     min-width: 100%;
     min-height: 100vh;
 }
+
 .common-input {
     width: 350px;
     height: 40px;
@@ -26,6 +27,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.none {
+    display: none;
+}
+
 .proceed-button, .info-button {
     padding: 10px;
     margin: 15px;
@@ -40,6 +46,7 @@
     white-space: nowrap;
     cursor: pointer;
 }
+
 .info-button {
     font-size: 20px;
 }

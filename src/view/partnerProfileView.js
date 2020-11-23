@@ -187,10 +187,13 @@ export class PartnerProfileView {
             this.changeSubPage('addstore');
         });
 
-        const uploadAvatar = this.root.querySelector('.upload-avatar');
-        uploadAvatar.addEventListener('submit', (e) => {
+        const fileInput = document.getElementById('file');
+        document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
             e.preventDefault();
-            const file = e.target.uploadFile.files[0];
+            fileInput.click();
+        });
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
             const avatar = new FormData();
             avatar.append('avatar', file);
             this.eventBus.call('UPLOAD_AVATAR', avatar);
