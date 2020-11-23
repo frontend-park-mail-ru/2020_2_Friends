@@ -1,8 +1,10 @@
 .background {
     display: flex;
-    width: 100%;
     flex-direction: column;
     background: #D7DEE5;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100vh;
 }
 
 .common-input {
@@ -10,7 +12,7 @@
     height: 40px;
     margin: 15px;
     background: #FFFFFF;
-    border: 2px solid #878A86;
+    border: 1px solid #878A86;
     box-sizing: border-box;
     padding: 10px 5px 10px 20px;
     border-radius: 20px;
@@ -39,8 +41,10 @@
     color: #444BCF;
     border: none;
     font-family: sans-serif;
-    width: fit-content;
-    height: min-content;
+    width: min-content;
+    height: fit-content;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
 .info-button {
@@ -49,7 +53,7 @@
 
 .info-button {
     background-color: #FFFFFF;
-    border: 3px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
 }
 
 .info-button:focus, .info-button:hover {
@@ -86,4 +90,27 @@
     color: #878A86;
     max-width: 350px;
     margin: 15px;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.common-text-area {
+    margin: 15px;
+    background: #FFFFFF;
+    border: 1px solid #878A86;
+    box-sizing: border-box;
+    padding: 10px 5px 10px 20px;
+    border-radius: 20px;
+    resize: none;
+    /* Text */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 140.62%;
+    color: #878A86;
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

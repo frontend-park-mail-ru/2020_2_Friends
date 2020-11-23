@@ -60,5 +60,11 @@ export class StoreView {
         back.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_STORES');
         });
+
+        const reviews = this.root.querySelector('.js-goto-reviews');
+        const storeId = document.getElementById('storeHeader').dataset.store_id;
+        reviews.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_REVIEWS', storeId);
+        });
     }
 }

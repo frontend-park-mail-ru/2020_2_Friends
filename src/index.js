@@ -6,7 +6,7 @@ import { StoreController } from './controller/storeController.js';
 import { BucketController } from './controller/bucketController.js';
 import { OrderController } from './controller/orderController.js';
 import { AllStoresController } from './controller/allStoresController.js';
-
+import { StoreReviewsController } from './controller/storeReviewsController.js';
 import { PartnerLoginController } from './controller/partnerLoginController.js';
 import { PartnerRegisterController } from './controller/partnerRegisterController.js';
 import { PartnerProfileController } from './controller/partnerProfileController.js';
@@ -26,7 +26,7 @@ const storeController = new StoreController(root, router);
 const bucketController = new BucketController(root, router);
 const orderController = new OrderController(root, router);
 const allStoresController = new AllStoresController(root, router);
-
+const storeReviewsController = new StoreReviewsController(root, router);
 const partnerLoginController = new PartnerLoginController(root, router);
 const partnerRegController = new PartnerRegisterController(root, router);
 const partnerProfileController = new PartnerProfileController(root, router);
@@ -66,6 +66,14 @@ router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
 router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
     headerController.view.render(isAdmin());
     orderController.orderPageHandler(id);
+});
+router.setRoute('^/partners_stores/(?<id>\\d+)/reviews/?$', (id) => {
+    headerController.view.render(isAdmin());
+    storeReviewsController.reviewsPageHandler(id);
+});
+router.setRoute('^/stores/(?<id>\\d+)/reviews/?$', (id) => {
+    headerController.view.render(isAdmin());
+    storeReviewsController.reviewsPageHandler(id);
 });
 router.setRoute('^/bucket/?$', () => {
     headerController.view.render(isAdmin());

@@ -24,7 +24,7 @@
 .bucket-item {
     display: flex;
     flex-direction: row;
-    border: 3px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
     margin: 20px;
     height: fit-content;
 }

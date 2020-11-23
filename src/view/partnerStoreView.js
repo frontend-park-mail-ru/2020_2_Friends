@@ -160,6 +160,11 @@ export class PartnerStoreView {
     }
 
     addEventListeners () {
+        const reviews = this.root.querySelector('.js-goto-reviews');
+        const storeId = document.getElementById('storeHeader').dataset.store_id;
+        reviews.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_REVIEWS', storeId);
+        });
         const fileInput = document.getElementById('file');
         document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
             e.preventDefault();
@@ -178,7 +183,6 @@ export class PartnerStoreView {
         products.forEach(product => { this.addProductEventListeners(product); });
 
         const toOrdersBtn = this.root.querySelector('.js-goto-orders');
-        const storeId = document.getElementById('storeHeader').dataset.store_id;
         toOrdersBtn.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_ORDERS', storeId);
         });

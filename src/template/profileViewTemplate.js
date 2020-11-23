@@ -58,6 +58,23 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
 
         <div class="profile-page__content js-profile-orders">
+            <div id="overlay">
+            <div id="review-form" class="review-form">
+            <div class="review-form__row">
+            <div class="review-header__rating">Оцените ваш заказ!</div>
+                <select id="review-form__rating" class="review-form__rating">
+                    <option value="1" class="status__option">1</option>
+                    <option value="2" class="status__option">2</option>
+                    <option value="3" class="status__option">3</option>
+                    <option value="4" class="status__option">4</option>
+                    <option value="5" class="status__option">5</option>
+                </select>
+                <div class="round-delete-button js-close-overlay"></div>
+            </div>
+                <textarea id="review-form__text" type="text" cols="20" rows="3" class="common-text-area" placeholder="Расскажите о ваших впечатлениях!"></textarea>
+                <button id="js-add-review" class="proceed-button">Добавить отзыв</button>
+            </div>
+            </div>
             <div class=" order-column-profile " id="orderColumn">
 
             </div>

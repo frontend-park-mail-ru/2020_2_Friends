@@ -14,7 +14,7 @@ export const renderStoreView = () => window.Handlebars.compile(`
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>
             <div class="store__functions">
-            <button class="info-button">Отзывы</button> 
+            <button class="info-button js-goto-reviews">Отзывы</button> 
             <button class="info-button js-goto-orders orders-button">Заказы</button>
             <button class="info-button js-add-item">Добавить блюдо</button>
             </div>
