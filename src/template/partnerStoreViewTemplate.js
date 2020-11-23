@@ -5,11 +5,12 @@ export const renderStoreView = () => window.Handlebars.compile(`
 <div class="background">
     <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
     <div>
-    <div class="img-container">
         <img src="{{picture}}" class="store__logo" alt="Store logo">
-        <button id="js-upload-avatar" class="img-upload-button"></button>
-        <input type="file" name="uploadFile" id="file" accept=".png, .jpg, .jpeg"  class="none">
-    </div>
+        <form class="upload-logo">
+        <input type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
+        <input type="submit" />
+    </form>
+    </form>
     </div>
         <div class="store__header-headline">
             <div class="store__name">{{storeName}}</div>

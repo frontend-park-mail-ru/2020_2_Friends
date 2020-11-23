@@ -165,16 +165,15 @@ export class PartnerStoreView {
         reviews.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_REVIEWS', storeId);
         });
-        const fileInput = document.getElementById('file');
-        document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
+
+        const uploadLogo = this.root.querySelector('.upload-logo');
+        uploadLogo.addEventListener('submit', (e) => {
             e.preventDefault();
-            fileInput.click();
-        });
-        fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
+            const file = e.target.uploadFile.files[0];
             const avatar = new FormData();
             avatar.append('image', file);
             const storeId = document.getElementById('storeHeader').dataset.store_id;
+
             const data = { avatar, storeId };
             this.eventBus.call('UPLOAD_STORE_LOGO', data);
         });

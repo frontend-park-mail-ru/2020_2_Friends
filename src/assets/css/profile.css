@@ -57,33 +57,29 @@
     align-self: flex-end;
 }
 
-.img-upload-button {
+.profile-page__img-upload-button {
     border-radius: 50%;
     width: 50px;
     height: 50px;
     background-image: url(../img/avatar-logo.png);
     background-size: cover;
     float: left;
-    position: absolute;
-    cursor: pointer;
-    border: none;
-    top: 70%;
-    right: 10%;
-}
-
-.img-container {
     position: relative;
+    top: -60px;
+    left: 60px;
+    border: none;
 }
 
-.img-upload-button:focus {
-    border: 3px solid #C4C4C4;
+.profile-page__img-upload-button:focus {
+    border: 1px solid #C4C4C4;
 }
 
-.img-upload-button:focus {
+.profile-page__img-upload-button:focus {
     outline: none;
 }
 .profile-page__img {
     float: left;
+    position: relative;
 }
 
 .profile-page__bonus-points {
