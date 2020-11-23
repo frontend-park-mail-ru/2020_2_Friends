@@ -389,7 +389,8 @@ export const getStoreReviewsRequest = (id) => {
 
 export const createReviewRequest = (data) => {
     const args = {
-        url: backendUrl + '/api/v1/reviews'
+        url: backendUrl + '/api/v1/reviews',
+        body: data
     };
     return ajaxPostUsingFetch(args);
 };

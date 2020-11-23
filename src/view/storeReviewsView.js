@@ -22,15 +22,9 @@ export class StoreReviewsView {
 
     addEventListeners () {
         const toStoreBtn = this.root.querySelector('.js-to-store-button');
-        const storeId = document.getElementById('storeHeader').dataset.storeid;
-        if (localStorage.getItem('isAdmin')) {
-            toStoreBtn.addEventListener('click', () => {
-                this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { storeId });
-            });
-        } else {
-            toStoreBtn.addEventListener('click', () => {
-                this.eventBus.call('REDIRECT_TO_ADMIN_STORE_BY_ID', { storeId });
-            });
-        }
+        const storeId = toStoreBtn.dataset.storeid;
+        toStoreBtn.addEventListener('click', () => {
+            this.eventBus.call(localStorage.getItem('isAdmin') ? 'REDIRECT_TO_ADMIN_STORE_BY_ID' : 'REDIRECT_TO_STORE_BY_ID', { storeId });
+        });
     }
 }

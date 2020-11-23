@@ -1,8 +1,12 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
 import {
-    changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest,
-    getUserOrdersDataRequest, changeAddressesRequest, createReviewRequest
+    changePersonalInfoRequest,
+    uploadAvatarRequest,
+    getProfileInfoRequest,
+    getUserOrdersDataRequest,
+    changeAddressesRequest,
+    createReviewRequest
 } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
@@ -172,10 +176,9 @@ export class ProfileModel {
     async createReview (data) {
         const response = await createReviewRequest(data);
         switch (response.status) {
-        case 200: {
+        case 200:
             this.eventBus.call('REVIEW_COMPLETED', data.order_id);
             break;
-        }
         case 400:
             this.eventBus.call('REVIEW_ERROR');
             break;

@@ -3,11 +3,11 @@
  */
 export const storeReviewsView = () => window.Handlebars.compile(`
 <div class="background">
-    <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
+    <div id="storeHeader"  class="store__header">
         <img src="{{vendor_picture}}" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
             <div class="store__name">Отзывы о {{vendor_name}}</div>
-            <button class="info-button js-to-store-button">К магазину</button>
+            <button data-storeid="{{storeId}}" class="info-button  js-to-store-button">К магазину</button>
         </div>
     </div>
     <div class="review-column">
