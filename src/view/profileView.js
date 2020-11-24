@@ -245,7 +245,7 @@ export class ProfileView {
             this.closeOverlay();
         });
 
-        document.getElementById('js-add-review').addEventListener('click', this.createReview());
+        document.getElementById('js-add-review').addEventListener('click', this.createReview);
 
         const fileInput = document.getElementById('file');
         document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
