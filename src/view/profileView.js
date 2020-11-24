@@ -241,9 +241,7 @@ export class ProfileView {
      */
     addEventListeners () {
         const offOverlay = this.root.querySelector('.js-close-overlay');
-        offOverlay.addEventListener('click', () => {
-            this.closeOverlay();
-        });
+        offOverlay.addEventListener('click', this.closeOverlay);
 
         document.getElementById('js-add-review').addEventListener('click', this.createReview);
 
