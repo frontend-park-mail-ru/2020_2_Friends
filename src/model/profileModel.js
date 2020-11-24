@@ -159,6 +159,10 @@ export class ProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
+            body.forEach(order => {
+                order.created_at = order.created_at.replace(/T/, ' ');
+                order.created_at = order.created_at.replace(/\:\d{2}\.\d+Z$/, ' ');
+            });
             this.eventBus.call('SHOW_ORDERS', body);
             break;
         }
