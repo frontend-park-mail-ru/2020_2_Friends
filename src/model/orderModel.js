@@ -1,4 +1,5 @@
 import { changeOrderStatusRequest, getStoreOrders } from '../utils/ApiService.js';
+import { makeAvatarUrl } from '../utils/urlThrottle.js';
 export class OrderModel {
     /**
      * Creating an OrderModel instance.
@@ -40,8 +41,9 @@ export class OrderModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            const fullBody = { storeId: id, storeName: body[0].vendor_name, body: body };
-            this.eventBus.call('SHOW_ORDERS', fullBody);
+            body.storeId = id;
+            body.picture = makeAvatarUrl(body.picture);
+            this.eventBus.call('SHOW_ORDERS', body);
             break;
         }
         case 400:

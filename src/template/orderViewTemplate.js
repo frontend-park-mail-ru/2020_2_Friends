@@ -6,12 +6,12 @@ export const renderOrderView = () => window.Handlebars.compile(`
     <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
         <img src="{{picture}}" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
-            <div class="store__name">{{storeName}}</div>
+            <div class="store__name">{{vendor_name}}</div>
             <button class="info-button js-to-store-button">К магазину</button>
         </div>
     </div>
     <div class="order-column">
-        {{#each body}}
+        {{#each orders}}
         <div class="order-cart" id={{this.id}} data-orderId={{this.id}}>
             <div class="order-cart__header">
                 <div class="order-cart__info">
