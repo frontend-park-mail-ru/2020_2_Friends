@@ -33,6 +33,7 @@ export class BucketView {
         const products = this.root.querySelectorAll('.bucket-item');
         products.forEach(product => {
             productIds.push(parseInt(product.dataset.id));
+            this.eventBus.call('DELETE_FROM_BUCKET', product.dataset.id);
         });
         data.products = productIds;
         this.eventBus.call('CREATE_ORDER', data);

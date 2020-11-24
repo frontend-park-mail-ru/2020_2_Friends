@@ -43,10 +43,6 @@ export class OrderModel {
             const body = await response.json();
             body.storeId = id;
             body.picture = makeAvatarUrl(body.picture);
-            body.orders.forEach(order => {
-                order.created_at = order.created_at.replace(/T/, ' ');
-                order.created_at = order.created_at.replace(/\:\d{2}\.\d+Z$/, ' ');
-            });
             this.eventBus.call('SHOW_ORDERS', body);
             break;
         }
