@@ -21,6 +21,9 @@ export class BucketView {
      */
     render (data) {
         const template = renderBucketView();
+        if (data.products.length === 0) {
+            data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!'
+        }
         this.root.innerHTML = template(data);
         this.addEventListeners();
     }

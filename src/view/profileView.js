@@ -172,6 +172,9 @@ export class ProfileView {
     showOrders (data) {
         const orderColumn = document.getElementById('orderColumn');
         orderColumn.innerHTML = '';
+        if (data.length === 0) {
+            data.empty = 'Что-то тут пустовато... Сделайте свой первый заказ!'
+        }
         const template = renderOrderView();
         data.forEach((order) => {
             const orderHTML = template(order);
