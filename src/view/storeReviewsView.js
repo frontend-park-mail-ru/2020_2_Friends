@@ -15,6 +15,11 @@ export class StoreReviewsView {
     }
 
     render (data) {
+        data.reviews.forEach((review) => {
+            if (!review.username) {
+                review.username = 'Аноним';
+            }
+        })
         const template = storeReviewsView();
         this.root.innerHTML = template(data);
         this.addEventListeners();
