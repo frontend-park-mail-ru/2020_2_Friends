@@ -3,6 +3,7 @@
  */
 export const renderProfileView = () => window.Handlebars.compile(`
 <div class="background">
+    <div class="proceed-button support-button js-open-support">Чат с саппортом</div>
     <div class="back-to-shopping">
         <button class="back-to-shopping__button">Все рестораны</button>
     </div>
