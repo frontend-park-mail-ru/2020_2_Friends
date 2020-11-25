@@ -1,0 +1,136 @@
+.bucket-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bucket,
+.bucket-total {
+    display: flex;
+    background: #FFFFFF;
+    flex-direction: column;
+    margin: 40px;
+    padding: 20px;
+    min-width: 500px;
+    min-height: 500px;
+}
+
+.bucket__header {
+    font-size: 50px;
+    margin: 20px;
+}
+
+.bucket-item {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #C4C4C4;
+    margin: 20px;
+    height: fit-content;
+}
+
+.bucket-item__img {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    align-self: center;
+}
+
+.bucket-item__col {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.bucket-item__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 10px auto auto;
+}
+
+.bucket-item__name {
+    margin: 0px 20px 20px 20px;
+    font-size: 25px;
+    white-space: nowrap;
+}
+
+.bucket-item__descr {
+    margin: 10px;
+    font-size: 20px;
+    max-width: 500px;
+}
+
+.bucket-item__quantity {
+    margin: 0px 0px 20px 20px;
+    width: 50px;
+    font-size: 20px;
+}
+
+.bucket-item__price {
+    margin: 0px 0px 20px 20px;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.bucket-item__delete {
+    width: 24px;
+    height: 24px;
+    background-image: url(../img/cross.png);
+    background-color: #FFFFFF;
+    background-size: cover;
+    border: none;
+    border-radius: 50%;
+    margin: 0px 0px 20px 20px;
+}
+
+.bucket-item__delete:hover {
+    background-color: #F6BEAA;
+    outline: none;
+}
+
+.bucket-item__delete:focus {
+    outline: none;
+}
+
+.bucket-total__header {
+    font-size: 40px;
+    margin: 20px;
+}
+
+.bucket-total {
+    padding: 20px;
+    height: fit-content;
+    position: sticky;
+    top: 78px;
+}
+
+.bucket-total__store-name,
+.bucket-total__sum {
+    font-size: 30px;
+    margin: 10px 10px 20px 20px;
+    white-space: nowrap;
+}
+
+.bucket-total__order-button {
+    align-self: flex-end;
+}
+
+.bucket-total__select-address input::-webkit-outer-spin-button,
+.bucket-total__select-addressinput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.bucket-total__select-address input[type=number] {
+  -moz-appearance: textfield;
+}
+.bucket-total__select-address {
+    font-size: 20px;
+    height: max-content;
+    padding: 10px;
+    margin: 10px;
+    width: 400px;
+    overflow: hidden;
+}

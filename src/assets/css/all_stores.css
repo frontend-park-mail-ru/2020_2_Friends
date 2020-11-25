@@ -1,0 +1,90 @@
+.stores-page__header {
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    padding: 20px 40px 20px 40px;
+}
+
+.stores-page__header-headline {
+    padding-left: 100px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+
+    font-size: 64px;
+    font-weight: bold;
+    margin: 1px;
+    font-family: sans-serif;
+}
+
+.header__input {
+    border-radius: 3px;
+    margin-top: 10px;
+    color: #232a17; 
+    font-style: italic; 
+    font-size: 26px;
+}
+
+.header__search-button {
+    font-size: 26px;
+    border-radius: 3px;
+}
+
+.store__descr {
+    text-align: center;
+    font-size: 18px;
+    margin: 10px;
+    max-width: 400px;
+}
+
+.store-block__store-name {
+    font-size: 26px;
+    font-weight: bold;
+    display: block;
+    margin: 1px;
+    margin-top: 15px;
+    font-family: sans-serif;
+    
+}
+
+.store__block {
+    width: 450px;
+    height: 400px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 5px;
+    position:relative;
+    cursor: pointer;
+}
+
+.store__block:hover {
+    box-shadow: 0 5px 10px #000000, 0 4px 4px #cacaca01;
+}
+
+.stores__showcase {
+    padding-left: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.stores__logo {
+    max-width: 100%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.store__img {
+    height: 350px;
+    max-height: 350px;
+    overflow: hidden;
+    width: 450px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-image: url("https://www.delivery-club.ru/naturmort/5fa84410091ce_480x300.jpg?resize=fill&width=480&height=480&gravity=ce&out=webp");
+}
