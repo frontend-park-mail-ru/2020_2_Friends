@@ -1,4 +1,4 @@
-import { renderAdminHeaderView, renderUserHeaderView } from '../template/headerViewTemplate.js';
+import { renderAdminHeaderView, renderUserHeaderView,  renderNotAuthHeaderView } from '../template/headerViewTemplate.js';
 
 export class HeaderView {
     /**
@@ -11,20 +11,38 @@ export class HeaderView {
     constructor (header, eventBus) {
         this.header = header;
         this.eventBus = eventBus;
+        this.render = this.render.bind(this);
+        eventBus.subscribe('SHOW_HEADER', this.render);
     }
 
     /**
      * Rendering header and setting event listeners.
      */
-    render (isAdmin) {
-        if (isAdmin) {
-            const headerTemplate = renderAdminHeaderView();
-            this.header.innerHTML = headerTemplate();
-            this.addAdminHeaderEventListeners();
-        } else {
-            const headerTemplate = renderUserHeaderView();
-            this.header.innerHTML = headerTemplate();
-            this.addUserHeaderEventListeners();
+    render (option) {
+        switch (option) {
+            case 'user': {
+                const headerTemplate = renderUserHeaderView();
+                this.header.innerHTML = headerTemplate();
+                this.addUserHeaderEventListeners();
+                break;
+            }
+            case 'admin': {
+                const headerTemplate = renderAdminHeaderView();
+                this.header.innerHTML = headerTemplate();
+                this.addAdminHeaderEventListeners();
+                break;
+            }
+            case 'notAuth': {
+                const headerTemplate = renderNotAuthHeaderView();
+                this.header.innerHTML = headerTemplate();
+                this.addNotAuthEventListeners();
+                break;
+            }
+            default:
+                const headerTemplate = renderNotAuthHeaderView();
+                this.header.innerHTML = headerTemplate();
+                this.addNotAuthEventListeners();
+                break;
         }
     }
 
@@ -57,6 +75,12 @@ export class HeaderView {
         const profile = this.header.querySelector('.js-profile-button');
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_PROFILE');
+        });
+    }
+    addNotAuthEventListeners () {
+        const login = this.header.querySelector('.js-login-button');
+        login.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_LOGIN');
         });
     }
 }

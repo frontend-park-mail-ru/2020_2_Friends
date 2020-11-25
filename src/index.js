@@ -40,7 +40,7 @@ function isAdmin () {
 router.setRoute('^/login/?$', loginController.view.render);
 router.setRoute('^/register/?$', regController.view.render);
 router.setRoute('^/profile/?$', () => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     profileController.model.getProfileData();
 });
 router.setRoute('^/profile/orders?$', () => {
@@ -48,46 +48,46 @@ router.setRoute('^/profile/orders?$', () => {
     profileController.model.getProfileData('orders');
 });
 router.setRoute('^/store/?$', () => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     storeController.model.getData();
 });
 router.setRoute('^/?$', () => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     allStoresController.model.getStoresData();
 });
 router.setRoute('^/stores/(?<id>\\d+)/?$', (id) => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     storeController.storePageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     partnerStoreController.storePageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     orderController.orderPageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)/reviews/?$', (id) => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     storeReviewsController.reviewsPageHandler(id);
 });
 router.setRoute('^/stores/(?<id>\\d+)/reviews/?$', (id) => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     storeReviewsController.reviewsPageHandler(id);
 });
 router.setRoute('^/bucket/?$', () => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     bucketController.model.getBucketData();
 });
 // Setting routes for partners to navigate inside an app
 router.setRoute('^/partners_login/?$', partnerLoginController.view.render);
 router.setRoute('^/partners_register/?$', partnerRegController.view.render);
 router.setRoute('^/partners_profile/?$', () => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     partnerProfileController.model.getProfileData();
 });
 router.setRoute('^/partners_store/?$', () => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     partnerStoreController.model.getData();
 });
 
