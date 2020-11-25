@@ -394,3 +394,10 @@ export const createReviewRequest = (data) => {
     };
     return ajaxPostUsingFetch(args);
 };
+
+export const checkAuth = () => {
+    const args = {
+        url: backendUrl + '/api/v1/sessions'
+    };
+    return ajaxGetUsingFetch(args);
+};
