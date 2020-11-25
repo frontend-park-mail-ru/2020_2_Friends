@@ -32,17 +32,13 @@ export class HeaderView {
                 this.addAdminHeaderEventListeners();
                 break;
             }
-            case 'notAuth': {
+            case 'notAuth': 
+            default: {
                 const headerTemplate = renderNotAuthHeaderView();
                 this.header.innerHTML = headerTemplate();
                 this.addNotAuthEventListeners();
                 break;
             }
-            default:
-                const headerTemplate = renderNotAuthHeaderView();
-                this.header.innerHTML = headerTemplate();
-                this.addNotAuthEventListeners();
-                break;
         }
     }
 

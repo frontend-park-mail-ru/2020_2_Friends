@@ -19,6 +19,7 @@ export class HeaderModel {
             break;
         case 401:
             this.eventBus.call('SHOW_HEADER', 'notAuth');
+            break;
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);
         }
@@ -28,12 +29,7 @@ export class HeaderModel {
         const response = await logoutRequest();
         switch (response.status) {
         case 200:
-            if (localStorage.getItem('isAdmin')) {
-                localStorage.removeItem('isAdmin');
-                this.eventBus.call('REDIRECT_TO_ADMIN_LOGIN');
-            } else {
-                this.eventBus.call('REDIRECT_TO_LOGIN');
-            }
+            this.eventBus.call('REDIRECT_TO_ALL_STORES');
             break;
         default:
             console.log(`Uncaught backend http-status: ${response.status}`);

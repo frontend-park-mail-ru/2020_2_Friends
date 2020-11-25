@@ -23,5 +23,6 @@ export class HeaderController {
         eventBus.subscribe('REDIRECT_TO_ADMIN_PROFILE', () => this.router.redirect('partners_profile'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
+        eventBus.subscribe('REDIRECT_TO_ALL_STORES', () => this.router.redirect('/'));
     }
 }
