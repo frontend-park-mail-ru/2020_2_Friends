@@ -91,12 +91,14 @@ router.setRoute('^/partners_store/?$', () => {
     partnerStoreController.model.getData();
 });
 
-const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
-const url = window.location.pathname.slice(firstSlashIndex);
-router.redirect(url);
-
-window.onpopstate = function () {
+function getCorrectUrl (redirect = true) {
     const firstSlashIndex = window.location.pathname.indexOf('/') + 1;
     const url = window.location.pathname.slice(firstSlashIndex);
-    router.redirect(url, false);
+    router.redirect(url, redirect);
+}
+
+getCorrectUrl();
+
+window.onpopstate = function () {
+    getCorrectUrl(false);
 };

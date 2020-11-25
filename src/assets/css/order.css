@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     margin: 40px;
-    background-image: url(https://www.tomswallpapers.com/pic/201707/1024x768/tomswallpapers.com-113943.jpg);
+    background-image: url("https://www.tomswallpapers.com/pic/201707/1024x768/tomswallpapers.com-113943.jpg");
 }
 
 .order-text::first-line {
