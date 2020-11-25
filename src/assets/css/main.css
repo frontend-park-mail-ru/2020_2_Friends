@@ -32,15 +32,12 @@
     display: none;
 }
 .support-button {
-    position: fixed;
-    left: 50px;
-    bottom: 50px;
     color: #FFFFFF !important;
-    background: #ff8a5c !important;
+    background: #dd9d88 !important;
+    margin: 10px;
 }
 .proceed-button, .info-button {
     padding: 10px;
-    /* margin: 15px; */
     background: #C5EDAC;
     border-radius: 20px;
     font-size: 25px;
@@ -48,7 +45,7 @@
     border: none;
     font-family: sans-serif;
     width: min-content;
-    height: fit-content;
+    height: min-content;
     white-space: nowrap;
     cursor: pointer;
 }
