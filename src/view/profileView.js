@@ -29,7 +29,7 @@ export class ProfileView {
         this.showOrders = this.showOrders.bind(this);
         this.showAddressList = this.showAddressList.bind(this);
         this.reviewCompleted = this.reviewCompleted.bind(this);
-        this.closeOverlay =  this.closeOverlay.bind(this);
+        this.closeOverlay = this.closeOverlay.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
