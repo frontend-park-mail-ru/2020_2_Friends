@@ -191,8 +191,7 @@ export class PartnerStoreView {
             product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
             const template = renderItemCreateView();
-            const HTML = template();
-            product.innerHTML = HTML;
+            product.innerHTML = template();
             const delBtn = product.querySelector('.js-delete-button');
             delBtn.addEventListener('click', () => {
                 product.remove();
