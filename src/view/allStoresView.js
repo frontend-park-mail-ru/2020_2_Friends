@@ -1,5 +1,4 @@
 import { renderAllStores } from '../template/allStoresViewTemplate.js';
-import { chatView } from '../template/chatViewTemplate.js';
 export class AllStoresView {
     /**
      * Creating an AllStoresView instance.
@@ -20,7 +19,7 @@ export class AllStoresView {
      * @param {Array} data - Array of cart's items.
      */
     render (data) {
-        const template = chatView();
+        const template = renderAllStores();
         this.root.innerHTML = template(data);
         this.addEventListeners();
     }

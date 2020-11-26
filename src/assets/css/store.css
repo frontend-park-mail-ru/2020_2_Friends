@@ -17,6 +17,7 @@
     line-height: 140.62%;
     margin: 0px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .back-to-shopping__button:focus {

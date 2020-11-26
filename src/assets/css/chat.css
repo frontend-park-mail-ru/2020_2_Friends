@@ -1,7 +1,13 @@
 .chat {
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
     border-radius: 10px;
     height: inherit;
-    max-width: 800px;
+    width: -webkit-fill-available;
     margin-left: 15px;
     display: flex;
     flex-direction: column;
@@ -18,14 +24,14 @@
     border-top-right-radius: inherit;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-around;
 }
 
 .chat-header-nickname {
     font-size: 30px;
     font-weight: bold;
     color: white;
-    margin-left: 10px;
+    margin: 10px;
 }
 
 .input {
@@ -57,9 +63,14 @@
 }
 
 .chat-messages {
+    line-height: 1;
+    margin: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
     padding: 20px 25px;
-    overflow: overlay;
     margin-bottom: 50px;
+    overflow-y: auto;
 }
 
 .chat-message {
@@ -116,7 +127,6 @@
 }
 
 .chats {
-    font-family: sans-serif;
     line-height: 1;
     margin: 0;
     padding: 0;
@@ -128,10 +138,10 @@
     max-width: 35%;
     min-width: 35%;
     overflow: overlay;
+    overflow-y: auto;
 }
 
 .search-wrpper {
-    font-family: sans-serif;
     line-height: 1;
     margin: 0;
     padding: 0;
@@ -142,7 +152,6 @@
 }
 
 .chats-items {
-    font-family: sans-serif;
     line-height: 1;
     margin: 0;
     padding: 0;
@@ -154,31 +163,41 @@
     overflow: overlay;
 }
 
-.chats-item {
-    font-family: sans-serif;
+.chats-item-avatar {
     line-height: 1;
+    white-space: nowrap;
     margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.chats-item {
+    line-height: 1;
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
     display: flex;
     padding: 10px;
     border-radius: 5px;
-    background-color: #dadada;
+    background-color: #C5EDAC;
     box-shadow: 0 1px 2px 0 #cac6c6;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .chats-view {
-    font-family: sans-serif;
     line-height: 1;
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
-    max-width: 1000px;
+    max-width: 700px;
     margin: 2vh auto 0;
     height: 92vh;
     display: flex;
@@ -186,6 +205,29 @@
     border-radius: 10px;
     padding: 2vh;
     background-color: #0A3200;
+}
+
+.user-chat {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    max-width: 400px;
+    max-height: 600px;
+    line-height: 1;
+    font-size: 100%;
+    vertical-align: baseline;
+    border-radius: 10px;
+    overflow: overlay;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    width: -webkit-fill-available;
+    display: none;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: -1px 1px 5px -2px #cac6c6;
 }
 
 .chats-item-nickname {
@@ -196,11 +238,9 @@
     border: 0;
     vertical-align: baseline;
     font-size: 14pt;
-    font-family: sans-serif;
 }
 
 .chats-item-last-message {
-    font-family: sans-serif;
     line-height: 1;
     white-space: nowrap;
     margin: 0;

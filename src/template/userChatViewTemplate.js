@@ -4,34 +4,6 @@
 export const chatView = () => window.Handlebars.compile(`
 <div class="chats-scrollable">
 <div class="chats-view">
-    <div class="chats">
-        <div class="search-wrpper"><input class="chats-search input" type="text" placeholder="Поиск" value="">
-            <div class="display-none"></div>
-        </div>
-        <div class="chats-items">
-            <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="../assets/img/default-avatar.png" alt="avatar"></div>
-                <div>
-                    <div class="chats-item-nickname">username</div>
-                    <div class="chats-item-last-message">last-message</div>
-                </div>
-            </div>
-            <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="../assets/img/default-avatar.png" alt="avatar"></div>
-                <div>
-                    <div class="chats-item-nickname">username</div>
-                    <div class="chats-item-last-message">last-message</div>
-                </div>
-            </div>
-            <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="../assets/img/default-avatar.png" alt="avatar"></div>
-                <div>
-                    <div class="chats-item-nickname">username</div>
-                    <div class="chats-item-last-message">last-message</div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="chat">
         <div class="chat-header">
             <div class="chat-header-nickname">Чат с магазином</div>

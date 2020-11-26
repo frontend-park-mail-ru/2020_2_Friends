@@ -1,6 +1,7 @@
 import { renderProfileView } from '../template/profileViewTemplate.js';
 import { renderOrderView } from '../template/singleOrderViewTemplate.js';
 import { renderAddrListView } from '../template/addresListViewTemplate.js';
+import { chatView } from '../template/userChatViewTemplate.js';
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -185,6 +186,14 @@ export class ProfileView {
                 document.getElementById('review_overlay').style.display = 'flex';
             });
         });
+        const openSupport = this.root.querySelectorAll('.js-open-support');
+        openSupport.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.closest('.order-cart').dataset.orderid;
+                document.getElementById('review-form').dataset.orderid = id;
+                document.getElementById('support').style.display = 'flex';
+            });
+        });
     }
 
     createReview () {
@@ -240,6 +249,10 @@ export class ProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
+        const support = document.getElementById('js-close-chat');
+        support.addEventListener('click', () => {
+            document.getElementById('support').style.display = 'none';
+        });
         const offOverlay = this.root.querySelector('.js-close-overlay');
         offOverlay.addEventListener('click', this.closeOverlay);
 
