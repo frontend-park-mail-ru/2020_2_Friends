@@ -1,7 +1,6 @@
 import { renderProfileView } from '../template/profileViewTemplate.js';
 import { renderOrderView } from '../template/singleOrderViewTemplate.js';
 import { renderAddrListView } from '../template/addresListViewTemplate.js';
-import { chatView } from '../template/userChatViewTemplate.js';
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -30,7 +29,7 @@ export class ProfileView {
         this.showOrders = this.showOrders.bind(this);
         this.showAddressList = this.showAddressList.bind(this);
         this.reviewCompleted = this.reviewCompleted.bind(this);
-        this.closeOverlay =  this.closeOverlay.bind(this);
+        this.closeOverlay = this.closeOverlay.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
