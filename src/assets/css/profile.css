@@ -108,6 +108,7 @@
     align-items: center;
 }
 .profile-page__navbar-button {
+    cursor: pointer;
     border: none;
     white-space: nowrap;
     margin: 0px 10px 0px 10px;
