@@ -20,25 +20,25 @@ export class HeaderView {
      */
     render (option) {
         switch (option) {
-            case 'user': {
-                const headerTemplate = renderUserHeaderView();
-                this.header.innerHTML = headerTemplate();
-                this.addUserHeaderEventListeners();
-                break;
-            }
-            case 'admin': {
-                const headerTemplate = renderAdminHeaderView();
-                this.header.innerHTML = headerTemplate();
-                this.addAdminHeaderEventListeners();
-                break;
-            }
-            case 'notAuth': 
-            default: {
-                const headerTemplate = renderNotAuthHeaderView();
-                this.header.innerHTML = headerTemplate();
-                this.addNotAuthEventListeners();
-                break;
-            }
+        case 'user': {
+            const headerTemplate = renderUserHeaderView();
+            this.header.innerHTML = headerTemplate();
+            this.addUserHeaderEventListeners();
+            break;
+        }
+        case 'admin': {
+            const headerTemplate = renderAdminHeaderView();
+            this.header.innerHTML = headerTemplate();
+            this.addAdminHeaderEventListeners();
+            break;
+        }
+        case 'notAuth':
+        default: {
+            const headerTemplate = renderNotAuthHeaderView();
+            this.header.innerHTML = headerTemplate();
+            this.addNotAuthEventListeners();
+            break;
+        }
         }
     }
 

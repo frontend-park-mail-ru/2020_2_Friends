@@ -42,8 +42,8 @@ export const renderProfileView = () => window.Handlebars.compile(`
             </div>
             <div class="profile-page__right-column">
                 <input type="text" class="common-input js-addstore-name" placeholder="Имя магазина:"></input>
-                <input type="text" class="common-input  wide-input js-addstore-descr"
-                    placeholder="Описание магазина:"></input>
+                <input type="text" class="common-input  wide-input js-addstore-descr" placeholder="Описание магазина:"></input>
+                <div class="addstore__map" js-map id="addstore__map" style="width: 400px; height: 400px"></div>
                 <button class="proceed-button js-add-store">Создать магазин!</button>
             </div>
         </div>

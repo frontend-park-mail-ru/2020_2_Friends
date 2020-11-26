@@ -1,4 +1,5 @@
 import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
+import { MapAPI } from '../utils/mapAPI.js';
 
 export class PartnerProfileView {
     /**
@@ -85,6 +86,12 @@ export class PartnerProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
+        const mapId = this.root.querySelector('#addstore__map');
+        const newMap = new MapAPI({
+            div: mapId,
+            zoom: 8
+        });
+        console.log(newMap);
         this.changeSubPage('profile');
         this.addEventListeners();
     }
