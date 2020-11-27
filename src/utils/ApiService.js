@@ -401,3 +401,7 @@ export const checkAuth = () => {
     };
     return ajaxGetUsingFetch(args);
 };
+
+export const getStoreChats = () => {
+    return true;
+};

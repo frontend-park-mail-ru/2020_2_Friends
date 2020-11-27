@@ -42,7 +42,7 @@
 
 .store__header-headline {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
 }
 
@@ -186,12 +186,13 @@
     justify-self: end;
 }
 
-.orders-button {
-    margin: 20px;
-}
-
 .store__functions {
-    display: inline;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.store-buttons {
+    margin: 15px;
 }
 
 .editstore-avatar-form {

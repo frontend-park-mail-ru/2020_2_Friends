@@ -11,7 +11,7 @@ import { PartnerLoginController } from './controller/partnerLoginController.js';
 import { PartnerRegisterController } from './controller/partnerRegisterController.js';
 import { PartnerProfileController } from './controller/partnerProfileController.js';
 import { PartnerStoreController } from './controller/partnerStoreController.js';
-
+import { ChatController } from './controller/chatController.js';
 import { Router } from './utils/router.js';
 
 const root = document.getElementById('root');
@@ -31,6 +31,7 @@ const partnerLoginController = new PartnerLoginController(root, router);
 const partnerRegController = new PartnerRegisterController(root, router);
 const partnerProfileController = new PartnerProfileController(root, router);
 const partnerStoreController = new PartnerStoreController(root, router);
+const partnersChatController = new ChatController(root, router);
 // Setting routes to navigate inside an app.
 
 function isAdmin () {
@@ -66,6 +67,10 @@ router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
 router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
     headerController.model.getHeaderData(isAdmin());
     orderController.orderPageHandler(id);
+});
+router.setRoute('^/partners_stores/(?<id>\\d+)/chats/?$', (id) => {
+    headerController.model.getHeaderData(isAdmin());
+    partnersChatController.chatPageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)/reviews/?$', (id) => {
     headerController.model.getHeaderData(isAdmin());

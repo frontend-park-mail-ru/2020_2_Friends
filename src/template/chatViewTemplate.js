@@ -2,6 +2,12 @@
  * Templating html-code using handlebars templater for chat.
  */
 export const chatView = () => window.Handlebars.compile(`
+<div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
+        <div class="store__header-headline">
+            <div class="store__name">{{storeName}}</div>
+            <button class="info-button js-to-store-button">К магазину</button>
+        </div>
+</div>
 <div class="chats-scrollable">
 <div class="chats-view">
     <div class="chats">
@@ -34,7 +40,7 @@ export const chatView = () => window.Handlebars.compile(`
     </div>
     <div class="chat">
         <div class="chat-header">
-            <div class="chat-header-nickname">Чат с магазином</div>
+            <div class="chat-header-nickname">Чат с пользователем</div>
         </div>
         <div class="chat-messages">
             <div class="chat-message__from-user">

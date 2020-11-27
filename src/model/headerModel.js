@@ -1,4 +1,4 @@
-import { logoutRequest,  checkAuth } from '../utils/ApiService.js';
+import { logoutRequest, checkAuth } from '../utils/ApiService.js';
 export class HeaderModel {
     /**
      * Creating an HeaderModel instance.

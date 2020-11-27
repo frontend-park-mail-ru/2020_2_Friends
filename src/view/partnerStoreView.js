@@ -163,6 +163,10 @@ export class PartnerStoreView {
         reviews.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_REVIEWS', storeId);
         });
+        const chats = this.root.querySelector('.js-goto-chats');
+        chats.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_CHATS', storeId);
+        });
         const fileInput = document.getElementById('file');
         document.getElementById('js-upload-avatar').addEventListener('click', (e) => {
             e.preventDefault();
