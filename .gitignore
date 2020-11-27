@@ -3,4 +3,3 @@ node_modules
 debug.log
 .vscode/settings.json
 new_layouts/
-package.json

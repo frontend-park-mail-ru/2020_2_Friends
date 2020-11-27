@@ -32,13 +32,12 @@ export class PartnerStoreModel {
             body.products.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
             });
-            this.eventBus.call('SHOW_STORE',
-                {
-                    storeName: body.store_name,
-                    storeId: id,
-                    products: body.products,
-                    picture: body.picture
-                });
+            this.eventBus.call('SHOW_STORE', {
+                storeName: body.store_name,
+                storeId: id,
+                products: body.products,
+                picture: body.picture
+            });
             break;
         }
         case 400:

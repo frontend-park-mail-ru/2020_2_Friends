@@ -17,12 +17,12 @@ export class HeaderController {
         this.view = new HeaderView(header, eventBus);
 
         eventBus.subscribe('REDIRECT_TO_STORE', () => this.router.redirect('store'));
-        eventBus.subscribe('REDIRECT_TO_ADMIN_STORE', () => this.router.redirect('partners_store'));
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
-        eventBus.subscribe('REDIRECT_TO_ADMIN_LOGIN', () => this.router.redirect('partners'));
+        eventBus.subscribe('REDIRECT_TO_ADMIN_STORE', () => this.router.redirect('partners_store'));
+        eventBus.subscribe('REDIRECT_TO_ADMIN_LOGIN', () => this.router.redirect('partners_login'));
+        eventBus.subscribe('REDIRECT_TO_ADMIN_PROFILE', () => this.router.redirect('partners_profile'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
-        eventBus.subscribe('REDIRECT_TO_ADMIN_PROFILE', () => this.router.redirect('partners_profile'));
-        eventBus.subscribe('REDIRECT_TO_SEARCH_PAGE', () => this.router.redirect('SEARCH_PAGE'));
+        eventBus.subscribe('REDIRECT_TO_ALL_STORES', () => this.router.redirect('/'));
     }
 }

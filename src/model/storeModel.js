@@ -25,13 +25,12 @@ export class StoreModel {
             body.products.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
             });
-            this.eventBus.call('SHOW_STORE',
-                {
-                    storeName: body.store_name,
-                    products: body.products,
-                    storeId: id,
-                    picture: makeAvatarUrl(body.picture)
-                });
+            this.eventBus.call('SHOW_STORE', {
+                storeName: body.store_name,
+                products: body.products,
+                storeId: id,
+                picture: makeAvatarUrl(body.picture)
+            });
             break;
         }
         case 400:

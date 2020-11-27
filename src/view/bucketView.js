@@ -22,31 +22,27 @@ export class BucketView {
     render (data) {
         const template = renderBucketView();
         if (data.products.length === 0) {
-            data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!'
+            data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!';
         }
         this.root.innerHTML = template(data);
         this.addEventListeners();
     }
 
     createOrder () {
-        const data = {};
-        const productIds = [];
         const addrSelect = document.getElementById('js-address');
-        data.address = addrSelect.value;
         const products = this.root.querySelectorAll('.bucket-item');
-        products.forEach(product => {
-            productIds.push(parseInt(product.dataset.id));
-            this.eventBus.call('DELETE_FROM_BUCKET', product.dataset.id);
-        });
-        data.products = productIds;
+        const data = {
+            products: [...products].map(product => parseInt(product.dataset.id)),
+            address: addrSelect.value
+        };
         this.eventBus.call('CREATE_ORDER', data);
     }
 
     addEventListeners () {
         const delItemBtn = this.root.querySelectorAll('.js-delete-item');
-        delItemBtn.forEach(Btn => {
-            Btn.addEventListener('click', () => {
-                const item = Btn.closest('.bucket-item');
+        delItemBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.bucket-item');
                 const productId = item.dataset.id;
                 item.remove();
                 this.eventBus.call('DELETE_FROM_BUCKET', productId);

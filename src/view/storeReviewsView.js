@@ -19,7 +19,7 @@ export class StoreReviewsView {
             if (!review.username) {
                 review.username = 'Аноним';
             }
-        })
+        });
         const template = storeReviewsView();
         this.root.innerHTML = template(data);
         this.addEventListeners();

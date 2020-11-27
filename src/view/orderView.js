@@ -26,7 +26,7 @@ export class OrderView {
         console.log(orders);
         orders.forEach(order => {
             const e = document.getElementById(order.id);
-            console.log(order.status)
+            console.log(order.status);
             e.querySelector('.order-cart__status').value = order.status;
         });
     }
