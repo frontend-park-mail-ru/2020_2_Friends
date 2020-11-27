@@ -1,4 +1,4 @@
-import { renderAdminHeaderView, renderUserHeaderView,  renderNotAuthHeaderView } from '../template/headerViewTemplate.js';
+import { renderAdminHeaderView, renderUserHeaderView, renderNotAuthHeaderView } from '../template/headerViewTemplate.js';
 
 export class HeaderView {
     /**
@@ -73,6 +73,7 @@ export class HeaderView {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         });
     }
+
     addNotAuthEventListeners () {
         const login = this.header.querySelector('.js-login-button');
         login.addEventListener('click', () => {
