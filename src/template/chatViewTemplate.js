@@ -16,21 +16,21 @@ export const chatView = () => window.Handlebars.compile(`
         </div>
         <div class="chats-items">
             <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="../assets/img/default-avatar.png" alt="avatar"></div>
+                <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
                 <div>
                     <div class="chats-item-nickname">username</div>
                     <div class="chats-item-last-message">last-message</div>
                 </div>
             </div>
             <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="../assets/img/default-avatar.png" alt="avatar"></div>
+                <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
                 <div>
                     <div class="chats-item-nickname">username</div>
                     <div class="chats-item-last-message">last-message</div>
                 </div>
             </div>
             <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="../assets/img/default-avatar.png" alt="avatar"></div>
+                <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
                 <div>
                     <div class="chats-item-nickname">username</div>
                     <div class="chats-item-last-message">last-message</div>
