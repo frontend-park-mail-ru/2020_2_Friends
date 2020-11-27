@@ -26,23 +26,21 @@ export class BucketView {
     }
 
     createOrder () {
-        const data = {};
-        const productIds = [];
         const addrSelect = document.getElementById('js-address');
-        data.address = addrSelect.value;
+
         const products = this.root.querySelectorAll('.bucket-item');
-        products.forEach(product => {
-            productIds.push(parseInt(product.dataset.id));
-        });
-        data.products = productIds;
+        const data = {
+            products: [...products].map(product => parseInt(product.dataset.id)),
+            address: addrSelect.value
+        };
         this.eventBus.call('CREATE_ORDER', data);
     }
 
     addEventListeners () {
         const delItemBtn = this.root.querySelectorAll('.js-delete-item');
-        delItemBtn.forEach(Btn => {
-            Btn.addEventListener('click', () => {
-                const item = Btn.closest('.bucket-item');
+        delItemBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.bucket-item');
                 const productId = item.dataset.id;
                 item.remove();
                 this.eventBus.call('DELETE_FROM_BUCKET', productId);

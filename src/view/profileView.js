@@ -92,8 +92,7 @@ export class ProfileView {
      */
     render (data) {
         const template = renderProfileView();
-        const profileHTML = template(data);
-        this.root.innerHTML = profileHTML;
+        this.root.innerHTML = template(data);
         this.changeSubPage(data.subpage);
         this.addEventListeners();
     }
