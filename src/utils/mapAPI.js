@@ -11,6 +11,7 @@ export class MapAPI {
         this.listenClick = this.listenClick.bind(this);
         this.createPlacemark = this.createPlacemark.bind(this);
         this.getAddress = this.getAddress.bind(this);
+        this.showAllStores = this.showAllStores.bind(this);
     }
 
     init () {
@@ -19,14 +20,13 @@ export class MapAPI {
             zoom: this.zoom,
             controls: ['zoomControl']
         });
-        // this.listenClick();
     }
 
     createPlacemark (coords) {
         return new ymaps.Placemark(coords); // eslint-disable-line
     }
 
-    listenClick () {
+    listenClick = () => {
         this.map.events.add('click', (e) => {
             var coords = e.get('coords');
             // Если метка уже создана – просто передвигаем ее.
@@ -64,6 +64,50 @@ export class MapAPI {
         });
     }
 
-    showAllStores () {
+    showAllStores = () => {
+        var placemarks = [
+            {
+                latitude: 55.7894,
+                longitude: 37.7925,
+                hintContent: '%ресторан_нейм%',
+                distance: 5000,
+                id: 1488
+            },
+            {
+                latitude: 55.7678,
+                longitude: 37.6860,
+                hintContent: '%ресторан_нейм%',
+                distance: 3000
+            },
+            {
+                latitude: 55.7657,
+                longitude: 37.5942,
+                hintContent: '%ресторан_нейм%',
+                distance: 5000
+            },
+            {
+                latitude: 55.7207,
+                longitude: 37.7329,
+                hintContent: '%ресторан_нейм%',
+                distance: 2000
+            }
+        ];
+
+        placemarks.forEach(store => {
+            var myPlacemark = new ymaps.Placemark(  // eslint-disable-line
+                [store.latitude, store.longitude],
+                { hintContent: store.hintContent });
+            var storeRadius = new ymaps.Circle([    // eslint-disable-line
+                [store.latitude, store.longitude],
+                store.distance
+            ], {
+                balloonContent: 'Зона доставки ' + store.hintContent
+            }, {
+                fillColor: '#DB709344',
+                strokeOpacity: 0.4
+            });
+            this.map.geoObjects.add(myPlacemark);
+            this.map.geoObjects.add(storeRadius);
+        });
     }
 }
