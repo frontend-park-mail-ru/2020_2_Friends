@@ -19,7 +19,7 @@ export class MapAPI {
             zoom: this.zoom,
             controls: ['zoomControl']
         });
-        this.listenClick();
+        // this.listenClick();
     }
 
     createPlacemark (coords) {
@@ -27,9 +27,8 @@ export class MapAPI {
     }
 
     listenClick () {
-        this.map.events.add('click', function (e) {
+        this.map.events.add('click', (e) => {
             var coords = e.get('coords');
-            console.log('asdsadsadsa', this.myPlacemark);
             // Если метка уже создана – просто передвигаем ее.
             if (this.myPlacemark) {
                 this.myPlacemark.geometry.setCoordinates(coords);
@@ -41,13 +40,13 @@ export class MapAPI {
                     this.getAddress(this.myPlacemark.geometry.getCoordinates());
                 });
             }
-            this.getAddress(coords);
+            console.log(this.getAddress(coords));
         });
     }
 
     getAddress (coords) {
-        this.myPlacemark.properties.set('iconCaption', 'поиск...');
-        ymaps.geocode(coords).then(function (res) {
+        this.myPlacemark.properties.set('iconCaption');
+        ymaps.geocode(coords).then(function (res) { // eslint-disable-line
             var firstGeoObject = res.geoObjects.get(0);
 
             this.myPlacemark.properties
@@ -63,5 +62,8 @@ export class MapAPI {
                     balloonContent: firstGeoObject.getAddressLine()
                 });
         });
+    }
+
+    showAllStores () {
     }
 }

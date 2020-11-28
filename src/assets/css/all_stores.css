@@ -8,14 +8,20 @@
 
 .stores-page__header-headline {
     padding-left: 100px;
-    padding-top: 40px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
     font-size: 64px;
     font-weight: bold;
     margin: 1px;
     font-family: sans-serif;
+}
+
+.header__map {
+    padding-left: 100px;
+    padding-top: 10px;
+    width: 800px;
+    height: 400px;
 }
 
 .header__input {

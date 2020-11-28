@@ -91,6 +91,7 @@ export class PartnerProfileView {
             div: mapId,
             zoom: 8
         });
+        newMap.listenClick();
         console.log(newMap);
         this.changeSubPage('profile');
         this.addEventListeners();

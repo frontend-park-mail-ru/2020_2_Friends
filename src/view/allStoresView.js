@@ -1,4 +1,6 @@
 import { renderAllStores } from '../template/allStoresViewTemplate.js';
+import { MapAPI } from '../utils/mapAPI.js';
+
 export class AllStoresView {
     /**
      * Creating an AllStoresView instance.
@@ -21,6 +23,12 @@ export class AllStoresView {
     render (data) {
         const template = renderAllStores();
         this.root.innerHTML = template(data);
+        const mapId = this.root.querySelector('#map');
+        const newMap = new MapAPI({
+            div: mapId,
+            zoom: 8
+        });
+        newMap.showAllStores();
         this.addEventListeners();
     }
 
