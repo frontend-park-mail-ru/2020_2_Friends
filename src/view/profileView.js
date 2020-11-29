@@ -30,6 +30,7 @@ export class ProfileView {
         this.showAddressList = this.showAddressList.bind(this);
         this.reviewCompleted = this.reviewCompleted.bind(this);
         this.closeOverlay = this.closeOverlay.bind(this);
+        this.createReview = this.createReview.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
@@ -176,6 +177,7 @@ export class ProfileView {
         }
         const template = renderOrderView();
         data.forEach((order) => {
+            order.showReview = !order.reviewed && (order.status === 'Завершён');
             order.showChat = !!(order.status && order.status !== 'Завершён');
             const orderHTML = template(order);
             orderColumn.innerHTML += orderHTML;

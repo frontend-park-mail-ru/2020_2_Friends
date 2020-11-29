@@ -14,7 +14,9 @@ export const renderOrderView = () => window.Handlebars.compile(`
         {{#if showChat}}
         <div class="proceed-button support-button js-open-support">Чат</div>
         {{/if}}
+        {{#if showReview}}
         <div class="order-cart__review-button proceed-button js-review-button">Оцените заказ</div>
+        {{/if}}
         </div>
     </div>
     <div class="order-cart__order-list">
