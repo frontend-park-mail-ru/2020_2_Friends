@@ -19,12 +19,14 @@ export class OrderView {
         const template = renderOrderView();
         this.root.innerHTML = template(data);
         this.addEventListeners();
-        this.setStatus(data.body);
+        this.setStatus(data.orders);
     }
 
     setStatus (orders) {
+        console.log(orders);
         orders.forEach(order => {
             const e = document.getElementById(order.id);
+            console.log(order.status);
             e.querySelector('.order-cart__status').value = order.status;
         });
     }

@@ -11,10 +11,12 @@ export const renderOrderView = () => window.Handlebars.compile(`
         </div>
         <div class="order-cart__info-right">
         <div class="order-cart__user-status">{{status}}</div>
-        <div class="order-cart_buttons">
-        <div class="support-button js-open-support">Чат</div>
-        <div class="order-cart__review-button proceed-button js-review-button">Оцените заказ</div>
-        </div>
+            <div class="order-cart_buttons">
+                {{#if showChat}}
+                <div class="support-button js-open-support">Чат</div>
+                {{/if}}
+                <div class="order-cart__review-button proceed-button js-review-button">Оцените заказ</div>
+            </div>
         </div>
     </div>
     <div class="order-cart__order-list">

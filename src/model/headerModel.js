@@ -1,5 +1,6 @@
 import { logoutRequest, checkAuth } from '../utils/ApiService.js';
 import webSocket from '../utils/Socket.js';
+
 export class HeaderModel {
     /**
      * Creating an HeaderModel instance.

@@ -74,13 +74,10 @@ export const renderProfileView = () => window.Handlebars.compile(`
             </div>
             </div>
             <div class=" order-column-profile " id="orderColumn">
+            <div class="empty-bucket">{{empty}}</div>
 
             </div>
         </div>
-
-        
-
-
         <div class="profile-page__content js-profile-coupons">
             <div class="profile-page__content-column">
                 <div class="profile-page__сoupon-cart">
