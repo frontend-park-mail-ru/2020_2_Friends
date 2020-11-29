@@ -37,7 +37,8 @@ export class PartnerProfileModel {
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            const imgInput = { id: body.id, img: data.img };
+            const imgInput = { storeId: body.id, avatar: data.img };
+            console.log(imgInput);
             const imgResponse = await changeStoreImgRequest(imgInput);
             if (imgResponse.status === 200) {
                 this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: body.id });
