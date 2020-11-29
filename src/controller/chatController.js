@@ -4,7 +4,7 @@ import { EventBus } from '../utils/eventBus.js';
 
 export class ChatController {
     /**
-     * Creating controller class for header entity.
+     * Creating controller class for chat entity.
      *
      * @param {object} header - Main html div object.
      * @param {router} router - An object that allows to route inside a site.

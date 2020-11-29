@@ -6,13 +6,7 @@ class Socked {
     }
 
     subscribe (event, handler) {
-        switch (event) {
-        case 'message':
-            this.messageHandlers.add(handler);
-            break;
-        default:
-            break;
-        }
+        this.messageHandlers.add(handler);
     }
 
     send (data) {
