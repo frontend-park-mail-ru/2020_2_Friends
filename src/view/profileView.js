@@ -176,6 +176,7 @@ export class ProfileView {
         }
         const template = renderOrderView();
         data.forEach((order) => {
+            order.showChat = !!(order.status && order.status !== 'Завершён');
             const orderHTML = template(order);
             orderColumn.innerHTML += orderHTML;
         });
