@@ -64,3 +64,16 @@ export const chatListItemView = () => window.Handlebars.compile(`
     </div>
 </div>
 `);
+
+export const userChatView = () => window.Handlebars.compile(`
+    <div class="user-chat">
+        <div class="chat-header">
+            <div class="chat-header-nickname">Чат с {{store_name}}</div>
+            <div id="js-close-chat" class="round-delete-button"></div>
+        </div>
+        <div class="chat-messages">
+        </div>
+        <div class="chat-new-message"><input class="chat-new-message-input input js-message-input" type="text"
+                placeholder="Напишите сообщение..." value=""><button data-id={{order_id}} class="proceed-button js-send-message">Отправить</button></div>
+    </div>
+`);

@@ -111,17 +111,5 @@ export const renderProfileView = () => window.Handlebars.compile(`
             </div>
         </div>
     </div>
-
-
-    <div id="support" class="user-chat">
-        <div class="chat-header">
-            <div class="chat-header-nickname">Чат с магазином</div>
-            <div id="js-close-chat" class="round-delete-button"></div>
-        </div>
-        <div class="chat-messages">
-        </div>
-        <div class="chat-new-message"><input class="chat-new-message-input input js-message-input" type="text"
-                placeholder="Напишите сообщение..." value=""><button class="proceed-button js-send-message">Отправить</button></div>
-    </div>
 </div>
 `);

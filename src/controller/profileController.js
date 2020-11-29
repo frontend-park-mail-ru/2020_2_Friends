@@ -25,5 +25,6 @@ export class ProfileController {
         eventBus.subscribe('REDIRECT_TO_STORES', () => this.router.redirect('/'));
         eventBus.subscribe('SEND_MESSAGE', chat.model.sendMessage);
         eventBus.subscribe('GET_CHAT_MESSAGES', chat.model.getChatMessages);
+        eventBus.subscribe('SHOW_USER_CHAT', chat.view.showUserChat);
     }
 }

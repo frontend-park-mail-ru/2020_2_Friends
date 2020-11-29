@@ -187,14 +187,10 @@ export class ProfileView {
         const openSupport = this.root.querySelectorAll('.js-open-support');
         openSupport.forEach(btn => {
             btn.addEventListener('click', () => {
+                console.log(btn);
                 const id = btn.closest('.order-cart').dataset.orderid;
-                const newMessage = this.root.querySelector('.js-send-message');
-                newMessage.dataset.id = id;
-                document.getElementById('support').style.display = 'flex';
-                const chatHeader = this.root.querySelector('.chat-header-nickname');
-                const shopName = btn.closest('.order-cart').dataset.name;
-                chatHeader.innerHTML = shopName;
-                this.eventBus.call('GET_CHAT_MESSAGES', id);
+                const storeName = btn.closest('.order-cart').dataset.name;
+                this.eventBus.call('SHOW_USER_CHAT', { order_id: id, storeName });
             });
         });
     }
@@ -252,18 +248,6 @@ export class ProfileView {
      * Setting event listeners for profile page.
      */
     addEventListeners () {
-        const support = document.getElementById('js-close-chat');
-        support.addEventListener('click', () => {
-            document.getElementById('support').style.display = 'none';
-        });
-        const newMessage = this.root.querySelector('.js-send-message');
-        newMessage.addEventListener('click', () => {
-            const text = this.root.querySelector('.js-message-input').value;
-            this.root.querySelector('.js-message-input').value = '';
-            if (text) {
-                this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
-            }
-        });
         const offOverlay = this.root.querySelector('.js-close-overlay');
         offOverlay.addEventListener('click', this.closeOverlay);
 

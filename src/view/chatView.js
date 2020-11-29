@@ -1,4 +1,4 @@
-import { chatView, messageToUserView, messageFromUserView, chatListItemView } from '../template/chatViewTemplate.js';
+import { chatView, messageToUserView, messageFromUserView, chatListItemView, userChatView } from '../template/chatViewTemplate.js';
 export class ChatView {
     /**
      * Creating an  ChatView instance.
@@ -9,12 +9,14 @@ export class ChatView {
      */
     constructor (root, eventBus) {
         this.root = root;
+        this.support = document.getElementById('support');
         this.eventBus = eventBus;
         this.showChatList = this.showChatList.bind(this);
         this.showChatMessages = this.showChatMessages.bind(this);
         this.showMessageFromMe = this.showMessageFromMe.bind(this);
         this.showMessageToMe = this.showMessageToMe.bind(this);
         this.showMessageToMeAdmin = this.showMessageToMeAdmin.bind(this);
+        this.showUserChat = this.showUserChat.bind(this);
 
         eventBus.subscribe('SHOW_CHAT_LIST', this.showChatList);
         eventBus.subscribe('SHOW_CHAT_MESSAGES', this.showChatMessages);
@@ -29,12 +31,44 @@ export class ChatView {
         this.addEventListeners();
     }
 
+    showUserChat (data) {
+        const oldChat = this.support.querySelector('.user-chat');
+        if (oldChat) {
+            oldChat.remove();
+        }
+        const template = userChatView();
+        this.support.innerHTML = template(data);
+        this.eventBus.call('GET_CHAT_MESSAGES', data.order_id);
+        this.addUserChatEventListeners();
+    }
+
+    addUserChatEventListeners () {
+        const support = document.getElementById('js-close-chat');
+        support.addEventListener('click', () => {
+            this.support.querySelector('.user-chat').remove();
+        });
+        const newMessage = this.support.querySelector('.js-send-message');
+        newMessage.addEventListener('click', () => {
+            const text = this.support.querySelector('.js-message-input').value;
+            this.support.querySelector('.js-message-input').value = '';
+            if (text) {
+                console.log({ order_id: parseInt(newMessage.dataset.id), text: text });
+                console.log(newMessage);
+                this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
+            }
+        });
+    }
+
     showChatMessages (data) {
         const toUserTemplate = messageToUserView();
         const fromUserTemplate = messageFromUserView();
 
         // сделать чат в списке выделенным (если он есть) и показать все сообщения в чате
-        const chatMessages = this.root.querySelector('.chat-messages');
+        let chatMessages = this.root.querySelector('.chat-messages');
+        if (!chatMessages) {
+            chatMessages = this.support.querySelector('.chat-messages');
+        }
+
         chatMessages.innerHTML = '';
         data.messages.forEach((message) => {
             if (message.is_your_msg) {
@@ -56,13 +90,20 @@ export class ChatView {
     }
 
     showMessageFromMe (data) {
-        const chatMessages = this.root.querySelector('.chat-messages');
+        let chatMessages = this.root.querySelector('.chat-messages');
+        if (!chatMessages) {
+            chatMessages = this.support.querySelector('.chat-messages');
+        }
+
         const fromUserTemplate = messageFromUserView();
         chatMessages.innerHTML += fromUserTemplate(data);
     }
 
     showMessageToMe (data) {
-        const chatMessages = this.root.querySelector('.chat-messages');
+        let chatMessages = this.root.querySelector('.chat-messages');
+        if (!chatMessages) {
+            chatMessages = this.support.querySelector('.chat-messages');
+        }
         if (chatMessages) {
             const toUserTemplate = messageToUserView();
             chatMessages.innerHTML += toUserTemplate(data);
