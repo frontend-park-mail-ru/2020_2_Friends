@@ -23,9 +23,13 @@ export class PartnerProfileModel {
     }
 
     async addStore (data) {
-        const { name, description } = data;
-        const response = await addStore(
-            { store_name: name.value, description: description.value }
+        const { name, description, radius, coords } = data;
+        const response = await addStore({
+            store_name: name.value,
+            description: description.value,
+            radius: radius.value,
+            coords: coords
+        }
         );
         switch (response.status) {
         case 200: {

@@ -22,13 +22,14 @@ export class AllStoresView {
      */
     render (data) {
         const template = renderAllStores();
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = template({ stores: data.stores });
         const mapId = this.root.querySelector('#map');
         const newMap = new MapAPI({
             div: mapId,
-            zoom: 8
+            zoom: 11
         });
-        newMap.showAllStores();
+        newMap.showAllStores(data.maps);
+        newMap.addMyPosition();
         this.addEventListeners();
     }
 

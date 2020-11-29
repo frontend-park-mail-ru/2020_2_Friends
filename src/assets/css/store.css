@@ -37,6 +37,8 @@
     width: 100%;
     margin-bottom: 40px;
     padding: 20px 0px;
+    background: url("../img/all_stores.webp");
+    background-size: 2300px;
 }
 
 .store__header-headline {

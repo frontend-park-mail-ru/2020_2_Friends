@@ -44,6 +44,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 <input type="text" class="common-input js-addstore-name" placeholder="Имя магазина:"></input>
                 <input type="text" class="common-input  wide-input js-addstore-descr" placeholder="Описание магазина:"></input>
                 <div class="addstore__map" js-map id="addstore__map"></div>
+                <input type="text" class="common-input  wide-input js-addstore-radius" placeholder="Радиус обслуживания в метрах:"></input>
                 <button class="proceed-button js-add-store">Создать магазин!</button>
             </div>
         </div>

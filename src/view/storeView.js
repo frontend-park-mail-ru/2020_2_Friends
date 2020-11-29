@@ -48,9 +48,10 @@ export class StoreView {
         const mapId = this.root.querySelector('#map');
         const newMap = new MapAPI({
             div: mapId,
-            zoom: 8
+            zoom: 11
         });
-        console.log(newMap);
+        newMap.showStore();
+        newMap.addMyPosition();
         this.addEventListeners();
     }
 

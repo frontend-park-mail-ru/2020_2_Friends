@@ -92,7 +92,6 @@ export class PartnerProfileView {
             zoom: 8
         });
         newMap.listenClick();
-        console.log(newMap);
         this.changeSubPage('profile');
         this.addEventListeners();
     }
@@ -165,10 +164,12 @@ export class PartnerProfileView {
         storeDataButton.addEventListener('click', () => {
             const name = this.root.querySelector('.js-addstore-name');
             const description = this.root.querySelector('.js-addstore-descr');
+            const radius = this.root.querySelector('.js-addstore-radius');
             const imgFile = document.getElementById('addstore-avatar-form').files[0];
             const img = new FormData();
             img.append('image', imgFile);
-            const data = { name, description, img };
+            const coords = localStorage.getItem('newRestarauntCoordinate');
+            const data = { name, description, img, coords, radius };
             this.eventBus.call('ADD_STORE', data);
         });
 

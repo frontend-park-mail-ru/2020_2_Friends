@@ -14,9 +14,12 @@
     margin: 0px 10px;
 }
 
+.common-input {
+    width: 500px;
+}
 
 .addstore__map {
-    width: 400px;
+    width: 500px;
     height: 400px
 }
 
