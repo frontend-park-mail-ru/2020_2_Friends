@@ -261,7 +261,7 @@ export class ProfileView {
             const text = this.root.querySelector('.js-message-input').value;
             this.root.querySelector('.js-message-input').value = '';
             if (text) {
-                this.eventBus.call('SEND_MESSAGE', { order_id: newMessage.dataset.id, text: text });
+                this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
             }
         });
         const offOverlay = this.root.querySelector('.js-close-overlay');

@@ -26,8 +26,10 @@ export class ChatModel {
         case 200: {
             const body = await response.json();
             this.eventBus.call('SHOW_CHAT_LIST', { storeId: id, chats: body });
-            const lastId = body[0].order_id;
-            this.getChatMessages(lastId);
+            if (body.lenght) {
+                const lastId = body[0].order_id;
+                this.getChatMessages(lastId);
+            }
             break;
         }
         case 400:
@@ -42,7 +44,7 @@ export class ChatModel {
     }
 
     async getChatMessages (id) {
-        const response = await getAllMessages(id);
+        const response = await getAllMessages(parseInt(id));
         switch (response.status) {
         case 200: {
             const body = await response.json();
@@ -55,7 +57,7 @@ export class ChatModel {
     }
 
     newMessage (event) {
-        const msg = JSON.parse(event.data);
+        const msg = event.data;// JSON.parse(event.data);
         console.log(msg);
         this.eventBus.call('SHOW_MESSAGE_TO_ME', msg);
     }

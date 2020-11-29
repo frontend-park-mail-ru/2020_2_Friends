@@ -49,9 +49,9 @@ class Socked {
         }
     }
 
-    send (dataObject) {
-        console.log('send', JSON.stringify(dataObject));
-        this.socket.send(JSON.stringify(dataObject));
+    send (data) {
+        console.log('send', JSON.stringify(data));
+        this.socket.send(JSON.stringify(data));
     }
 
     getInstance () {

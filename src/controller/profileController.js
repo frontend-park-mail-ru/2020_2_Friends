@@ -23,11 +23,7 @@ export class ProfileController {
         eventBus.subscribe('REDIRECT_TO_BUCKET', () => this.router.redirect('bucket'));
         eventBus.subscribe('REDIRECT_TO_LOGIN', () => this.router.redirect('login'));
         eventBus.subscribe('REDIRECT_TO_STORES', () => this.router.redirect('/'));
-        // Chat events
-        // send message
         eventBus.subscribe('SEND_MESSAGE', chat.model.sendMessage);
-        // see chat messages
         eventBus.subscribe('GET_CHAT_MESSAGES', chat.model.getChatMessages);
-        // see new message
     }
 }

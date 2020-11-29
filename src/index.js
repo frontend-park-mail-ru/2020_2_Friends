@@ -95,6 +95,7 @@ router.setRoute('^/partners_store/?$', () => {
     headerController.model.getHeaderData(isAdmin());
     partnerStoreController.model.getData();
 });
+headerController.model.socket.connect();
 
 function getCorrectUrl (redirect = true) {
     const firstSlashIndex = window.location.pathname.indexOf('/') + 1;

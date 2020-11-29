@@ -28,7 +28,6 @@ export class ChatView {
     }
 
     showChatMessages (data) {
-        const myId = '8';
         const toUserTemplate = messageToUserView();
         const fromUserTemplate = messageFromUserView();
 
@@ -36,7 +35,7 @@ export class ChatView {
         const chatMessages = this.root.querySelector('.chat-messages');
         chatMessages.innerHTML = '';
         data.messages.forEach((message) => {
-            if (message.user_id === myId) {
+            if (message.is_your_msg) {
                 chatMessages.innerHTML += fromUserTemplate(message);
             } else {
                 chatMessages.innerHTML += toUserTemplate(message);
@@ -64,7 +63,7 @@ export class ChatView {
         const chatMessages = this.root.querySelector('.chat-messages');
         if (chatMessages) {
             const toUserTemplate = messageToUserView();
-            chatMessages.innerHTML += toUserTemplate(data);
+            chatMessages.innerHTML += toUserTemplate({ text: data });
         }
     }
 
@@ -80,7 +79,7 @@ export class ChatView {
             const text = this.root.querySelector('.js-message-input').value;
             this.root.querySelector('.js-message-input').value = '';
             if (text) {
-                this.eventBus.call('SEND_MESSAGE', { order_id: newMessage.dataset.id, text: text });
+                this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
             }
         });
 

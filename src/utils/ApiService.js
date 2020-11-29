@@ -407,10 +407,10 @@ export const checkAuth = () => {
  * @param {string} id - store id
  */
 export const getStoreChats = (id) => {
-    // const args = {
-    //     url: backendUrl + '/api/v1/sessions'
-    // };
-    // return ajaxGetUsingFetch(args);
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/chats`
+    };
+    return ajaxGetUsingFetch(args);
 };
 
 /**
@@ -418,8 +418,8 @@ export const getStoreChats = (id) => {
  * @param {string} id - id of order whose chat we want to get
  */
 export const getAllMessages = (id) => {
-    // const args = {
-    //     url: backendUrl + '/api/v1/sessions'
-    // };
-    // return ajaxGetUsingFetch(args);
+    const args = {
+        url: backendUrl + `/api/v1/chats/${id}`
+    };
+    return ajaxGetUsingFetch(args);
 };
