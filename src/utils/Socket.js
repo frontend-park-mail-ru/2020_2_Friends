@@ -1,48 +1,14 @@
 class Socked {
-    constructor (webSocketURL) {
-        this.url = webSocketURL;
-        this.messageSubscribers = new Set();
+    constructor (url) {
+        this.url = url;
+        this.messageHandlers = new Set();
         this.socketTimer = null;
     }
 
-    connect () {
-        console.log('Try to connect');
-        const connectionState = this.socket?.readyState;
-        if (connectionState === WebSocket.OPEN || connectionState === WebSocket.CONNECTING) {
-            console.log('Already connected');
-            return;
-        }
-        this.socket = new WebSocket(this.url);
-        this.socket.onopen = (event) => {
-            this.socketTimer = setInterval(() => this.socket.send(''), 10000);
-            console.log('Socket connected');
-        };
-        this.socket.onmessage = (event) => {
-            this.messageSubscribers.forEach((handler) => {
-                handler(event);
-            });
-        };
-        this.socket.onclose = (event) => {
-            console.log('Socket closed');
-            clearInterval(this.socketTimer);
-            this.socketTimer = null;
-        };
-    }
-
-    disconnect () {
-        console.log('Try to close socket');
-        const connectionState = this.socket?.readyState;
-        if (connectionState === WebSocket.CLOSED || connectionState === WebSocket.CLOSING) {
-            console.log('Already closed');
-            return;
-        }
-        this.socket.close();
-    }
-
-    subscribe (eventType, handler) {
-        switch (eventType) {
+    subscribe (event, handler) {
+        switch (event) {
         case 'message':
-            this.messageSubscribers.add(handler);
+            this.messageHandlers.add(handler);
             break;
         default:
             break;
@@ -50,11 +16,38 @@ class Socked {
     }
 
     send (data) {
-        console.log('send', JSON.stringify(data));
         this.socket.send(JSON.stringify(data));
     }
 
-    getInstance () {
+    connect () {
+        const connectionState = this.socket?.readyState;
+        if (connectionState === WebSocket.OPEN || connectionState === WebSocket.CONNECTING) {
+            return;
+        }
+        this.socket = new WebSocket(this.url);
+        this.socket.onopen = () => {
+            this.socketTimer = setInterval(() => this.socket.send(''), 10000);
+        };
+        this.socket.onmessage = (event) => {
+            this.messageHandlers.forEach((handler) => {
+                handler(event);
+            });
+        };
+        this.socket.onclose = () => {
+            clearInterval(this.socketTimer);
+            this.socketTimer = null;
+        };
+    }
+
+    disconnect () {
+        const connectionState = this.socket?.readyState;
+        if (connectionState === WebSocket.CLOSED || connectionState === WebSocket.CLOSING) {
+        } else {
+            this.socket.close();
+        }
+    }
+
+    getSocket () {
         return {
             connect: this.connect.bind(this),
             disconnect: this.disconnect.bind(this),
@@ -65,4 +58,4 @@ class Socked {
 }
 
 const socket = new Socked('ws://89.208.197.247:9000/api/v1/ws');
-export default socket.getInstance();
+export default socket.getSocket();

@@ -62,7 +62,6 @@ export class ChatView {
     }
 
     showMessageToMe (data) {
-        console.log('showMessageToMe');
         const chatMessages = this.root.querySelector('.chat-messages');
         if (chatMessages) {
             const toUserTemplate = messageToUserView();
@@ -71,10 +70,8 @@ export class ChatView {
     }
 
     showMessageToMeAdmin (data) {
-        console.log('showMessageToMeAdmin');
         const chat = document.getElementById('chat-' + data.order_id);
         if (!chat) {
-            console.log('showMessageToMeAdmin new chat');
             // если нет - добавить с список и открыть и обновить последнее сообщение
             const chatsList = this.root.querySelector('.chats-items');
             const chatItem = chatListItemView();
@@ -85,12 +82,10 @@ export class ChatView {
                 this.eventBus.call('GET_CHAT_MESSAGES', id);
             });
         } else {
-            console.log('existing chat');
             // если есть - обновить в списке последнее сообщение
             chat.querySelector('.chats-item-last-message').innerHTML = data.text;
             // проверить, открыт ли чат и если да - добавить в него сообщение
             if (chat.classList.contains('chats-item__open')) {
-                console.log('existing show message');
                 this.showMessageToMe(data);
             }
         }
