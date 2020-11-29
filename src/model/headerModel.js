@@ -1,4 +1,5 @@
 import { logoutRequest, checkAuth } from '../utils/ApiService.js';
+import webSocket from '../utils/webSocket.js';
 export class HeaderModel {
     /**
      * Creating an HeaderModel instance.
@@ -6,6 +7,7 @@ export class HeaderModel {
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
      */
     constructor (eventBus) {
+        this.socket = webSocket;
         this.doLogout = this.doLogout.bind(this);
         this.eventBus = eventBus;
         eventBus.subscribe('LOGOUT', this.doLogout);
@@ -29,6 +31,7 @@ export class HeaderModel {
         const response = await logoutRequest();
         switch (response.status) {
         case 200:
+            this.socket.disconnect();
             this.eventBus.call('REDIRECT_TO_ALL_STORES');
             break;
         default:

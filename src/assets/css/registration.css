@@ -19,3 +19,7 @@
     background: #FFFFFF;
     border-radius: 20px;
 }
+
+.margin-button {
+    margin: 10px;
+}

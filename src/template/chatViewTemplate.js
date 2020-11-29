@@ -4,7 +4,6 @@
 export const chatView = () => window.Handlebars.compile(`
 <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
         <div class="store__header-headline">
-            <div class="store__name">{{storeName}}</div>
             <button class="info-button js-to-store-button">К магазину</button>
         </div>
 </div>
@@ -15,27 +14,15 @@ export const chatView = () => window.Handlebars.compile(`
             <div class="display-none"></div>
         </div>
         <div class="chats-items">
-            <div data-nickname="qweasd" class="chats-item">
+        {{#each chats}}
+            <div data-id={{this.order_id}} id="chat-{{order_id}}" class="chats-item">
                 <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
                 <div>
-                    <div class="chats-item-nickname">username</div>
-                    <div class="chats-item-last-message">last-message</div>
+                    <div class="chats-item-nickname">{{this.interlocutor_name}}</div>
+                    <div class="chats-item-last-message">{{this.last_message}}</div>
                 </div>
             </div>
-            <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
-                <div>
-                    <div class="chats-item-nickname">username</div>
-                    <div class="chats-item-last-message">last-message</div>
-                </div>
-            </div>
-            <div data-nickname="qweasd" class="chats-item">
-                <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
-                <div>
-                    <div class="chats-item-nickname">username</div>
-                    <div class="chats-item-last-message">last-message</div>
-                </div>
-            </div>
+        {{/each}}
         </div>
     </div>
     <div class="chat">
@@ -43,31 +30,28 @@ export const chatView = () => window.Handlebars.compile(`
             <div class="chat-header-nickname">Чат с пользователем</div>
         </div>
         <div class="chat-messages">
+        {{#each messages}}
             <div class="chat-message__from-user">
-                <div class="chat-message-text__from-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
+                <div class="chat-message-text__from-user">{{this.text}}</div>
             </div>
-            <div class="chat-message__from-user">
-                <div class="chat-message-text__from-user">hi</div>
-            </div>
-            <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
-            <div class="chat-message__from-user">
-                <div class="chat-message-text__from-user">hi</div>
-            </div>
-                        <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
-                        <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
-                        <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
+        {{/each}}
         </div>
-        <div class="chat-new-message"><input class="chat-new-message-input input" type="text"
-                placeholder="Напишите сообщение..." value=""><button class="proceed-button">Отправить</button></div>
+        <div class="chat-new-message"><input class="chat-new-message-input input  js-message-input" type="text"
+                placeholder="Напишите сообщение..." value="">
+        <button class="new-message-buton proceed-button js-new-message">Отправить</button></div>
     </div>
 </div>
+</div>
+`);
+
+export const messageToUserView = () => window.Handlebars.compile(`
+<div class="chat-message__to-user">
+    <div class="chat-message-text__to-user">{{text}}</div>
+</div>
+`);
+
+export const messageFromUserView = () => window.Handlebars.compile(`
+<div class="chat-message__from-user">
+    <div class="chat-message-text__from-user">{{text}}</div>
 </div>
 `);

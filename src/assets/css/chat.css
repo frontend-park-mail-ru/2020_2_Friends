@@ -1,22 +1,19 @@
 .chat {
     line-height: 1;
-    margin: 0;
+    margin: 0 20px 0 20px;
     padding: 0;
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
     border-radius: 10px;
     height: inherit;
-    width: -webkit-fill-available;
     margin-left: 15px;
     display: flex;
     flex-direction: column;
     position: relative;
+    flex: 1;
     background-color: #ffffff;
     box-shadow: -1px 1px 5px -2px #cac6c6;
-}
-#storeHeader {
-
 }
 .chat-header {
     width: 100%;
@@ -50,7 +47,6 @@
 .chat-new-message {
     display: flex;
     width: inherit;
-    bottom: 0;
     padding: 10px;
     align-items: flex-end;
     background-color: #e5eee3;
@@ -66,6 +62,7 @@
     line-height: 1;
     margin: 0;
     border: 0;
+    flex:1;
     font-size: 100%;
     vertical-align: baseline;
     padding: 20px 25px;
@@ -176,7 +173,7 @@
     margin-right: 10px;
 }
 
-.chats-item {
+.chats-item, .chats-item__open {
     line-height: 1;
     border: 0;
     font-size: 100%;
@@ -184,12 +181,20 @@
     display: flex;
     padding: 10px;
     border-radius: 5px;
-    background-color: #C5EDAC;
     box-shadow: 0 1px 2px 0 #cac6c6;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     margin-bottom: 20px;
+    cursor: pointer;
+}
+.chats-item {
+    background-color: #C5EDAC;
+
+}
+.chats-item__open {
+    background-color: #82d152;
+
 }
 
 .chats-view {
@@ -205,7 +210,7 @@
     background-color: #e5eee3;
     align-self: center;
     justify-self: center;
-    height: 79vh;
+    height: 75vh;
 overflow: auto;
 overflow-x: hidden;
 }

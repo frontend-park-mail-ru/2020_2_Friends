@@ -21,8 +21,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <button id="js-upload-avatar" class="img-upload-button"></button>
                     <input type="file" id="file" accept=".png, .jpg, .jpeg"  class="none">
                 </div>
-
-                <div class="profile-page__bonus-points">Количество баллов: {{points}}</div>
             </div>
             <div class="profile-page__right-column">
                 <div class="js-login-errors text-error"></div>
@@ -121,30 +119,9 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <div id="js-close-chat" class="round-delete-button"></div>
         </div>
         <div class="chat-messages">
-            <div class="chat-message__from-user">
-                <div class="chat-message-text__from-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
-            <div class="chat-message__from-user">
-                <div class="chat-message-text__from-user">hi</div>
-            </div>
-            <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
-            <div class="chat-message__from-user">
-                <div class="chat-message-text__from-user">hi</div>
-            </div>
-                        <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
-                        <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
-                        <div class="chat-message__to-user">
-                <div class="chat-message-text__to-user">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-            </div>
         </div>
-        <div class="chat-new-message"><input class="chat-new-message-input input" type="text"
-                placeholder="Напишите сообщение..." value=""><button class="proceed-button">Отправить</button></div>
+        <div class="chat-new-message"><input class="chat-new-message-input input js-message-input" type="text"
+                placeholder="Напишите сообщение..." value=""><button class="proceed-button js-send-message">Отправить</button></div>
     </div>
 </div>
 `);

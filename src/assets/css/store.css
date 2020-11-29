@@ -33,7 +33,7 @@
     background: #FFFFFF;
     display: flex;
     align-self: flex-start;
-    justify-self: start;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
     margin-bottom: 40px;
@@ -42,7 +42,7 @@
 
 .store__header-headline {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
 }
 

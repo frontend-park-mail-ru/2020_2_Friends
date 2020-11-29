@@ -188,8 +188,13 @@ export class ProfileView {
         openSupport.forEach(btn => {
             btn.addEventListener('click', () => {
                 const id = btn.closest('.order-cart').dataset.orderid;
-                document.getElementById('review-form').dataset.orderid = id;
+                const newMessage = this.root.querySelector('.js-send-message');
+                newMessage.dataset.id = id;
                 document.getElementById('support').style.display = 'flex';
+                const chatHeader = this.root.querySelector('.chat-header-nickname');
+                const shopName = btn.closest('.order-cart').dataset.name;
+                chatHeader.innerHTML = shopName;
+                this.eventBus.call('GET_CHAT_MESSAGES', id);
             });
         });
     }
@@ -250,6 +255,14 @@ export class ProfileView {
         const support = document.getElementById('js-close-chat');
         support.addEventListener('click', () => {
             document.getElementById('support').style.display = 'none';
+        });
+        const newMessage = this.root.querySelector('.js-send-message');
+        newMessage.addEventListener('click', () => {
+            const text = this.root.querySelector('.js-message-input').value;
+            this.root.querySelector('.js-message-input').value = '';
+            if (text) {
+                this.eventBus.call('SEND_MESSAGE', { order_id: newMessage.dataset.id, text: text });
+            }
         });
         const offOverlay = this.root.querySelector('.js-close-overlay');
         offOverlay.addEventListener('click', this.closeOverlay);

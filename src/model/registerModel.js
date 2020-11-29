@@ -1,7 +1,7 @@
 import { registerRequest } from '../utils/ApiService.js';
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-
+import webSocket from '../utils/webSocket.js';
 export class RegisterModel {
     /**
      * Creating an RegisterModel instance.
@@ -10,7 +10,7 @@ export class RegisterModel {
      */
     constructor (eventBus) {
         this.doRegistration = this.doRegistration.bind(this);
-
+        this.socket = webSocket;
         this.eventBus = eventBus;
 
         eventBus.subscribe('SUBMIT_REG', this.doRegistration);
@@ -31,6 +31,7 @@ export class RegisterModel {
             });
             switch (response.status) {
             case 201:
+                this.socket.connect();
                 localStorage.removeItem('isAdmin');
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;

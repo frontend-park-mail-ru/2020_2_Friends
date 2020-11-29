@@ -18,10 +18,11 @@ const root = document.getElementById('root');
 const header = document.getElementById('header');
 // Creating router instance and passing it into page's controllers.
 const router = new Router();
+const chatController = new ChatController(root, router);
 const regController = new RegisterController(root, router);
 const loginController = new LoginController(root, router);
 const headerController = new HeaderController(header, router);
-const profileController = new ProfileController(root, router);
+const profileController = new ProfileController(root, router, chatController);
 const storeController = new StoreController(root, router);
 const bucketController = new BucketController(root, router);
 const orderController = new OrderController(root, router);
@@ -31,7 +32,6 @@ const partnerLoginController = new PartnerLoginController(root, router);
 const partnerRegController = new PartnerRegisterController(root, router);
 const partnerProfileController = new PartnerProfileController(root, router);
 const partnerStoreController = new PartnerStoreController(root, router);
-const partnersChatController = new ChatController(root, router);
 // Setting routes to navigate inside an app.
 
 function isAdmin () {
@@ -70,7 +70,7 @@ router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)/chats/?$', (id) => {
     headerController.model.getHeaderData(isAdmin());
-    partnersChatController.chatPageHandler(id);
+    chatController.chatPageHandler(id);
 });
 router.setRoute('^/partners_stores/(?<id>\\d+)/reviews/?$', (id) => {
     headerController.model.getHeaderData(isAdmin());
