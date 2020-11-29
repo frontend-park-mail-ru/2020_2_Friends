@@ -1,4 +1,4 @@
-import { getStores } from '../utils/ApiService.js';
+import { getStores, getNearestStores } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class AllStoresModel {
@@ -15,42 +15,27 @@ export class AllStoresModel {
 
     async getStoresData () {
         const response = await getStores();
+        const success = async position => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const response = await getNearestStores(latitude, longitude);
+            if (response.status === 200) {
+                const body = await response.json();
+                this.eventBus.call('SHOW_NEAREST_STORES', {
+                    stores: body
+                });
+            }
+        };
+        navigator.geolocation.getCurrentPosition(success);
+
         switch (response.status) {
         case 200: {
             const body = await response.json();
             body.forEach((store) => {
                 store.picture = makeAvatarUrl(store.picture);
             });
-            var placemarks = [
-                {
-                    latitude: 55.7894,
-                    longitude: 37.7925,
-                    hintContent: '%ресторан_нейм%',
-                    distance: 5000,
-                    id: 1488
-                },
-                {
-                    latitude: 55.7678,
-                    longitude: 37.6860,
-                    hintContent: '%ресторан_нейм%',
-                    distance: 3000
-                },
-                {
-                    latitude: 55.7657,
-                    longitude: 37.5942,
-                    hintContent: '%ресторан_нейм%',
-                    distance: 5000
-                },
-                {
-                    latitude: 55.7207,
-                    longitude: 37.7329,
-                    hintContent: '%ресторан_нейм%',
-                    distance: 2000
-                }
-            ];
             this.eventBus.call('SHOW_STORES', {
-                stores: body,
-                maps: placemarks
+                stores: body
             });
             break;
         }

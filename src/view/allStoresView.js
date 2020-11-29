@@ -12,8 +12,10 @@ export class AllStoresView {
         this.eventBus = eventBus;
 
         this.render = this.render.bind(this);
+        this.renderNearest = this.renderNearest.bind(this);
 
         eventBus.subscribe('SHOW_STORES', this.render);
+        eventBus.subscribe('SHOW_NEAREST_STORES', this.renderNearest);
     }
 
     /**
@@ -28,9 +30,23 @@ export class AllStoresView {
             div: mapId,
             zoom: 11
         });
-        newMap.showAllStores(data.maps);
+        newMap.showAllStores(data.stores);
         newMap.addMyPosition();
         this.addEventListeners();
+    }
+
+    /**
+     * Rendering bucket page and setting event listeners.
+     * @param {Array} data - Array of cart's items.
+     */
+    renderNearest (data) {
+        const mapId = this.root.querySelector('#map');
+        const newMap = new MapAPI({
+            div: mapId,
+            zoom: 11
+        });
+        newMap.showAllStores(data.stores);
+        newMap.addMyPosition();
     }
 
     addEventListeners () {

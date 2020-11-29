@@ -207,3 +207,10 @@
     max-width: 300px;
     overflow: hidden;
 }
+
+.header__info-block {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}

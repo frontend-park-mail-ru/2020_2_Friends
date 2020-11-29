@@ -246,7 +246,7 @@ export const changeProductImgRequest = (input) => {
 
 export const changeStoreImgRequest = (input) => {
     const args = {
-        url: backendUrl + `/api/v1/vendors/${input.storeId}/pictures`,
+        url: backendUrl + `/api/v1/vendors/${input.id}/pictures`,
         body: input.avatar
     };
     return ajaxMultipartUsingFetch(args);
@@ -398,6 +398,13 @@ export const createReviewRequest = (data) => {
 export const checkAuth = () => {
     const args = {
         url: backendUrl + '/api/v1/sessions'
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getNearestStores = (latitude, longitude) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors/nearest' + `?longitude=${longitude}&latitude=${latitude}`
     };
     return ajaxGetUsingFetch(args);
 };

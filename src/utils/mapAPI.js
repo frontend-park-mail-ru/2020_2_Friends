@@ -67,14 +67,7 @@ export class MapAPI {
         });
     }
 
-    showStore () {
-        const store = {
-            latitude: 55.7894,
-            longitude: 37.7925,
-            hintContent: '%ресторан_нейм%',
-            distance: 5000,
-            id: 1488
-        };
+    showStore (store) {
         var myPlacemark = new ymaps.Placemark(  // eslint-disable-line
             [store.latitude, store.longitude],
             { hintContent: store.hintContent });
@@ -100,21 +93,29 @@ export class MapAPI {
                 {
                     iconLayout: 'default#image',
                     iconImageHref: '../assets/img/man2.png',
-                    iconImageSize: [30, 30]
+                    iconImageSize: [30, 30],
+                    iconImageOffset: [-15, -15]
                 });
             this.map.geoObjects.add(me);
+            var meRadius = new ymaps.Circle([ // eslint-disable-line
+                [latitude, longitude], 5000
+            ], {
+                balloonContent: 'Ваш район'
+            }, {
+                fillColor: '#BFE7DC55',
+                strokeOpacity: 0.4
+            });
+            this.map.geoObjects.add(meRadius);
         };
         navigator.geolocation.getCurrentPosition(success);
     }
 
     showAllStores (placemarks) {
         placemarks.forEach(store => {
-            var myPlacemark = new ymaps.Placemark(  // eslint-disable-line
+            var myPlacemark = new ymaps.Placemark( // eslint-disable-line
                 [store.latitude, store.longitude],
                 { hintContent: store.hintContent });
-            // myPlacemark.evens.add(('click'), () => {
-            // });
-            var storeRadius = new ymaps.Circle([    // eslint-disable-line
+            var storeRadius = new ymaps.Circle([ // eslint-disable-line
                 [store.latitude, store.longitude],
                 store.distance
             ], {

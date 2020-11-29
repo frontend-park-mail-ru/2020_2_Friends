@@ -50,7 +50,7 @@ export class StoreView {
             div: mapId,
             zoom: 11
         });
-        newMap.showStore();
+        newMap.showStore(data.body);
         newMap.addMyPosition();
         this.addEventListeners();
     }

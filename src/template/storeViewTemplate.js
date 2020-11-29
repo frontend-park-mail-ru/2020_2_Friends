@@ -7,10 +7,12 @@ export const renderStoreView = () => window.Handlebars.compile(`
         <button class="back-to-shopping__button">Все рестораны</button>
     </div>
     <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
-        <img src="{{picture}}" class="store__logo" alt="Store logo">
-        <div class="store__header-headline">
-            <div class="store__name">{{storeName}}</div>
-            <button class="info-button js-goto-reviews">Отзывы</button>
+        <div class="header__info-block">
+            <img src="{{picture}}" class="store__logo" alt="Store logo">
+            <div class="store__header-headline">
+                <div class="store__name">{{storeName}}</div>
+                <button class="info-button js-goto-reviews">Отзывы</button>
+            </div>
         </div>
         <div class="store-header__map" id="map"></div>
     </div>

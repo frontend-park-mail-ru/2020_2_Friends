@@ -24,11 +24,14 @@ export class PartnerProfileModel {
 
     async addStore (data) {
         const { name, description, radius, coords } = data;
+        const geoData = coords.split(',');
+        const distance = parseInt(radius.value);
         const response = await addStore({
             store_name: name.value,
             description: description.value,
-            radius: radius.value,
-            coords: coords
+            distance: distance,
+            longitude: parseFloat(geoData[0]),
+            latitude: parseFloat(geoData[1])
         }
         );
         switch (response.status) {
