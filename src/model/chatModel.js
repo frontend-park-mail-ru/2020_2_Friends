@@ -1,5 +1,5 @@
-// import { getStoreChats } from '../utils/ApiService.js';
-import webSocket from '../utils/webSocket.js';
+import { getStoreChats, getAllMessages } from '../utils/ApiService.js';
+import webSocket from '../utils/Socket.js';
 export class ChatModel {
     /**
      * Creating an ChatModel instance.
@@ -9,7 +9,7 @@ export class ChatModel {
     constructor (eventBus) {
         this.socket = webSocket;
         this.eventBus = eventBus;
-        // this.socket.subscribe('message', this.newMessage.bind(this));
+        this.socket.subscribe('message', this.newMessage.bind(this));
         this.getChatMessages = this.getChatMessages.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         eventBus.subscribe('GET_CHAT_MESSAGES', this.getChatMessages);
@@ -21,35 +21,13 @@ export class ChatModel {
      * @param {object} id store id
      */
     async getData (id) {
-        const response = { status: 200 }; // await getStoreChats(id); // запрос на все чаты магазина
+        const response = await getStoreChats(id);
         switch (response.status) {
         case 200: {
-            const body = [
-                {
-                    order_id: 10,
-                    interlocutor_id: '7',
-                    interlocutor_name: 'Temich',
-                    last_message: 'where is the courier?'
-                },
-                {
-                    order_id: 11,
-                    interlocutor_id: '7',
-                    interlocutor_name: 'Temich',
-                    last_message: 'where is the courier?!!'
-                }];
-            // await response.json();
+            const body = await response.json();
             this.eventBus.call('SHOW_CHAT_LIST', { storeId: id, chats: body });
-            // cходить за последним чатом
             const lastId = body[0].order_id;
-            const chatResponse = { status: 200 }; // await getChat(lastId);
-            switch (chatResponse.status) {
-            case 200: {
-                this.getChatMessages(lastId);
-                break;
-            }
-            default:
-                console.log(`Uncaught backend http-status: ${response.status}`);
-            }
+            this.getChatMessages(lastId);
             break;
         }
         case 400:
@@ -64,27 +42,11 @@ export class ChatModel {
     }
 
     async getChatMessages (id) {
-        const response = { status: 200 }; // await getChat(lastId);
+        const response = await getAllMessages(id);
         switch (response.status) {
         case 200: {
-            const messageBody = [
-                {
-                    user_id: '7',
-                    text: 'Hello Server!',
-                    sent_at: '28.11.2020 16:22:28'
-                },
-                {
-                    user_id: '7',
-                    text: 'Hello Server!',
-                    sent_at: '28.11.2020 17:00:57'
-                },
-                {
-                    user_id: '8',
-                    text: 'Hello Server!',
-                    sent_at: '28.11.2020 17:01:00'
-                }
-            ]; // await chatResponse.json();
-            this.eventBus.call('SHOW_CHAT_MESSAGES', { order_id: id, messages: messageBody });
+            const body = await response.json();
+            this.eventBus.call('SHOW_CHAT_MESSAGES', { order_id: id, messages: body });
             break;
         }
         default:
@@ -92,8 +54,14 @@ export class ChatModel {
         }
     }
 
+    newMessage (event) {
+        const msg = JSON.parse(event.data);
+        console.log(msg);
+        this.eventBus.call('SHOW_MESSAGE_TO_ME', msg);
+    }
+
     sendMessage (data) {
-        console.log(data);
+        this.socket.send(data);
         this.eventBus.call('SHOW_MESSAGE_FROM_ME', data);
     }
 }

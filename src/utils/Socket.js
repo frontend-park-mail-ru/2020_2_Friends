@@ -1,23 +1,21 @@
-class WebSocket {
+class Socked {
     constructor (webSocketURL) {
         this.url = webSocketURL;
         this.messageSubscribers = new Set();
-        this.closeSubscribers = new Set();
-        this.errorSubscribers = new Set();
         this.socketTimer = null;
     }
 
     connect () {
-        console.log('Trying to connect socket...');
+        console.log('Try to connect');
         const connectionState = this.socket?.readyState;
         if (connectionState === WebSocket.OPEN || connectionState === WebSocket.CONNECTING) {
-            console.log('Socked is already connected');
+            console.log('Already connected');
             return;
         }
         this.socket = new WebSocket(this.url);
-        this.socket.onopen = () => {
+        this.socket.onopen = (event) => {
             this.socketTimer = setInterval(() => this.socket.send(''), 10000);
-            console.log('Socket is connected!');
+            console.log('Socket connected');
         };
         this.socket.onmessage = (event) => {
             this.messageSubscribers.forEach((handler) => {
@@ -28,47 +26,32 @@ class WebSocket {
             console.log('Socket closed');
             clearInterval(this.socketTimer);
             this.socketTimer = null;
-
-            this.closeSubscribers.forEach((handler) => {
-                handler(event);
-            });
-        };
-        this.socket.onerror = (event) => {
-            this.errorSubscribers.forEach((handler) => {
-                handler(event);
-            });
         };
     }
 
     disconnect () {
-        console.log('trying to disconnect socket...');
+        console.log('Try to close socket');
         const connectionState = this.socket?.readyState;
         if (connectionState === WebSocket.CLOSED || connectionState === WebSocket.CLOSING) {
-            console.log('socket is already closed');
+            console.log('Already closed');
             return;
         }
-        console.log('closing socked');
         this.socket.close();
     }
 
-    subscribe (event, handler) {
-        switch (event) {
+    subscribe (eventType, handler) {
+        switch (eventType) {
         case 'message':
             this.messageSubscribers.add(handler);
-            break;
-        case 'close':
-            this.closeSubscribers.add(handler);
-            break;
-        case 'error':
-            this.errorSubscribers.add(handler);
             break;
         default:
             break;
         }
     }
 
-    send (data) {
-        this.socket.send(JSON.stringify(data));
+    send (dataObject) {
+        console.log('send', JSON.stringify(dataObject));
+        this.socket.send(JSON.stringify(dataObject));
     }
 
     getInstance () {
@@ -81,5 +64,5 @@ class WebSocket {
     }
 }
 
-const socket = new WebSocket('ws://127.0.0.1:9000/api/v1/chat');
+const socket = new Socked('ws://89.208.197.247:9000/api/v1/ws');
 export default socket.getInstance();

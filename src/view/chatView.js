@@ -14,12 +14,11 @@ export class ChatView {
         this.showChatMessages = this.showChatMessages.bind(this);
         this.showMessageFromMe = this.showMessageFromMe.bind(this);
         this.showMessageToMe = this.showMessageToMe.bind(this);
-        // админ
+
         eventBus.subscribe('SHOW_CHAT_LIST', this.showChatList);
         eventBus.subscribe('SHOW_CHAT_MESSAGES', this.showChatMessages);
         eventBus.subscribe('SHOW_MESSAGE_FROM_ME', this.showMessageFromMe);
-        // юзер
-        eventBus.subscribe('SHOW_USER_CHATS', this.renderUserChat);
+        eventBus.subscribe('SHOW_MESSAGE_TO_ME', this.showMessageToMe);
     }
 
     showChatList (data) {
