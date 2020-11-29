@@ -21,13 +21,15 @@ export class BucketView {
      */
     render (data) {
         const template = renderBucketView();
+        if (data.products.length === 0) {
+            data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!';
+        }
         this.root.innerHTML = template(data);
         this.addEventListeners();
     }
 
     createOrder () {
         const addrSelect = document.getElementById('js-address');
-
         const products = this.root.querySelectorAll('.bucket-item');
         const data = {
             products: [...products].map(product => parseInt(product.dataset.id)),

@@ -1,4 +1,4 @@
-import { renderAdminHeaderView, renderUserHeaderView,  renderNotAuthHeaderView } from '../template/headerViewTemplate.js';
+import { renderAdminHeaderView, renderUserHeaderView, renderNotAuthHeaderView } from '../template/headerViewTemplate.js';
 
 export class HeaderView {
     /**
@@ -20,25 +20,25 @@ export class HeaderView {
      */
     render (option) {
         switch (option) {
-            case 'user': {
-                const headerTemplate = renderUserHeaderView();
-                this.header.innerHTML = headerTemplate();
-                this.addUserHeaderEventListeners();
-                break;
-            }
-            case 'admin': {
-                const headerTemplate = renderAdminHeaderView();
-                this.header.innerHTML = headerTemplate();
-                this.addAdminHeaderEventListeners();
-                break;
-            }
-            case 'notAuth': 
-            default: {
-                const headerTemplate = renderNotAuthHeaderView();
-                this.header.innerHTML = headerTemplate();
-                this.addNotAuthEventListeners();
-                break;
-            }
+        case 'user': {
+            const headerTemplate = renderUserHeaderView();
+            this.header.innerHTML = headerTemplate();
+            this.addUserHeaderEventListeners();
+            break;
+        }
+        case 'admin': {
+            const headerTemplate = renderAdminHeaderView();
+            this.header.innerHTML = headerTemplate();
+            this.addAdminHeaderEventListeners();
+            break;
+        }
+        case 'notAuth':
+        default: {
+            const headerTemplate = renderNotAuthHeaderView();
+            this.header.innerHTML = headerTemplate();
+            this.addNotAuthEventListeners();
+            break;
+        }
         }
     }
 
@@ -73,6 +73,7 @@ export class HeaderView {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         });
     }
+
     addNotAuthEventListeners () {
         const login = this.header.querySelector('.js-login-button');
         login.addEventListener('click', () => {
