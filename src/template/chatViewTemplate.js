@@ -55,3 +55,12 @@ export const messageFromUserView = () => window.Handlebars.compile(`
     <div class="chat-message-text__from-user">{{text}}</div>
 </div>
 `);
+export const chatListItemView = () => window.Handlebars.compile(`
+<div data-id={{order_id}} id="chat-{{order_id}}" class="chats-item">
+    <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
+    <div>
+        <div class="chats-item-nickname">{{this.interlocutor_name}}</div>
+        <div class="chats-item-last-message">{{text}}</div>
+    </div>
+</div>
+`);

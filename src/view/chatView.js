@@ -1,4 +1,4 @@
-import { chatView, messageToUserView, messageFromUserView } from '../template/chatViewTemplate.js';
+import { chatView, messageToUserView, messageFromUserView, chatListItemView } from '../template/chatViewTemplate.js';
 export class ChatView {
     /**
      * Creating an  ChatView instance.
@@ -14,11 +14,13 @@ export class ChatView {
         this.showChatMessages = this.showChatMessages.bind(this);
         this.showMessageFromMe = this.showMessageFromMe.bind(this);
         this.showMessageToMe = this.showMessageToMe.bind(this);
+        this.showMessageToMeAdmin = this.showMessageToMeAdmin.bind(this);
 
         eventBus.subscribe('SHOW_CHAT_LIST', this.showChatList);
         eventBus.subscribe('SHOW_CHAT_MESSAGES', this.showChatMessages);
         eventBus.subscribe('SHOW_MESSAGE_FROM_ME', this.showMessageFromMe);
         eventBus.subscribe('SHOW_MESSAGE_TO_ME', this.showMessageToMe);
+        eventBus.subscribe('SHOW_MESSAGE_TO_ME_ADMIN', this.showMessageToMeAdmin);
     }
 
     showChatList (data) {
@@ -60,10 +62,37 @@ export class ChatView {
     }
 
     showMessageToMe (data) {
+        console.log('showMessageToMe');
         const chatMessages = this.root.querySelector('.chat-messages');
         if (chatMessages) {
             const toUserTemplate = messageToUserView();
-            chatMessages.innerHTML += toUserTemplate({ text: data });
+            chatMessages.innerHTML += toUserTemplate(data);
+        }
+    }
+
+    showMessageToMeAdmin (data) {
+        console.log('showMessageToMeAdmin');
+        const chat = document.getElementById('chat-' + data.order_id);
+        if (!chat) {
+            console.log('showMessageToMeAdmin new chat');
+            // если нет - добавить с список и открыть и обновить последнее сообщение
+            const chatsList = this.root.querySelector('.chats-items');
+            const chatItem = chatListItemView();
+            chatsList.innerHTML += chatItem(data);
+            const chat = document.getElementById('chat-' + data.order_id);
+            chat.addEventListener('click', () => {
+                const id = chat.dataset.id;
+                this.eventBus.call('GET_CHAT_MESSAGES', id);
+            });
+        } else {
+            console.log('existing chat');
+            // если есть - обновить в списке последнее сообщение
+            chat.querySelector('.chats-item-last-message').innerHTML = data.text;
+            // проверить, открыт ли чат и если да - добавить в него сообщение
+            if (chat.classList.contains('chats-item__open')) {
+                console.log('existing show message');
+                this.showMessageToMe(data);
+            }
         }
     }
 

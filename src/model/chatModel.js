@@ -57,9 +57,9 @@ export class ChatModel {
     }
 
     newMessage (event) {
-        const msg = event.data;// JSON.parse(event.data);
-        console.log(msg);
-        this.eventBus.call('SHOW_MESSAGE_TO_ME', msg);
+        const msg = JSON.parse(event.data);
+        const isAdmin = localStorage.getItem('isAdmin');
+        this.eventBus.call(isAdmin ? 'SHOW_MESSAGE_TO_ME_ADMIN' : 'SHOW_MESSAGE_TO_ME', msg);
     }
 
     sendMessage (data) {
