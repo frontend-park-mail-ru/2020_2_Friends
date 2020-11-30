@@ -36,7 +36,7 @@ export class MapAPI {
 
     listenClick () {
         this.map.events.add('click', (e) => {
-            var coords = e.get('coords');
+            const coords = e.get('coords');
             if (this.myPlacemark) {
                 this.myPlacemark.geometry.setCoordinates(coords);
                 this.getAddress(this.myPlacemark.geometry.getCoordinates());
@@ -55,7 +55,7 @@ export class MapAPI {
     getAddress (coords) {
         this.myPlacemark.properties.set('iconCaption');
         ymaps.geocode(coords).then((res) => { // eslint-disable-line
-            var firstGeoObject = res.geoObjects.get(0);
+            const firstGeoObject = res.geoObjects.get(0);
             this.myPlacemark.properties
                 .set({
                     iconCaption: [
@@ -68,10 +68,12 @@ export class MapAPI {
     }
 
     showStore (store) {
-        var myPlacemark = new ymaps.Placemark(  // eslint-disable-line
+        const myPlacemark = new ymaps.Placemark(  // eslint-disable-line
             [store.latitude, store.longitude],
-            { hintContent: store.hintContent });
-        var storeRadius = new ymaps.Circle([    // eslint-disable-line
+            {
+                hintContent: store.hintContent
+            });
+        const storeRadius = new ymaps.Circle([    // eslint-disable-line
             [store.latitude, store.longitude],
             store.distance
         ], {
@@ -88,8 +90,11 @@ export class MapAPI {
         const success = position => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-            var me = new ymaps.Placemark([latitude, longitude], // eslint-disable-line
-                { hintContent: 'Это Вы!' },
+            const me = new ymaps.Placemark( // eslint-disable-line
+                [latitude, longitude],
+                {
+                    hintContent: 'Это Вы!'
+                },
                 {
                     iconLayout: 'default#image',
                     iconImageHref: '../assets/img/man2.png',
@@ -97,7 +102,7 @@ export class MapAPI {
                     iconImageOffset: [-15, -15]
                 });
             this.map.geoObjects.add(me);
-            var meRadius = new ymaps.Circle([ // eslint-disable-line
+            const meRadius = new ymaps.Circle([ // eslint-disable-line
                 [latitude, longitude], 5000
             ], {
                 balloonContent: 'Ваш район'
@@ -112,10 +117,12 @@ export class MapAPI {
 
     showAllStores (placemarks) {
         placemarks.forEach(store => {
-            var myPlacemark = new ymaps.Placemark( // eslint-disable-line
+            const myPlacemark = new ymaps.Placemark( // eslint-disable-line
                 [store.latitude, store.longitude],
-                { hintContent: store.hintContent });
-            var storeRadius = new ymaps.Circle([ // eslint-disable-line
+                {
+                    hintContent: store.hintContent
+                });
+            const storeRadius = new ymaps.Circle([ // eslint-disable-line
                 [store.latitude, store.longitude],
                 store.distance
             ], {
