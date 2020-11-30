@@ -26,7 +26,6 @@ export class ChatView {
     }
 
     showChatList (data) {
-        console.log(data);
         const template = chatView();
         this.root.innerHTML = template(data);
         this.addEventListeners();
