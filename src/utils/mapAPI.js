@@ -6,6 +6,8 @@ export class MapAPI {
         this.myPlacemark = null;
         this.map = null;
         this.coords = null;
+        this.placemarks = [];
+        this.radiuses = [];
 
         this.init();
         this.getCoords = this.getCoords.bind(this);
@@ -163,7 +165,6 @@ export class MapAPI {
                 strokeOpacity: 0.1
             });
             this.map.geoObjects.add(myPlacemark);
-            console.log(1);
             this.map.geoObjects.add(storeRadius);
         });
     }
