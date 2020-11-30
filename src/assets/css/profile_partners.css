@@ -14,8 +14,25 @@
     margin: 0px 10px;
 }
 
-.common-input {
+.new-store__input {
     width: 500px;
+    height: 40px;
+    margin: 15px;
+    background: #FFFFFF;
+    border: 1px solid #878A86;
+    box-sizing: border-box;
+    padding: 10px 5px 10px 20px;
+    border-radius: 20px;
+    /* Text */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 140.62%;
+    color: #878A86;
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .addstore__map {
