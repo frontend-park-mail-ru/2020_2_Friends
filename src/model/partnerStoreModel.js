@@ -60,7 +60,6 @@ export class PartnerStoreModel {
                 const body = await response.json();
                 input.food_id = body.id;
                 if (input.food_img) {
-                    console.log(input.food_img);
                     this.changeProductImg(input);
                 } else {
                     this.eventBus.call('SHOW_NEW_PRODUCT', input);
