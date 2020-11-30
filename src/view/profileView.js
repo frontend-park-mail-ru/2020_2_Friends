@@ -195,7 +195,7 @@ export class ProfileView {
             btn.addEventListener('click', () => {
                 const id = btn.closest('.order-cart').dataset.orderid;
                 const storeName = btn.closest('.order-cart').dataset.name;
-                this.eventBus.call('SHOW_USER_CHAT', { order_id: id, storeName });
+                this.eventBus.call('SHOW_USER_CHAT', { order_id: id, store_name: storeName });
             });
         });
     }

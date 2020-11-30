@@ -39,6 +39,8 @@ export class ChatView {
         const template = userChatView();
         this.support.innerHTML = template(data);
         this.eventBus.call('GET_CHAT_MESSAGES', data.order_id);
+        const chatMessages = this.support.querySelector('.chat-messages');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
         this.addUserChatEventListeners();
     }
 
