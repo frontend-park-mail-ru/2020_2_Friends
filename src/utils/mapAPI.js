@@ -8,7 +8,7 @@ export class MapAPI {
         this.coords = null;
 
         this.init();
-        this.getCoords = this.listenClick.bind(this);
+        this.getCoords = this.getCoords.bind(this);
         this.listenClick = this.listenClick.bind(this);
         this.createPlacemark = this.createPlacemark.bind(this);
         this.getAddress = this.getAddress.bind(this);

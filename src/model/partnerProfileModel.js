@@ -23,16 +23,14 @@ export class PartnerProfileModel {
     }
 
     async addStore (data) {
-        console.log(data);
         const { name, description, radius, coords } = data;
-        const geoData = coords.split(',');
         const distance = parseInt(radius.value);
         const response = await addStore({
             store_name: name.value,
             description: description.value,
             distance: distance,
-            longitude: parseFloat(geoData[1]),
-            latitude: parseFloat(geoData[0])
+            longitude: parseFloat(coords[1]),
+            latitude: parseFloat(coords[0])
         }
         );
         switch (response.status) {

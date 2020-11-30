@@ -169,10 +169,7 @@ export class PartnerProfileView {
             const img = new FormData();
             img.append('image', imgFile);
             const coords = this.newMap.getCoords();
-            console.log(coords);
-            // const coords = localStorage.getItem('newRestarauntCoordinate');
             const data = { name, description, img, coords, radius };
-            console.log(coords);
             this.eventBus.call('ADD_STORE', data);
         });
 
