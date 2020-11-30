@@ -35,6 +35,8 @@ export class BucketView {
             products: [...products].map(product => parseInt(product.dataset.id)),
             address: addrSelect.value
         };
+        const delItemBtn = this.root.querySelectorAll('.js-delete-item');
+        delItemBtn.forEach(btn => { btn.click(); });
         this.eventBus.call('CREATE_ORDER', data);
     }
 
