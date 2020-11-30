@@ -45,7 +45,7 @@ export class AllStoresView {
             div: mapId,
             zoom: 11
         });
-        newMap.showAllStores(data.stores);
+        newMap.showNearestStores(data.stores);
         newMap.addMyPosition();
     }
 

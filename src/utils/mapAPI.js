@@ -15,6 +15,7 @@ export class MapAPI {
         this.showAllStores = this.showAllStores.bind(this);
         this.showStore = this.showStore.bind(this);
         this.addMyPosition = this.addMyPosition.bind(this);
+        this.showNearestStores = this.showNearestStores.bind(this);
     }
 
     init () {
@@ -140,6 +141,29 @@ export class MapAPI {
                 strokeOpacity: 0.1
             });
             this.map.geoObjects.add(myPlacemark);
+            this.map.geoObjects.add(storeRadius);
+        });
+    }
+
+    showNearestStores (placemarks) {
+        this.map.geoObjects = this.map.geoObjects.removeAll();
+        placemarks.forEach(store => {
+            const myPlacemark = new ymaps.Placemark( // eslint-disable-line
+                [store.latitude, store.longitude],
+                {
+                    hintContent: store.hintContent
+                });
+            const storeRadius = new ymaps.Circle([ // eslint-disable-line
+                [store.latitude, store.longitude],
+                store.distance
+            ], {
+                balloonContent: 'Зона доставки ' + store.hintContent
+            }, {
+                fillColor: '#99F29733',
+                strokeOpacity: 0.1
+            });
+            this.map.geoObjects.add(myPlacemark);
+            console.log(1);
             this.map.geoObjects.add(storeRadius);
         });
     }
