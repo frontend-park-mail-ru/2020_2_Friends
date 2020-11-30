@@ -30,15 +30,14 @@ export class PartnerProfileModel {
             store_name: name.value,
             description: description.value,
             distance: distance,
-            longitude: parseFloat(geoData[0]),
-            latitude: parseFloat(geoData[1])
+            longitude: parseFloat(geoData[1]),
+            latitude: parseFloat(geoData[0])
         }
         );
         switch (response.status) {
         case 200: {
             const body = await response.json();
             const imgInput = { storeId: body.id, avatar: data.img };
-            console.log(imgInput);
             const imgResponse = await changeStoreImgRequest(imgInput);
             if (imgResponse.status === 200) {
                 this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: body.id });
