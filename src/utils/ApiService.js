@@ -402,6 +402,28 @@ export const checkAuth = () => {
     return ajaxGetUsingFetch(args);
 };
 
+/**
+ * Getting list of all store chats
+ * @param {string} id - store id
+ */
+export const getStoreChats = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/chats`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+/**
+ * Getting all messages from chat
+ * @param {string} id - id of order whose chat we want to get
+ */
+export const getAllMessages = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/chats/${id}`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
 export const getNearestStores = (latitude, longitude) => {
     const args = {
         url: backendUrl + '/api/v1/vendors/nearest' + `?longitude=${longitude}&latitude=${latitude}`

@@ -17,6 +17,7 @@
     line-height: 140.62%;
     margin: 0px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .back-to-shopping__button:focus {
@@ -32,7 +33,7 @@
     background: #FFFFFF;
     display: flex;
     align-self: flex-start;
-    justify-self: start;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
     margin-bottom: 40px;
@@ -80,8 +81,8 @@
 
 .store__logo {
     max-width: 100%;
-    width: 180px;
-    height: 180px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     margin: 10px;
 }
@@ -194,12 +195,13 @@
     justify-self: end;
 }
 
-.orders-button {
-    margin: 20px;
-}
-
 .store__functions {
-    display: inline;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.store-buttons {
+    margin: 15px;
 }
 
 .editstore-avatar-form {

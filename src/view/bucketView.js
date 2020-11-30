@@ -35,6 +35,10 @@ export class BucketView {
             products: [...products].map(product => parseInt(product.dataset.id)),
             address: addrSelect.value
         };
+        data.products.forEach(id => {
+            this.eventBus.call('DELETE_FROM_BUCKET', id);
+        });
+
         this.eventBus.call('CREATE_ORDER', data);
     }
 

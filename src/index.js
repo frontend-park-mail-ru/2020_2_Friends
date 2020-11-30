@@ -11,7 +11,7 @@ import { PartnerLoginController } from './controller/partnerLoginController.js';
 import { PartnerRegisterController } from './controller/partnerRegisterController.js';
 import { PartnerProfileController } from './controller/partnerProfileController.js';
 import { PartnerStoreController } from './controller/partnerStoreController.js';
-
+import { ChatController } from './controller/chatController.js';
 import { Router } from './utils/router.js';
 
 const serviceLoad = () => {
@@ -22,7 +22,8 @@ const serviceLoad = () => {
     const regController = new RegisterController(root, router);
     const loginController = new LoginController(root, router);
     const headerController = new HeaderController(header, router);
-    const profileController = new ProfileController(root, router);
+    const chatController = new ChatController(root, router);
+    const profileController = new ProfileController(root, router, chatController);
     const storeController = new StoreController(root, router);
     const bucketController = new BucketController(root, router);
     const orderController = new OrderController(root, router);
@@ -45,7 +46,7 @@ const serviceLoad = () => {
         profileController.model.getProfileData();
     });
     router.setRoute('^/profile/orders?$', () => {
-        headerController.view.render(isAdmin());
+        headerController.model.getHeaderData(isAdmin());
         profileController.model.getProfileData('orders');
     });
     router.setRoute('^/store/?$', () => {
@@ -67,6 +68,10 @@ const serviceLoad = () => {
     router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
         headerController.model.getHeaderData(isAdmin());
         orderController.orderPageHandler(id);
+    });
+    router.setRoute('^/partners_stores/(?<id>\\d+)/chats/?$', (id) => {
+        headerController.model.getHeaderData(isAdmin());
+        chatController.chatPageHandler(id);
     });
     router.setRoute('^/partners_stores/(?<id>\\d+)/reviews/?$', (id) => {
         headerController.model.getHeaderData(isAdmin());
@@ -91,6 +96,7 @@ const serviceLoad = () => {
         headerController.model.getHeaderData(isAdmin());
         partnerStoreController.model.getData();
     });
+    headerController.model.socket.connect();
 
     function getCorrectUrl (redirect = true) {
         const firstSlashIndex = window.location.pathname.indexOf('/') + 1;

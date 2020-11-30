@@ -23,10 +23,8 @@ export class OrderView {
     }
 
     setStatus (orders) {
-        console.log(orders);
         orders.forEach(order => {
             const e = document.getElementById(order.id);
-            console.log(order.status);
             e.querySelector('.order-cart__status').value = order.status;
         });
     }

@@ -187,7 +187,15 @@ export class ProfileView {
             btn.addEventListener('click', () => {
                 const id = btn.closest('.order-cart').dataset.orderid;
                 document.getElementById('review-form').dataset.orderid = id;
-                document.getElementById('overlay').style.display = 'flex';
+                document.getElementById('review_overlay').style.display = 'flex';
+            });
+        });
+        const openSupport = this.root.querySelectorAll('.js-open-support');
+        openSupport.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.closest('.order-cart').dataset.orderid;
+                const storeName = btn.closest('.order-cart').dataset.name;
+                this.eventBus.call('SHOW_USER_CHAT', { order_id: id, storeName });
             });
         });
     }
@@ -213,7 +221,7 @@ export class ProfileView {
     }
 
     closeOverlay () {
-        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('review_overlay').style.display = 'none';
         document.getElementById('review-form__text').value = '';
         document.getElementById('review-form__rating').value = '1';
     }

@@ -27,7 +27,7 @@ export const renderBucketView = () => window.Handlebars.compile(`
 
         <div class="bucket-total">
             <div class="bucket-total__header">Итого:</div>
-            <div class="bucket-total__store-name">Выберете адрес:</div>
+            <div class="bucket-total__store-name">Выберите адрес:</div>
             <select class="bucket-total__select-address"id="js-address">
                 {{#each addresses}}
                 <option value="{{this}}" class="status__option">{{this}}</option>
