@@ -23,6 +23,7 @@ export class PartnerProfileModel {
     }
 
     async addStore (data) {
+        console.log(data);
         const { name, description, radius, coords } = data;
         const geoData = coords.split(',');
         const distance = parseInt(radius.value);

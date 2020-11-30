@@ -5,8 +5,10 @@ export class MapAPI {
         this.mapId = params.div;
         this.myPlacemark = null;
         this.map = null;
+        this.coords = null;
 
         this.init();
+        this.getCoords = this.listenClick.bind(this);
         this.listenClick = this.listenClick.bind(this);
         this.createPlacemark = this.createPlacemark.bind(this);
         this.getAddress = this.getAddress.bind(this);
@@ -25,6 +27,10 @@ export class MapAPI {
         });
     }
 
+    getCoords () {
+        return this.coords;
+    }
+
     createPlacemark (coords) {
         return new ymaps.Placemark(coords, {    // eslint-disable-line
             iconCaption: 'поиск...'
@@ -40,12 +46,14 @@ export class MapAPI {
             if (this.myPlacemark) {
                 this.myPlacemark.geometry.setCoordinates(coords);
                 this.getAddress(this.myPlacemark.geometry.getCoordinates());
-                localStorage.setItem('newRestarauntCoordinate', coords);
+                this.coords = coords;
+                // localStorage.setItem('newRestarauntCoordinate', coords);
             } else {
                 this.myPlacemark = this.createPlacemark(coords);
                 this.map.geoObjects.add(this.myPlacemark);
                 this.myPlacemark.events.add('dragend', () => {
-                    localStorage.setItem('newRestarauntCoordinate', coords);
+                    this.coords = coords;
+                    // localStorage.setItem('newRestarauntCoordinate', coords);
                     this.getAddress(this.myPlacemark.geometry.getCoordinates());
                 });
             }

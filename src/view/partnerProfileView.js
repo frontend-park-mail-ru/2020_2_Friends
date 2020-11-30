@@ -87,11 +87,11 @@ export class PartnerProfileView {
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
         const mapId = this.root.querySelector('#addstore__map');
-        const newMap = new MapAPI({
+        this.newMap = new MapAPI({
             div: mapId,
             zoom: 8
         });
-        newMap.listenClick();
+        this.newMap.listenClick();
         this.changeSubPage('profile');
         this.addEventListeners();
     }
@@ -168,8 +168,11 @@ export class PartnerProfileView {
             const imgFile = document.getElementById('addstore-avatar-form').files[0];
             const img = new FormData();
             img.append('image', imgFile);
-            const coords = localStorage.getItem('newRestarauntCoordinate');
+            const coords = this.newMap.getCoords();
+            console.log(coords);
+            // const coords = localStorage.getItem('newRestarauntCoordinate');
             const data = { name, description, img, coords, radius };
+            console.log(coords);
             this.eventBus.call('ADD_STORE', data);
         });
 
