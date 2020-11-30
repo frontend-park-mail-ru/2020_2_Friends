@@ -19,6 +19,7 @@ export const renderOrderView = () => window.Handlebars.compile(`
         <div class="order-cart__review-button proceed-button js-review-button">Оцените заказ</div>
         {{/if}}
         </div>
+        </div>
     </div>
     <div class="order-cart__order-list">
         {{#each products}}

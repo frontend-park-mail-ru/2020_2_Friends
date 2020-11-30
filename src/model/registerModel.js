@@ -1,6 +1,7 @@
 import { registerRequest } from '../utils/ApiService.js';
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
+
 import webSocket from '../utils/Socket.js';
 export class RegisterModel {
     /**

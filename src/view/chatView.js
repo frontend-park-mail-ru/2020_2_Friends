@@ -52,8 +52,6 @@ export class ChatView {
             const text = this.support.querySelector('.js-message-input').value;
             this.support.querySelector('.js-message-input').value = '';
             if (text) {
-                console.log({ order_id: parseInt(newMessage.dataset.id), text: text });
-                console.log(newMessage);
                 this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
             }
         });

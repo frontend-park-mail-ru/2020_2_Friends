@@ -193,7 +193,6 @@ export class ProfileView {
         const openSupport = this.root.querySelectorAll('.js-open-support');
         openSupport.forEach(btn => {
             btn.addEventListener('click', () => {
-                console.log(btn);
                 const id = btn.closest('.order-cart').dataset.orderid;
                 const storeName = btn.closest('.order-cart').dataset.name;
                 this.eventBus.call('SHOW_USER_CHAT', { order_id: id, storeName });

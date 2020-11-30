@@ -45,7 +45,7 @@ router.setRoute('^/profile/?$', () => {
     profileController.model.getProfileData();
 });
 router.setRoute('^/profile/orders?$', () => {
-    headerController.view.render(isAdmin());
+    headerController.model.getHeaderData(isAdmin());
     profileController.model.getProfileData('orders');
 });
 router.setRoute('^/store/?$', () => {
