@@ -83,27 +83,27 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
             </div>
         </div>
