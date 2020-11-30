@@ -35,8 +35,7 @@ class Socked {
 
     disconnect () {
         const connectionState = this.socket?.readyState;
-        if (connectionState === WebSocket.CLOSED || connectionState === WebSocket.CLOSING) {
-        } else {
+        if (connectionState !== WebSocket.CLOSED && connectionState !== WebSocket.CLOSING) {
             this.socket.close();
         }
     }
