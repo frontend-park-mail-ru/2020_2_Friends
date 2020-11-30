@@ -21,8 +21,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
                     <button id="js-upload-avatar" class="img-upload-button"></button>
                     <input type="file" id="file" accept=".png, .jpg, .jpeg"  class="none">
                 </div>
-
-                <div class="profile-page__bonus-points">Количество баллов: {{points}}</div>
             </div>
             <div class="profile-page__right-column">
                 <div class="js-login-errors text-error"></div>
@@ -58,55 +56,54 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
 
         <div class="profile-page__content js-profile-orders">
-            <div id="overlay">
-            <div id="review-form" class="review-form">
-            <div class="review-form__row">
-            <div class="review-header__rating">Оцените ваш заказ!</div>
-                <select id="review-form__rating" class="review-form__rating">
-                    <option value="1" class="status__option">1</option>
-                    <option value="2" class="status__option">2</option>
-                    <option value="3" class="status__option">3</option>
-                    <option value="4" class="status__option">4</option>
-                    <option value="5" class="status__option">5</option>
-                </select>
-                <div class="round-delete-button js-close-overlay"></div>
-            </div>
-                <textarea id="review-form__text" type="text" cols="20" rows="3" class="common-text-area" placeholder="Расскажите о ваших впечатлениях!"></textarea>
-                <button id="js-add-review" class="proceed-button">Добавить отзыв</button>
+            <div id="review_overlay">
+                <div id="review-form" class="review-form">
+                    <div class="review-form__row">
+                    <div class="review-header__rating">Оцените ваш заказ!</div>
+                        <select id="review-form__rating" class="review-form__rating">
+                            <option value="1" class="status__option">1</option>
+                            <option value="2" class="status__option">2</option>
+                            <option value="3" class="status__option">3</option>
+                            <option value="4" class="status__option">4</option>
+                            <option value="5" class="status__option">5</option>
+                        </select>
+                        <div class="round-delete-button js-close-overlay"></div>
+                    </div>
+                    <textarea id="review-form__text" type="text" cols="20" rows="3" class="common-text-area" placeholder="Расскажите о ваших впечатлениях!"></textarea>
+                    <button id="js-add-review" class="proceed-button">Добавить отзыв</button>
             </div>
             </div>
             <div class=" order-column-profile " id="orderColumn">
+            <div class="empty-bucket">{{empty}}</div>
 
             </div>
         </div>
-
-
         <div class="profile-page__content js-profile-coupons">
             <div class="profile-page__content-column">
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
                 <div class="profile-page__сoupon-cart">
                     <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
                         получить.</p>
-                    <button class="proceed-button profile-page__сoupon-get-button ">Получить купон</button>
+                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
                 </div>
             </div>
         </div>

@@ -20,6 +20,13 @@
     font-size: 50px;
     margin: 20px;
 }
+.empty-bucket {
+    font-size: 35px;
+    max-width: 400px;
+    margin: 20px;
+    align-self: center;
+
+}
 
 .bucket-item {
     display: flex;

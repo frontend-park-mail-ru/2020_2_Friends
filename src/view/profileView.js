@@ -30,6 +30,7 @@ export class ProfileView {
         this.showAddressList = this.showAddressList.bind(this);
         this.reviewCompleted = this.reviewCompleted.bind(this);
         this.closeOverlay = this.closeOverlay.bind(this);
+        this.createReview = this.createReview.bind(this);
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('NUMBER_NOT_VALID', this.numberNotValid);
         eventBus.subscribe('INFO_CHANGED', this.infoChanged);
@@ -171,8 +172,13 @@ export class ProfileView {
     showOrders (data) {
         const orderColumn = document.getElementById('orderColumn');
         orderColumn.innerHTML = '';
+        if (data.length === 0) {
+            data.empty = 'Что-то тут пустовато... Сделайте свой первый заказ!';
+        }
         const template = renderOrderView();
         data.forEach((order) => {
+            order.showReview = !order.reviewed && (order.status === 'Завершён');
+            order.showChat = !!(order.status && order.status !== 'Завершён');
             const orderHTML = template(order);
             orderColumn.innerHTML += orderHTML;
         });
@@ -181,7 +187,15 @@ export class ProfileView {
             btn.addEventListener('click', () => {
                 const id = btn.closest('.order-cart').dataset.orderid;
                 document.getElementById('review-form').dataset.orderid = id;
-                document.getElementById('overlay').style.display = 'flex';
+                document.getElementById('review_overlay').style.display = 'flex';
+            });
+        });
+        const openSupport = this.root.querySelectorAll('.js-open-support');
+        openSupport.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.closest('.order-cart').dataset.orderid;
+                const storeName = btn.closest('.order-cart').dataset.name;
+                this.eventBus.call('SHOW_USER_CHAT', { order_id: id, store_name: storeName });
             });
         });
     }
@@ -207,7 +221,7 @@ export class ProfileView {
     }
 
     closeOverlay () {
-        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('review_overlay').style.display = 'none';
         document.getElementById('review-form__text').value = '';
         document.getElementById('review-form__rating').value = '1';
     }

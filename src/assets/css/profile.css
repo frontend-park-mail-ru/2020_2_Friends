@@ -35,7 +35,7 @@
     display: flex;
     flex: 0.4;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
@@ -108,6 +108,7 @@
     align-items: center;
 }
 .profile-page__navbar-button {
+    cursor: pointer;
     border: none;
     white-space: nowrap;
     margin: 0px 10px 0px 10px;

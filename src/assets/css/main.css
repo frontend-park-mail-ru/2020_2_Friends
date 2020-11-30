@@ -31,18 +31,31 @@
 .none {
     display: none;
 }
+.support-button {
+    color: #FFFFFF;
+    background: #dd9d88;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 25px;
+    border: none;
+    font-family: sans-serif;
+    width: min-content;
+    height: min-content;
+    white-space: nowrap;
+    cursor: pointer;
+}
 
 .proceed-button, .info-button {
     padding: 10px;
-    margin: 15px;
     background: #C5EDAC;
     border-radius: 20px;
-    font-size: 30px;
+    font-size: 25px;
     color: #444BCF;
     border: none;
     font-family: sans-serif;
     width: min-content;
-    height: fit-content;
+    height: min-content;
     white-space: nowrap;
     cursor: pointer;
 }
@@ -56,7 +69,7 @@
     border: 1px solid #C4C4C4;
 }
 
-.info-button:focus, .info-button:hover {
+.info-button:focus, .info-button:hover,  .support-button:hover {
     outline: none;
     background: #D5896F;
     color: #FFFFFF;
@@ -72,7 +85,7 @@
     color: #45A7D1
 }
 
-.proceed-button:focus{
+.proceed-button:focus {
     outline: none;
 }
 

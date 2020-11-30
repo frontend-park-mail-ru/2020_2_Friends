@@ -1,4 +1,5 @@
 import { renderStoreView } from '../template/storeViewTemplate.js';
+import { MapAPI } from '../utils/mapAPI.js';
 export class StoreView {
     /**
      * Creating an StoreView instance.
@@ -44,6 +45,13 @@ export class StoreView {
         const template = renderStoreView();
         const storeHTML = template(data);
         this.root.innerHTML = storeHTML;
+        const mapId = this.root.querySelector('#map');
+        const newMap = new MapAPI({
+            div: mapId,
+            zoom: 11
+        });
+        newMap.showStore(data.body);
+        newMap.addMyPosition();
         this.addEventListeners();
     }
 

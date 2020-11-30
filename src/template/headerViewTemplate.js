@@ -24,3 +24,15 @@ export const renderAdminHeaderView = () => window.Handlebars.compile(`
 </div>
 </header>
 `);
+
+/**
+ * Templating html-code using handlebars templater for header.
+ */
+export const renderNotAuthHeaderView = () => window.Handlebars.compile(`
+<header class="header">
+<button  class="header__logo-button js-goto-searchpage"><img class="header__logo" src="/assets/img/logo.png"></button>
+<div>
+    <button class="header__button js-login-button">Войти</button>
+</div>
+</header>
+`);

@@ -1,14 +1,14 @@
 .order-cart__review-button {
     font-size: 25px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
     white-space: nowrap;
     margin: 10px;
 }
 
 .order-cart__info-right {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: flex-end;
 }
 
 .review-cart {
@@ -50,7 +50,7 @@
     font-size: 30px;
 }
 
-#overlay {
+#review_overlay {
     position: fixed;
     display: none;
     width: 100%;

@@ -1,6 +1,7 @@
 import { loginRequest } from '../utils/ApiService.js';
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
+import webSocket from '../utils/Socket.js';
 
 export class LoginModel {
     /**
@@ -9,6 +10,7 @@ export class LoginModel {
      * @param {eventBus} eventBus - A container to exchange MVC interactions inside one MVC entity.
      */
     constructor (eventBus) {
+        this.socket = webSocket;
         this.doLogin = this.doLogin.bind(this);
 
         this.eventBus = eventBus;
@@ -31,6 +33,7 @@ export class LoginModel {
 
             switch (response.status) {
             case 200:
+                this.socket.connect();
                 localStorage.removeItem('isAdmin');
                 this.eventBus.call('REDIRECT_TO_PROFILE');
                 break;

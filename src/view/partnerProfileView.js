@@ -1,4 +1,5 @@
 import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
+import { MapAPI } from '../utils/mapAPI.js';
 
 export class PartnerProfileView {
     /**
@@ -85,6 +86,12 @@ export class PartnerProfileView {
         const template = renderProfileView();
         const profileHTML = template(data);
         this.root.innerHTML = profileHTML;
+        const mapId = this.root.querySelector('#addstore__map');
+        this.newMap = new MapAPI({
+            div: mapId,
+            zoom: 8
+        });
+        this.newMap.listenClick();
         this.changeSubPage('profile');
         this.addEventListeners();
     }
@@ -157,10 +164,12 @@ export class PartnerProfileView {
         storeDataButton.addEventListener('click', () => {
             const name = this.root.querySelector('.js-addstore-name');
             const description = this.root.querySelector('.js-addstore-descr');
+            const radius = this.root.querySelector('.js-addstore-radius');
             const imgFile = document.getElementById('addstore-avatar-form').files[0];
             const img = new FormData();
             img.append('image', imgFile);
-            const data = { name, description, img };
+            const coords = this.newMap.getCoords();
+            const data = { name, description, img, coords, radius };
             this.eventBus.call('ADD_STORE', data);
         });
 
