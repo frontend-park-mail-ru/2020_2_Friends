@@ -1,21 +1,44 @@
 .stores-page__header {
     background: #FFFFFF;
     display: flex;
+    justify-content: center;
+    align-content: center;
     flex-direction: row;
     margin-bottom: 40px;
     padding: 20px 40px 20px 40px;
+    background: url("../img/all_stores.webp");
+    background-size: 2500px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.stores-page__header-container{
+    align-self: center;
+    padding-right: 70px;
 }
 
 .stores-page__header-headline {
     padding-left: 100px;
-    padding-top: 40px;
+    padding-right: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
 
     font-size: 64px;
     font-weight: bold;
     margin: 1px;
     font-family: sans-serif;
+}
+
+.header__ymap {
+    border-radius: 10px;
+    overflow: hidden;    
+}
+
+.header__map {
+    padding-left: 100px;
+    padding-top: 10px;
+    width: 900px;
+    height: 450px;
 }
 
 .header__input {
@@ -87,4 +110,11 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-image: url("https://www.delivery-club.ru/naturmort/5fa84410091ce_480x300.jpg?resize=fill&width=480&height=480&gravity=ce&out=webp");
+}
+
+
+.stores__header {
+    width: 500px;
+    padding-bottom: 30px;
+    letter-spacing: 0px;
 }

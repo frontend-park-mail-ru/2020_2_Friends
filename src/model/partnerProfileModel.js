@@ -23,14 +23,20 @@ export class PartnerProfileModel {
     }
 
     async addStore (data) {
-        const { name, description } = data;
-        const response = await addStore(
-            { store_name: name.value, description: description.value }
+        const { name, description, radius, coords } = data;
+        const distance = parseInt(radius.value);
+        const response = await addStore({
+            store_name: name.value,
+            description: description.value,
+            distance: distance,
+            longitude: parseFloat(coords[1]),
+            latitude: parseFloat(coords[0])
+        }
         );
         switch (response.status) {
         case 200: {
             const body = await response.json();
-            const imgInput = { id: body.id, img: data.img };
+            const imgInput = { storeId: body.id, avatar: data.img };
             const imgResponse = await changeStoreImgRequest(imgInput);
             if (imgResponse.status === 200) {
                 this.eventBus.call('REDIRECT_TO_STORE_BY_ID', { id: body.id });

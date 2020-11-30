@@ -423,3 +423,10 @@ export const getAllMessages = (id) => {
     };
     return ajaxGetUsingFetch(args);
 };
+
+export const getNearestStores = (latitude, longitude) => {
+    const args = {
+        url: backendUrl + '/api/v1/vendors/nearest' + `?longitude=${longitude}&latitude=${latitude}`
+    };
+    return ajaxGetUsingFetch(args);
+};

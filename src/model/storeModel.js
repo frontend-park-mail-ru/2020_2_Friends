@@ -29,7 +29,8 @@ export class StoreModel {
                 storeName: body.store_name,
                 products: body.products,
                 storeId: id,
-                picture: makeAvatarUrl(body.picture)
+                picture: makeAvatarUrl(body.picture),
+                body: body
             });
             break;
         }
