@@ -1,3 +1,5 @@
+import collective from './assets/css/collective.css'; // eslint-disable-line
+
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
 import { HeaderController } from './controller/headerController.js';
