@@ -44,6 +44,10 @@ module.exports = {
             {
                 test: /\.(woff2?|jpg|png|ico|webp|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader'
+            },
+            {
+                test: /\.handlebars$/,
+                loader: 'handlebars-loader'
             }
         ]
     }

@@ -5,8 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "@types/yandex-maps": "^2.1.13",
     "express": "^4.17.1",
-    "path": "^0.12.7"
+    "handlebars-loader": "^1.7.1",
+    "path": "^0.12.7",
+    "ymaps": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
