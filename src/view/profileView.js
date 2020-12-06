@@ -1,6 +1,6 @@
-import { renderProfileView } from '../template/profileViewTemplate.js';
-import { renderOrderView } from '../template/singleOrderViewTemplate.js';
-import { renderAddrListView } from '../template/addresListViewTemplate.js';
+// import { renderProfileView } from '../template/profileViewTemplate.js';
+// import { renderOrderView } from '../template/singleOrderViewTemplate.js';
+// import { renderAddrListView } from '../template/addresListViewTemplate.js';
 export class ProfileView {
     /**
      * Creating an ProfileView instance.

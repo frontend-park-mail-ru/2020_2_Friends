@@ -1,4 +1,4 @@
-import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
+// import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
 
 export class PartnerProfileView {

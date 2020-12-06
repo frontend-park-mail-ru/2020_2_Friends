@@ -1,4 +1,4 @@
-import { renderLoginView } from '../template/partnerLoginViewTemplate.js';
+// import { renderLoginView } from '../template/partnerLoginViewTemplate.js';
 export class PartnerLoginView {
     /**
      * Creating an LoginView instance.

@@ -1,4 +1,4 @@
-import { renderAllStores } from '../template/allStoresViewTemplate.js';
+// import { renderAllStores } from '../template/allStoresViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
 
 export class AllStoresView {

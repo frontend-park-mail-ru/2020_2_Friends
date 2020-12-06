@@ -1,4 +1,4 @@
-import { renderOrderView } from '../template/orderViewTemplate.js';
+// import { renderOrderView } from '../template/orderViewTemplate.js';
 export class OrderView {
     /**
      * Creating an OrderView instance.

@@ -1,5 +1,6 @@
 import collective from './assets/css/collective.css'; // eslint-disable-line
 import ymaps from 'ymaps';
+// import template from '/.main.hbs'
 
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
@@ -16,35 +17,6 @@ import { PartnerProfileController } from './controller/partnerProfileController.
 import { PartnerStoreController } from './controller/partnerStoreController.js';
 import { ChatController } from './controller/chatController.js';
 import { Router } from './utils/router.js';
-
-export default {
-    load (src = '//api-maps.yandex.ru/2.1/?lang=en_RU') {
-        const getNsParamValue = () => {
-            const results = src.match(/[\\?&]ns=([^&#]*)/);
-            return results === null
-                ? ''
-                : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        };
-        if (!this.promise) {
-            this.promise = new Promise((resolve, reject) => {
-                const scriptElement = document.createElement('script');
-                scriptElement.onload = resolve;
-                scriptElement.onerror = reject;
-                scriptElement.type = 'text/javascript';
-                scriptElement.src = src;
-                document.body.appendChild(scriptElement);
-            }).then(() => {
-                const ns = getNsParamValue();
-                if (ns && ns !== 'ymaps') {
-                    // eslint-disable-next-line no-eval
-                    (1, eval)(`var ymaps = ${ns};`);
-                }
-                return new Promise(resolve => ymaps.ready(resolve));
-            });
-        }
-        return this.promise;
-    }
-};
 
 const serviceLoad = () => {
     const root = document.getElementById('root');
@@ -143,4 +115,4 @@ const serviceLoad = () => {
     };
 };
 
-ymaps.ready(serviceLoad); // eslint-disable-line
+ymaps.load('//api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=023de3e2-fd9e-4c53-9577-218c4243ea44').then(serviceLoad); // eslint-disable-line

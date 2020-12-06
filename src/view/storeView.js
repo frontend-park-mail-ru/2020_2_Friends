@@ -1,4 +1,4 @@
-import { renderStoreView } from '../template/storeViewTemplate.js';
+// import { renderStoreView } from '../template/storeViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
 export class StoreView {
     /**

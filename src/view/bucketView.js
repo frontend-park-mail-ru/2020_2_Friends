@@ -1,4 +1,4 @@
-import { renderBucketView } from '../template/bucketViewTemplate.js';
+// import { renderBucketView } from '../template/bucketViewTemplate.js';
 export class BucketView {
     /**
      * Creating an BucketView instance.

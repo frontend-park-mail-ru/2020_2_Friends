@@ -1,4 +1,4 @@
-import { renderRegisterView } from '../template/registerViewTemplate.js';
+// import { renderRegisterView } from '../template/registerViewTemplate.js';
 
 export class RegisterView {
     /**

@@ -1,4 +1,4 @@
-import { storeReviewsView } from '../template/storeReviewsViewTeamplate.js';
+// import { storeReviewsView } from '../template/storeReviewsViewTeamplate.js';
 export class StoreReviewsView {
     /**
      * Creating an OrderView instance.

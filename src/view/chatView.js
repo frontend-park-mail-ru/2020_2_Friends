@@ -1,4 +1,4 @@
-import { chatView, messageToUserView, messageFromUserView, chatListItemView, userChatView } from '../template/chatViewTemplate.js';
+// import { chatView, messageToUserView, messageFromUserView, chatListItemView, userChatView } from '../template/chatViewTemplate.js';
 export class ChatView {
     /**
      * Creating an  ChatView instance.
