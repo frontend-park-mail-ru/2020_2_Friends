@@ -4,7 +4,7 @@
 export const renderLoginView = () => window.Handlebars.compile(`
 <div class="login-page__background">
     <div class="login-page__input-block">
-        <img class="common-image" src="assets/img/logo.png"></img>
+        <img class="common-image welcome-logo" src="assets/img/logo.png"></img>
         <div class="js-login-errors text-error"></div>
         <input type="text" class="common-input js-input-login" placeholder="Логин:"></input>
         <div class="js-password-errors text-error"></div>

@@ -1,8 +1,12 @@
 .back-to-shopping {
     background: #FFFFFF;
     display: flex;
+    height: 70px;
     padding: 10px 40px 20px 40px;
     border: 1px solid #C4C4C4;
+    grid-column: 1/4;
+    grid-row: 1;
+    align-items: center;
 }
 
 .back-to-shopping__button {

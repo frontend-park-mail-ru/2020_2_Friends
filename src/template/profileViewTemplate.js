@@ -11,17 +11,14 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <button class="profile-page__navbar-button js-userdata-button link">О Вас</button>
             <button class="profile-page__navbar-button js-addresses-button link">Адреса</button>
             <button class="profile-page__navbar-button js-myorders-button link">Мои заказы</button>
-            <button class="profile-page__navbar-button js-coupons-button link">Мои скидки</button>
         </div>
         <div class="profile-page__content js-profile-info">
-            <div class="profile-page__left-column">
                 <div class="img-container">
                     <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli" class="common-image profile-page__img">
                     <div class="avatar-errors"></div>
                     <button id="js-upload-avatar" class="img-upload-button"></button>
                     <input type="file" id="file" accept=".png, .jpg, .jpeg"  class="none">
                 </div>
-            </div>
             <div class="profile-page__right-column">
                 <div class="js-login-errors text-error"></div>
                 <input type="text" class="common-input js-login-input" placeholder="Имя:" value="{{name}}"></input>
@@ -34,8 +31,8 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
 
         <div class="profile-page__content js-profile-addresses">
-            <div class="profile-page__left-column">
-                <img class="common-image" src="./assets/img/map.png">
+            <div class="img-container">
+                <img class="profile-page__img common-image" src="./assets/img/map.png">
             </div>
             <div class="profile-page__right-column">
                 <div id="address-column">
@@ -76,35 +73,6 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <div class=" order-column-profile " id="orderColumn">
             <div class="empty-bucket">{{empty}}</div>
 
-            </div>
-        </div>
-        <div class="profile-page__content js-profile-coupons">
-            <div class="profile-page__content-column">
-                <div class="profile-page__сoupon-cart">
-                    <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
-                        получить.</p>
-                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
-                </div>
-                <div class="profile-page__сoupon-cart">
-                    <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
-                        получить.</p>
-                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
-                </div>
-                <div class="profile-page__сoupon-cart">
-                    <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
-                        получить.</p>
-                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
-                </div>
-                <div class="profile-page__сoupon-cart">
-                    <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
-                        получить.</p>
-                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
-                </div>
-                <div class="profile-page__сoupon-cart">
-                    <p class="profile-page__сoupon-cart-text">Здесь должно быть описание купона и то, как его можно
-                        получить.</p>
-                    <button class="margin-button proceed-button profile-page__сoupon-get-button ">Получить купон</button>
-                </div>
             </div>
         </div>
     </div>

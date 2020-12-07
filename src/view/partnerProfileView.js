@@ -152,7 +152,7 @@ export class PartnerProfileView {
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
         }
-        seenBlock.style.display = 'flex';
+        seenBlock.style.display = 'grid';
         activeButton.classList.add('profile-page__navbar-button_focus');
     }
 

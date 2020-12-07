@@ -1,78 +1,106 @@
 .profile-page__profile-cart {
     background: #FFFFFF;
-    min-width: 1000px;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 20px;
     align-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 40px;
-}
-
-.profile-page__content,
-.profile-page__content-column {
-    align-self: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 40px;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 5% auto 5%;
+    margin-top: 20px;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .profile-page__content {
-    flex-direction: row;
+    grid-column: 1/-1;
+    grid-row: 2;
+    display: grid;
+    padding: 10px;
     min-height: 500px;
-}
-
-.profile-page__content-column {
-    flex-direction: column;
-}
-
-.profile-page__left-column {
-    padding: 15px;
-    margin: 15px;
-    display: flex;
-    flex: 0.4;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-items: center;
+    grid-template-columns: 10% 30% 50% 10%;
+    grid-template-rows: 1fr;
+}
+
+@media screen and (max-width: 1500px) {
+    .profile-page__content {
+        grid-template-rows: 1fr auto;
+        grid-template-columns: 1fr;
+    }
+}
+
+.profile-page__navbar {
+    width: 100%;
+    height: 60px;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid #C4C4C4;
+    justify-self: start;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    grid-column: 1/-1;
+    grid-row: 1;
+}
+
+@media screen and (max-width: 1500px) {
+    .profile-page__left-column {
+        grid-row: 1;
+        grid-column: 2;
+    }
 }
 
 .profile-page__right-column {
-    height: 70%;
-    padding: 30px 30px 30px 30px;
-    margin: 15px;
-    flex: 0.5;
-    display: flex;
+    align-content: center;
+    display: grid;
     flex-direction: column;
-    align-items: flex-end;
+    grid-column: 3;
+}
+
+@media screen and (max-width: 1500px) {
+    .profile-page__right-column {
+        grid-row: 2;
+        grid-column: 1;
+    }
 }
 
 .add-address-block {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     margin-top: 15px;
-    align-self: flex-end;
+    width: inherit;
 }
 
 .img-upload-button {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background-image: url("../img/avatar-logo.png");
     background-size: cover;
-    float: left;
     position: absolute;
     cursor: pointer;
     border: none;
-    top: 70%;
-    right: 10%;
+    bottom: 10%;
+    right: 0%;
 }
 
 .img-container {
+    align-self: center;
+    grid-column: 2;
     position: relative;
+    width: min-content;
+    height: min-content;
+}
+
+@media screen and (max-width: 1500px) {
+    .img-container {
+        grid-row: 1;
+        position: relative;
+        grid-column: 1;
+        justify-self: center;
+    }
 }
 
 .img-upload-button:focus {
@@ -82,8 +110,17 @@
 .img-upload-button:focus {
     outline: none;
 }
+
 .profile-page__img {
-    float: left;
+    width: 350px;
+    height: 350px;
+}
+
+@media screen and (max-width: 500px) {
+    .profile-page__img {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 .profile-page__bonus-points {
@@ -97,22 +134,11 @@
     margin: 15px;
 }
 
-.profile-page__navbar {
-    width: 100%;
-    height: 60px;
-    padding: 10px 0px 10px 0px;
-    border-bottom: 1px solid #C4C4C4;
-    justify-self: start;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 .profile-page__navbar-button {
     cursor: pointer;
     border: none;
     white-space: nowrap;
     margin: 0px 10px 0px 10px;
-    height: 70%;
     border-radius: 20px;
     background: #FFFFFF;
     font-style: normal;
@@ -120,6 +146,12 @@
     font-size: 25px;
     line-height: 140.62%;
     color: #444BCF;
+}
+
+@media screen and (max-width: 700px) {
+    .profile-page__navbar-button {
+        font-size: 20px;
+    }
 }
 
 .profile-page__navbar-button:hover {
@@ -146,13 +178,28 @@
 }
 
 .address-item-text {
-    margin: 10px 30px 10px 10px;
+    margin: 10px 20px 10px 10px;
     font-style: normal;
     font-weight: normal;
     font-size: 25px;
-    white-space: nowrap;
     line-height: 140.62%;
+    word-break: break-all;
     color: #878A86;
+    max-width: 80%;
+}
+
+@media screen and (max-width: 500px) {
+    .address-item-text {
+        font-size: 20px;
+        word-break: break-all;
+        white-space: normal;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .common-input {
+        font-size: 20px;
+    }
 }
 
 .round-delete-button {
@@ -175,11 +222,9 @@
     background-color: #F6BEAA;
 }
 
-
 /* Заказы */
 
-.profile-page__order-cart,
-.profile-page__сoupon-cart {
+.profile-page__order-cart, .profile-page__сoupon-cart {
     display: flex;
     flex-direction: column;
     border: 1px solid #C4C4C4;
@@ -247,9 +292,7 @@
     justify-content: space-between;
 }
 
-.profile-page__order-cart__order-item-name,
-.profile-page__order-cart__order-item-price,
-.profile-page__order-cart__total {
+.profile-page__order-cart__order-item-name, .profile-page__order-cart__order-item-price, .profile-page__order-cart__total {
     font-style: normal;
     font-weight: normal;
     white-space: nowrap;

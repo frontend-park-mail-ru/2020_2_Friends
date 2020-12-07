@@ -10,14 +10,12 @@ export const renderProfileView = () => window.Handlebars.compile(`
             <button class="profile-page__navbar-button js-addstore-button link">Добавить магазин</button>
         </div>
         <div class="profile-page__content js-profile-info">
-            <div class="profile-page__left-column">
                 <div class="img-container">
                     <img id="avatar" src=" {{ avatar }} " alt="Italian Trulli" class="common-image profile-page__img">
                     <button id="js-upload-avatar" class="img-upload-button"></button>
                     <input type="file" name="uploadFile" class="none" id="file" accept=".png, .jpg, .jpeg">
                     <div class="avatar-errors"></div>
                 </div>
-            </div>
             <div class="profile-page__right-column">
                 <div class="js-login-errors text-error"></div>
                 <input type="text" class="common-input js-login-input" placeholder="Имя:" value="{{name}}"></input>
@@ -50,14 +48,12 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
 
         <div class="profile-page__content js-mystores">
-            <div class="profile-page__content-column">
+            <div class="my-stores-list">
             {{#each stores}}
                 <div class="my-store">
                     <img class="my-store__img" src="{{this.picture}}"></img>
-                    <div class="my-store__info">
                         <p class="my-store__name">{{this.store_name}}</p>
-                        <p class="my-store__descr">{{this.descr}}</p>
-                    </div>
+                        <p class="my-store__descr">Описание кафе, которое даст понять, что там можно покушать{{this.descr}}</p>
                     <button data-store_id="{{ this.id }}" class="proceed-button js-goto-store my-store__button">Перейти</button>
                 </div>
             {{/each}}

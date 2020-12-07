@@ -1,6 +1,7 @@
 .background {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 5% 90% 5%;
+    grid-template-columns: 5% 90% 5%;
     background: #D7DEE5;
     width: 100%;
     min-width: 100%;
@@ -8,8 +9,8 @@
 }
 
 .common-input {
-    width: 350px;
-    height: 40px;
+    /* width: 350px; */
+    height: 50px;
     margin: 15px;
     background: #FFFFFF;
     border: 1px solid #878A86;
@@ -91,10 +92,7 @@
 
 .common-image {
     background-color: #ffffff;
-    width: 200px;
-    height: 200px;
     border-radius: 50%;
-    margin: 20px;
     
 }
 
@@ -103,6 +101,15 @@
     color: #878A86;
     max-width: 350px;
     margin: 15px;
+}
+
+@media screen and (max-width: 550px) {
+    .proceed-button {
+        font-size: 15px;
+    }
+    .info-button {
+        font-size: 15px;
+    }
 }
 
 body {
