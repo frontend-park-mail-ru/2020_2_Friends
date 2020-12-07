@@ -173,6 +173,17 @@ export class PartnerProfileView {
             this.eventBus.call('ADD_STORE', data);
         });
 
+        const newStoreBtn = document.getElementById('addstore-avatar-form');
+        newStoreBtn.addEventListener('change', () => {
+            const newStorePic = document.getElementById('newStorePic');
+            const imgFile = document.getElementById('addstore-avatar-form').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                newStorePic.src = reader.result;
+            };
+            if (imgFile) { reader.readAsDataURL(imgFile); }
+        });
+
         const profileData = this.root.querySelector('.js-userdata-button');
         profileData.addEventListener('click', () => {
             this.changeSubPage('profile');

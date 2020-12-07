@@ -28,16 +28,14 @@ export const renderProfileView = () => window.Handlebars.compile(`
         </div>
 
         <div class="profile-page__content js-addstore-form">
-            <div class="profile-page__left-column">
                 <div class="img-container">
-                    <img id="avatar" src="assets/img/question.png" alt="Italian Trulli"
+                    <img  id="newStorePic" src="assets/img/question.png" alt="Italian Trulli"
                         class="common-image profile-page__img">
                     <div class="avatar-errors"></div>
-                </div>
                 <form class="addstore-avatar-form">
                 <input  id="addstore-avatar-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
                 </form>
-            </div>
+                </div>
             <div class="profile-page__right-column">
                 <input type="text" class="new-store__input js-addstore-name" placeholder="Имя магазина:"></input>
                 <input type="text" class="new-store__input  wide-input js-addstore-descr" placeholder="Описание магазина:"></input>
