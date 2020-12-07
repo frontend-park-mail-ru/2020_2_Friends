@@ -38,7 +38,7 @@ export const chatView = () => window.Handlebars.compile(`
         </div>
         <div class="chat-new-message"><input class="chat-new-message-input input  js-message-input" type="text"
                 placeholder="Напишите сообщение..." value="">
-        <button class="new-message-buton proceed-button js-new-message">Отправить</button></div>
+        <button class="new-message-button proceed-button js-new-message">Отправить</button></div>
     </div>
 </div>
 </div>

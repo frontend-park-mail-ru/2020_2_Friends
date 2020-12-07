@@ -114,6 +114,7 @@
 }
 
 .addstore__map {
-    width: 500px;
-    height: 400px;
+    width: 90%;
+    height: 350px;
+    justify-self: center;
 }

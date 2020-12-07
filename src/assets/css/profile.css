@@ -19,14 +19,13 @@
     padding: 10px;
     min-height: 500px;
     align-items: center;
-    justify-items: center;
     grid-template-columns: 10% 30% 50% 10%;
     grid-template-rows: 1fr;
 }
 
 @media screen and (max-width: 1500px) {
     .profile-page__content {
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr auto;
         grid-template-columns: 1fr;
     }
 }
