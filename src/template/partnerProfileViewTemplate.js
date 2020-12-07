@@ -38,9 +38,9 @@ export const renderProfileView = () => window.Handlebars.compile(`
                 </div>
             <div class="profile-page__right-column">
                 <input type="text" class="new-store__input js-addstore-name" placeholder="Имя магазина:"></input>
-                <input type="text" class="new-store__input  wide-input js-addstore-descr" placeholder="Описание магазина:"></input>
+                <input type="text" class="new-store__input js-addstore-descr" placeholder="Описание магазина:"></input>
                 <div class="addstore__map" js-map id="addstore__map"></div>
-                <input type="text" class="new-store__input  wide-input js-addstore-radius" placeholder="Радиус обслуживания в метрах:"></input>
+                <input type="text" class="new-store__input js-addstore-radius" placeholder="Радиус обслуживания в метрах:"></input>
                 <button class="proceed-button js-add-store">Создать магазин!</button>
             </div>
         </div>

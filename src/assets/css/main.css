@@ -105,10 +105,10 @@
 
 @media screen and (max-width: 550px) {
     .proceed-button {
-        font-size: 15px;
+        font-size: 20px;
     }
     .info-button {
-        font-size: 15px;
+        font-size: 20px;
     }
 }
 

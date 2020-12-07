@@ -19,7 +19,6 @@
     border-radius: 20px;
     margin: 10px;
     padding: 10px;
-    max-height: 200px;
     align-items: center;
     justify-items: center;
 }
@@ -58,18 +57,26 @@
     grid-row: 3;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
     .my-store__img {
         width: 100px;
         height: 100px;
+        grid-column: auto;
+        grid-row: 1;
+    }
+        .my-store__name {
+            grid-column: auto;
+        grid-row: 2;
     }
     .my-store__button {
-        grid-column: 2;
-        grid-row: 3;
+        grid-column: auto;
+        grid-row: 4;
     }
     .my-store {
-        width: 100%;
-        grid-template-columns: 30% 70%;
+        width: 95%;
+        grid-template-columns: none;
+        grid-template-rows: 30% 20% 20% 20%;
+
     }
     .my-stores-list {
         display: grid;
@@ -77,16 +84,17 @@
         grid-column: 1;
     }
     .my-store__descr {
+        grid-column: auto;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 15px;
-        grid-row: 2/3;
+        font-size: 20px;
+        grid-row: 3;
     }
 }
 
 .new-store__input {
-    width: 500px;
-    height: 40px;
+    max-width: inherit;
+    height: 50px;
     margin: 15px;
     background: #FFFFFF;
     border: 1px solid #878A86;

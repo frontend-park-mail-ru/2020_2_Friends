@@ -49,10 +49,10 @@ export const renderStoreView = () => window.Handlebars.compile(`
                 <div>
                     <input type="text" class="common-input js-name-input" placeholder="Название:"
                         value="{{ this.food_name }}"></input>
-                    <input type="text" class="common-input  wide-input js-descr-input" placeholder="Описание:"
+                    <input type="text" class="common-input js-descr-input" placeholder="Описание:"
                         value="{{ this.descr }}"></input>
                         <div class="js-price-error text-error"></div>
-                    <input type="number" class="common-input  wide-input js-price-input" placeholder="Цена:"
+                    <input type="number" class="common-input  js-price-input" placeholder="Цена:"
                         value="{{ this.food_price }}"></input>
                     <button
                         class="proceed-button js-save-item-changes bottom-center-button"
