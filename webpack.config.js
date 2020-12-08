@@ -1,17 +1,25 @@
 const path = require('path');
 // const HandlebarsPlugin = require('handlebars-webpack-plugin');
+// const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
     entry: './src/index.js',
+    resolve: {
+        fallback: {
+            fs: false,
+            assert: false
+        }
+    },
     devServer: {
         contentBase: './dist',
         hot: true
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Трава у дома'
+            title: 'Трава у дома',
+            template: 'template.html'
         })
         // new HandlebarsPlugin({
         //     // path to hbs entry file(s). Also supports nested directories if write path.join(process.cwd(), "app", "src", "**", "*.hbs"),

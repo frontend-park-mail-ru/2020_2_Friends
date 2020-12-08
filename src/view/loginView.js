@@ -1,5 +1,8 @@
 // import { renderLoginView } from '../template/loginViewTemplate.js';
-import { loginTemplate } from '../templates/loginTemplate.hbs';
+// import { command } from 'cli';
+import { loginTemplate } from '../templates/loginTemplate.handlebars';
+
+console.log('loginTemplate ', loginTemplate);
 export class LoginView {
     /**
      * Creating an LoginView instance.
@@ -30,6 +33,7 @@ export class LoginView {
     render () {
         // const template = renderLoginView();
         const template = loginTemplate;
+        console.log(template);
 
         this.root.innerHTML = template;
         this.addEventListeners();

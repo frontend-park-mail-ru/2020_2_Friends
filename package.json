@@ -29,6 +29,7 @@
     "handlebars-loader": "^1.7.1",
     "handlebars-webpack-plugin": "^2.2.1",
     "html-webpack-plugin": "^4.5.0",
+    "html-webpack-root-plugin": "^0.10.0",
     "husky": "^4.3.0",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
