@@ -71,7 +71,9 @@
 .order-cart__address {
     font-style: normal;
     font-weight: normal;
-    max-width: 500px;
+    max-width: 80%;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .order-cart__resto-img {

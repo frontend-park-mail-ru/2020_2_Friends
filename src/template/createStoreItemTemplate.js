@@ -3,20 +3,18 @@
  */
 
 export const renderItemCreateView = () => window.Handlebars.compile(`
-<div class="product-normal"><img src="assets/img/question.png" class="product__img">
+<div class="product-normal"><img src="assets/img/question.png" id="product__img" class="product__img">
     <form  class="product__img-form">
         <input id="product__img-form" type="file" name="uploadFile" accept=".png, .jpg, .jpeg">
     </form>
     <button class="delete-button js-delete-button"></button>
-    <div class="product__items-input">
-        <input type="text" class="common-input js-name-input" placeholder="Название:"></input>
-        <input type="text" class="common-input  js-descr-input" placeholder="Описание:"></input>
+        <input type="text" class="common-input product-editor__input js-name-input" placeholder="Название:"></input>
+        <input type="text" class="common-input  product-editor__input js-descr-input" placeholder="Описание:"></input>
         <div class="js-price-error text-error"></div>
-        <input type="number" class="common-input js-price-input" placeholder="Цена:"></input>
+        <input type="number" class="common-input product-editor__input js-price-input" placeholder="Цена:"></input>
         <div>
             <button class="proceed-button js-save-new-item bottom-center-button">Создать</button>
         </div>
-    </div>
 </div>
 `);
 
@@ -40,10 +38,10 @@ export const renderNewItemView = () => window.Handlebars.compile(`
     </form>
     <button class="delete-button js-delete-button" data-product_id="{{ food_id }}"></button>
     <div>
-        <input type="text" class="common-input js-name-input" placeholder="Название:" value="{{ food_name }}"></input>
-        <input type="text" class="common-input js-descr-input" placeholder="Описание:" value="{{ descr }}"></input>
+        <input type="text" class="common-input product-editor__input js-name-input" placeholder="Название:" value="{{ food_name }}"></input>
+        <input type="text" class="common-input product-editor__input js-descr-input" placeholder="Описание:" value="{{ descr }}"></input>
         <div class="js-price-error text-error"></div>
-        <input type="text" class="common-input js-price-input" placeholder="Цена:" value="{{ food_price }}"></input>
+        <input type="text" class="common-input product-editor__input js-price-input" placeholder="Цена:" value="{{ food_price }}"></input>
         <button class="proceed-button js-save-item-changes bottom-center-button" data-product_id="{{ id }}">Сохранить</button>
     </div>
 </div>

@@ -6,14 +6,16 @@ export const renderStoreView = () => window.Handlebars.compile(`
     <div class="back-to-shopping">
         <button class="back-to-shopping__button">Все рестораны</button>
     </div>
-    <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
-            <img src="{{picture}}" class="store__logo" alt="Store logo">
+        <div id="storeHeader" data-store_id="{{storeId}}" class="store__header">
+    <div class="store__img-container">
+        <img src="{{picture}}" class="store__logo" alt="Store logo">
+        <input type="file" name="uploadFile" id="file" accept=".png, .jpg, .jpeg"  class="none">
+    </div>
             <div class="store__name">{{storeName}}</div>
             <button class="info-button js-goto-reviews store__reviews">Отзывы</button>
-        <div class="store-header__map" id="map"></div>
+            <div class="store-header__map" id="map"></div>
     </div>
     <div class="store__showcase">
-        <div class="js-store-errors"></div>
 
         {{#each products}}
         <div class="product-normal product" id="{{ this.id }}">
