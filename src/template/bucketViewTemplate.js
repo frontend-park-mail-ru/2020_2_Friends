@@ -13,10 +13,8 @@ export const renderBucketView = () => window.Handlebars.compile(`
             {{#each products}}
             <div class="bucket-item" data-id={{this.id}}>
                 <img class="bucket-item__img" src="{{this.picture}}"></img>
-                <div class="bucket-item__col">
                     <div class="bucket-item__name">{{this.food_name}}</div>
-                    <div class="bucket-item__descr">{{this.food_price}} p</div>
-                </div>
+                    <div class="bucket-item__price">{{this.food_price}} p</div>
                 <div class="bucket-item__row">
                     <input class="bucket-item__quantity" type="number" value="1">
                     <button class="bucket-item__delete js-delete-item"></button>
