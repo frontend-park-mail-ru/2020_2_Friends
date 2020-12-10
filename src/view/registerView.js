@@ -1,4 +1,5 @@
 // import { renderRegisterView } from '../template/registerViewTemplate.js';
+import registerTemplate from '../templates/registerTemplate.hbs';
 
 export class RegisterView {
     /**
@@ -31,8 +32,8 @@ export class RegisterView {
      * Rendering register page and setting event listeners.
      */
     render () {
-        const template = renderRegisterView();
-        this.root.innerHTML = template();
+        const template = registerTemplate();
+        this.root.innerHTML = template;
         this.addEventListeners();
     }
 

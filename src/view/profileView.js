@@ -1,6 +1,10 @@
 // import { renderProfileView } from '../template/profileViewTemplate.js';
 // import { renderOrderView } from '../template/singleOrderViewTemplate.js';
 // import { renderAddrListView } from '../template/addresListViewTemplate.js';
+
+import profileTemplate from '../templates/profileTemplate.hbs';
+import singleOrderTemplate from '../templates/singleOrderTemplate.hbs';
+import addressListTemplate from '../templates/addressListTemplate.hbs';
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -92,7 +96,7 @@ export class ProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
-        const template = renderProfileView();
+        const template = profileTemplate;
         this.root.innerHTML = template(data);
         this.changeSubPage(data.subpage);
         this.addEventListeners();
@@ -175,7 +179,7 @@ export class ProfileView {
         if (data.length === 0) {
             data.empty = 'Что-то тут пустовато... Сделайте свой первый заказ!';
         }
-        const template = renderOrderView();
+        const template = singleOrderTemplate;
         data.forEach((order) => {
             order.showReview = !order.reviewed && (order.status === 'Завершён');
             order.showChat = !!(order.status && order.status !== 'Завершён');
@@ -228,7 +232,7 @@ export class ProfileView {
 
     showAddressList (input) {
         const addrColumn = document.getElementById('address-column');
-        const template = renderAddrListView();
+        const template = addressListTemplate;
         const addrHTML = template(input);
         addrColumn.innerHTML = addrHTML;
         this.addAddrsEventListeners();

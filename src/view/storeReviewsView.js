@@ -1,4 +1,5 @@
 // import { storeReviewsView } from '../template/storeReviewsViewTeamplate.js';
+import storeReviewsTemplate from '../templates/storeReviewsTemplate.hbs';
 export class StoreReviewsView {
     /**
      * Creating an OrderView instance.
@@ -20,7 +21,7 @@ export class StoreReviewsView {
                 review.username = 'Аноним';
             }
         });
-        const template = storeReviewsView();
+        const template = storeReviewsTemplate;
         this.root.innerHTML = template(data);
         this.addEventListeners();
     }

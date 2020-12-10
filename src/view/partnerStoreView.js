@@ -1,5 +1,10 @@
 // import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
 // import { renderItemCreateView, renderNewItemView } from '../template/createStoreItemTemplate.js';
+
+import partnerStoreTemplate from '../templates/partnerStoreTemplate.hbs';
+import storeItemCreateTemplate from '../templates/storeItemCreateTemplate.hbs';
+import storeNewItemTemplate from '../templates/storeNewItemTemplate.hbs';
+
 export class PartnerStoreView {
     /**
      * Creating an PartnerStoreView instance.
@@ -64,7 +69,7 @@ export class PartnerStoreView {
      * Rendering register page and setting event listeners.
      */
     render (data) {
-        const template = renderStoreView();
+        const template = partnerStoreTemplate;
         const storeHTML = template(data);
         this.root.innerHTML = storeHTML;
         this.addEventListeners();
@@ -111,7 +116,7 @@ export class PartnerStoreView {
     }
 
     showNewProduct (data) {
-        const template = renderNewItemView();
+        const template = storeNewItemTemplate;
         const itemHTML = template(data);
         const product = this.root.querySelector('.new-product');
         product.classList.remove('new-product');
@@ -194,7 +199,7 @@ export class PartnerStoreView {
             const product = document.createElement('div');
             product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
-            const template = renderItemCreateView();
+            const template = storeItemCreateTemplate;
             product.innerHTML = template();
             const delBtn = product.querySelector('.js-delete-button');
             delBtn.addEventListener('click', () => {

@@ -1,5 +1,6 @@
 // import { renderAllStores } from '../template/allStoresViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
+import allStoresTemplate from '../templates/allStoresTemplate.hbs';
 
 export class AllStoresView {
     /**
@@ -23,7 +24,7 @@ export class AllStoresView {
      * @param {Array} data - Array of cart's items.
      */
     render (data) {
-        const template = renderAllStores();
+        const template = allStoresTemplate;
         this.root.innerHTML = template({ stores: data.stores });
         const mapId = this.root.querySelector('#map');
         const newMap = new MapAPI({

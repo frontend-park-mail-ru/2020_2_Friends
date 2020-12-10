@@ -1,4 +1,5 @@
 // import { renderBucketView } from '../template/bucketViewTemplate.js';
+import bucketTemplate from '../templates/bucketTemplate.hbs';
 export class BucketView {
     /**
      * Creating an BucketView instance.
@@ -20,7 +21,7 @@ export class BucketView {
      * @param {Array} data - Array of cart's items.
      */
     render (data) {
-        const template = renderBucketView();
+        const template = bucketTemplate;
         if (data.products.length === 0) {
             data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!';
         }

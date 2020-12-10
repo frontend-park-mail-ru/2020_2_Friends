@@ -1,4 +1,6 @@
 // import { renderOrderView } from '../template/orderViewTemplate.js';
+import orderTemplate from '../templates/orderTemplate.hbs';
+
 export class OrderView {
     /**
      * Creating an OrderView instance.
@@ -16,7 +18,7 @@ export class OrderView {
     }
 
     render (data) {
-        const template = renderOrderView();
+        const template = orderTemplate;
         this.root.innerHTML = template(data);
         this.addEventListeners();
         this.setStatus(data.orders);
