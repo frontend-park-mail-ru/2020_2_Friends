@@ -24,7 +24,7 @@
 .store-header__map,  .header__map {
         grid-row: 2;
         grid-column: 3/6;
-        width: 700px;
+        width: 80%;
         height: 200px;
 }
 @media screen and (max-width: 1700px) {
@@ -34,7 +34,7 @@
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
     .stores__header {
         grid-row: 1;
         grid-column: 1;
@@ -43,11 +43,9 @@
         grid-template-columns: 100%;
         grid-template-rows: auto auto;
     }
-    store-header__map, .header__map {
+    .store-header__map, .header__map {
         grid-row: 2;
         grid-column: 1;
-
-        width: 700px;
         height: 200px;
     }
 }
