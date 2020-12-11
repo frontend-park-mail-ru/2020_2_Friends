@@ -66,8 +66,7 @@ export class PartnerStoreView {
      * Rendering register page and setting event listeners.
      */
     render (data) {
-        const template = partnerStoreTemplate;
-        const storeHTML = template(data);
+        const storeHTML = partnerStoreTemplate(data);
         this.root.innerHTML = storeHTML;
         this.addEventListeners();
     }
@@ -113,8 +112,7 @@ export class PartnerStoreView {
     }
 
     showNewProduct (data) {
-        const template = storeNewItemTemplate;
-        const itemHTML = template(data);
+        const itemHTML = storeNewItemTemplate(data);
         const product = this.root.querySelector('.new-product');
         product.classList.remove('new-product');
         product.innerHTML = itemHTML;
@@ -196,8 +194,7 @@ export class PartnerStoreView {
             const product = document.createElement('div');
             product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
-            const template = storeItemCreateTemplate;
-            product.innerHTML = template();
+            product.innerHTML = storeItemCreateTemplate();
             const delBtn = product.querySelector('.js-delete-button');
             delBtn.addEventListener('click', () => {
                 product.remove();

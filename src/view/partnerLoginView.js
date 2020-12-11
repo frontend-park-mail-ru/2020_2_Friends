@@ -28,9 +28,7 @@ export class PartnerLoginView {
      * Rendering login page and setting event listeners.
      */
     render () {
-        const template = partnerLoginTemplate();
-
-        this.root.innerHTML = template;
+        this.root.innerHTML = partnerLoginTemplate();
         this.addEventListeners();
     }
 

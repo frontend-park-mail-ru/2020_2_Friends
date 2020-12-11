@@ -17,8 +17,7 @@ export class OrderView {
     }
 
     render (data) {
-        const template = orderTemplate;
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = orderTemplate(data);
         this.addEventListeners();
         this.setStatus(data.orders);
     }

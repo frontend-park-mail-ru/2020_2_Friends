@@ -31,9 +31,7 @@ export class PartnerRegisterView {
      * Rendering register page and setting event listeners.
      */
     render () {
-        const template = partnerRegisterTemplate;
-
-        this.root.innerHTML = template();
+        this.root.innerHTML = partnerRegisterTemplate();
         this.addEventListeners();
     }
 

@@ -31,8 +31,7 @@ export class ChatView {
     }
 
     showChatList (data) {
-        const template = chatTemplate;
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = chatTemplate(data);
         this.addEventListeners();
     }
 
@@ -41,8 +40,7 @@ export class ChatView {
         if (oldChat) {
             oldChat.remove();
         }
-        const template = chatUserChatTemplate;
-        this.support.innerHTML = template(data);
+        this.support.innerHTML = chatUserChatTemplate(data);
         this.eventBus.call('GET_CHAT_MESSAGES', data.order_id);
         const chatMessages = this.support.querySelector('.chat-messages');
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -65,9 +63,6 @@ export class ChatView {
     }
 
     showChatMessages (data) {
-        const toUserTemplate = chatMessageToUserTemplate;
-        const fromUserTemplate = chatMessageFromUserTemplate;
-
         // сделать чат в списке выделенным (если он есть) и показать все сообщения в чате
         let chatMessages = this.root.querySelector('.chat-messages');
         if (!chatMessages) {
@@ -77,9 +72,9 @@ export class ChatView {
         chatMessages.innerHTML = '';
         data.messages.forEach((message) => {
             if (message.is_your_msg) {
-                chatMessages.innerHTML += fromUserTemplate(message);
+                chatMessages.innerHTML += chatMessageFromUserTemplate(message);
             } else {
-                chatMessages.innerHTML += toUserTemplate(message);
+                chatMessages.innerHTML += chatMessageToUserTemplate(message);
             }
         });
         const lastChat = this.root.querySelector('.chats-item__open');
@@ -100,8 +95,7 @@ export class ChatView {
             chatMessages = this.support.querySelector('.chat-messages');
         }
 
-        const fromUserTemplate = chatMessageFromUserTemplate;
-        chatMessages.innerHTML += fromUserTemplate(data);
+        chatMessages.innerHTML += chatMessageFromUserTemplate(data);
     }
 
     showMessageToMe (data) {
@@ -110,8 +104,7 @@ export class ChatView {
             chatMessages = this.support.querySelector('.chat-messages');
         }
         if (chatMessages) {
-            const toUserTemplate = chatMessageToUserTemplate;
-            chatMessages.innerHTML += toUserTemplate(data);
+            chatMessages.innerHTML += chatMessageToUserTemplate(data);
         }
     }
 

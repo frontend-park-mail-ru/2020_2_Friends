@@ -31,8 +31,7 @@ export class RegisterView {
      * Rendering register page and setting event listeners.
      */
     render () {
-        const template = registerTemplate();
-        this.root.innerHTML = template;
+        this.root.innerHTML = registerTemplate();
         this.addEventListeners();
     }
 

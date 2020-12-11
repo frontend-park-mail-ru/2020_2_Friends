@@ -28,9 +28,7 @@ export class LoginView {
      * Rendering login page and setting event listeners.
      */
     render () {
-        // const template = renderLoginView();
-        const template = loginTemplate();
-        this.root.innerHTML = template;
+        this.root.innerHTML = loginTemplate();
         this.addEventListeners();
     }
 

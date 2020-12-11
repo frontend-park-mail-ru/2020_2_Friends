@@ -21,8 +21,7 @@ export class StoreReviewsView {
                 review.username = 'Аноним';
             }
         });
-        const template = storeReviewsTemplate;
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = storeReviewsTemplate(data);
         this.addEventListeners();
     }
 

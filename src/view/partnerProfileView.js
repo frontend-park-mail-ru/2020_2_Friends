@@ -84,9 +84,7 @@ export class PartnerProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
-        const template = partnerProfileTemplate;
-        const profileHTML = template(data);
-        this.root.innerHTML = profileHTML;
+        this.root.innerHTML = partnerProfileTemplate(data);
         const mapId = this.root.querySelector('#addstore__map');
         this.newMap = new MapAPI({
             div: mapId,

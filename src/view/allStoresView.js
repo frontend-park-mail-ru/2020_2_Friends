@@ -23,8 +23,7 @@ export class AllStoresView {
      * @param {Array} data - Array of cart's items.
      */
     render (data) {
-        const template = allStoresTemplate;
-        this.root.innerHTML = template({ stores: data.stores });
+        this.root.innerHTML = allStoresTemplate({ stores: data.stores });
         const mapId = this.root.querySelector('#map');
         const newMap = new MapAPI({
             div: mapId,

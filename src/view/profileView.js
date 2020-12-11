@@ -93,8 +93,7 @@ export class ProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
-        const template = profileTemplate;
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = profileTemplate(data);
         this.changeSubPage(data.subpage);
         this.addEventListeners();
     }
@@ -229,9 +228,7 @@ export class ProfileView {
 
     showAddressList (input) {
         const addrColumn = document.getElementById('address-column');
-        const template = addressListTemplate;
-        const addrHTML = template(input);
-        addrColumn.innerHTML = addrHTML;
+        addrColumn.innerHTML = addressListTemplate(input);
         this.addAddrsEventListeners();
     }
 

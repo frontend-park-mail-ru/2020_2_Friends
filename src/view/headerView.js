@@ -23,21 +23,18 @@ export class HeaderView {
     render (option) {
         switch (option) {
         case 'user': {
-            const headerTemplate = userHeaderTemplate();
-            this.header.innerHTML = headerTemplate;
+            this.header.innerHTML = userHeaderTemplate();
             this.addUserHeaderEventListeners();
             break;
         }
         case 'admin': {
-            const headerTemplate = adminHeaderTemplate();
-            this.header.innerHTML = headerTemplate;
+            this.header.innerHTML = adminHeaderTemplate();
             this.addAdminHeaderEventListeners();
             break;
         }
         case 'notAuth':
         default: {
-            const headerTemplate = notAuthTemplate();
-            this.header.innerHTML = headerTemplate;
+            this.header.innerHTML = notAuthTemplate();
             this.addNotAuthEventListeners();
             break;
         }
