@@ -1,4 +1,3 @@
-// import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
 
 import partnerProfileTemplate from '../templates/partnerProfileTemplate.hbs';

@@ -1,4 +1,3 @@
-// import { renderOrderView } from '../template/orderViewTemplate.js';
 import orderTemplate from '../templates/orderTemplate.hbs';
 
 export class OrderView {

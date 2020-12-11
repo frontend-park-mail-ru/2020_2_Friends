@@ -1,4 +1,3 @@
-// import { renderRegisterView } from '../template/registerViewTemplate.js';
 import registerTemplate from '../templates/registerTemplate.hbs';
 
 export class RegisterView {

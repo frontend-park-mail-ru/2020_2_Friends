@@ -1,4 +1,3 @@
-// import { renderLoginView } from '../template/partnerLoginViewTemplate.js';
 import partnerLoginTemplate from '../templates/partnerLoginTemplate.hbs';
 
 export class PartnerLoginView {

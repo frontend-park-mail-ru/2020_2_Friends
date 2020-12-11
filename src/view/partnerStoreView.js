@@ -1,6 +1,3 @@
-// import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
-// import { renderItemCreateView, renderNewItemView } from '../template/createStoreItemTemplate.js';
-
 import partnerStoreTemplate from '../templates/partnerStoreTemplate.hbs';
 import storeItemCreateTemplate from '../templates/storeItemCreateTemplate.hbs';
 import storeNewItemTemplate from '../templates/storeNewItemTemplate.hbs';

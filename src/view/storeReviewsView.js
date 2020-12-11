@@ -1,5 +1,5 @@
-// import { storeReviewsView } from '../template/storeReviewsViewTeamplate.js';
 import storeReviewsTemplate from '../templates/storeReviewsTemplate.hbs';
+
 export class StoreReviewsView {
     /**
      * Creating an OrderView instance.

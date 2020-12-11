@@ -1,10 +1,7 @@
-// import { renderProfileView } from '../template/profileViewTemplate.js';
-// import { renderOrderView } from '../template/singleOrderViewTemplate.js';
-// import { renderAddrListView } from '../template/addresListViewTemplate.js';
-
 import profileTemplate from '../templates/profileTemplate.hbs';
 import singleOrderTemplate from '../templates/singleOrderTemplate.hbs';
 import addressListTemplate from '../templates/addressListTemplate.hbs';
+
 export class ProfileView {
     /**
      * Creating an ProfileView instance.

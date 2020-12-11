@@ -1,4 +1,3 @@
-// import { renderBucketView } from '../template/bucketViewTemplate.js';
 import bucketTemplate from '../templates/bucketTemplate.hbs';
 export class BucketView {
     /**

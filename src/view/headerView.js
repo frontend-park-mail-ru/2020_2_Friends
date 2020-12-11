@@ -1,4 +1,3 @@
-// import { renderAdminHeaderView, renderUserHeaderView, renderNotAuthHeaderView } from '../template/headerViewTemplate.js';
 import userHeaderTemplate from '../templates/userHeaderTemplate.hbs';
 import adminHeaderTemplate from '../templates/adminHeaderTemplate.hbs';
 import notAuthTemplate from '../templates/notAuthTemplate.hbs';

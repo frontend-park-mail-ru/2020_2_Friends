@@ -1,4 +1,3 @@
-// import { chatView, messageToUserView, messageFromUserView, chatListItemView, userChatView } from '../template/chatViewTemplate.js';
 import chatTemplate from '../templates/chatTemplate.hbs';
 import chatMessageToUserTemplate from '../templates/chatMessageToUserTemplate.hbs';
 import chatMessageFromUserTemplate from '../templates/chatMessageFromUserTemplate.hbs';

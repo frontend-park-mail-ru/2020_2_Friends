@@ -1,6 +1,7 @@
-// import { renderStoreView } from '../template/storeViewTemplate.js';
 import storeTemplate from '../templates/storeTemplate.hbs';
+
 import { MapAPI } from '../utils/mapAPI.js';
+
 export class StoreView {
     /**
      * Creating an StoreView instance.

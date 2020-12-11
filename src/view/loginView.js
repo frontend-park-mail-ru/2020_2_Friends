@@ -1,4 +1,3 @@
-// import { renderLoginView } from '../template/loginViewTemplate.js';
 import loginTemplate from '../templates/loginTemplate.hbs';
 
 export class LoginView {

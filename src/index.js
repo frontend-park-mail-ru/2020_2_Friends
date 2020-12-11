@@ -1,6 +1,5 @@
 import collective from './assets/css/collective.css'; // eslint-disable-line
 import ymaps from 'ymaps';
-// import template from '/.main.hbs'
 
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';

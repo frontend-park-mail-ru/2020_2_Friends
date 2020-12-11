@@ -1,4 +1,3 @@
-// import { renderRegisterView } from '../template/partnerRegisterViewTemplate.js';
 import partnerRegisterTemplate from '../templates/partnerRegisterTemplate.hbs';
 
 export class PartnerRegisterView {

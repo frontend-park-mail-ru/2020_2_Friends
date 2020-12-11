@@ -1,4 +1,3 @@
-// import { renderAllStores } from '../template/allStoresViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
 import allStoresTemplate from '../templates/allStoresTemplate.hbs';
 
