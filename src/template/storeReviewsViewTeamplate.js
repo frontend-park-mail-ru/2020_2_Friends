@@ -10,8 +10,7 @@ export const storeReviewsView = () => window.Handlebars.compile(`
             <button data-storeid="{{storeId}}" class="info-button js-to-store-button">К магазину</button>
         </div>
     </div>
-
-
+    
     <div class="review-column">
     {{#each reviews}}
     <div class="review-cart">

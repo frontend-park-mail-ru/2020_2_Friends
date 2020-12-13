@@ -23,13 +23,12 @@
 
 @media screen and (max-width: 500px) {
     .header__button {
-       width: 80px;
-       font-size: 15px;
+       width: 70px;
+       font-size: 13px;
     }
 }
 
 .header__logo {
-    margin: 10px;
     border-radius: 50%;
     height: 50px;
     width: 50px;

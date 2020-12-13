@@ -55,8 +55,7 @@ export const renderProfileView = () => window.Handlebars.compile(`
         <div class="profile-page__content js-profile-orders">
             <div id="review_overlay">
                 <div id="review-form" class="review-form">
-                    <div class="review-form__row">
-                    <div class="review-header__rating">Оцените ваш заказ!</div>
+                    <div class="review-form__title">Оцените ваш заказ!</div>
                         <select id="review-form__rating" class="review-form__rating">
                             <option value="1" class="status__option">1</option>
                             <option value="2" class="status__option">2</option>
@@ -64,15 +63,13 @@ export const renderProfileView = () => window.Handlebars.compile(`
                             <option value="4" class="status__option">4</option>
                             <option value="5" class="status__option">5</option>
                         </select>
-                        <div class="round-delete-button js-close-overlay"></div>
-                    </div>
-                    <textarea id="review-form__text" type="text" cols="20" rows="3" class="common-text-area" placeholder="Расскажите о ваших впечатлениях!"></textarea>
-                    <button id="js-add-review" class="proceed-button">Добавить отзыв</button>
-            </div>
+                        <div class="round-delete-button js-close-overlay review-form__close"></div>
+                    <textarea id="review-form__text" type="text" cols="20" rows="3" class="common-text-area review-form__text" placeholder="Расскажите о ваших впечатлениях!"></textarea>
+                    <button id="js-add-review" class="proceed-button review-form__add-button">Добавить отзыв</button>
+                </div>
             </div>
             <div class=" order-column-profile " id="orderColumn">
             <div class="empty-bucket">{{empty}}</div>
-
             </div>
         </div>
     </div>

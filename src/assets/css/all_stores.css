@@ -11,6 +11,7 @@
     grid-row: 1;
     grid-column: 1/-1;
     align-items: center;
+    justify-items: center;
 }
 
 .stores__header {
@@ -100,8 +101,8 @@
 
 .stores__showcase {
     display: grid;
-    grid-template-rows: repeat(auto-fill, 400px);
-    grid-template-columns: repeat(auto-fill, 400px);
+    grid-template-rows: repeat(auto-fit, 400px);
+    grid-template-columns: repeat(auto-fit, 400px);
     gap: 40px 20px;
     grid-column: 1/-1;
     justify-content: center;
@@ -110,7 +111,7 @@
 @media screen and (max-width: 500px) {
     .stores__showcase {
         grid-template-columns: 80%;
-        grid-template-rows: repeat(auto-fill, 280px);
+        grid-template-rows: repeat(auto-fit, 280px);
     }
 }
 

@@ -172,12 +172,12 @@
     display: flex;
     flex-direction: row;
     background-color: #FFFFFF;
-    margin: 5px;
+    margin: 15px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .address-item-text {
-    margin: 10px 20px 10px 10px;
     font-style: normal;
     font-weight: normal;
     font-size: 25px;
@@ -208,9 +208,8 @@
     border-radius: 50%;
 }
 
-.address-delete-butoon {
-    margin-left: auto;
-}
+/* .address-delete-butoon {
+    margin-left: auto; */
 
 .round-delete-button:hover {
     cursor: pointer;

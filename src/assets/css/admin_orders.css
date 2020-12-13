@@ -37,7 +37,7 @@
     border-bottom: 1px solid #C4C4C4;
     display: grid;
     grid-template-columns: 40% 30% 30%;
-    padding: 10px;
+    padding: 15px;
     flex-direction: row;
     font-size: 25px;
 }
@@ -90,20 +90,19 @@
     word-break: break-all;
 }
 .order-cart__user-status {
-    height: 40px;
-    width: 130px;
     font-size: 30px;
     border-radius: 20px;
     padding-left: 10px;
     outline: none;
     color: #45d480;
     white-space: nowrap;
+    align-self: end;
 }
 
 .order-cart__order-list {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
 }
 
 .order-list__order-item, .order-cart__total {
@@ -132,7 +131,19 @@
     }
 }
 
-.order-item__name, .order-item__price, .order-cart__total {
+@media screen and (max-width: 300px) {
+    .order-list__order-item,
+        font-size: 3vw;
+    }
+}
+
+.order-item__name, .order-item__price {
+    font-style: normal;
+    font-weight: normal;
+    white-space: nowrap;
+    margin: 10px 0px;
+}
+.order-cart__total {
     font-style: normal;
     font-weight: normal;
     white-space: nowrap;
@@ -140,7 +151,7 @@
 }
 
 @media screen and (max-width: 800px) {
-    .order-item__name, .order-item__price, .order-cart__total {
+    .order-cart__total {
         margin: 5px 25px 5px 15px;
     }
 }
@@ -149,5 +160,5 @@
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: end;
+    align-self: end;
 }
