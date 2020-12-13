@@ -1,4 +1,3 @@
-import collective from './assets/css/collective.css'; // eslint-disable-line
 import ymaps from 'ymaps';
 
 import { LoginController } from './controller/loginController.js';

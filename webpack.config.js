@@ -1,8 +1,13 @@
 const path = require('path');
+
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const isDev = process.env.MODE === 'dev';
 
 module.exports = {
-    mode: 'development',
+    mode: isDev ? 'development' : 'production',
     entry: './src/index.js',
     devServer: {
         contentBase: './dist',
@@ -12,7 +17,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Трава у дома',
             template: 'template.html'
-        })
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: path.resolve(__dirname, 'src', 'assets', 'img'), to: path.resolve(__dirname, 'dist', 'img') },
+                { from: path.resolve(__dirname, 'src', 'assets', 'css'), to: path.resolve(__dirname, 'dist', 'css') }
+            ]
+        }),
+        new CleanWebpackPlugin()
     ],
     output: {
         filename: 'main.js',
@@ -34,13 +46,6 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.svg$/,
-                loader: 'url-loader',
-                options: {
-                    mimetype: 'image/svg+xml'
-                }
             },
             {
                 test: /\.(png|jpg|gif|webp|ico)$/,
