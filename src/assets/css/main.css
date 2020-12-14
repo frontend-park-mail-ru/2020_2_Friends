@@ -31,6 +31,7 @@
 .none {
     display: none;
 }
+
 .support-button {
     color: #FFFFFF;
     background: #dd9d88;
@@ -70,7 +71,7 @@
     color: #305935;
 }
 
-.info-button:focus, .info-button:hover,  .support-button:hover {
+.info-button:focus, .info-button:hover, .support-button:hover {
     outline: none;
     background: #D5896F;
     color: #FFFFFF;
@@ -93,7 +94,6 @@
 .common-image {
     background-color: #ffffff;
     border-radius: 50%;
-    
 }
 
 .text-error {

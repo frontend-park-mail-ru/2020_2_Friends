@@ -208,9 +208,6 @@
     border-radius: 50%;
 }
 
-/* .address-delete-butoon {
-    margin-left: auto; */
-
 .round-delete-button:hover {
     cursor: pointer;
     background-color: #F6BEAA;
