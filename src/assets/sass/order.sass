@@ -1,0 +1,49 @@
+.order
+    background: #FFFFFF
+    min-width: 1000px
+    min-height: 600px
+    border: 1px solid #C4C4C4
+    box-sizing: border-box
+    border-radius: 20px
+    align-self: center
+    align-items: center
+    display: flex
+    justify-self: center
+    justify-content: center
+    flex-direction: column
+    align-items: center
+    margin: 40px
+    background-image: url("https://www.tomswallpapers.com/pic/201707/1024x768/tomswallpapers.com-113943.jpg")
+
+
+    &-text::first-line
+        letter-spacing: 4px
+        word-spacing: 4px
+
+
+    &-text
+        font-family: sans-serif
+        color: aliceblue
+
+
+    &-text:h1
+        color: aliceblue
+
+
+    &-column-profile
+        align-self: center
+        display: flex
+        flex-direction: row
+        justify-content: center
+        padding: 40px
+        flex-direction: column-reverse
+        grid-column: 2/4
+
+@media screen and (max-width: 800px)
+    .order-column-profile
+        padding: 10px
+
+@media screen and (max-width: 1500px)
+    .order-column-profile
+        grid-column: 1
+        padding: 10px

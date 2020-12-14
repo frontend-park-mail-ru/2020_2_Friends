@@ -21,7 +21,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: path.resolve(__dirname, 'src', 'assets', 'img'), to: path.resolve(__dirname, 'dist', 'img') },
-                { from: path.resolve(__dirname, 'src', 'assets', 'css'), to: path.resolve(__dirname, 'dist', 'css') }
+                { from: path.resolve(__dirname, 'src', 'assets', 'sass'), to: path.resolve(__dirname, 'dist', 'sass') }
             ]
         }),
         new CleanWebpackPlugin()
@@ -44,8 +44,8 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader']
+                test: /\.sass$/i,
+                use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(png|jpg|gif|webp|ico)$/,
