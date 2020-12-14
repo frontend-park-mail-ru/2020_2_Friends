@@ -180,7 +180,9 @@ export class PartnerProfileView {
             reader.onloadend = function () {
                 newStorePic.src = reader.result;
             };
-            if (imgFile) { reader.readAsDataURL(imgFile); }
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
         });
 
         const profileData = this.root.querySelector('.js-userdata-button');

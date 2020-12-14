@@ -89,6 +89,7 @@
     overflow: hidden;
     word-break: break-all;
 }
+
 .order-cart__user-status {
     font-size: 30px;
     border-radius: 20px;
@@ -143,6 +144,7 @@
     white-space: nowrap;
     margin: 10px 0px;
 }
+
 .order-cart__total {
     font-style: normal;
     font-weight: normal;

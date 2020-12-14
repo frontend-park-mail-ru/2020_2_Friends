@@ -26,10 +26,11 @@
     align-self: center;
     grid-row: 1;
 }
+
 @media screen and (max-width: 400px) {
-.order-cart__review-button {
-    font-size: 3vw;
-}
+    .order-cart__review-button {
+        font-size: 3vw;
+    }
 }
 
 .review-cart__date {
@@ -61,18 +62,16 @@
 
 @media screen and (max-width: 700px) {
     .review-cart {
-    grid-template-rows: repeat(4, auto);
-    grid-template-columns: 1fr
-}
+        grid-template-rows: repeat(4, auto);
+        grid-template-columns: 1fr
+    }
     .review-cart__name, .review-cart__date, .review-cart__rating, .review-cart__text {
-        grid-column : 1;
+        grid-column: 1;
         font-size: 25px;
     }
-
     .review-cart__date {
         grid-row: 2;
     }
-
     .review-cart__rating {
         grid-row: 3;
     }
@@ -125,17 +124,19 @@
     grid-column: 1/-1;
     grid-row: 3;
 }
+
 .review-form__close {
     grid-column: 3;
     grid-row: 1;
     justify-self: end;
     align-self: center;
 }
+
 .review-form__add-button {
     grid-row: 4;
     grid-column: 1;
-
 }
+
 .review-form__title {
     font-size: 30px;
     justify-self: start;

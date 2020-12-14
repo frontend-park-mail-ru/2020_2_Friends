@@ -94,7 +94,9 @@ export class PartnerStoreView {
             reader.onloadend = function () {
                 img.src = reader.result;
             };
-            if (imgFile) { reader.readAsDataURL(imgFile); }
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
         });
 
         const saveChangesBtn = product.querySelector('.js-save-item-changes');
@@ -182,7 +184,9 @@ export class PartnerStoreView {
             reader.onloadend = function () {
                 img.src = reader.result;
             };
-            if (imgFile) { reader.readAsDataURL(imgFile); }
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
         });
 
         const createBtn = product.querySelector('.js-save-new-item');

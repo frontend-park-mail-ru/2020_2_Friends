@@ -6,8 +6,8 @@
 
 @media screen and (max-width: 150px) {
     .my-stores-list {
-    grid-column: 0;
-}
+        grid-column: 0;
+    }
 }
 
 .my-store {
@@ -64,8 +64,8 @@
         grid-column: auto;
         grid-row: 1;
     }
-        .my-store__name {
-            grid-column: auto;
+    .my-store__name {
+        grid-column: auto;
         grid-row: 2;
     }
     .my-store__button {
@@ -76,7 +76,6 @@
         width: 95%;
         grid-template-columns: none;
         grid-template-rows: 30% 20% 20% 20%;
-
     }
     .my-stores-list {
         display: grid;
