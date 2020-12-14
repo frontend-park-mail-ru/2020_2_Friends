@@ -16,10 +16,12 @@ class Socked {
     connect () {
         const connectionState = this.socket?.readyState;
         if (connectionState === WebSocket.OPEN || connectionState === WebSocket.CONNECTING) {
+            console.log('Socked already connected');
             return;
         }
         this.socket = new WebSocket(this.url);
         this.socket.onopen = () => {
+            console.log('Socked connected');
             this.socketTimer = setInterval(() => this.socket.send(''), 10000);
         };
         this.socket.onmessage = (event) => {

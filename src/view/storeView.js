@@ -1,5 +1,7 @@
-import { renderStoreView } from '../template/storeViewTemplate.js';
+import storeTemplate from '../templates/storeTemplate.hbs';
+
 import { MapAPI } from '../utils/mapAPI.js';
+
 export class StoreView {
     /**
      * Creating an StoreView instance.
@@ -42,9 +44,7 @@ export class StoreView {
      * Rendering register page and setting event listeners.
      */
     render (data) {
-        const template = renderStoreView();
-        const storeHTML = template(data);
-        this.root.innerHTML = storeHTML;
+        this.root.innerHTML = storeTemplate(data);
         const mapId = this.root.querySelector('#map');
         const newMap = new MapAPI({
             div: mapId,

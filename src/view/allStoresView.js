@@ -1,5 +1,5 @@
-import { renderAllStores } from '../template/allStoresViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
+import allStoresTemplate from '../templates/allStoresTemplate.hbs';
 
 export class AllStoresView {
     /**
@@ -23,8 +23,7 @@ export class AllStoresView {
      * @param {Array} data - Array of cart's items.
      */
     render (data) {
-        const template = renderAllStores();
-        this.root.innerHTML = template({ stores: data.stores });
+        this.root.innerHTML = allStoresTemplate({ stores: data.stores });
         const mapId = this.root.querySelector('#map');
         const newMap = new MapAPI({
             div: mapId,
@@ -45,7 +44,7 @@ export class AllStoresView {
             div: mapId,
             zoom: 11
         });
-        newMap.showAllStores(data.stores);
+        newMap.showNearestStores(data.stores);
         newMap.addMyPosition();
     }
 

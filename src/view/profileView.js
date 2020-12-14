@@ -1,6 +1,7 @@
-import { renderProfileView } from '../template/profileViewTemplate.js';
-import { renderOrderView } from '../template/singleOrderViewTemplate.js';
-import { renderAddrListView } from '../template/addresListViewTemplate.js';
+import profileTemplate from '../templates/profileTemplate.hbs';
+import singleOrderTemplate from '../templates/singleOrderTemplate.hbs';
+import addressListTemplate from '../templates/addressListTemplate.hbs';
+
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -92,8 +93,7 @@ export class ProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
-        const template = renderProfileView();
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = profileTemplate(data);
         this.changeSubPage(data.subpage);
         this.addEventListeners();
     }
@@ -170,7 +170,7 @@ export class ProfileView {
         if (data.length === 0) {
             data.empty = 'Что-то тут пустовато... Сделайте свой первый заказ!';
         }
-        const template = renderOrderView();
+        const template = singleOrderTemplate;
         data.forEach((order) => {
             order.showReview = !order.reviewed && (order.status === 'Завершён');
             order.showChat = !!(order.status && order.status !== 'Завершён');
@@ -190,7 +190,7 @@ export class ProfileView {
             btn.addEventListener('click', () => {
                 const id = btn.closest('.order-cart').dataset.orderid;
                 const storeName = btn.closest('.order-cart').dataset.name;
-                this.eventBus.call('SHOW_USER_CHAT', { order_id: id, storeName });
+                this.eventBus.call('SHOW_USER_CHAT', { order_id: id, store_name: storeName });
             });
         });
     }
@@ -223,9 +223,7 @@ export class ProfileView {
 
     showAddressList (input) {
         const addrColumn = document.getElementById('address-column');
-        const template = renderAddrListView();
-        const addrHTML = template(input);
-        addrColumn.innerHTML = addrHTML;
+        addrColumn.innerHTML = addressListTemplate(input);
         this.addAddrsEventListeners();
     }
 

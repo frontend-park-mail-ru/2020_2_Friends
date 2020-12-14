@@ -1,5 +1,7 @@
-import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
-import { renderItemCreateView, renderNewItemView } from '../template/createStoreItemTemplate.js';
+import partnerStoreTemplate from '../templates/partnerStoreTemplate.hbs';
+import renderItemCreateView from '../templates/createStoreItemTemplate.hbs';
+import storeNewItemTemplate from '../templates/storeNewItemTemplate.hbs';
+
 export class PartnerStoreView {
     /**
      * Creating an PartnerStoreView instance.
@@ -64,8 +66,7 @@ export class PartnerStoreView {
      * Rendering register page and setting event listeners.
      */
     render (data) {
-        const template = renderStoreView();
-        const storeHTML = template(data);
+        const storeHTML = partnerStoreTemplate(data);
         this.root.innerHTML = storeHTML;
         this.addEventListeners();
     }
@@ -122,8 +123,7 @@ export class PartnerStoreView {
     }
 
     showNewProduct (data) {
-        const template = renderNewItemView();
-        const itemHTML = template(data);
+        const itemHTML = storeNewItemTemplate(data);
         const product = this.root.querySelector('.new-product');
         product.classList.remove('new-product');
         product.innerHTML = itemHTML;

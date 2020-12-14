@@ -132,7 +132,7 @@
 }
 
 @media screen and (max-width: 300px) {
-    .order-list__order-item,
+    .order-list__order-item {
         font-size: 3vw;
     }
 }
