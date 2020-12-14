@@ -1,5 +1,6 @@
-import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
+
+import partnerProfileTemplate from '../templates/partnerProfileTemplate.hbs';
 
 export class PartnerProfileView {
     /**
@@ -83,9 +84,7 @@ export class PartnerProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
-        const template = renderProfileView();
-        const profileHTML = template(data);
-        this.root.innerHTML = profileHTML;
+        this.root.innerHTML = partnerProfileTemplate(data);
         const mapId = this.root.querySelector('#addstore__map');
         this.newMap = new MapAPI({
             div: mapId,

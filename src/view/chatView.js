@@ -1,4 +1,9 @@
-import { chatView, messageToUserView, messageFromUserView, chatListItemView, userChatView } from '../template/chatViewTemplate.js';
+import chatTemplate from '../templates/chatTemplate.hbs';
+import chatMessageToUserTemplate from '../templates/chatMessageToUserTemplate.hbs';
+import chatMessageFromUserTemplate from '../templates/chatMessageFromUserTemplate.hbs';
+import chatUserChatTemplate from '../templates/chatUserChatTemplate.hbs';
+import chatListItemTemplate from '../templates/chatListItemTemplate.hbs';
+
 export class ChatView {
     /**
      * Creating an  ChatView instance.
@@ -26,8 +31,7 @@ export class ChatView {
     }
 
     showChatList (data) {
-        const template = chatView();
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = chatTemplate(data);
         this.addEventListeners();
     }
 
@@ -36,8 +40,7 @@ export class ChatView {
         if (oldChat) {
             oldChat.remove();
         }
-        const template = userChatView();
-        this.support.innerHTML = template(data);
+        this.support.innerHTML = chatUserChatTemplate(data);
         this.eventBus.call('GET_CHAT_MESSAGES', data.order_id);
         const chatMessages = this.support.querySelector('.chat-messages');
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -60,9 +63,6 @@ export class ChatView {
     }
 
     showChatMessages (data) {
-        const toUserTemplate = messageToUserView();
-        const fromUserTemplate = messageFromUserView();
-
         // сделать чат в списке выделенным (если он есть) и показать все сообщения в чате
         let chatMessages = this.root.querySelector('.chat-messages');
         if (!chatMessages) {
@@ -72,9 +72,9 @@ export class ChatView {
         chatMessages.innerHTML = '';
         data.messages.forEach((message) => {
             if (message.is_your_msg) {
-                chatMessages.innerHTML += fromUserTemplate(message);
+                chatMessages.innerHTML += chatMessageFromUserTemplate(message);
             } else {
-                chatMessages.innerHTML += toUserTemplate(message);
+                chatMessages.innerHTML += chatMessageToUserTemplate(message);
             }
         });
         const lastChat = this.root.querySelector('.chats-item__open');
@@ -95,8 +95,7 @@ export class ChatView {
             chatMessages = this.support.querySelector('.chat-messages');
         }
 
-        const fromUserTemplate = messageFromUserView();
-        chatMessages.innerHTML += fromUserTemplate(data);
+        chatMessages.innerHTML += chatMessageFromUserTemplate(data);
     }
 
     showMessageToMe (data) {
@@ -105,8 +104,7 @@ export class ChatView {
             chatMessages = this.support.querySelector('.chat-messages');
         }
         if (chatMessages) {
-            const toUserTemplate = messageToUserView();
-            chatMessages.innerHTML += toUserTemplate(data);
+            chatMessages.innerHTML += chatMessageToUserTemplate(data);
         }
     }
 
@@ -115,7 +113,7 @@ export class ChatView {
         if (!chat) {
             // если нет - добавить с список и открыть и обновить последнее сообщение
             const chatsList = this.root.querySelector('.chats-items');
-            const chatItem = chatListItemView();
+            const chatItem = chatListItemTemplate;
             chatsList.innerHTML += chatItem(data);
             const chat = document.getElementById('chat-' + data.order_id);
             chat.addEventListener('click', () => {

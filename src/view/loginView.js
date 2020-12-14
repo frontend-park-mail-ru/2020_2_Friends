@@ -1,4 +1,5 @@
-import { renderLoginView } from '../template/loginViewTemplate.js';
+import loginTemplate from '../templates/loginTemplate.hbs';
+
 export class LoginView {
     /**
      * Creating an LoginView instance.
@@ -27,9 +28,7 @@ export class LoginView {
      * Rendering login page and setting event listeners.
      */
     render () {
-        const template = renderLoginView();
-
-        this.root.innerHTML = template();
+        this.root.innerHTML = loginTemplate();
         this.addEventListeners();
     }
 

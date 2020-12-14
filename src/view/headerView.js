@@ -1,4 +1,6 @@
-import { renderAdminHeaderView, renderUserHeaderView, renderNotAuthHeaderView } from '../template/headerViewTemplate.js';
+import userHeaderTemplate from '../templates/userHeaderTemplate.hbs';
+import adminHeaderTemplate from '../templates/adminHeaderTemplate.hbs';
+import notAuthTemplate from '../templates/notAuthTemplate.hbs';
 
 export class HeaderView {
     /**
@@ -21,21 +23,18 @@ export class HeaderView {
     render (option) {
         switch (option) {
         case 'user': {
-            const headerTemplate = renderUserHeaderView();
-            this.header.innerHTML = headerTemplate();
+            this.header.innerHTML = userHeaderTemplate();
             this.addUserHeaderEventListeners();
             break;
         }
         case 'admin': {
-            const headerTemplate = renderAdminHeaderView();
-            this.header.innerHTML = headerTemplate();
+            this.header.innerHTML = adminHeaderTemplate();
             this.addAdminHeaderEventListeners();
             break;
         }
         case 'notAuth':
         default: {
-            const headerTemplate = renderNotAuthHeaderView();
-            this.header.innerHTML = headerTemplate();
+            this.header.innerHTML = notAuthTemplate();
             this.addNotAuthEventListeners();
             break;
         }

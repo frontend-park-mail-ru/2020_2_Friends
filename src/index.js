@@ -1,3 +1,5 @@
+import ymaps from 'ymaps';
+
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
 import { HeaderController } from './controller/headerController.js';
@@ -111,4 +113,4 @@ const serviceLoad = () => {
     };
 };
 
-ymaps.ready(serviceLoad); // eslint-disable-line
+ymaps.load('//api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=023de3e2-fd9e-4c53-9577-218c4243ea44').then(serviceLoad); // eslint-disable-line
