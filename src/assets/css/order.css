@@ -37,4 +37,18 @@
     justify-content: center;
     padding: 40px;
     flex-direction: column-reverse;
+    grid-column: 2/4;
+}
+
+@media screen and (max-width: 800px) {
+    .order-column-profile {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .order-column-profile {
+        grid-column: 1;
+        padding: 10px;
+    }
 }

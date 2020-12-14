@@ -151,7 +151,7 @@ export class PartnerProfileView {
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
         }
-        seenBlock.style.display = 'flex';
+        seenBlock.style.display = 'grid';
         activeButton.classList.add('profile-page__navbar-button_focus');
     }
 
@@ -170,6 +170,19 @@ export class PartnerProfileView {
             const coords = this.newMap.getCoords();
             const data = { name, description, img, coords, radius };
             this.eventBus.call('ADD_STORE', data);
+        });
+
+        const newStoreBtn = document.getElementById('addstore-avatar-form');
+        newStoreBtn.addEventListener('change', () => {
+            const newStorePic = document.getElementById('newStorePic');
+            const imgFile = document.getElementById('addstore-avatar-form').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                newStorePic.src = reader.result;
+            };
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
         });
 
         const profileData = this.root.querySelector('.js-userdata-button');

@@ -83,7 +83,20 @@ export class PartnerStoreView {
         const editBtn = product.querySelector('.js-edit-item');
         editBtn.addEventListener('click', () => {
             editBtn.parentNode.style.display = 'none';
-            editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
+            editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'grid';
+        });
+
+        const newProdImg = product.querySelector('#product__img-form');
+        newProdImg.addEventListener('change', () => {
+            const img = product.querySelector('.product__img-editor');
+            const imgFile = product.querySelector('#product__img-form').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                img.src = reader.result;
+            };
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
         });
 
         const saveChangesBtn = product.querySelector('.js-save-item-changes');
@@ -138,7 +151,7 @@ export class PartnerStoreView {
             const avatarElement = product.querySelector('.product__img');
             avatarElement.src = data.avatarUrl;
         }
-        product.querySelector('.product-normal').style.display = 'flex';
+        product.querySelector('.product-normal').style.display = 'grid';
         product.querySelector('.product-editor').style.display = 'none';
     }
 
@@ -155,6 +168,50 @@ export class PartnerStoreView {
     renderLogo (data) {
         const avatarElement = this.root.querySelector('.store__logo');
         avatarElement.src = data.avatarUrl;
+    }
+
+    addNewProductEventListeners (product) {
+        const delBtn = product.querySelector('.js-delete-button');
+        delBtn.addEventListener('click', () => {
+            product.remove();
+        });
+
+        const newProdImg = product.querySelector('#product__img-form');
+        newProdImg.addEventListener('change', () => {
+            const img = product.querySelector('.product__img');
+            const imgFile = product.querySelector('#product__img-form').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                img.src = reader.result;
+            };
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
+        });
+
+        const createBtn = product.querySelector('.js-save-new-item');
+        createBtn.addEventListener('click', (e) => {
+            const name = product.querySelector('.js-name-input');
+            const price = product.querySelector('.js-price-input');
+            const descr = product.querySelector('.js-descr-input');
+            const imgFile = document.getElementById('product__img-form').files[0];
+            let img;
+            if (imgFile) {
+                img = new FormData();
+                img.append('image', imgFile);
+            } else {
+                img = null;
+            }
+            const storeHeader = document.getElementById('storeHeader');
+            const data = {
+                food_name: name.value,
+                food_price: parseInt(price.value),
+                food_descr: descr.value,
+                food_img: img,
+                store_id: storeHeader.dataset.store_id
+            };
+            this.eventBus.call('CREATE_PRODUCT', data);
+        });
     }
 
     addEventListeners () {
@@ -195,27 +252,7 @@ export class PartnerStoreView {
             product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
             product.innerHTML = storeItemCreateTemplate();
-            const delBtn = product.querySelector('.js-delete-button');
-            delBtn.addEventListener('click', () => {
-                product.remove();
-            });
-            const createBtn = product.querySelector('.js-save-new-item');
-            createBtn.addEventListener('click', (e) => {
-                const name = product.querySelector('.js-name-input');
-                const price = product.querySelector('.js-price-input');
-                const descr = product.querySelector('.js-descr-input');
-                const imgFile = document.getElementById('product__img-form').files[0];
-                let img;
-                if (imgFile) {
-                    img = new FormData();
-                    img.append('image', imgFile);
-                } else {
-                    img = null;
-                }
-                const storeHeader = document.getElementById('storeHeader');
-                const data = { food_name: name.value, food_price: parseInt(price.value), food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
-                this.eventBus.call('CREATE_PRODUCT', data);
-            });
+            this.addNewProductEventListeners(product);
         });
     }
 };

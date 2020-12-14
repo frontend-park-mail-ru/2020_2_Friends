@@ -128,11 +128,11 @@ export class ProfileView {
     }
 
     changeSubPage (page) {
-        const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
+        const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-myorders-button');
         allButtons.forEach(element => {
             element.classList.remove('profile-page__navbar-button_focus');
         });
-        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-profile-addresses, .js-profile-coupons, .js-profile-orders');
+        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-profile-addresses, .js-profile-orders');
         allBlocks.forEach(element => {
             element.style.display = 'none';
         });
@@ -155,17 +155,12 @@ export class ProfileView {
             seenBlock = this.root.querySelector('.js-profile-addresses');
             break;
 
-        case 'coupons':
-            activeButton = this.root.querySelector('.js-coupons-button');
-            seenBlock = this.root.querySelector('.js-profile-coupons');
-            break;
-
         default:
             activeButton = this.root.querySelector('.js-userdata-button');
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
         }
-        seenBlock.style.display = 'flex';
+        seenBlock.style.display = 'grid';
         activeButton.classList.add('profile-page__navbar-button_focus');
     }
 
@@ -187,7 +182,7 @@ export class ProfileView {
             btn.addEventListener('click', () => {
                 const id = btn.closest('.order-cart').dataset.orderid;
                 document.getElementById('review-form').dataset.orderid = id;
-                document.getElementById('review_overlay').style.display = 'flex';
+                document.getElementById('review_overlay').style.display = 'grid';
             });
         });
         const openSupport = this.root.querySelectorAll('.js-open-support');
@@ -284,14 +279,10 @@ export class ProfileView {
             this.changeSubPage('orders');
         });
 
-        const coupons = this.root.querySelector('.js-coupons-button');
-        coupons.addEventListener('click', () => {
-            this.changeSubPage('coupons');
-        });
-
         const addAddrBtn = this.root.querySelector('.js-add-address');
         addAddrBtn.addEventListener('click', () => {
             const addrsInput = this.root.querySelector('.js-address-input').value;
+            this.root.querySelector('.js-address-input').value = '';
             const oldAddrs = this.root.querySelectorAll('.address-item-text');
             const addrs = [addrsInput, ...[...oldAddrs].map(oldAddr => oldAddr.innerText)];
             this.eventBus.call('CHANGE_ADDRS', addrs);

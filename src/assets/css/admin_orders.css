@@ -1,91 +1,23 @@
 .order-cart {
     display: flex;
     flex-direction: column;
+    align-self: center;
     border: 1px solid #C4C4C4;
     margin-bottom: 40px;
-    flex: 1;
-    max-width: 800px;
-    min-width: 800px;
+    width: 70%;
     border-radius: 20px;
     background-color: #FFFFFF;
 }
 
-.order-column, .review-column{
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-}
-
-.order-cart__header {
-    border-bottom: 1px solid #C4C4C4;
-    display: flex;
-    padding: 10px;
-    flex-direction: row;
-}
-
-.order-cart__info {
-    display: flex;
-    flex-direction: column;
-    margin: 20px auto 20px 20px;
-}
-
-.order-cart__shop-name {
-    font-style: normal;
-    color: #000000;
-    text-decoration: none;
-    font-weight: normal;
-    white-space: nowrap;
-    font-size: 25px;
-}
-
-.order-cart__date {
-    font-style: normal;
-    font-weight: normal;
-    white-space: nowrap;
-    font-size: 25px;
-}
-
-.order-cart__address {
-    font-style: normal;
-    font-weight: normal;
-    max-width: 500px;
-    font-size: 25px;
-}
-
-.order-cart__resto-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 10px 10px 10px 10px;
-    padding: 10px;
-    justify-self: end;
-}
-
-.order-cart__order-list {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-
-.order-list__order-item, .order-cart__total{
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.order-item__name,
-.order-item__price,
-.order-cart__total {
-    font-style: normal;
-    font-weight: normal;
-    white-space: nowrap;
-    font-size: 25px;
-    margin: 10px 50px 10px 30px;
+@media screen and (max-width: 800px) {
+    .order-cart {
+        width: 100%;
+    }
 }
 
 .order-cart__status {
-    margin: 15px 15px 15px auto;
+    grid-column: 3;
+    justify-self: end;
     height: 40px;
     width: 130px;
     font-size: 20px;
@@ -94,22 +26,141 @@
     outline: none;
 }
 
-.order-cart_buttons {
-    display:flex;
-    flex-direction:row;
-    align-content: center;
-    justify-content: end;
+.order-column, .review-column {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    grid-column: 2;
+}
 
+.order-cart__header {
+    border-bottom: 1px solid #C4C4C4;
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    padding: 15px;
+    flex-direction: row;
+    font-size: 25px;
+}
+
+@media screen and (max-width: 800px) {
+    .order-cart__header {
+        grid-template-columns: 7fr 3fr;
+        font-size: 20px;
+    }
+    .order-cart__status {
+        grid-column: 2;
+    }
+}
+
+.order-cart__info {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-cart__info-right {
+    grid-column: 3;
+}
+
+@media screen and (max-width: 800px) {
+    .order-cart__info-right {
+        grid-column: 2;
+    }
+}
+
+.order-cart__shop-name {
+    font-style: normal;
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.order-cart__date {
+    font-style: normal;
+    font-weight: normal;
+    max-width: 80%;
+}
+
+.order-cart__address {
+    font-style: normal;
+    font-weight: normal;
+    max-width: 80%;
+    overflow: hidden;
+    word-break: break-all;
 }
 
 .order-cart__user-status {
-    margin: 10px 15px auto auto;
-    height: 40px;
-    width: 130px;
     font-size: 30px;
     border-radius: 20px;
     padding-left: 10px;
     outline: none;
     color: #45d480;
     white-space: nowrap;
+    align-self: end;
+}
+
+.order-cart__order-list {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.order-list__order-item, .order-cart__total {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 25px;
+}
+
+@media screen and (max-width: 900px) {
+    .order-list__order-item, .order-cart__total {
+        font-size: 20px;
+    }
+    .order-cart__address, .order-cart__date, .order-cart__shop-name, .order-cart__user-status {
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .order-list__order-item, .order-cart__total {
+        font-size: 5vw;
+    }
+    .order-cart__address, .order-cart__date, .order-cart__shop-name, .order-cart__user-status {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .order-list__order-item {
+        font-size: 3vw;
+    }
+}
+
+.order-item__name, .order-item__price {
+    font-style: normal;
+    font-weight: normal;
+    white-space: nowrap;
+    margin: 10px 0px;
+}
+
+.order-cart__total {
+    font-style: normal;
+    font-weight: normal;
+    white-space: nowrap;
+    margin: 10px 50px 10px 30px;
+}
+
+@media screen and (max-width: 800px) {
+    .order-cart__total {
+        margin: 5px 25px 5px 15px;
+    }
+}
+
+.order-cart_buttons {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-self: end;
 }

@@ -1,6 +1,7 @@
 .background {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 5% 90% 5%;
+    grid-template-columns: 5% 90% 5%;
     background: #D7DEE5;
     width: 100%;
     min-width: 100%;
@@ -8,14 +9,13 @@
 }
 
 .common-input {
-    width: 350px;
-    height: 40px;
+    height: 50px;
     margin: 15px;
     background: #FFFFFF;
     border: 1px solid #878A86;
     box-sizing: border-box;
     padding: 10px 5px 10px 20px;
-    border-radius: 20px;
+    border-radius: 5px;
     /* Text */
     font-style: normal;
     font-weight: normal;
@@ -31,6 +31,7 @@
 .none {
     display: none;
 }
+
 .support-button {
     color: #FFFFFF;
     background: #dd9d88;
@@ -48,10 +49,10 @@
 
 .proceed-button, .info-button {
     padding: 10px;
-    background: #C5EDAC;
-    border-radius: 20px;
+    background: #305935;
+    border-radius: 5px;
     font-size: 25px;
-    color: #444BCF;
+    color: #FFFFFF;
     border: none;
     font-family: sans-serif;
     width: min-content;
@@ -66,10 +67,11 @@
 
 .info-button {
     background-color: #FFFFFF;
-    border: 1px solid #C4C4C4;
+    border: 1px solid #305935;
+    color: #305935;
 }
 
-.info-button:focus, .info-button:hover,  .support-button:hover {
+.info-button:focus, .info-button:hover, .support-button:hover {
     outline: none;
     background: #D5896F;
     color: #FFFFFF;
@@ -91,11 +93,7 @@
 
 .common-image {
     background-color: #ffffff;
-    width: 200px;
-    height: 200px;
     border-radius: 50%;
-    margin: 20px;
-    
 }
 
 .text-error {
@@ -105,12 +103,20 @@
     margin: 15px;
 }
 
+@media screen and (max-width: 550px) {
+    .proceed-button {
+        font-size: 20px;
+    }
+    .info-button {
+        font-size: 20px;
+    }
+}
+
 body {
     font-family: sans-serif;
 }
 
 .common-text-area {
-    margin: 15px;
     background: #FFFFFF;
     border: 1px solid #878A86;
     box-sizing: border-box;
