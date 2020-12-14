@@ -1,5 +1,5 @@
 import partnerStoreTemplate from '../templates/partnerStoreTemplate.hbs';
-import renderItemCreateView from '../templates/createStoreItemTemplate.hbs';
+import storeItemCreateTemplate from '../templates/storeItemCreateTemplate.hbs';
 import storeNewItemTemplate from '../templates/storeNewItemTemplate.hbs';
 
 export class PartnerStoreView {
@@ -247,8 +247,7 @@ export class PartnerStoreView {
             const product = document.createElement('div');
             product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
-            const template = renderItemCreateView();
-            product.innerHTML = template();
+            product.innerHTML = storeItemCreateTemplate();
             this.addNewProductEventListeners(product);
         });
     }

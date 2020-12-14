@@ -41,7 +41,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-prod": "MODE=prod webpack",
+    "build-prod": "webpack --mode production",
     "build-dev": "MODE=dev webpack",
     "start": "node server.js"
   },
