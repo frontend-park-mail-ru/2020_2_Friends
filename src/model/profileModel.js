@@ -145,10 +145,6 @@ export class ProfileModel {
             case 400:
                 this.eventBus.call('CHANGE_ADDRESS_ERROR');
                 break;
-            case 403:
-                //  Тут я вызвал CSRFRequest
-                //  Получил свой токен
-                break;
             case 500:
                 this.eventBus.call('SERVER_INTERNAL_ERROR');
                 break;

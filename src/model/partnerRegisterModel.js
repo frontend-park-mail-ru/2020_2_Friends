@@ -29,6 +29,8 @@ export class PartnerRegisterModel {
                 email: email.value,
                 password: password.value
             });
+            const userToken = response.headers.get('X-CSRF-Token');
+            localStorage.setItem('csrf', userToken);
             switch (response.status) {
             case 201:
                 this.socket.connect();
