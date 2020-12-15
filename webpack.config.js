@@ -21,7 +21,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: path.resolve(__dirname, 'src', 'assets', 'img'), to: path.resolve(__dirname, 'dist', 'img') },
-                { from: path.resolve(__dirname, 'src', 'assets', 'sass'), to: path.resolve(__dirname, 'dist', 'sass') }
+                { from: path.resolve(__dirname, 'src', 'assets', 'sass'), to: path.resolve(__dirname, 'dist', 'css') }
             ]
         }),
         new CleanWebpackPlugin()
