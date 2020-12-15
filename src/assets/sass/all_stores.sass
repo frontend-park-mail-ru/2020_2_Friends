@@ -1,0 +1,118 @@
+.stores-page__header
+    background: #FFFFFF
+    display: grid
+    grid-template-columns: 5% 30% 60% 5%
+    gap: 20px
+    margin-bottom: 40px
+    padding: 20px 40px 20px 40px
+    background: url("../img/all_stores.webp")
+    background-size: 2500px
+    background-color: rgba(0, 0, 0, 0.1)
+    grid-row: 1
+    grid-column: 1/-1
+    align-items: center
+    justify-items: center
+
+.stores__header
+    grid-column: 2
+    padding-bottom: 30px
+    letter-spacing: 0px
+    font-size: 64px
+    font-weight: bold
+
+
+.store-header__map, .header__map
+    grid-row: 2
+    grid-column: 3/6
+    width: 80%
+    height: 200px
+
+@media screen and (max-width: 1700px)
+    .stores__header
+        font-size: 35px
+
+@media screen and (max-width: 500px)
+    .stores__header
+        grid-row: 1
+        grid-column: 1
+
+    .stores-page__header
+        grid-template-columns: 100%
+        grid-template-rows: auto auto
+
+    .store-header__map, .header__map
+        grid-row: 2
+        grid-column: 1
+        height: 200px
+
+.header__ymap, .store-header__map
+    border-radius: 10px
+    overflow: hidden
+
+.header__input
+    border-radius: 3px
+    margin-top: 10px
+    color: #232a17
+    font-size: 26px
+    border-radius: 20px
+    outline: none
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    padding: 5px 15px
+
+.store__descr
+    text-align: center
+    font-size: 18px
+    margin: 10px
+    max-width: 400px
+
+.store-block__store-name
+    font-size: 26px
+    font-weight: bold
+    display: block
+    margin: 1px
+    margin-top: 15px
+    font-family: sans-serif
+
+.store__block
+    display: flex
+    flex-direction: column
+    background-color: #ffffff
+    border-radius: 5px
+    position: relative
+    cursor: pointer
+    align-self: stretch
+    justify-self: stretch
+
+
+    &:hover
+        box-shadow: 0 5px 10px #000000, 0 4px 4px #cacaca01
+
+.stores__showcase
+    display: grid
+    grid-template-rows: repeat(auto-fit, 400px)
+    grid-template-columns: repeat(auto-fit, 400px)
+    gap: 40px 20px
+    grid-column: 1/-1
+    justify-content: center
+
+@media screen and (max-width: 500px)
+    .stores__showcase
+        grid-template-columns: 80%
+        grid-template-rows: repeat(auto-fit, 280px)
+
+.stores__logo
+    max-width: 100%
+    width: 150px
+    height: 150px
+    border-radius: 50%
+
+.store__img
+    height: 350px
+    max-height: 350px
+    overflow: hidden
+    width: 100%
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
+    background-image: url("https://www.delivery-club.ru/naturmort/5fa84410091ce_480x300.jpg?resize=fill&width=480&height=480&gravity=ce&out=webp")

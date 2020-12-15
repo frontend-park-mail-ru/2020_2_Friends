@@ -1,4 +1,5 @@
 import ymaps from 'ymaps';
+import './assets/sass/collective.sass';
 
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
