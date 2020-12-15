@@ -121,21 +121,21 @@
         padding: 10px
 
 
-    -user &
-        justify-items: center
-        grid-template-columns: 100%
-        grid-template-rows: auto auto auto auto
-        padding: 10px
+        &-user
+            justify-items: center
+            grid-template-columns: 100%
+            grid-template-rows: auto auto auto auto
+            padding: 10px
 
 
-    -user.store__reviews &
-        grid-column: 1
-        grid-row: 4
+    .store__reviews
+            grid-column: 1
+            grid-row: 4
 
 
-    -user.store-header__map &
-        grid-column: 1
-        grid-row: 3
+    .store-header__map
+            grid-column: 1
+            grid-row: 3
 
     .store__functions
         grid-column: 1
@@ -308,10 +308,10 @@
         gap: 20px 10px
 
 
-    -user &
-        grid-template-rows: repeat(auto-fill, 400px)
-        grid-template-columns: repeat(auto-fill, 300px)
-        gap: 20px 10px
+        &-user
+            grid-template-rows: repeat(auto-fill, 400px)
+            grid-template-columns: repeat(auto-fill, 300px)
+            gap: 20px 10px
 
     .product-editor, .product-normal
         justify-items: center
