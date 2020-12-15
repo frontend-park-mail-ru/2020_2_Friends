@@ -43,7 +43,7 @@ export class ProfileModel {
             const body = await response.json();
             let avatarUrl;
             if (!body.avatar) {
-                avatarUrl = '../assets/img/default-avatar.png';
+                avatarUrl = './img/default-avatar.png';
             } else {
                 avatarUrl = makeAvatarUrl(body.avatar);
             }
@@ -144,6 +144,10 @@ export class ProfileModel {
                 break;
             case 400:
                 this.eventBus.call('CHANGE_ADDRESS_ERROR');
+                break;
+            case 403:
+                //  Тут я вызвал CSRFRequest
+                //  Получил свой токен
                 break;
             case 500:
                 this.eventBus.call('SERVER_INTERNAL_ERROR');

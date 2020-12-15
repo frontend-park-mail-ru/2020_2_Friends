@@ -9,7 +9,10 @@
 export const ajaxGetUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };
 
@@ -24,7 +27,10 @@ export const ajaxGetUsingFetch = (ajaxArgs) => {
 export const ajaxDeleteUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'DELETE',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };
 
@@ -40,7 +46,10 @@ export const ajaxPostUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'POST',
         credentials: 'include',
-        body: JSON.stringify(ajaxArgs.body)
+        body: JSON.stringify(ajaxArgs.body),
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };
 
@@ -56,7 +65,10 @@ export const ajaxPutUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'PUT',
         credentials: 'include',
-        body: JSON.stringify(ajaxArgs.body)
+        body: JSON.stringify(ajaxArgs.body),
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };
 
@@ -73,6 +85,9 @@ export const ajaxMultipartUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'PUT',
         credentials: 'include',
-        body: ajaxArgs.body
+        body: ajaxArgs.body,
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };

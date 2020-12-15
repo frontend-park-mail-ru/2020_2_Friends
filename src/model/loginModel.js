@@ -30,7 +30,7 @@ export class LoginModel {
                 login: login.value,
                 password: password.value
             });
-
+            console.log(response);
             switch (response.status) {
             case 200:
                 this.socket.connect();
