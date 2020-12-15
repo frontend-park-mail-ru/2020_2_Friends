@@ -30,7 +30,8 @@ export class LoginModel {
                 login: login.value,
                 password: password.value
             });
-            console.log(response);
+            const userToken = response.headers.get('X-CSRF-Token');
+            localStorage.setItem('csrf', userToken);
             switch (response.status) {
             case 200:
                 this.socket.connect();
