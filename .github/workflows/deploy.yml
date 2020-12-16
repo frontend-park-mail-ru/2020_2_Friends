@@ -47,7 +47,7 @@ jobs:
       with:
         host: 89.208.197.247
         username: ubuntu
-        key: ${{ secrets.DELPOY_PRIVATE_KEY }}
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
         source: "build"
         target: "/home/ubuntu/frontend"
     
