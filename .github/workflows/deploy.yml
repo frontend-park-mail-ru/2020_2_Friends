@@ -1,0 +1,55 @@
+name: Build
+
+on:
+  push:
+    branches: [ deployment ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Node installation
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    - name: Code checkout
+      uses: actions/checkout@v2
+
+    - name: Dependencies install
+      run: npm i
+
+    - name: Build
+      run: npm run build-prod
+
+    - name: Build upload
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: ./build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Build download
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+
+    - name: Build files transfer to server
+      uses: appleboy/scp-action@v0.0.10
+      with:
+        host: 89.208.197.247
+        username: ubuntu
+        key: ${{ secrets.DELPOY_PRIVATE_KEY }}
+        source: "build"
+        target: "/home/ubuntu/frontend"
+    
+    - name: Run front
+      run: npm run start
