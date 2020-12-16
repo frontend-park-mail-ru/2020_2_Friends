@@ -43,7 +43,7 @@ export class ProfileModel {
             const body = await response.json();
             let avatarUrl;
             if (!body.avatar) {
-                avatarUrl = '../assets/img/default-avatar.png';
+                avatarUrl = './img/default-avatar.png';
             } else {
                 avatarUrl = makeAvatarUrl(body.avatar);
             }
