@@ -26,6 +26,9 @@ jobs:
     - name: Build
       run: npm run build-prod
 
+    - name: Create
+      run: mkdir build
+
     - name: Build upload
       uses: actions/upload-artifact@v1
       with:
