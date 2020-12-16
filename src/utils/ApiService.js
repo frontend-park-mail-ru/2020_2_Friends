@@ -23,7 +23,7 @@ export const loginRequest = (input) => {
         url: backendUrl + '/api/v1/sessions',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
@@ -52,7 +52,7 @@ export const registerRequest = (input) => {
         url: backendUrl + '/api/v1/users',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
@@ -145,7 +145,7 @@ export const partnerLoginRequest = (input) => {
         url: backendUrl + '/api/v1/sessions',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
@@ -160,7 +160,7 @@ export const partnerRegisterRequest = (input) => {
         url: backendUrl + '/api/v1/partners',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
