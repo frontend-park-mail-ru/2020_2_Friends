@@ -50,6 +50,4 @@ jobs:
         key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
         source: "build"
         target: "/home/ubuntu/frontend"
-    
-    - name: Run front
-      run: npm run start
+
