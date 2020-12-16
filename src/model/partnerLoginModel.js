@@ -28,8 +28,6 @@ export class PartnerLoginModel {
                 login: login.value,
                 password: password.value
             });
-            const userToken = response.headers.get('X-CSRF-Token');
-            localStorage.setItem('csrf', userToken);
             switch (response.status) {
             case 200:
                 localStorage.setItem('isAdmin', true);
