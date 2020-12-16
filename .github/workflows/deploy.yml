@@ -46,7 +46,7 @@ jobs:
       uses: appleboy/scp-action@v0.0.10
       with:
         host: 89.208.197.247
-        username: ubuntu
+        username: ${{ secrets.DEPLOY_USERNAME }}
         key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
         source: "build"
         target: "/home/ubuntu/frontend"
