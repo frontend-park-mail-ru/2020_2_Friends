@@ -44,6 +44,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: build
+        path: ./build
 
     - name: Build files transfer to server
       uses: appleboy/scp-action@v0.0.10
