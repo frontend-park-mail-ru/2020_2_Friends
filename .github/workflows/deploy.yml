@@ -1,0 +1,51 @@
+name: Build
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Node installation
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    - name: Code checkout
+      uses: actions/checkout@v2
+
+    - name: Dependencies install
+      run: npm i
+
+    - name: Build
+      run: npm run build-prod
+
+    - name: Build upload
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: ./dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Build download
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+
+    - name: Build files transfer to server
+      uses: appleboy/scp-action@v0.0.10
+      with:
+        host: 89.208.197.247
+        username: ${{ secrets.DEPLOY_USERNAME }}
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        source: "build"
+        target: "/home/ubuntu/frontend"
+
