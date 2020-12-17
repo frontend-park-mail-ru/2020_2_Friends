@@ -2,7 +2,7 @@
 import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch, ajaxDeleteUsingFetch } from '../utils/ajax.js';
 
 // Servers configs
-const schema = 'http://';
+const schema = 'https://';
 const host = '89.208.197.247';
 // const host = 'localhost';
 const backendPort = ':9000';
