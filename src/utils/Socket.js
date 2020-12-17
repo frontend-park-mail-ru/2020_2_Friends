@@ -52,5 +52,5 @@ class Socked {
     }
 }
 
-const socket = new Socked('ws://89.208.197.247:9000/api/v1/ws');
+const socket = new Socked('wss://89.208.197.247:9000/api/v1/ws');
 export default socket.getSocket();
