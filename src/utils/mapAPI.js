@@ -108,7 +108,7 @@ export class MapAPI {
                 },
                 {
                     iconLayout: 'default#image',
-                    iconImageHref: '../assets/img/man2.png',
+                    iconImageHref: './img/man2.png',
                     iconImageSize: [30, 30],
                     iconImageOffset: [-15, -15]
                 });

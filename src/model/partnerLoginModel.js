@@ -28,7 +28,6 @@ export class PartnerLoginModel {
                 login: login.value,
                 password: password.value
             });
-
             switch (response.status) {
             case 200:
                 localStorage.setItem('isAdmin', true);
