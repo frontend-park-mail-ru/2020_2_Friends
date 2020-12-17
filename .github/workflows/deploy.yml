@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ https-fixes ]
+    branches: [ dev, master ]
 
 jobs:
   build:
