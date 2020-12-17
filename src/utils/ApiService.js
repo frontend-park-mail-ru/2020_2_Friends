@@ -3,13 +3,11 @@ import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipart
 
 // Servers configs
 const schema = 'https://';
-const host = '89.208.197.247';
+const host = 'grassnearhome.ru';
 // const host = 'localhost';
-const backendPort = ':9000';
-const staticPort = ':9001';
 
-const backendUrl = schema + host + backendPort;
-const staticUrl = schema + host + staticPort;
+const backendUrl = schema + host;
+const staticUrl = schema + host;
 
 /**
  * Creating http login request via ajax methods.
