@@ -13,7 +13,7 @@ export const ajaxGetUsingFetch = (ajaxArgs) => {
         method: 'GET',
         credentials: 'include',
         headers: {
-            'X-CSRF-Token': csrfToken
+            'X-CSRF-Token': localStorage.getItem('csrf')
         }
     });
 };
@@ -31,7 +31,7 @@ export const ajaxDeleteUsingFetch = (ajaxArgs) => {
         method: 'DELETE',
         credentials: 'include',
         headers: {
-            'X-CSRF-Token': csrfToken
+            'X-CSRF-Token': localStorage.getItem('csrf')
         }
     });
 };
@@ -50,11 +50,12 @@ export const ajaxPostUsingFetch = async (ajaxArgs, withCsrf = false) => {
         credentials: 'include',
         body: JSON.stringify(ajaxArgs.body),
         headers: {
-            'X-CSRF-Token': csrfToken
+            'X-CSRF-Token': localStorage.getItem('csrf')
         }
     });
     if (withCsrf) {
         csrfToken = response.headers.get('X-CSRF-Token');
+        localStorage.setItem('csrf', csrfToken);
     }
     return response;
 };
@@ -73,7 +74,7 @@ export const ajaxPutUsingFetch = (ajaxArgs) => {
         credentials: 'include',
         body: JSON.stringify(ajaxArgs.body),
         headers: {
-            'X-CSRF-Token': csrfToken
+            'X-CSRF-Token': localStorage.getItem('csrf')
         }
     });
 };
@@ -93,7 +94,7 @@ export const ajaxMultipartUsingFetch = (ajaxArgs) => {
         credentials: 'include',
         body: ajaxArgs.body,
         headers: {
-            'X-CSRF-Token': csrfToken
+            'X-CSRF-Token': localStorage.getItem('csrf')
         }
     });
 };
