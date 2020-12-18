@@ -69,6 +69,14 @@ export class StoreView {
             this.eventBus.call('REDIRECT_TO_STORES');
         });
 
+        const recommended = this.root.querySelectorAll('.js-goto-store');
+        recommended.forEach(element => {
+            element.addEventListener('click', () => {
+                const storeId = element.dataset.id;
+                this.eventBus.call('REDIRECT_TO_STORE_BY_ID', storeId);
+            });
+        });
+
         const reviews = this.root.querySelector('.js-goto-reviews');
         const storeId = document.getElementById('storeHeader').dataset.store_id;
         reviews.addEventListener('click', () => {

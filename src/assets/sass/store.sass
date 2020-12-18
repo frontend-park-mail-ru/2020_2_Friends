@@ -77,8 +77,8 @@
 
 .store__showcase
     display: grid
-    grid-template-rows: repeat(auto-fill, 700px)
-    grid-template-columns: repeat(auto-fill, 400px)
+    grid-template-rows: repeat(auto-fit, 700px)
+    grid-template-columns: repeat(auto-fit, 400px)
     gap: 40px 20px
     grid-column: 1/-1
     justify-content: center
@@ -86,8 +86,8 @@
 
     &-user
         display: grid
-        grid-template-rows: repeat(auto-fill, 500px)
-        grid-template-columns: repeat(auto-fill, 300px)
+        grid-template-rows: repeat(auto-fit, 500px)
+        grid-template-columns: repeat(auto-fit, 300px)
         gap: 40px 20px
         grid-column: 1/-1
         justify-content: center
@@ -303,14 +303,14 @@
 
 @media screen and (max-width: 1000px)
     .store__showcase
-        grid-template-rows: repeat(auto-fill, 450px)
-        grid-template-columns: repeat(auto-fill, 300px)
+        grid-template-rows: repeat(auto-fit, 450px)
+        grid-template-columns: repeat(auto-fit, 300px)
         gap: 20px 10px
 
 
         &-user
-            grid-template-rows: repeat(auto-fill, 400px)
-            grid-template-columns: repeat(auto-fill, 300px)
+            grid-template-rows: repeat(auto-fit, 400px)
+            grid-template-columns: repeat(auto-fit, 300px)
             gap: 20px 10px
 
     .product-editor, .product-normal

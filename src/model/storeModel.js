@@ -1,4 +1,4 @@
-import { getStoreByIdDataRequest, addProductToBucket } from '../utils/ApiService.js';
+import { getStoreByIdDataRequest, addProductToBucket, getRecomendationsRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 export class StoreModel {
     /**
@@ -25,13 +25,29 @@ export class StoreModel {
             body.products.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
             });
-            this.eventBus.call('SHOW_STORE', {
-                storeName: body.store_name,
-                products: body.products,
-                storeId: id,
-                picture: makeAvatarUrl(body.picture),
-                body: body
-            });
+            const recResponse = await getRecomendationsRequest(id);
+            console.log(recResponse);
+            const status = 200;
+            switch (status) {
+            case 200: {
+                // const body = await recResponse.json();
+                const recommendations = [{ id: 1, name: 'Магазин', descr: 'Опсиание магазина', picture: 'картинка' },
+                    { id: 2, name: 'Магазин', descr: 'Опсиание магазина Опсиание магазина Опсиание магазина Опсиание магазина', picture: 'картинка' },
+                    { id: 5, name: 'Магазин', descr: 'Опсиание магазина', picture: 'картинка' }];
+
+                this.eventBus.call('SHOW_STORE', {
+                    storeName: body.store_name,
+                    products: body.products,
+                    storeId: id,
+                    recommendations: recommendations,
+                    picture: makeAvatarUrl(body.picture),
+                    body: body
+                });
+                break;
+            }
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
+            }
             break;
         }
         case 400:
