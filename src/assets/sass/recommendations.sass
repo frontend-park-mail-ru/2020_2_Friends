@@ -16,11 +16,11 @@
         justify-self: center
         margin: 10px
         font-weight: bold
-    
+
     &__list
         display: grid
         grid-template-columns: 1fr 1fr 1fr
-    
+
 .rec-item
     display: grid
     width: 80%
@@ -70,27 +70,72 @@
         justify-items: center
 
     .recommendations__text
-           font-size: 40px
-           grid-column: 1
-           grid-row: auto 
-           justify-items: center
+        font-size: 40px
+        grid-column: 1
+        grid-row: auto
+        justify-items: center
 
     .recommendations__list
-            grid-template-columns: 1fr
-            grid-template-rows: auto auto auto auto
-            justify-items: center
-            alight-items: center
-            width: 100%
-            row-gap: 10px
-
+        grid-template-columns: 1fr
+        grid-template-rows: auto auto auto auto
+        justify-items: center
+        alight-items: center
+        width: 100%
+        row-gap: 10px
 
     .rec-item
         grid-column: 1
         grid-row: auto
-    
+
 @media screen and (max-width: 400px)
     .recommendations
         padding: 0px
 
     .recommendations__text
         font-size: 10vw
+
+.tags
+    display: grid
+    width: 100%
+    padding: 10px
+    grid-column: 2
+    grid-row: 2
+    grid-template-rows: auto auto
+    row-gap: 20px
+    padding: 10px
+    &__error
+        white-space: nowrap
+        font-size: 25px
+        grip-row: 1
+    &__list
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        grid-row: 2
+        width: 100%
+
+    &__item
+        padding: 10px
+        margin: 5px
+        background: #305935
+        border-radius: 5px
+        font-size: 20px
+        color: #FFFFFF
+        border: none
+        font-family: sans-serif
+        width: min-content
+        height: min-content
+        white-space: nowrap
+        cursor: pointer
+
+.active-tag
+    background: #6cc577
+
+@media screen and (max-width: 1500px)
+    .tags
+        grid-row: 2
+        grid-column: 1
+
+@media screen and (max-width: 500px)
+    .tags__error
+        font-size: 6vw

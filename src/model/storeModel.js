@@ -26,14 +26,12 @@ export class StoreModel {
                 product.picture = makeAvatarUrl(product.picture);
             });
             const recResponse = await getRecomendationsRequest(id);
-            console.log(recResponse);
-            const status = 200;
-            switch (status) {
+            switch (recResponse.status) {
             case 200: {
-                // const body = await recResponse.json();
-                const recommendations = [{ id: 1, name: 'Магазин', descr: 'Опсиание магазина', picture: 'картинка' },
-                    { id: 2, name: 'Магазин', descr: 'Опсиание магазина Опсиание магазина Опсиание магазина Опсиание магазина', picture: 'картинка' },
-                    { id: 5, name: 'Магазин', descr: 'Опсиание магазина', picture: 'картинка' }];
+                const recommendations = await recResponse.json();
+                recommendations.forEach((rec) => {
+                    rec.picture = makeAvatarUrl(rec.picture);
+                });
 
                 this.eventBus.call('SHOW_STORE', {
                     storeName: body.store_name,

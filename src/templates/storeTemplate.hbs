@@ -32,8 +32,8 @@
             {{#each recommendations}}
             <div class="rec-item">
                 <img class="rec-item__img" src="{{this.picture}}"></img>
-                <p class="rec-item__name">{{this.name}}</p>
-                <p class="rec-item__descr">{{this.descr}}</p>
+                <p class="rec-item__name">{{this.store_name}}</p>
+                <p class="rec-item__descr">{{this.description}}</p>
                 <button data-id="{{this.id}}"
                     class="proceed-button js-goto-store rec-item__button">Перейти</button>
             </div>
