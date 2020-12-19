@@ -22,7 +22,7 @@
     font-weight: bold
 
 .store-header__map
-    grid-row: 2
+    grid-row: 2/4
     grid-column: 3/6
     width: 80%
     height: 200px
@@ -48,10 +48,15 @@
         grid-template-columns: 100%
         grid-template-rows: auto auto
 
-    .store-header__map, .header__map
+    .header__map
         grid-row: 2
         grid-column: 1
         height: 200px
+    .store-header__map
+        grid-row: 4
+        grid-column: 1
+        height: 200px
+
 
 .header__ymap, .store-header__map
     border-radius: 10px

@@ -38,6 +38,7 @@ export class StoreModel {
                     products: body.products,
                     storeId: id,
                     recommendations: recommendations,
+                    categories: body.categories,
                     picture: makeAvatarUrl(body.picture),
                     body: body
                 });
