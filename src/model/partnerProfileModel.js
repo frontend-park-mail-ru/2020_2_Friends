@@ -1,6 +1,14 @@
 import { userFormValidator } from '../utils/validator.js';
 import { regTemplates } from '../utils/reg_templates.js';
-import { changePersonalInfoRequest, uploadAvatarRequest, getProfileInfoRequest, getPartnersStoresRequest, addStore, changeStoreImgRequest } from '../utils/ApiService.js';
+import {
+    changePersonalInfoRequest,
+    uploadAvatarRequest,
+    getProfileInfoRequest,
+    getPartnersStoresRequest,
+    addStore,
+    changeStoreImgRequest,
+    getСategories
+} from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 
 export class PartnerProfileModel {
@@ -29,6 +37,7 @@ export class PartnerProfileModel {
             store_name: name.value,
             description: description.value,
             distance: distance,
+            categories: data.categories,
             longitude: parseFloat(coords[1]),
             latitude: parseFloat(coords[0])
         }
@@ -59,13 +68,15 @@ export class PartnerProfileModel {
         switch (response.status) {
         case 200: {
             const responseStores = await getPartnersStoresRequest();
-            if (responseStores.status !== 200) {
+            const responseCategories = await getСategories();
+            if (responseStores.status !== 200 || responseCategories.status !== 200) {
                 break;
             }
             const stores = await responseStores.json();
             stores.forEach((store) => {
                 store.picture = makeAvatarUrl(store.picture);
             });
+            const categories = await responseCategories.json();
             const body = await response.json();
             const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : './img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {
@@ -74,7 +85,8 @@ export class PartnerProfileModel {
                 addresses: body.addresses,
                 phone: body.phone,
                 name: body.name,
-                stores: stores
+                stores: stores,
+                tags: categories
             });
             break;
         }

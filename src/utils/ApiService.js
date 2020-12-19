@@ -2,8 +2,9 @@
 import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch, ajaxDeleteUsingFetch } from '../utils/ajax.js';
 
 // Servers configs
-const schema = 'https://';
-const host = 'grassnearhome.ru';
+const schema = 'http://';
+// const host = 'grassnearhome.ru';
+const host = '89.208.197.247:9000';
 // const host = 'localhost';
 
 const backendUrl = schema + host;
@@ -425,6 +426,20 @@ export const getAllMessages = (id) => {
 export const getNearestStores = (latitude, longitude) => {
     const args = {
         url: backendUrl + '/api/v1/vendors/nearest' + `?longitude=${longitude}&latitude=${latitude}`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getRecomendationsRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/similar`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getСategories = () => {
+    const args = {
+        url: backendUrl + '/api/v1/categories'
     };
     return ajaxGetUsingFetch(args);
 };
