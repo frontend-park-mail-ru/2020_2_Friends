@@ -14,14 +14,12 @@ export class PartnerRegisterView {
 
         this.loginNotValid = this.loginNotValid.bind(this);
         this.passwordNotValid = this.passwordNotValid.bind(this);
-        this.emailNotValid = this.emailNotValid.bind(this);
         this.usernameNotValid = this.usernameNotValid.bind(this);
         this.registerNotValid = this.registerNotValid.bind(this);
         this.render = this.render.bind(this);
 
         eventBus.subscribe('LOGIN_NOT_VALID', this.loginNotValid);
         eventBus.subscribe('PASSWORD_NOT_VALID', this.passwordNotValid);
-        eventBus.subscribe('EMAIL_NOT_VALID', this.emailNotValid);
         eventBus.subscribe('USERNAME_NOT_VALID', this.usernameNotValid);
         eventBus.subscribe('REGISTER_NOT_VALID', this.registerNotValid);
         eventBus.subscribe('SERVER_NOT_VALID', this.serverNotValid);
@@ -76,30 +74,24 @@ export class PartnerRegisterView {
     }
 
     /**
-     * Reacting to email not valid error.
-     */
-    emailNotValid () {
-        const emailErrors = this.root.querySelector('.js-email-errors');
-        emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
-    }
-
-    /**
      * Setting event listeners for register page.
      */
     addEventListeners () {
         const login = this.root.querySelector('.js-input-login');
-        const email = this.root.querySelector('.js-input-email');
         const password = this.root.querySelector('.js-input-password');
         const repeatPassword = this.root.querySelector('.js-input-password-second');
         const button = this.root.querySelector('.js-submit-reg');
+        const logo = this.root.querySelector('.welcome-logo');
+
+        logo.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_ALL_STORES');
+        });
         button.addEventListener('click', () => {
             const loginErrors = this.root.querySelector('.js-login-errors');
             const passwordErrors = this.root.querySelector('.js-password-errors');
-            const emailErrors = this.root.querySelector('.js-email-errors');
             loginErrors.innerText = '';
             passwordErrors.innerText = '';
-            emailErrors.innerText = '';
-            const data = { login, email, password, repeatPassword };
+            const data = { login, password, repeatPassword };
             this.eventBus.call('SUBMIT_REG', data);
         });
         const toLogin = this.root.querySelector('.js-to-login');

@@ -18,5 +18,6 @@ export class PartnerLoginController {
 
         eventBus.subscribe('REDIRECT_TO_REG', () => this.router.redirect('partners_register'));
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('partners_profile'));
+        eventBus.subscribe('REDIRECT_TO_ALL_STORES', () => this.router.redirect('/'));
     }
 }
