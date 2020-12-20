@@ -187,7 +187,7 @@ export class PartnerProfileView {
                 tagErrors.innerText = 'Выберите хотя бы одну категорию!';
                 return;
             }
-            const categories = activeTags.map(function (tag) {
+            const categories = Array.from(activeTags).map((tag) => {
                 return tag.innerText;
             });
             const data = { name, description, img, coords, radius, categories };

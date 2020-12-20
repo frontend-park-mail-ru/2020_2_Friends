@@ -68,7 +68,6 @@ export class PartnerProfileModel {
         switch (response.status) {
         case 200: {
             const infoResponse = await Promise.all([getPartnersStoresRequest(), getСategories()]);
-            console.log(infoResponse.status);
             if (infoResponse[0].status !== 200 || infoResponse[1].status !== 200) {
                 break;
             }
