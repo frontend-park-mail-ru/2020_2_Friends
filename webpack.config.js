@@ -26,8 +26,9 @@ module.exports = {
         new CleanWebpackPlugin()
     ],
     output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     module: {
         rules: [
