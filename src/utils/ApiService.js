@@ -2,9 +2,8 @@
 import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch, ajaxDeleteUsingFetch } from '../utils/ajax.js';
 
 // Servers configs
-const schema = 'http://';
-// const host = 'grassnearhome.ru';
-const host = '89.208.197.247:9000';
+const schema = 'https://';
+const host = 'grassnearhome.ru';
 // const host = 'localhost';
 
 const backendUrl = schema + host;
