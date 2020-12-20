@@ -162,12 +162,7 @@ export class PartnerProfileView {
                 tag.classList.toggle('active-tag');
                 const activeTags = this.root.querySelectorAll('.active-tag');
                 const tagErrors = this.root.querySelector('.tags__error');
-                if (activeTags.length > 5) {
-                    tagErrors.innerText = 'Вы выбрали более пяти категорий!';
-                }
-                if (activeTags.length <= 5) {
-                    tagErrors.innerText = 'Выберите до пяти категорий';
-                }
+                tagErrors.innerText = activeTags.length > 5 ? 'Вы выбрали более пяти категорий!' : 'Выберите до пяти категорий';
             });
         });
     }
