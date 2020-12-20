@@ -27,7 +27,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'main.css'
+            filename: 'main.[contenthash].css'
         }),
         new ImageMinimizerPlugin({
             minimizerOptions: {
