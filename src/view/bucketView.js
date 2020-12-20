@@ -24,6 +24,10 @@ export class BucketView {
             data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!';
         }
         this.root.innerHTML = bucketTemplate(data);
+        if (data.addresses === null) {
+            const addr = document.getElementById('js-address');
+            addr.outerHTML = '<h3>Укажите адрес в личном кабинете!</h3>';
+        }
         this.addEventListeners();
     }
 
