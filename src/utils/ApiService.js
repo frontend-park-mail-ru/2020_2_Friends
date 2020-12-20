@@ -428,3 +428,17 @@ export const getNearestStores = (latitude, longitude) => {
     };
     return ajaxGetUsingFetch(args);
 };
+
+export const getRecomendationsRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/similar`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getСategories = () => {
+    const args = {
+        url: backendUrl + '/api/v1/categories'
+    };
+    return ajaxGetUsingFetch(args);
+};

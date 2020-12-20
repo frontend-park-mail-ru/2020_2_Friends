@@ -114,4 +114,4 @@ const serviceLoad = () => {
     };
 };
 
-ymaps.load('//api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=023de3e2-fd9e-4c53-9577-218c4243ea44').then(serviceLoad); // eslint-disable-line
+ymaps.load('//api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ab35b09-4d49-4cde-be3d-b9e4d1e1cead').then(serviceLoad); // eslint-disable-line

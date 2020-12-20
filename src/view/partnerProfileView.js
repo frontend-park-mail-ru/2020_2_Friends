@@ -155,10 +155,23 @@ export class PartnerProfileView {
         activeButton.classList.add('profile-page__navbar-button_focus');
     }
 
+    addTagsEventListeners () {
+        const tags = this.root.querySelectorAll('.tags__item');
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                tag.classList.toggle('active-tag');
+                const activeTags = this.root.querySelectorAll('.active-tag');
+                const tagErrors = this.root.querySelector('.tags__error');
+                tagErrors.innerText = activeTags.length > 5 ? 'Вы выбрали более пяти категорий!' : 'Выберите до пяти категорий';
+            });
+        });
+    }
+
     /**
      * Setting event listeners for profile page.
      */
     addEventListeners () {
+        this.addTagsEventListeners();
         const storeDataButton = this.root.querySelector('.js-add-store');
         storeDataButton.addEventListener('click', () => {
             const name = this.root.querySelector('.js-addstore-name');
@@ -168,7 +181,16 @@ export class PartnerProfileView {
             const img = new FormData();
             img.append('image', imgFile);
             const coords = this.newMap.getCoords();
-            const data = { name, description, img, coords, radius };
+            const activeTags = this.root.querySelectorAll('.active-tag');
+            if (!activeTags.length) {
+                const tagErrors = this.root.querySelector('.tags__error');
+                tagErrors.innerText = 'Выберите хотя бы одну категорию!';
+                return;
+            }
+            const categories = Array.from(activeTags).map((tag) => {
+                return tag.innerText;
+            });
+            const data = { name, description, img, coords, radius, categories };
             this.eventBus.call('ADD_STORE', data);
         });
 

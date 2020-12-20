@@ -2,14 +2,19 @@
     <div class="back-to-shopping">
         <button class="back-to-shopping__button">Все рестораны</button>
     </div>
-        <div id="storeHeader" data-store_id="{{storeId}}" class="store__header-user">
-    <div class="store__img-container">
-        <img src="{{picture}}" class="store__logo" alt="Store logo">
-        <input type="file" name="uploadFile" id="file" accept=".png, .jpg, .jpeg"  class="none">
-    </div>
-            <div class="store__name">{{storeName}}</div>
-            <button class="info-button js-goto-reviews store__reviews">Отзывы</button>
-            <div class="store-header__map" id="map"></div>
+    <div id="storeHeader" data-store_id="{{storeId}}" class="store__header-user">
+        <div class="store__img-container">
+            <img src="{{picture}}" class="store__logo" alt="Store logo">
+            <input type="file" name="uploadFile" id="file" accept=".png, .jpg, .jpeg" class="none">
+        </div>
+        <div class="store__name">{{storeName}}</div>
+        <div class="store-tags">
+            {{#each categories}}
+            <div class="store-tags__item">{{this}}</div>
+            {{/each}}
+        </div>
+        <button class="info-button js-goto-reviews store__reviews">Отзывы</button>
+        <div class="store-header__map" id="map"></div>
     </div>
     <div class="store__showcase-user">
         {{#each products}}
@@ -20,9 +25,24 @@
                 <div class="product__price">{{ this.food_calories }}</div>
                 <div class="product__price">{{ this.food_price }}</div>
             </div>
-            <div class="product__descr">Описание вкусного обеда, которым можно насытиться и получить витамины и минералы.</div>
+            <div class="product__descr">Описание вкусного обеда, которым можно насытиться и получить витамины и
+                минералы.</div>
             <button class="proceed-button js-add-to-cart" data-product-id="{{ this.id }}">В корзину</button>
         </div>
         {{/each}}
+    </div>
+    <div class="recommendations">
+        <div class="recommendations__text">Так же</br>  попробуйте...</div>
+        <div class="recommendations__list">
+            {{#each recommendations}}
+            <div class="rec-item">
+                <img class="rec-item__img" src="{{this.picture}}"></img>
+                <p class="rec-item__name">{{this.store_name}}</p>
+                <p class="rec-item__descr">{{this.description}}</p>
+                <button data-id="{{this.id}}"
+                    class="proceed-button js-goto-store rec-item__button">Перейти</button>
+            </div>
+            {{/each}}
+        </div>
     </div>
 </div>
