@@ -1,5 +1,7 @@
 const path = require('path');
 
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -23,7 +25,18 @@ module.exports = {
                 { from: path.resolve(__dirname, 'src', 'assets', 'img'), to: path.resolve(__dirname, 'dist', 'img') }
             ]
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'main.[contenthash].css'
+        }),
+        new ImageMinimizerPlugin({
+            minimizerOptions: {
+                plugins: [
+                    ['optipng', { optimizationLevel: 5 }],
+                    ['webp', { quality: 50 }]
+                ]
+            }
+        })
     ],
     output: {
         filename: '[name].[contenthash].js',
@@ -45,18 +58,20 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-            },
-            {
-                test: /\.(png|jpg|gif|webp|ico)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: './src/assets/img/'
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false
+                        }
+                    },
+                    {
+                        loader: 'sass-loader'
                     }
-                }]
+                ]
             },
+
             {
                 test: /\.(handlebars|hbs)$/,
                 loader: 'handlebars-loader',
