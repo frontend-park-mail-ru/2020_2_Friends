@@ -31,8 +31,6 @@ module.exports = {
         }),
         new ImageMinimizerPlugin({
             minimizerOptions: {
-                // Lossless optimization with custom option
-                // Feel free to experiment with options for better result for you
                 plugins: [
                     ['optipng', { optimizationLevel: 5 }],
                     ['webp', { quality: 50 }]
