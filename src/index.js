@@ -15,6 +15,7 @@ import { PartnerRegisterController } from './controller/partnerRegisterControlle
 import { PartnerProfileController } from './controller/partnerProfileController.js';
 import { PartnerStoreController } from './controller/partnerStoreController.js';
 import { ChatController } from './controller/chatController.js';
+import { NotificationsController } from './controller/notificationsController.js';
 import { Router } from './utils/router.js';
 
 const serviceLoad = () => {
@@ -36,6 +37,8 @@ const serviceLoad = () => {
     const partnerRegController = new PartnerRegisterController(root, router);
     const partnerProfileController = new PartnerProfileController(root, router);
     const partnerStoreController = new PartnerStoreController(root, router);
+    // eslint-disable-next-line no-unused-vars
+    const notificationsController = new NotificationsController(root, router);
     // Setting routes to navigate inside an app.
 
     function isAdmin () {

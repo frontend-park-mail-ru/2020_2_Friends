@@ -3,8 +3,7 @@ import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipart
 
 // Servers configs
 const schema = 'http://';
-// const host = 'grassnearhome.ru';
-const host = '89.208.197.247:9000';
+const host = 'grassnearhome.ru';
 // const host = 'localhost';
 
 const backendUrl = schema + host;

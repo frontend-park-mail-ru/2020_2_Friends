@@ -1,0 +1,39 @@
+#notification-list
+    position: fixed
+    bottom: 20px
+    right: 20px
+    display: block
+    max-width: 300px
+    max-height: 600px
+    margin: 0
+    padding: 0
+    border: 0
+    width: -webkit-fill-available
+
+.notification
+    padding: 10px
+    border-radius: 5px
+    margin: 10px 0px
+    display: grid
+    grid-template-columns: 3fr 6fr 1fr
+    grid-template-rows: 1fr 4fr
+    gap: 5px 15px
+    align-items: center
+    justify-items: center
+    background: #FFFFFF
+    border: 1px solid #C4C4C4
+
+    &__img
+        width: 100px
+        height: 100px
+        border-radius: 50%
+        grid-column: 1
+        grid-row: 2
+    &__text
+        grid-column: 2
+        grid-row: 2
+        font-size: 20px
+        width: 100%
+    &__close
+        grid-column: 3
+        grid-row: 1
