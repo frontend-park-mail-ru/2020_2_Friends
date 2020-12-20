@@ -26,20 +26,16 @@ module.exports = {
             ]
         }),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'main.css'
+        }),
         new ImageMinimizerPlugin({
             minimizerOptions: {
+                // Lossless optimization with custom option
+                // Feel free to experiment with options for better result for you
                 plugins: [
-                    ['gifsicle', { interlaced: true }],
-                    ['jpegtran', { progressive: true }],
                     ['optipng', { optimizationLevel: 5 }],
-                    ['svgo', {
-                        plugins: [
-                            {
-                                removeViewBox: false
-                            }
-                        ]
-                    }
-                    ]
+                    ['webp', { quality: 50 }]
                 ]
             }
         })
@@ -64,22 +60,20 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-            },
-            {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
-            },
-            {
-                test: /\.(png|jpg|gif|webp|ico)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: './src/assets/img/'
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false
+                        }
+                    },
+                    {
+                        loader: 'sass-loader'
                     }
-                }]
+                ]
             },
+
             {
                 test: /\.(handlebars|hbs)$/,
                 loader: 'handlebars-loader',
