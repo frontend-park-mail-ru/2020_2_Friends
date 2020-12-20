@@ -8,6 +8,11 @@
             <input type="file" name="uploadFile" id="file" accept=".png, .jpg, .jpeg" class="none">
         </div>
         <div class="store__name">{{storeName}}</div>
+        <div class="store-tags">
+            {{#each categories}}
+            <div class="store-tags__item">{{this}}</div>
+            {{/each}}
+        </div>
         <button class="info-button js-goto-reviews store__reviews">Отзывы</button>
         <div class="store-header__map" id="map"></div>
     </div>

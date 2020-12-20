@@ -67,16 +67,15 @@ export class PartnerProfileModel {
         const response = await getProfileInfoRequest();
         switch (response.status) {
         case 200: {
-            const responseStores = await getPartnersStoresRequest();
-            const responseCategories = await getСategories();
-            if (responseStores.status !== 200 || responseCategories.status !== 200) {
+            const infoResponse = await Promise.all([getPartnersStoresRequest(), getСategories()]);
+            if (infoResponse[0].status !== 200 || infoResponse[1].status !== 200) {
                 break;
             }
-            const stores = await responseStores.json();
+            const stores = await infoResponse[0].json();
             stores.forEach((store) => {
                 store.picture = makeAvatarUrl(store.picture);
             });
-            const categories = await responseCategories.json();
+            const categories = await infoResponse[1].json();
             const body = await response.json();
             const avatarUrl = body.avatar ? makeAvatarUrl(body.avatar) : './img/default-avatar.png';
             this.eventBus.call('SHOW_PROFILE', {

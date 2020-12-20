@@ -2,7 +2,7 @@
 import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch, ajaxDeleteUsingFetch } from '../utils/ajax.js';
 
 // Servers configs
-const schema = 'http://';
+const schema = 'https://';
 const host = 'grassnearhome.ru';
 // const host = 'localhost';
 

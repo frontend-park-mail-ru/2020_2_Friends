@@ -6,7 +6,7 @@
  * @return {string} avatarUrl - Full url to picture on static server.
  */
 export const makeAvatarUrl = (avatarName) => {
-    const schema = 'http://';
+    const schema = 'https://';
     const host = 'grassnearhome.ru';
     // const host = 'localhost';
     const staticUrl = schema + host;
