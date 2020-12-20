@@ -1,6 +1,10 @@
 <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
-    <div class="store__header-headline">
-        <button class="info-button js-to-store-button">К магазину</button>
+    <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
+        <img src="{{picture}}" class="store__logo" alt="Store logo">
+        <div class="store__header-headline">
+            <div class="store__name">{{vendor_name}}</div>
+            <button class="info-button js-to-store-button">К магазину</button>
+        </div>
     </div>
 </div>
 <div class="chats-scrollable">
@@ -12,7 +16,7 @@
             <div class="chats-items">
                 {{#each chats}}
                 <div data-id={{this.order_id}} id="chat-{{order_id}}" class="chats-item">
-                    <div><img class="chats-item-avatar" src="/assets/img/default-avatar.png" alt="avatar"></div>
+                    <div><img class="chats-item-avatar" src="/img/default-avatar.png" alt="avatar"></div>
                     <div>
                         <div class="chats-item-nickname">
                             {{#if this.interlocutor_name}}
