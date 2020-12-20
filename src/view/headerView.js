@@ -54,6 +54,11 @@ export class HeaderView {
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_ADMIN_PROFILE');
         });
+
+        const storeLogo = this.header.querySelector('.js-goto-searchpage');
+        storeLogo.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_ALL_STORES');
+        });
     }
 
     addUserHeaderEventListeners () {
@@ -71,12 +76,22 @@ export class HeaderView {
         profile.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_PROFILE');
         });
+
+        const storeLogo = this.header.querySelector('.js-goto-searchpage');
+        storeLogo.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_ALL_STORES');
+        });
     }
 
     addNotAuthEventListeners () {
         const login = this.header.querySelector('.js-login-button');
         login.addEventListener('click', () => {
             this.eventBus.call('REDIRECT_TO_LOGIN');
+        });
+
+        const storeLogo = this.header.querySelector('.js-goto-searchpage');
+        storeLogo.addEventListener('click', () => {
+            this.eventBus.call('REDIRECT_TO_ALL_STORES');
         });
     }
 }
