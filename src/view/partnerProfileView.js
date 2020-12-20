@@ -181,15 +181,14 @@ export class PartnerProfileView {
             const img = new FormData();
             img.append('image', imgFile);
             const coords = this.newMap.getCoords();
-            const categories = [];
             const activeTags = this.root.querySelectorAll('.active-tag');
             if (!activeTags.length) {
                 const tagErrors = this.root.querySelector('.tags__error');
                 tagErrors.innerText = 'Выберите хотя бы одну категорию!';
                 return;
             }
-            activeTags.forEach(tag => {
-                categories.push(tag.innerText);
+            const categories = activeTags.map(function (tag) {
+                return tag.innerText;
             });
             const data = { name, description, img, coords, radius, categories };
             this.eventBus.call('ADD_STORE', data);
