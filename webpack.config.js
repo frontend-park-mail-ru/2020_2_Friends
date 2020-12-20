@@ -1,5 +1,7 @@
 const path = require('path');
 
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -23,7 +25,26 @@ module.exports = {
                 { from: path.resolve(__dirname, 'src', 'assets', 'img'), to: path.resolve(__dirname, 'dist', 'img') }
             ]
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new ImageMinimizerPlugin({
+            minimizerOptions: {
+                // Lossless optimization with custom option
+                // Feel free to experiment with options for better result for you
+                plugins: [
+                    ['gifsicle', { interlaced: true }],
+                    ['jpegtran', { progressive: true }],
+                    ['optipng', { optimizationLevel: 5 }],
+                    ['svgo', {
+                        plugins: [
+                            {
+                                removeViewBox: false
+                            }
+                        ]
+                    }
+                    ]
+                ]
+            }
+        })
     ],
     output: {
         filename: '[name].[contenthash].js',
@@ -46,6 +67,10 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/i,
                 use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
             },
             {
                 test: /\.(png|jpg|gif|webp|ico)$/,
