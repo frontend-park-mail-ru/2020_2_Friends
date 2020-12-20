@@ -201,7 +201,7 @@ export class ProfileModel {
         const { number } = input;
         let isValid = true;
 
-        const numberValidator = userFormValidator(number, regTemplates.number);
+        const numberValidator = userFormValidator(number, regTemplates.phone);
         if (!numberValidator.status) {
             this.eventBus.call('NUMBER_NOT_VALID');
             isValid = false;
