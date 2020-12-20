@@ -13,7 +13,7 @@ export class NotificationsController {
         const eventBus = new EventBus();
         this.router = router;
         this.model = new NotificationsModel(eventBus);
-        this.view = new NotificationsView(eventBus);
+        this.view = new NotificationsView(root, eventBus);
         eventBus.subscribe('REDIRECT_TO_PROFILE_ORDERS', () => this.router.redirect('/profile/orders'));
     }
 }

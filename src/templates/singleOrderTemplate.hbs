@@ -1,4 +1,4 @@
-<div class="order-cart" id={{id}} data-orderId={{id}} data-name={{vendor_name}}>
+<div class="order-cart" id="order-{{id}}" data-orderId={{id}} data-name={{vendor_name}}>
     <div class="order-cart__header">
         <div class="order-cart__info">
             <div class="order-cart__shop-name">{{vendor_name}}</div>
@@ -6,15 +6,14 @@
             <p class="order-cart__address">{{address}}</p>
         </div>
         <div class="order-cart__info-right">
-        <div class="order-cart__user-status">{{status}}</div>
-            <div class="order-cart__buttons">      
-        {{#if showChat}}
-        <div class="proceed-button support-button js-open-support">Чат</div>
-        {{/if}}
-        {{#if showReview}}
-        <div class="order-cart__review-button proceed-button js-review-button">Оцените заказ</div>
-        {{/if}}
-        </div>
+            <div class="order-cart__user-status">{{status}}</div>
+            <div class="order-cart__buttons">
+                <div class="proceed-button support-button js-open-support"
+                    {{#unless showChat}}style="display:none;"
+                    {{/unless}}>Чат</div>
+                <div class="order-cart__review-button proceed-button js-review-button"
+                    {{#unless showReview}}style="display:none;" {{/unless}}>Оцените заказ</div>
+            </div>
         </div>
     </div>
     <div class="order-cart__order-list">

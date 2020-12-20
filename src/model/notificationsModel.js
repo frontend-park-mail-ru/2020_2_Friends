@@ -17,6 +17,7 @@ export class NotificationsModel {
         if (msg.type === 'status') {
             msg.vendor_picture = makeAvatarUrl(msg.vendor_picture);
             this.eventBus.call('SHOW_NOTIFICATION', msg);
+            this.eventBus.call('HANDLE_ORDER_STATUS', msg);
         }
     }
 }
