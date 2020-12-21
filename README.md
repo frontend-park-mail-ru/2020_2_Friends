@@ -13,7 +13,7 @@
 - [Рыбаков Дмитрий](https://github.com/bulletmys)
 
 ## Ссылка на проект
-- [Деплой проекта](http://89.208.197.247:8080/)
+- [Деплой проекта](https://grassnearhome.ru/)
 
 ## Репозиторий бекенда
 - [Ссылка на репозиторий](https://github.com/go-park-mail-ru/2020_2_Friends)
