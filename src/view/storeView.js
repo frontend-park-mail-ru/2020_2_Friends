@@ -64,11 +64,6 @@ export class StoreView {
             });
         });
 
-        const back = this.root.querySelector('.back-to-shopping__button');
-        back.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORES');
-        });
-
         const recommended = this.root.querySelectorAll('.js-goto-store');
         recommended.forEach(element => {
             element.addEventListener('click', () => {
