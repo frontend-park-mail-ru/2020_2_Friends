@@ -58,8 +58,5 @@ export class BucketView {
 
         const orderButton = this.root.querySelector('.js-make-order');
         orderButton.addEventListener('click', () => this.createOrder());
-
-        const back = this.root.querySelector('.back-to-shopping__button');
-        back.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_STORES'));
     }
 }

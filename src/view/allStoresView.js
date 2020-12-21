@@ -49,7 +49,7 @@ export class AllStoresView {
     }
 
     addEventListeners () {
-        const stores = this.root.querySelectorAll('.store__block');
+        const stores = this.root.querySelectorAll('.store-block');
         stores.forEach(element => {
             element.addEventListener('click', () => {
                 this.eventBus.call('REDIRECT_TO_STORE', element.id);
