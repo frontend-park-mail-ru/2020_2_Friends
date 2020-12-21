@@ -19,7 +19,6 @@
         padding-left: 10px
         outline: none
 
-
     &__header
         border-bottom: 1px solid #C4C4C4
         display: grid
@@ -27,7 +26,6 @@
         padding: 15px
         flex-direction: row
         font-size: 25px
-
 
     &__info
         grid-column: 1
@@ -74,7 +72,7 @@
         outline: none
         color: #45d480
         white-space: nowrap
-        align-self: end
+        align-self: flex-end
 
 
     &__total
@@ -84,11 +82,11 @@
         margin: 10px 50px 10px 30px
 
 
-    &_buttons
+    &__buttons
         display: flex
         flex-direction: row
         align-content: center
-        align-self: end
+        align-self: flex-end
 
 @media screen and (max-width: 800px)
     .order-cart__total
@@ -131,18 +129,12 @@
         font-size: 3vw
 
 @media screen and (max-width: 500px)
-    .order-list__order-item, .order-cart__total
+    .order-list__order-item, .order-cart__total, .order-item__price
         font-size: 5vw
 
-    .order-cart__address, .order-cart__date, .order-cart__shop-name, .order-cart__user-status
+    .order-cart__address, .order-cart__date, .order-cart__shop-name, .order-cart__user-status, .order-cart__user-status
         font-size: 5vw
 
 @media screen and (max-width: 300px)
     .order-list__order-item
         font-size: 3vw
-
-.order-item__name, .order-item__price
-    font-style: normal
-    font-weight: normal
-    white-space: nowrap
-    margin: 10px 0px

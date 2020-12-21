@@ -27,7 +27,7 @@
         justify-content: space-between
 
     &-header-nickname
-        font-size: 30px
+        font-size: 20px
         font-weight: bold
         margin: 10px
 
@@ -35,11 +35,11 @@
         line-height: 1
         margin: 0
         padding: 0
+        min-width: 250px
         border: 0
         font-size: 100%
         vertical-align: baseline
         border-radius: 10px
-        height: 100%
         max-width: 35%
         overflow: overlay
         overflow-y: auto
@@ -57,9 +57,6 @@
     background-color: transparent
 
 @media screen and (max-width: 500px)
-    .chat-header-nickname
-        font-size: 20px
-
     .chats
         max-width: 22%
 
@@ -203,6 +200,7 @@
     max-width: 100%
     flex-grow: 1
     display: flex
+    flex-wrap: wrap
     justify-content: flex-start
     padding: 2vh
     background-color: #e5eee3
@@ -210,7 +208,6 @@
     justify-self: center
     height: 75vh
     overflow: auto
-    overflow-x: hidden
 
 .user-chat
     position: fixed
@@ -238,6 +235,9 @@
 @media screen and (max-width: 700px)
     .user-chat
         height: 80%
+@media screen and (max-width: 700px)
+    .user-chat
+        max-width: 80%
 
 .chats-item-nickname
     line-height: 1
