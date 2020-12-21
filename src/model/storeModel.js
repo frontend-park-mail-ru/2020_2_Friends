@@ -1,4 +1,4 @@
-import { getStoreByIdDataRequest, addProductToBucket } from '../utils/ApiService.js';
+import { getStoreByIdDataRequest, addProductToBucket, getRecomendationsRequest } from '../utils/ApiService.js';
 import { makeAvatarUrl } from '../utils/urlThrottle.js';
 export class StoreModel {
     /**
@@ -25,13 +25,28 @@ export class StoreModel {
             body.products.forEach((product) => {
                 product.picture = makeAvatarUrl(product.picture);
             });
-            this.eventBus.call('SHOW_STORE', {
-                storeName: body.store_name,
-                products: body.products,
-                storeId: id,
-                picture: makeAvatarUrl(body.picture),
-                body: body
-            });
+            const recResponse = await getRecomendationsRequest(id);
+            switch (recResponse.status) {
+            case 200: {
+                const recommendations = await recResponse.json();
+                recommendations.forEach((rec) => {
+                    rec.picture = makeAvatarUrl(rec.picture);
+                });
+
+                this.eventBus.call('SHOW_STORE', {
+                    storeName: body.store_name,
+                    products: body.products,
+                    storeId: id,
+                    recommendations: recommendations,
+                    categories: body.categories,
+                    picture: makeAvatarUrl(body.picture),
+                    body: body
+                });
+                break;
+            }
+            default:
+                console.log(`Uncaught backend http-status: ${response.status}`);
+            }
             break;
         }
         case 400:

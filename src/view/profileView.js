@@ -1,6 +1,7 @@
-import { renderProfileView } from '../template/profileViewTemplate.js';
-import { renderOrderView } from '../template/singleOrderViewTemplate.js';
-import { renderAddrListView } from '../template/addresListViewTemplate.js';
+import profileTemplate from '../templates/profileTemplate.hbs';
+import singleOrderTemplate from '../templates/singleOrderTemplate.hbs';
+import addressListTemplate from '../templates/addressListTemplate.hbs';
+
 export class ProfileView {
     /**
      * Creating an ProfileView instance.
@@ -92,8 +93,7 @@ export class ProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
-        const template = renderProfileView();
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = profileTemplate(data);
         this.changeSubPage(data.subpage);
         this.addEventListeners();
     }
@@ -128,11 +128,11 @@ export class ProfileView {
     }
 
     changeSubPage (page) {
-        const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-coupons-button, .js-myorders-button');
+        const allButtons = this.root.querySelectorAll('.js-userdata-button, .js-addresses-button, .js-myorders-button');
         allButtons.forEach(element => {
             element.classList.remove('profile-page__navbar-button_focus');
         });
-        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-profile-addresses, .js-profile-coupons, .js-profile-orders');
+        const allBlocks = this.root.querySelectorAll('.js-profile-info, .js-profile-addresses, .js-profile-orders');
         allBlocks.forEach(element => {
             element.style.display = 'none';
         });
@@ -155,17 +155,12 @@ export class ProfileView {
             seenBlock = this.root.querySelector('.js-profile-addresses');
             break;
 
-        case 'coupons':
-            activeButton = this.root.querySelector('.js-coupons-button');
-            seenBlock = this.root.querySelector('.js-profile-coupons');
-            break;
-
         default:
             activeButton = this.root.querySelector('.js-userdata-button');
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
         }
-        seenBlock.style.display = 'flex';
+        seenBlock.style.display = 'grid';
         activeButton.classList.add('profile-page__navbar-button_focus');
     }
 
@@ -175,7 +170,7 @@ export class ProfileView {
         if (data.length === 0) {
             data.empty = 'Что-то тут пустовато... Сделайте свой первый заказ!';
         }
-        const template = renderOrderView();
+        const template = singleOrderTemplate;
         data.forEach((order) => {
             order.showReview = !order.reviewed && (order.status === 'Завершён');
             order.showChat = !!(order.status && order.status !== 'Завершён');
@@ -187,7 +182,7 @@ export class ProfileView {
             btn.addEventListener('click', () => {
                 const id = btn.closest('.order-cart').dataset.orderid;
                 document.getElementById('review-form').dataset.orderid = id;
-                document.getElementById('review_overlay').style.display = 'flex';
+                document.getElementById('review_overlay').style.display = 'grid';
             });
         });
         const openSupport = this.root.querySelectorAll('.js-open-support');
@@ -228,9 +223,7 @@ export class ProfileView {
 
     showAddressList (input) {
         const addrColumn = document.getElementById('address-column');
-        const template = renderAddrListView();
-        const addrHTML = template(input);
-        addrColumn.innerHTML = addrHTML;
+        addrColumn.innerHTML = addressListTemplate(input);
         this.addAddrsEventListeners();
     }
 
@@ -286,14 +279,10 @@ export class ProfileView {
             this.changeSubPage('orders');
         });
 
-        const coupons = this.root.querySelector('.js-coupons-button');
-        coupons.addEventListener('click', () => {
-            this.changeSubPage('coupons');
-        });
-
         const addAddrBtn = this.root.querySelector('.js-add-address');
         addAddrBtn.addEventListener('click', () => {
             const addrsInput = this.root.querySelector('.js-address-input').value;
+            this.root.querySelector('.js-address-input').value = '';
             const oldAddrs = this.root.querySelectorAll('.address-item-text');
             const addrs = [addrsInput, ...[...oldAddrs].map(oldAddr => oldAddr.innerText)];
             this.eventBus.call('CHANGE_ADDRS', addrs);
@@ -310,11 +299,6 @@ export class ProfileView {
             numberErrors.innerText = '';
             const data = { name, number };
             this.eventBus.call('CHANGE_INFO', data);
-        });
-
-        const back = this.root.querySelector('.back-to-shopping__button');
-        back.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORES');
         });
 
         this.addAddrsEventListeners();

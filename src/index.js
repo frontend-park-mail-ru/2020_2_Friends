@@ -1,3 +1,6 @@
+import ymaps from 'ymaps';
+import './assets/sass/collective.sass';
+
 import { LoginController } from './controller/loginController.js';
 import { ProfileController } from './controller/profileController.js';
 import { HeaderController } from './controller/headerController.js';
@@ -12,6 +15,7 @@ import { PartnerRegisterController } from './controller/partnerRegisterControlle
 import { PartnerProfileController } from './controller/partnerProfileController.js';
 import { PartnerStoreController } from './controller/partnerStoreController.js';
 import { ChatController } from './controller/chatController.js';
+import { NotificationsController } from './controller/notificationsController.js';
 import { Router } from './utils/router.js';
 
 const serviceLoad = () => {
@@ -33,6 +37,8 @@ const serviceLoad = () => {
     const partnerRegController = new PartnerRegisterController(root, router);
     const partnerProfileController = new PartnerProfileController(root, router);
     const partnerStoreController = new PartnerStoreController(root, router);
+    // eslint-disable-next-line no-unused-vars
+    const notificationsController = new NotificationsController(root, router);
     // Setting routes to navigate inside an app.
 
     function isAdmin () {
@@ -111,4 +117,4 @@ const serviceLoad = () => {
     };
 };
 
-ymaps.ready(serviceLoad); // eslint-disable-line
+ymaps.load('//api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ab35b09-4d49-4cde-be3d-b9e4d1e1cead').then(serviceLoad); // eslint-disable-line

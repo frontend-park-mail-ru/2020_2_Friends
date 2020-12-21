@@ -1,4 +1,5 @@
-import { renderLoginView } from '../template/partnerLoginViewTemplate.js';
+import partnerLoginTemplate from '../templates/partnerLoginTemplate.hbs';
+
 export class PartnerLoginView {
     /**
      * Creating an LoginView instance.
@@ -27,9 +28,7 @@ export class PartnerLoginView {
      * Rendering login page and setting event listeners.
      */
     render () {
-        const template = renderLoginView();
-
-        this.root.innerHTML = template();
+        this.root.innerHTML = partnerLoginTemplate();
         this.addEventListeners();
     }
 
@@ -75,6 +74,9 @@ export class PartnerLoginView {
         const regButton = this.root.querySelector('.js-reg-button');
         const loginErrors = this.root.querySelector('.js-login-errors');
         const passwordErrors = this.root.querySelector('.js-password-errors');
+        const logo = this.root.querySelector('.welcome-logo');
+
+        logo.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_ALL_STORES'));
 
         button.addEventListener('click', () => {
             loginErrors.innerText = '';
@@ -83,8 +85,6 @@ export class PartnerLoginView {
             this.eventBus.call('SUBMIT_LOGIN', data);
         });
 
-        regButton.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_REG');
-        });
+        regButton.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_REG'));
     }
 }

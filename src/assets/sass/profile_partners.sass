@@ -1,0 +1,116 @@
+.my-stores-list
+    display: grid
+    justify-items: center
+    grid-column: 2/4
+
+@media screen and (max-width: 150px)
+    .my-stores-list
+        grid-column: 0
+
+.my-store
+    display: grid
+    width: 80%
+    grid-template-columns: 30% 40% 30%
+    grid-template-rows: auto auto auto
+    border: 1px solid #C4C4C4
+    border-radius: 20px
+    margin: 10px
+    padding: 10px
+    align-items: center
+    justify-items: center
+
+
+    &__name
+        font-style: normal
+        font-weight: normal
+        white-space: nowrap
+        font-size: 25px
+        margin: 20px
+        grid-column: 2
+        grid-row: 1
+
+
+    &__descr
+        overflow: hidden
+        text-overflow: ellipsis
+        margin: 10px
+        font-size: 20px
+        grid-column: 2
+        grid-row: 2/4
+
+
+    &__img
+        width: 150px
+        height: 150px
+        border-radius: 50%
+        padding: 10px
+        margin: 10px
+        grid-column: 1
+        grid-row: 1/4
+
+
+    &__button
+        grid-column: 3
+        grid-row: 3
+
+@media screen and (max-width: 600px)
+    .my-store__img
+        width: 100px
+        height: 100px
+        grid-column: auto
+        grid-row: 1
+
+    .my-store__name
+        grid-column: auto
+        grid-row: 2
+
+    .my-store__button
+        grid-column: auto
+        grid-row: 4
+
+    .my-store
+        width: 95%
+        grid-template-columns: none
+        grid-template-rows: 30% 20% 20% 20%
+
+
+        &s-list
+            display: grid
+            justify-items: center
+            grid-column: 1
+
+
+        &__descr
+            grid-column: auto
+            overflow: hidden
+            text-overflow: ellipsis
+            font-size: 20px
+            grid-row: 3
+
+.new-store__input
+    max-width: inherit
+    height: 50px
+    margin: 15px
+    background: #FFFFFF
+    border: 1px solid #878A86
+    box-sizing: border-box
+    padding: 10px 5px 10px 20px
+    border-radius: 20px
+    /* Text */
+    font-style: normal
+    font-weight: normal
+    font-size: 25px
+    line-height: 140.62%
+    color: #878A86
+    outline: none
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+.addstore__map
+    width: 90%
+    height: 350px
+    justify-self: center
+
+.addstore-avatar-form
+    width: 200px

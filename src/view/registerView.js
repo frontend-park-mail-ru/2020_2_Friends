@@ -1,4 +1,4 @@
-import { renderRegisterView } from '../template/registerViewTemplate.js';
+import registerTemplate from '../templates/registerTemplate.hbs';
 
 export class RegisterView {
     /**
@@ -14,7 +14,6 @@ export class RegisterView {
 
         this.loginNotValid = this.loginNotValid.bind(this);
         this.passwordNotValid = this.passwordNotValid.bind(this);
-        this.emailNotValid = this.emailNotValid.bind(this);
         this.usernameNotValid = this.usernameNotValid.bind(this);
         this.registerNotValid = this.registerNotValid.bind(this);
         this.render = this.render.bind(this);
@@ -31,8 +30,7 @@ export class RegisterView {
      * Rendering register page and setting event listeners.
      */
     render () {
-        const template = renderRegisterView();
-        this.root.innerHTML = template();
+        this.root.innerHTML = registerTemplate();
         this.addEventListeners();
     }
 
@@ -77,22 +75,16 @@ export class RegisterView {
     }
 
     /**
-     * Reacting to email not valid error.
-     */
-    emailNotValid () {
-        const emailErrors = this.root.querySelector('.js-email-errors');
-        emailErrors.innerText = 'Поле дожно быть формата something@something.ru';
-    }
-
-    /**
      * Setting event listeners for register page.
      */
     addEventListeners () {
         const login = this.root.querySelector('.js-input-login');
-        const email = this.root.querySelector('.js-input-email');
         const password = this.root.querySelector('.js-input-password');
         const repeatPassword = this.root.querySelector('.js-input-password-second');
         const button = this.root.querySelector('.js-submit-reg');
+        const logo = this.root.querySelector('.welcome-logo');
+
+        logo.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_ALL_STORES'));
         button.addEventListener('click', () => {
             const loginErrors = this.root.querySelector('.js-login-errors');
             const passwordErrors = this.root.querySelector('.js-password-errors');
@@ -100,12 +92,10 @@ export class RegisterView {
             loginErrors.innerText = '';
             passwordErrors.innerText = '';
             emailErrors.innerText = '';
-            const data = { login, email, password, repeatPassword };
+            const data = { login, password, repeatPassword };
             this.eventBus.call('SUBMIT_REG', data);
         });
         const toLogin = this.root.querySelector('.js-to-login');
-        toLogin.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_LOGIN');
-        });
+        toLogin.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_LOGIN'));
     }
 }

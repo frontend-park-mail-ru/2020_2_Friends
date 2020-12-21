@@ -36,7 +36,8 @@ export class PartnerStoreModel {
                 storeName: body.store_name,
                 storeId: id,
                 products: body.products,
-                picture: body.picture
+                picture: body.picture,
+                categories: body.categories
             });
             break;
         }

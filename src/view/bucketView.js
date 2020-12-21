@@ -1,4 +1,4 @@
-import { renderBucketView } from '../template/bucketViewTemplate.js';
+import bucketTemplate from '../templates/bucketTemplate.hbs';
 export class BucketView {
     /**
      * Creating an BucketView instance.
@@ -20,11 +20,14 @@ export class BucketView {
      * @param {Array} data - Array of cart's items.
      */
     render (data) {
-        const template = renderBucketView();
         if (data.products.length === 0) {
             data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!';
         }
-        this.root.innerHTML = template(data);
+        this.root.innerHTML = bucketTemplate(data);
+        if (!data.addresses) {
+            const addr = document.getElementById('js-address');
+            addr.outerHTML = '<h3>Укажите адрес в личном кабинете!</h3>';
+        }
         this.addEventListeners();
     }
 
@@ -54,13 +57,6 @@ export class BucketView {
         });
 
         const orderButton = this.root.querySelector('.js-make-order');
-        orderButton.addEventListener('click', () => {
-            this.createOrder();
-        });
-
-        const back = this.root.querySelector('.back-to-shopping__button');
-        back.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORES');
-        });
+        orderButton.addEventListener('click', () => this.createOrder());
     }
 }

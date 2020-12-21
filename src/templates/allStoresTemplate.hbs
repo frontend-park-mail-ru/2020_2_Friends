@@ -1,0 +1,17 @@
+<div class="background">
+    <div class="stores-page__header">
+                <div class="stores__header">    
+                    Веганские рестораны</br>рядом с вами!
+                </div>
+                <div class="stores__sub-header">Выберите ресторан и закажите веганские блюда с доставкой на дом</div>
+                    <div class="header__map" id="map"></div>
+    </div>
+    <div class="stores__showcase">
+        {{#each stores}}
+        <div class="store-block" id="{{ this.id }}">
+            <img src="{{ this.picture }}" class="store-block__img">
+            <div class="store-block__name"> {{ this.store_name }} </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

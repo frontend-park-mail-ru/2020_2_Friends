@@ -1,3 +1,5 @@
+let csrfToken = '';
+
 /**
  * Creating and sending http-request using fetch.
  * GET request.
@@ -9,7 +11,10 @@
 export const ajaxGetUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };
 
@@ -24,7 +29,10 @@ export const ajaxGetUsingFetch = (ajaxArgs) => {
 export const ajaxDeleteUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'DELETE',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };
 
@@ -36,12 +44,20 @@ export const ajaxDeleteUsingFetch = (ajaxArgs) => {
  *
  * @return {Promise} - Response object.
  */
-export const ajaxPostUsingFetch = (ajaxArgs) => {
-    return fetch(ajaxArgs.url, {
+export const ajaxPostUsingFetch = async (ajaxArgs, withCsrf = false) => {
+    const response = await fetch(ajaxArgs.url, {
         method: 'POST',
         credentials: 'include',
-        body: JSON.stringify(ajaxArgs.body)
+        body: JSON.stringify(ajaxArgs.body),
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
+    if (withCsrf) {
+        csrfToken = response.headers.get('X-CSRF-Token');
+        localStorage.setItem('csrf', csrfToken);
+    }
+    return response;
 };
 
 /**
@@ -56,7 +72,10 @@ export const ajaxPutUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'PUT',
         credentials: 'include',
-        body: JSON.stringify(ajaxArgs.body)
+        body: JSON.stringify(ajaxArgs.body),
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };
 
@@ -73,6 +92,9 @@ export const ajaxMultipartUsingFetch = (ajaxArgs) => {
     return fetch(ajaxArgs.url, {
         method: 'PUT',
         credentials: 'include',
-        body: ajaxArgs.body
+        body: ajaxArgs.body,
+        headers: {
+            'X-CSRF-Token': localStorage.getItem('csrf')
+        }
     });
 };

@@ -1,5 +1,6 @@
-import { renderProfileView } from '../template/partnerProfileViewTemplate.js';
 import { MapAPI } from '../utils/mapAPI.js';
+
+import partnerProfileTemplate from '../templates/partnerProfileTemplate.hbs';
 
 export class PartnerProfileView {
     /**
@@ -83,9 +84,7 @@ export class PartnerProfileView {
      * Rendering profile page and setting event listeners.
      */
     render (data) {
-        const template = renderProfileView();
-        const profileHTML = template(data);
-        this.root.innerHTML = profileHTML;
+        this.root.innerHTML = partnerProfileTemplate(data);
         const mapId = this.root.querySelector('#addstore__map');
         this.newMap = new MapAPI({
             div: mapId,
@@ -152,14 +151,27 @@ export class PartnerProfileView {
             seenBlock = this.root.querySelector('.js-profile-info');
             break;
         }
-        seenBlock.style.display = 'flex';
+        seenBlock.style.display = 'grid';
         activeButton.classList.add('profile-page__navbar-button_focus');
+    }
+
+    addTagsEventListeners () {
+        const tags = this.root.querySelectorAll('.tags__item');
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                tag.classList.toggle('active-tag');
+                const activeTags = this.root.querySelectorAll('.active-tag');
+                const tagErrors = this.root.querySelector('.tags__error');
+                tagErrors.innerText = activeTags.length > 5 ? 'Вы выбрали более пяти категорий!' : 'Выберите до пяти категорий';
+            });
+        });
     }
 
     /**
      * Setting event listeners for profile page.
      */
     addEventListeners () {
+        this.addTagsEventListeners();
         const storeDataButton = this.root.querySelector('.js-add-store');
         storeDataButton.addEventListener('click', () => {
             const name = this.root.querySelector('.js-addstore-name');
@@ -169,8 +181,30 @@ export class PartnerProfileView {
             const img = new FormData();
             img.append('image', imgFile);
             const coords = this.newMap.getCoords();
-            const data = { name, description, img, coords, radius };
+            const activeTags = this.root.querySelectorAll('.active-tag');
+            if (!activeTags.length) {
+                const tagErrors = this.root.querySelector('.tags__error');
+                tagErrors.innerText = 'Выберите хотя бы одну категорию!';
+                return;
+            }
+            const categories = Array.from(activeTags).map((tag) => {
+                return tag.innerText;
+            });
+            const data = { name, description, img, coords, radius, categories };
             this.eventBus.call('ADD_STORE', data);
+        });
+
+        const newStoreBtn = document.getElementById('addstore-avatar-form');
+        newStoreBtn.addEventListener('change', () => {
+            const newStorePic = document.getElementById('newStorePic');
+            const imgFile = document.getElementById('addstore-avatar-form').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                newStorePic.src = reader.result;
+            };
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
         });
 
         const profileData = this.root.querySelector('.js-userdata-button');

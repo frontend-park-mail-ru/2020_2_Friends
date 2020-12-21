@@ -1,5 +1,7 @@
-import { renderStoreView } from '../template/storeViewTemplate.js';
+import storeTemplate from '../templates/storeTemplate.hbs';
+
 import { MapAPI } from '../utils/mapAPI.js';
+
 export class StoreView {
     /**
      * Creating an StoreView instance.
@@ -42,9 +44,7 @@ export class StoreView {
      * Rendering register page and setting event listeners.
      */
     render (data) {
-        const template = renderStoreView();
-        const storeHTML = template(data);
-        this.root.innerHTML = storeHTML;
+        this.root.innerHTML = storeTemplate(data);
         const mapId = this.root.querySelector('#map');
         const newMap = new MapAPI({
             div: mapId,
@@ -64,9 +64,12 @@ export class StoreView {
             });
         });
 
-        const back = this.root.querySelector('.back-to-shopping__button');
-        back.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORES');
+        const recommended = this.root.querySelectorAll('.js-goto-store');
+        recommended.forEach(element => {
+            element.addEventListener('click', () => {
+                const storeId = element.dataset.id;
+                this.eventBus.call('REDIRECT_TO_STORE_BY_ID', storeId);
+            });
         });
 
         const reviews = this.root.querySelector('.js-goto-reviews');

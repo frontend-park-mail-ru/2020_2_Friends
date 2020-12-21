@@ -1,5 +1,7 @@
-import { renderStoreView } from '../template/partnerStoreViewTemplate.js';
-import { renderItemCreateView, renderNewItemView } from '../template/createStoreItemTemplate.js';
+import partnerStoreTemplate from '../templates/partnerStoreTemplate.hbs';
+import storeItemCreateTemplate from '../templates/storeItemCreateTemplate.hbs';
+import storeNewItemTemplate from '../templates/storeNewItemTemplate.hbs';
+
 export class PartnerStoreView {
     /**
      * Creating an PartnerStoreView instance.
@@ -64,8 +66,7 @@ export class PartnerStoreView {
      * Rendering register page and setting event listeners.
      */
     render (data) {
-        const template = renderStoreView();
-        const storeHTML = template(data);
+        const storeHTML = partnerStoreTemplate(data);
         this.root.innerHTML = storeHTML;
         this.addEventListeners();
     }
@@ -82,7 +83,20 @@ export class PartnerStoreView {
         const editBtn = product.querySelector('.js-edit-item');
         editBtn.addEventListener('click', () => {
             editBtn.parentNode.style.display = 'none';
-            editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'flex';
+            editBtn.parentNode.parentNode.querySelector('.product-editor').style.display = 'grid';
+        });
+
+        const newProdImg = product.querySelector('#product__img-form');
+        newProdImg.addEventListener('change', () => {
+            const img = product.querySelector('.product__img-editor');
+            const imgFile = product.querySelector('#product__img-form').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                img.src = reader.result;
+            };
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
         });
 
         const saveChangesBtn = product.querySelector('.js-save-item-changes');
@@ -111,8 +125,7 @@ export class PartnerStoreView {
     }
 
     showNewProduct (data) {
-        const template = renderNewItemView();
-        const itemHTML = template(data);
+        const itemHTML = storeNewItemTemplate(data);
         const product = this.root.querySelector('.new-product');
         product.classList.remove('new-product');
         product.innerHTML = itemHTML;
@@ -138,7 +151,7 @@ export class PartnerStoreView {
             const avatarElement = product.querySelector('.product__img');
             avatarElement.src = data.avatarUrl;
         }
-        product.querySelector('.product-normal').style.display = 'flex';
+        product.querySelector('.product-normal').style.display = 'grid';
         product.querySelector('.product-editor').style.display = 'none';
     }
 
@@ -155,6 +168,50 @@ export class PartnerStoreView {
     renderLogo (data) {
         const avatarElement = this.root.querySelector('.store__logo');
         avatarElement.src = data.avatarUrl;
+    }
+
+    addNewProductEventListeners (product) {
+        const delBtn = product.querySelector('.js-delete-button');
+        delBtn.addEventListener('click', () => {
+            product.remove();
+        });
+
+        const newProdImg = product.querySelector('#product__img-form');
+        newProdImg.addEventListener('change', () => {
+            const img = product.querySelector('.product__img');
+            const imgFile = product.querySelector('#product__img-form').files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                img.src = reader.result;
+            };
+            if (imgFile) {
+                reader.readAsDataURL(imgFile);
+            }
+        });
+
+        const createBtn = product.querySelector('.js-save-new-item');
+        createBtn.addEventListener('click', (e) => {
+            const name = product.querySelector('.js-name-input');
+            const price = product.querySelector('.js-price-input');
+            const descr = product.querySelector('.js-descr-input');
+            const imgFile = document.getElementById('product__img-form').files[0];
+            let img;
+            if (imgFile) {
+                img = new FormData();
+                img.append('image', imgFile);
+            } else {
+                img = null;
+            }
+            const storeHeader = document.getElementById('storeHeader');
+            const data = {
+                food_name: name.value,
+                food_price: parseInt(price.value),
+                food_descr: descr.value,
+                food_img: img,
+                store_id: storeHeader.dataset.store_id
+            };
+            this.eventBus.call('CREATE_PRODUCT', data);
+        });
     }
 
     addEventListeners () {
@@ -194,29 +251,8 @@ export class PartnerStoreView {
             const product = document.createElement('div');
             product.className = 'product new-product';
             showcase.insertAdjacentElement('afterbegin', product);
-            const template = renderItemCreateView();
-            product.innerHTML = template();
-            const delBtn = product.querySelector('.js-delete-button');
-            delBtn.addEventListener('click', () => {
-                product.remove();
-            });
-            const createBtn = product.querySelector('.js-save-new-item');
-            createBtn.addEventListener('click', (e) => {
-                const name = product.querySelector('.js-name-input');
-                const price = product.querySelector('.js-price-input');
-                const descr = product.querySelector('.js-descr-input');
-                const imgFile = document.getElementById('product__img-form').files[0];
-                let img;
-                if (imgFile) {
-                    img = new FormData();
-                    img.append('image', imgFile);
-                } else {
-                    img = null;
-                }
-                const storeHeader = document.getElementById('storeHeader');
-                const data = { food_name: name.value, food_price: parseInt(price.value), food_descr: descr.value, food_img: img, store_id: storeHeader.dataset.store_id };
-                this.eventBus.call('CREATE_PRODUCT', data);
-            });
+            product.innerHTML = storeItemCreateTemplate();
+            this.addNewProductEventListeners(product);
         });
     }
 };

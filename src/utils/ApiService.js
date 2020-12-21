@@ -2,14 +2,12 @@
 import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch, ajaxDeleteUsingFetch } from '../utils/ajax.js';
 
 // Servers configs
-const schema = 'http://';
-const host = '89.208.197.247';
+const schema = 'https://';
+const host = 'grassnearhome.ru';
 // const host = 'localhost';
-const backendPort = ':9000';
-const staticPort = ':9001';
 
-const backendUrl = schema + host + backendPort;
-const staticUrl = schema + host + staticPort;
+const backendUrl = schema + host;
+const staticUrl = schema + host;
 
 /**
  * Creating http login request via ajax methods.
@@ -23,7 +21,7 @@ export const loginRequest = (input) => {
         url: backendUrl + '/api/v1/sessions',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
@@ -52,7 +50,7 @@ export const registerRequest = (input) => {
         url: backendUrl + '/api/v1/users',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
@@ -145,7 +143,7 @@ export const partnerLoginRequest = (input) => {
         url: backendUrl + '/api/v1/sessions',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
@@ -160,7 +158,7 @@ export const partnerRegisterRequest = (input) => {
         url: backendUrl + '/api/v1/partners',
         body: input
     };
-    return ajaxPostUsingFetch(args);
+    return ajaxPostUsingFetch(args, true);
 };
 
 /**
@@ -427,6 +425,20 @@ export const getAllMessages = (id) => {
 export const getNearestStores = (latitude, longitude) => {
     const args = {
         url: backendUrl + '/api/v1/vendors/nearest' + `?longitude=${longitude}&latitude=${latitude}`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getRecomendationsRequest = (id) => {
+    const args = {
+        url: backendUrl + `/api/v1/vendors/${id}/similar`
+    };
+    return ajaxGetUsingFetch(args);
+};
+
+export const getСategories = () => {
+    const args = {
+        url: backendUrl + '/api/v1/categories'
     };
     return ajaxGetUsingFetch(args);
 };
