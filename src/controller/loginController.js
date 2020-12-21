@@ -18,5 +18,6 @@ export class LoginController {
 
         eventBus.subscribe('REDIRECT_TO_REG', () => this.router.redirect('register'));
         eventBus.subscribe('REDIRECT_TO_PROFILE', () => this.router.redirect('profile'));
+        eventBus.subscribe('REDIRECT_TO_ALL_STORES', () => this.router.redirect('/'));
     }
 }

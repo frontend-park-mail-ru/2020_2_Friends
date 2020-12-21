@@ -23,11 +23,10 @@ export class RegisterModel {
      * @param {object} input - User-passed data.
      */
     async doRegistration (input) {
-        const { login, email, password } = input;
+        const { login, password } = input;
         if (this.validate(input)) {
             const response = await registerRequest({
                 login: login.value,
-                email: email.value,
                 password: password.value
             });
             switch (response.status) {
@@ -60,13 +59,8 @@ export class RegisterModel {
      * @return {boolean} isValid - Result of validating.
      */
     validate (input) {
-        const { login, email, password, repeatPassword } = input;
+        const { login, password, repeatPassword } = input;
         let isValid = true;
-        const emailValidator = userFormValidator(email, regTemplates.email);
-        if (!emailValidator.status) {
-            this.eventBus.call('EMAIL_NOT_VALID');
-            isValid = false;
-        }
         const loginValidator = userFormValidator(login, regTemplates.username);
         if (!loginValidator.status) {
             this.eventBus.call('LOGIN_NOT_VALID');
