@@ -1,6 +1,7 @@
 $dark-green: #305935
 $light-green: #4D8B55
-    
+$gray: #838383
+
 .background
     display: grid
     grid-template-rows: auto auto auto auto
@@ -47,40 +48,41 @@ $light-green: #4D8B55
     cursor: pointer
 
 .proceed-button, .info-button
-    padding: 10px
-    background: #305935
-    border-radius: 5px
-    font-size: 25px
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-items: center
+    background: $dark-green
+    box-sizing: border-box
+    font-size: 18px
+    line-height: 140.62%
     color: #FFFFFF
-    border: none
-    font-family: sans-serif
-    width: min-content
-    height: min-content
-    white-space: nowrap
     cursor: pointer
+    white-space: nowrap
+    border-radius: 50px
+    padding: 5px 20px
+    height: 30px
+    width: min-content
+    border: none
+    &:focus
+        outline: none
 
 .info-button
     font-size: 20px
-
 
     &
         background-color: #FFFFFF
         border: 1px solid #305935
         color: #305935
 
-
     &:focus, .info-button:hover, .support-button:hover
         outline: none
         background: #D5896F
         color: #FFFFFF
 
-.proceed-button:hover
-    background-color: #57963E
-    color: #45A7D1
+.proceed-button:hover, .proceed-button:active
+    background-color: $light-green
 
-.proceed-button:active
-    background-color: #57963E
-    color: #45A7D1
 
 .proceed-button:focus
     outline: none

@@ -30,7 +30,7 @@
     margin-bottom: 40px
     padding: 20px 40px 20px 40px
     background: url("../img/all_stores.webp")
-    background-size: 2000px
+    object-fit: cover
     background-color: rgba(0, 0, 0, 0.1)
     grid-row: 1
     grid-column: 1/-1
@@ -41,7 +41,25 @@
 
 .store__reviews
     grid-column: 2
+    border: none
     grid-row: 2
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-items: center
+    background: $light-green
+    box-sizing: border-box
+    font-size: 18px
+    line-height: 140.62%
+    color: #FFFFFF
+    margin: 0 10px
+    cursor: pointer
+    border-radius: 50px
+    padding: 5px 20px
+    height: 30px
+    width: min-content
+    &:focus
+        outline: none
 
 .store__showcase
     display: grid
@@ -148,9 +166,7 @@
 
 .product
     overflow: hidden
-    border: 1px solid #878A86
-
-    &-editor, .product-normal
+    &-editor, &-normal
         justify-items: center
         align-self: center
         display: grid
@@ -162,16 +178,46 @@
         position: relative
 
     &-customer
+        @extend .product
         justify-items: center
         align-self: center
         display: grid
         grid-template-rows: 4fr 1fr 1fr 1fr
+        grid-template-columns: 1fr 1fr
         padding-bottom: 10px
-        background-color: #ffffff
+        background-color: #f7f7f755
         width: 100%
         height: 100%
         align-items: center
         position: relative
+        &__img
+            grid-column: 1/-1
+            width: 200px
+            height: 200px
+            object-fit: cover
+            overflow: hidden
+            border-radius: 50%
+        &__name
+            grid-row: 2
+            grid-column: 1
+            font-weight: 600
+            font-size: 20px
+            line-height: 27px
+            color: $dark-green
+        &__descr
+            grid-row: 3
+            grid-column: 1/-1
+            color: $gray
+            font-size: 14px
+
+        &__price
+            grid-row: 4
+            grid-column: 1
+            color: $dark-green
+            font-size: 20px
+        &__button
+            grid-column: 2
+            grid-row: 4
 
     &-editor__input
         width: 80%
