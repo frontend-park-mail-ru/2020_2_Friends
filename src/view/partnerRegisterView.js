@@ -83,9 +83,7 @@ export class PartnerRegisterView {
         const button = this.root.querySelector('.js-submit-reg');
         const logo = this.root.querySelector('.welcome-logo');
 
-        logo.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_ALL_STORES');
-        });
+        logo.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_ALL_STORES'));
         button.addEventListener('click', () => {
             const loginErrors = this.root.querySelector('.js-login-errors');
             const passwordErrors = this.root.querySelector('.js-password-errors');
@@ -95,8 +93,6 @@ export class PartnerRegisterView {
             this.eventBus.call('SUBMIT_REG', data);
         });
         const toLogin = this.root.querySelector('.js-to-login');
-        toLogin.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_LOGIN');
-        });
+        toLogin.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_LOGIN'));
     }
 }

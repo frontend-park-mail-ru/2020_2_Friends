@@ -24,7 +24,7 @@ export class BucketView {
             data.empty = 'Что-то тут пустовато... Добавьте блюда в корзину для заказа!';
         }
         this.root.innerHTML = bucketTemplate(data);
-        if (data.addresses === null) {
+        if (!data.addresses) {
             const addr = document.getElementById('js-address');
             addr.outerHTML = '<h3>Укажите адрес в личном кабинете!</h3>';
         }
@@ -57,13 +57,9 @@ export class BucketView {
         });
 
         const orderButton = this.root.querySelector('.js-make-order');
-        orderButton.addEventListener('click', () => {
-            this.createOrder();
-        });
+        orderButton.addEventListener('click', () => this.createOrder());
 
         const back = this.root.querySelector('.back-to-shopping__button');
-        back.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_STORES');
-        });
+        back.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_STORES'));
     }
 }

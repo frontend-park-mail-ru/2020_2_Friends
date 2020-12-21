@@ -76,9 +76,7 @@ export class LoginView {
         const passwordErrors = this.root.querySelector('.js-password-errors');
         const logo = this.root.querySelector('.welcome-logo');
 
-        logo.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_ALL_STORES');
-        });
+        logo.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_ALL_STORES'));
 
         button.addEventListener('click', () => {
             loginErrors.innerText = '';
@@ -87,8 +85,6 @@ export class LoginView {
             this.eventBus.call('SUBMIT_LOGIN', data);
         });
 
-        regButton.addEventListener('click', () => {
-            this.eventBus.call('REDIRECT_TO_REG');
-        });
+        regButton.addEventListener('click', () => this.eventBus.call('REDIRECT_TO_REG'));
     }
 }
