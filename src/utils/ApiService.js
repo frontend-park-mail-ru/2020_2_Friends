@@ -4,7 +4,6 @@ import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipart
 // Servers configs
 const schema = 'https://';
 const host = 'grassnearhome.ru';
-// const host = 'localhost';
 
 const backendUrl = schema + host;
 const staticUrl = schema + host;
@@ -114,7 +113,7 @@ export const uploadAvatarRequest = (formAvatar) => {
  */
 export const pullAvatarRequest = (avatarName) => {
     const args = {
-        url: staticUrl + '/data/img/' + avatarName
+        url: staticUrl + '/data/' + avatarName
     };
     return ajaxGetUsingFetch(args);
 };
@@ -276,7 +275,7 @@ export const uploadPartnerAvatarRequest = (formAvatar) => {
  */
 export const pullPartnerAvatarRequest = (avatarName) => {
     const args = {
-        url: staticUrl + `/api/v1/data/img/${avatarName}`
+        url: staticUrl + `/api/v1/data/${avatarName}`
     };
     return ajaxGetUsingFetch(args);
 };
