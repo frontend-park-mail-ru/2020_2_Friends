@@ -8,9 +8,8 @@
 export const makeAvatarUrl = (avatarName) => {
     const schema = 'https://';
     const host = 'grassnearhome.ru';
-    // const host = 'localhost';
     const staticUrl = schema + host;
 
-    const avatarUrl = staticUrl + '/data/img/' + avatarName;
+    const avatarUrl = staticUrl + '/data/' + avatarName;
     return avatarUrl;
 };
