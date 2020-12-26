@@ -1,12 +1,9 @@
 
 import { ajaxGetUsingFetch, ajaxPostUsingFetch, ajaxPutUsingFetch, ajaxMultipartUsingFetch, ajaxDeleteUsingFetch } from '../utils/ajax.js';
+import { url } from '../utils/config.js';
 
-// Servers configs
-const schema = 'https://';
-const host = 'grassnearhome.ru';
-
-const backendUrl = schema + host;
-const staticUrl = schema + host;
+const backendUrl = url;
+const staticUrl = url;
 
 /**
  * Creating http login request via ajax methods.

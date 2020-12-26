@@ -1,3 +1,5 @@
+import { url } from '../utils/config.js';
+
 /**
  * Creating a full url to staticserver's pictures.
  *
@@ -6,10 +8,7 @@
  * @return {string} avatarUrl - Full url to picture on static server.
  */
 export const makeAvatarUrl = (avatarName) => {
-    const schema = 'https://';
-    const host = 'grassnearhome.ru';
-    const staticUrl = schema + host;
-
+    const staticUrl = url;
     const avatarUrl = staticUrl + '/data/' + avatarName;
     return avatarUrl;
 };
