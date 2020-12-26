@@ -60,6 +60,14 @@ export class ChatView {
                 this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
             }
         });
+        const sendButton = this.support.querySelector('.js-message-input');
+        sendButton.addEventListener('keyup', (e) => {
+            const text = this.support.querySelector('.js-message-input').value;
+            if (e.code === 'Enter') {
+                this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
+                this.support.querySelector('.js-message-input').value = '';
+            }
+        });
     }
 
     showChatMessages (data) {
@@ -152,6 +160,15 @@ export class ChatView {
                 const id = chat.dataset.id;
                 this.eventBus.call('GET_CHAT_MESSAGES', id);
             });
+        });
+
+        const chatBtn = this.root.querySelector('.js-message-input');
+        chatBtn.addEventListener('keyup', (e) => {
+            const text = this.root.querySelector('.js-message-input').value;
+            if (e.code === 'Enter' && text) {
+                this.eventBus.call('SEND_MESSAGE', { order_id: parseInt(newMessage.dataset.id), text: text });
+                this.root.querySelector('.js-message-input').value = '';
+            }
         });
     }
 

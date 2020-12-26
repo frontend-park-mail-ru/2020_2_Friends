@@ -16,7 +16,9 @@ import { PartnerProfileController } from './controller/partnerProfileController.
 import { PartnerStoreController } from './controller/partnerStoreController.js';
 import { ChatController } from './controller/chatController.js';
 import { NotificationsController } from './controller/notificationsController.js';
+
 import { Router } from './utils/router.js';
+import { routes, mapKey } from './utils/config.js';
 
 const serviceLoad = () => {
     const root = document.getElementById('root');
@@ -45,60 +47,60 @@ const serviceLoad = () => {
         return localStorage.getItem('isAdmin');
     }
 
-    router.setRoute('^/login/?$', loginController.view.render);
-    router.setRoute('^/register/?$', regController.view.render);
-    router.setRoute('^/profile/?$', () => {
+    router.setRoute(routes.login, loginController.view.render);
+    router.setRoute(routes.register, regController.view.render);
+    router.setRoute(routes.profile, () => {
         headerController.model.getHeaderData(isAdmin());
         profileController.model.getProfileData();
     });
-    router.setRoute('^/profile/orders?$', () => {
+    router.setRoute(routes.orders, () => {
         headerController.model.getHeaderData(isAdmin());
         profileController.model.getProfileData('orders');
     });
-    router.setRoute('^/store/?$', () => {
+    router.setRoute(routes.store, () => {
         headerController.model.getHeaderData(isAdmin());
         storeController.model.getData();
     });
-    router.setRoute('^/?$', () => {
+    router.setRoute(routes.app, () => {
         headerController.model.getHeaderData(isAdmin());
         allStoresController.model.getStoresData();
     });
-    router.setRoute('^/stores/(?<id>\\d+)/?$', (id) => {
+    router.setRoute(routes.stores, (id) => {
         headerController.model.getHeaderData(isAdmin());
         storeController.storePageHandler(id);
     });
-    router.setRoute('^/partners_stores/(?<id>\\d+)$', (id) => {
+    router.setRoute(routes.partnersStores, (id) => {
         headerController.model.getHeaderData(isAdmin());
         partnerStoreController.storePageHandler(id);
     });
-    router.setRoute('^/partners_stores/(?<id>\\d+)/orders/?$', (id) => {
+    router.setRoute(routes.partnersOrders, (id) => {
         headerController.model.getHeaderData(isAdmin());
         orderController.orderPageHandler(id);
     });
-    router.setRoute('^/partners_stores/(?<id>\\d+)/chats/?$', (id) => {
+    router.setRoute(routes.partnersChats, (id) => {
         headerController.model.getHeaderData(isAdmin());
         chatController.chatPageHandler(id);
     });
-    router.setRoute('^/partners_stores/(?<id>\\d+)/reviews/?$', (id) => {
+    router.setRoute(routes.partnersReviews, (id) => {
         headerController.model.getHeaderData(isAdmin());
         storeReviewsController.reviewsPageHandler(id);
     });
-    router.setRoute('^/stores/(?<id>\\d+)/reviews/?$', (id) => {
+    router.setRoute(routes.storesReviews, (id) => {
         headerController.model.getHeaderData(isAdmin());
         storeReviewsController.reviewsPageHandler(id);
     });
-    router.setRoute('^/bucket/?$', () => {
+    router.setRoute(routes.bucket, () => {
         headerController.model.getHeaderData(isAdmin());
         bucketController.model.getBucketData();
     });
     // Setting routes for partners to navigate inside an app
-    router.setRoute('^/partners_login/?$', partnerLoginController.view.render);
-    router.setRoute('^/partners_register/?$', partnerRegController.view.render);
-    router.setRoute('^/partners_profile/?$', () => {
+    router.setRoute(routes.partnersLogin, partnerLoginController.view.render);
+    router.setRoute(routes.partnersRegister, partnerRegController.view.render);
+    router.setRoute(routes.partnersProfile, () => {
         headerController.model.getHeaderData(isAdmin());
         partnerProfileController.model.getProfileData();
     });
-    router.setRoute('^/partners_store/?$', () => {
+    router.setRoute(routes.partnersStore, () => {
         headerController.model.getHeaderData(isAdmin());
         partnerStoreController.model.getData();
     });
@@ -117,4 +119,4 @@ const serviceLoad = () => {
     };
 };
 
-ymaps.load('//api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ab35b09-4d49-4cde-be3d-b9e4d1e1cead').then(serviceLoad); // eslint-disable-line
+ymaps.load(`//api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=${mapKey}`).then(serviceLoad); // eslint-disable-line
