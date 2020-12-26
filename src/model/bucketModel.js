@@ -17,7 +17,7 @@ export class BucketModel {
 
     async getBucketData () {
         let products = JSON.parse(localStorage.getItem('cart'));
-        const total = products.reduce((a, b) => a + b.food_price, 0);
+        const total = products.reduce((a, b) => a + b.food_price * b.count, 0);
         this.eventBus.call('SHOW_CART', { total: total, products: products, addresses: {} });
     }
 
