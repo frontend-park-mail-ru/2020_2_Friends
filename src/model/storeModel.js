@@ -60,14 +60,22 @@ export class StoreModel {
         }
     }
 
-    async addToCart (productId) {
-        const response = await addProductToBucket(productId);
-
-        switch (response.status) {
-        case 200:
-            break;
-        default:
-            console.log(`Uncaught backend http-status: ${response.status}`);
+    addToCart (product) {
+        product.count = 1;
+        let productsJSON = localStorage.getItem('cart');
+        if (productsJSON === null) {
+            let products = [];
+            products.push(product);
+            localStorage.setItem('cart', JSON.stringify(products));
+            return
         }
+
+        let products = JSON.parse(productsJSON);
+        if(products.some(p => p.id === product.id)){
+            return
+        }
+
+        products.push(product);
+        localStorage.setItem('cart', JSON.stringify(products));
     };
 }

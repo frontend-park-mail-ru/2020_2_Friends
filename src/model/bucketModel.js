@@ -16,22 +16,9 @@ export class BucketModel {
     }
 
     async getBucketData () {
-        const response = await getBucketRequest();
-        const infoResponse = await getProfileInfoRequest();
-        switch (response.status) {
-        case 200: {
-            const body = await response.json();
-            const info = await infoResponse.json();
-            body.forEach((product) => {
-                product.picture = makeAvatarUrl(product.picture);
-            });
-            const total = body.reduce((a, b) => a + b.food_price, 0);
-            this.eventBus.call('SHOW_CART', { total: total, products: body, addresses: info.addresses });
-            break;
-        }
-        default:
-            console.log(`Uncaught backend http-status: ${response.status}`);
-        }
+        let products = JSON.parse(localStorage.getItem('cart'));
+        const total = products.reduce((a, b) => a + b.food_price * b.count, 0);
+        this.eventBus.call('SHOW_CART', { total: total, products: products, addresses: {} });
     }
 
     async createOrder (data) {
@@ -47,12 +34,8 @@ export class BucketModel {
     }
 
     async deleteFromBucket (productId) {
-        const response = await deleteProductFromBucket(productId);
-        switch (response.status) {
-        case 200:
-            break;
-        default:
-            console.log(`Uncaught backend http-status: ${response.status}`);
-        }
+        let products = JSON.parse(localStorage.getItem('cart'));
+        products = products.filter((product) => { return product.id != productId; });
+        localStorage.setItem('cart', JSON.stringify(products));
     }
 }
