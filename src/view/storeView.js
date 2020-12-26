@@ -59,7 +59,13 @@ export class StoreView {
         const buttons = this.root.querySelectorAll('.js-add-to-cart');
         buttons.forEach(element => {
             element.addEventListener('click', () => {
-                this.eventBus.call('ADD_TO_CART', element.dataset.productId);
+                const product = {
+                    id: element.dataset.productId,
+                    food_name: element.dataset.productName,
+                    food_price: element.dataset.productPrice,
+                    picture: element.dataset.productPicture,
+                }
+                this.eventBus.call('ADD_TO_CART', product);
                 element.innerHTML = 'Добавлено!';
             });
         });

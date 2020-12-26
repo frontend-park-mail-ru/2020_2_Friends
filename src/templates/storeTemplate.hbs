@@ -24,7 +24,7 @@
             </div>
             <div class="product__descr">Описание вкусного обеда, которым можно насытиться и получить витамины и
                 минералы.</div>
-            <button class="proceed-button js-add-to-cart" data-product-id="{{ this.id }}">В корзину</button>
+            <button class="proceed-button js-add-to-cart" data-product-id="{{ this.id }}" data-product-name="{{ this.food_name }}" data-product-price="{{ this.food_price }}" data-product-picture="{{ this.picture }}">В корзину</button>
         </div>
         {{/each}}
     </div>
