@@ -1,6 +1,10 @@
 $dark-green: #305935
 $light-green: #4D8B55
 $gray: #838383
+$light-gray: #E0E1E5
+$red: #A74343
+$light-blue: #F5F8F6
+$input-gray: #F6F6F6
 
 .background
     display: grid
@@ -12,19 +16,17 @@ $gray: #838383
     min-height: 100vh
 
 .common-input
-    height: 50px
-    margin: 15px
     background: #FFFFFF
-    border: 1px solid #878A86
+    border: 1px solid $gray
     box-sizing: border-box
     padding: 10px 5px 10px 20px
-    border-radius: 5px
+    border-radius: 4px
     /* Text */
     font-style: normal
     font-weight: normal
     font-size: 25px
     line-height: 140.62%
-    color: #878A86
+    color: $gray
     outline: none
     overflow: hidden
     text-overflow: ellipsis
@@ -58,9 +60,8 @@ $gray: #838383
     color: #FFFFFF
     cursor: pointer
     white-space: nowrap
-    border-radius: 50px
-    padding: 5px 20px
-    height: 30px
+    border-radius: 30px
+    padding: 6px 15px
     width: min-content
     border: none
     &:focus
@@ -91,10 +92,10 @@ $gray: #838383
     border-radius: 50%
 
 .text-error
-    font-size: 20px
-    color: #878A86
-    max-width: 350px
-    margin: 15px
+    font-size: 12px
+    color: $red
+    max-width: 90%
+    margin: 5px
 
 @media screen and (max-width: 550px)
     .proceed-button

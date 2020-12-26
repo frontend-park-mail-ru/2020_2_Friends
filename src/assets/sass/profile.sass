@@ -1,50 +1,70 @@
-.profile-page__profile-cart
+.profile-page
     background: #FFFFFF
-    border: 1px solid #C4C4C4
     box-sizing: border-box
-    border-radius: 20px
     align-self: start
     display: grid
     grid-template-columns: 15% 70% 15%
     grid-template-rows: auto auto
     padding-bottom: 20px
-    margin-top: 20px
-    grid-column: 2
-    grid-row: 2
-
-.profile-page__content
-    grid-column: 1/-1
-    grid-row: 2
-    display: grid
-    padding: 10px
-    min-height: 500px
-    align-items: center
-    grid-template-columns: 10% 30% 50% 10%
-    grid-template-rows: auto auto
-
-@media screen and (max-width: 1500px)
-    .profile-page__content
-        grid-template-rows: auto auto auto
-        grid-template-columns: 1fr
-
-.profile-page__navbar
-    width: 100%
-    height: 60px
-    padding: 10px 0px 10px 0px
-    border-bottom: 1px solid #C4C4C4
-    justify-self: start
-    display: flex
-    flex-wrap: wrap
-    flex-direction: row
-    align-items: center
-    grid-column: 1/-1
+    grid-column: 1/4
     grid-row: 1
 
-@media screen and (max-width: 1500px)
-    .profile-page__left-column
-        grid-row: 1
-        grid-column: 2
+    &__title
+        margin-left: 160px
+        font-size: 40px
+        line-height: 54px
+        color: #000000
 
+    &__content
+        grid-column: 1/-1
+        grid-row: 2
+        display: grid
+        padding-top: 40px
+        min-height: 500px
+        align-items: start
+        grid-template-columns: 10% 20% 60% 10%
+        grid-template-rows: auto auto
+
+    &__navbar
+        width: 100%
+        row-gap: 20px
+        padding: 30px 0px
+        background: $light-blue
+        justify-self: start
+        display: flex
+        flex-wrap: wrap
+        flex-direction: column
+        grid-column: 1/-1
+        grid-row: 1
+
+    &__buttons
+        margin-left: 160px
+        display: flex
+        flex-direction: row
+    &__input
+        background: $input-gray
+        border: 1px solid #E0E1E5
+        box-sizing: border-box
+        padding: 10px 5px 10px 20px
+        border-radius: 4px
+        /* Text */
+        color: #000000
+        font-style: normal
+        font-weight: normal
+        font-size: 16px
+        line-height: 19px
+        outline: none
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        max-width: 700px
+        &-label
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 19px
+            margin: 10px 0px
+            
 .profile-page__right-column
     align-items: center
     display: grid
@@ -52,10 +72,30 @@
     grid-column: 3
     grid-row: 1/-1
 
-@media screen and (max-width: 1500px)
-    .profile-page__right-column
-        grid-row: 3
+.img-container
+    justify-self: center
+    grid-column: 2
+    position: relative
+    width: min-content
+    height: min-content
+    margin-top: 30px
+
+
+@media screen and (max-width: 1000px)
+    .profile-page__content
+        grid-template-rows: auto auto auto
+        grid-template-columns: 1fr
+
+    .img-container
+        grid-row: 1
         grid-column: 1
+        justify-self: center
+
+    .profile-page__right-column
+        grid-row: 2
+        grid-column: 1
+        width: 80%
+        justify-self: center
 
 .add-address-block
     display: flex
@@ -65,8 +105,8 @@
 
 .img-upload-button
     border-radius: 50%
-    width: 60px
-    height: 60px
+    width: 50px
+    height: 50px
     background-image: url("../img/avatar-logo.png")
     background-size: cover
     position: absolute
@@ -74,75 +114,43 @@
     border: none
     bottom: 10%
     right: 0%
-
-.img-container
-    align-self: center
-    justify-self: center
-    grid-column: 2
-    position: relative
-    width: min-content
-    height: min-content
-
-@media screen and (max-width: 1500px)
-    .img-container
-        grid-row: 1
-        position: relative
-        grid-column: 1
-        justify-self: center
-
-.img-upload-button:focus
-    border: 3px solid #C4C4C4
-
-.img-upload-button:focus
-    outline: none
+    &:focus
+        outline: none
 
 .profile-page__img
-    width: 350px
-    height: 350px
+    width: 200px
+    height: 200px
 
 @media screen and (max-width: 500px)
-    .profile-page__img
-        width: 200px
-        height: 200px
-
-.profile-page__bonus-points
-    font-style: normal
-    font-weight: normal
-    white-space: nowrap
-    min-width: 270px
-    font-size: 25px
-    line-height: 140.62%
-    color: #878A86
-    margin: 15px
+    .profile-page__title
+        margin-left: 10px
+    .profile-page__buttons
+        margin-left: 10px
 
 .profile-page__navbar-button
     cursor: pointer
+    grid-row: 2
+    width: fit-content
     border: none
     white-space: nowrap
-    margin: 0px 10px 0px 10px
-    border-radius: 20px
-    background: #FFFFFF
+    margin: 5px 10px 5px 0px
+    padding: 6px 20px
+    border-radius: 5px
+    border: 1px solid $dark-green
+    background: $light-blue
     font-style: normal
     font-weight: normal
-    font-size: 25px
-    line-height: 140.62%
-    color: #444BCF
+    font-size: 14px
+    line-height: 18px
+    color: $dark-green
 
-@media screen and (max-width: 700px)
-    .profile-page__navbar-button
-        font-size: 20px
-
-.profile-page__navbar-button:hover
-    outline: none
-    background: #b7dd88
-
-.profile-page__navbar-button:focus
-    outline: none
+    &:hover, &:focus
+        outline: none
 
 .profile-page__navbar-button_focus
     outline: none
-    background: #dd9d88
-    color: #FFFFFF
+    background: $dark-green
+    color: $light-blue
 
 .address-item
     display: flex
@@ -150,13 +158,13 @@
     background-color: #FFFFFF
     margin: 15px
     align-items: center
+    max-width: 700px
     justify-content: space-between
-
 
     &-text
         font-style: normal
         font-weight: normal
-        font-size: 25px
+        font-size: 20px
         line-height: 140.62%
         word-break: break-all
         color: #878A86
@@ -164,9 +172,14 @@
 
 @media screen and (max-width: 500px)
     .address-item-text
-        font-size: 20px
         word-break: break-all
         white-space: normal
+
+    .profile-page__navbar-button
+        padding: 6px 10px
+        margin: 5px
+    .profile-page__title
+        font-size: 30px
 
 @media screen and (max-width: 500px)
     .common-input
@@ -178,11 +191,9 @@
     background-image: url("../img/cross.png")
     border-radius: 50%
 
-
     &:hover
         cursor: pointer
         background-color: #F6BEAA
-
 
     &:focus
         background-color: #F6BEAA
@@ -247,7 +258,6 @@
     display: flex
     flex-direction: row
     justify-content: space-between
-
 
     &-name, .profile-page__order-cart__total
         font-style: normal
