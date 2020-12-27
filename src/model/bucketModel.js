@@ -13,12 +13,16 @@ export class BucketModel {
         this.createOrder = this.createOrder.bind(this);
         this.eventBus.subscribe('CREATE_ORDER', this.createOrder);
         this.eventBus.subscribe('DELETE_FROM_BUCKET', this.deleteFromBucket);
+        this.eventBus.subscribe('CHANGE_COUNT', this.changeCount);
     }
 
     async getBucketData () {
         let products = JSON.parse(localStorage.getItem('cart'));
+        if (products === null) {
+            products = []
+        }
         const total = products.reduce((a, b) => a + b.food_price * b.count, 0);
-        this.eventBus.call('SHOW_CART', { total: total, products: products, addresses: {} });
+        this.eventBus.call('SHOW_CART', { total: total, products: products, addresses: null });
     }
 
     async createOrder (data) {
@@ -33,9 +37,16 @@ export class BucketModel {
         }
     }
 
-    async deleteFromBucket (productId) {
+    deleteFromBucket (productId) {
         let products = JSON.parse(localStorage.getItem('cart'));
         products = products.filter((product) => { return product.id != productId; });
+        localStorage.setItem('cart', JSON.stringify(products));
+    }
+
+    changeCount (obj) {
+        let products = JSON.parse(localStorage.getItem('cart'));
+        const idx = products.findIndex((product => product.id == obj.productId));
+        products[idx].count = obj.value;
         localStorage.setItem('cart', JSON.stringify(products));
     }
 }

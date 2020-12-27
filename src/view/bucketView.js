@@ -56,6 +56,15 @@ export class BucketView {
             });
         });
 
+        const changeCountBtn = this.root.querySelectorAll('.js-item-quantity');
+        changeCountBtn.forEach(btn => {
+            btn.addEventListener('input', (evt) => {
+                const item = btn.closest('.bucket-item');
+                const productId = item.dataset.id
+                this.eventBus.call('CHANGE_COUNT', {productId: productId, value: evt.data})
+            });
+        });
+
         const orderButton = this.root.querySelector('.js-make-order');
         orderButton.addEventListener('click', () => this.createOrder());
     }
