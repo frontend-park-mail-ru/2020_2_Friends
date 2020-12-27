@@ -1,9 +1,10 @@
 <div class="background">
     <div class="profile-page">
         <div class="profile-page__navbar">
+            <div class="profile-page__title">Ваш профиль</div>
             <div class="profile-page__buttons">
                 <button class="profile-page__navbar-button js-userdata-button link">О Вас</button>
-                <button class="profile-page__navbar-button js-mystores-button link">Мои магазины</button>
+                <button class="profile-page__navbar-button js-mystores-button link">Магазины</button>
                 <button class="profile-page__navbar-button js-addstore-button link">Добавить магазин</button>
             </div>
         </div>
@@ -16,9 +17,11 @@
             </div>
             <div class="profile-page__right-column">
                 <div class="js-login-errors text-error"></div>
-                <input type="text" class="common-input js-login-input" placeholder="Имя:" value="{{name}}"></input>
+                <div class="profile-page__input-label">Имя</div>
+                <input type="text" class="profile-page__input js-login-input" placeholder="{{name}}" value="{{name}}"></input>
                 <div class="js-number-errors text-error"></div>
-                <input type="text" class="common-input js-number-input" placeholder="Номер телефона"
+                <div class="profile-page__input-label">Номер телефона</div>
+                <input type="text" class="profile-page__input js-number-input" placeholder="{{phone}}"
                     value="{{phone}}"></input>
                 <div class="js-email-errors text-error"></div>
                 <button class="proceed-button js-save-info">Сохранить</button>
@@ -43,10 +46,10 @@
                 </div>
             </div>
             <div class="profile-page__right-column">
-                <input type="text" class="new-store__input js-addstore-name" placeholder="Имя магазина:"></input>
-                <input type="text" class="new-store__input js-addstore-descr" placeholder="Описание магазина:"></input>
+                <input type="text" class="margin-button profile-page__input js-addstore-name" placeholder="Имя магазина:"></input>
+                <input type="text" class="margin-button profile-page__input js-addstore-descr" placeholder="Описание магазина:"></input>
                 <div class="addstore__map" js-map id="addstore__map"></div>
-                <input type="text" class="new-store__input js-addstore-radius"
+                <input type="text" class="margin-button profile-page__input js-addstore-radius"
                     placeholder="Радиус обслуживания в метрах:"></input>
                 <button class="proceed-button js-add-store">Создать магазин!</button>
             </div>
@@ -58,11 +61,10 @@
                 <div class="my-store">
                     <img class="my-store__img" src="{{this.picture}}"></img>
                     <p class="my-store__name">{{this.store_name}}</p>
-                    <p class="my-store__descr">Описание кафе, которое даст понять, что там можно
-                        покушать{{this.descr}}
+                    <p class="my-store__descr">{{this.description}}
                     </p>
                     <button data-store_id="{{ this.id }}"
-                        class="proceed-button js-goto-store my-store__button">Перейти</button>
+                        class="proceed-button js-goto-store my-store__button">Перейти в магазин</button>
                 </div>
                 {{/each}}
             </div>

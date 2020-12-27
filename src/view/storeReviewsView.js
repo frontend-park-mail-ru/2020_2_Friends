@@ -20,6 +20,11 @@ export class StoreReviewsView {
             if (!review.username) {
                 review.username = 'Аноним';
             }
+            const stars = [];
+            for (let i = 0; i < review.rating; i++) {
+                stars.push('star');
+            }
+            review.stars = stars;
         });
         this.root.innerHTML = storeReviewsTemplate(data);
         this.addEventListeners();

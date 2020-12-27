@@ -72,6 +72,7 @@ export class PartnerProfileModel {
                 break;
             }
             const stores = await infoResponse[0].json();
+            console.log(stores);
             stores.forEach((store) => {
                 store.picture = makeAvatarUrl(store.picture);
             });

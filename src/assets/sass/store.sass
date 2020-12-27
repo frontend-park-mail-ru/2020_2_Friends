@@ -65,8 +65,8 @@
 
 .store__showcase
     display: grid
-    grid-template-rows: repeat(auto-fit, 700px)
-    grid-template-columns: repeat(auto-fit, 400px)
+    grid-template-rows: repeat(auto-fit, 450px)
+    grid-template-columns: repeat(auto-fit, 300px)
     gap: 40px 30px
     grid-column: 1/-1
     justify-content: center
@@ -149,6 +149,7 @@
     width: 200px
     height: 200px
     border-radius: 50%
+    object-fit: cover
     margin: 10px
 
 @media screen and (max-width: 1200px)
@@ -172,8 +173,8 @@
         justify-items: center
         align-self: center
         display: grid
-        height: 700px
-        grid-template-rows: 50% 5% 10% 10% 5% 10% 10%
+        height: 450px
+        grid-template-rows: repeat(7, auto)
         padding-bottom: 10px
         background-color: #ffffff
         align-items: center
@@ -208,7 +209,7 @@
             line-height: 27px
             color: $dark-green
         &__descr
-            margin-left: 20px
+            margin: 0px 20px
             grid-row: 3
             grid-column: 1/-1
             color: $gray
@@ -233,11 +234,11 @@
 
     &__info
         display: flex
-        width: 100%
+        width: 90%
         flex-direction: row
         padding: 10px
         justify-content: space-evenly
-        font-size: 23px
+        font-size: 18px
         grid-row: 2/4
 
 .edit-button
@@ -246,13 +247,16 @@
 .product__name, .product__price, .product__cal
     display: block
     margin: 10px
+.product__price
+    white-space: nowrap
 
 .product__img
     width: 100%
-    height: 100%
+    height: 200px
+    align-self: start
     object-fit: cover
     overflow: hidden
-    padding-bottom: 20px
+    padding-bottom: 10px
 
 .store_logo
     box-shadow: 6px 6px 2px 1px #8de2cd9a
@@ -288,15 +292,13 @@
     height: 40px
     background-image: url("../img/cross.png")
     background-size: cover
+    background-color: transparent
+    cursor: pointer
     border: none
-    background-color: #FFFFFF
     position: absolute
     top: 10px
     right: 10px
     margin: 10px
-
-    &:hover
-        background-color: #F6BEAA
 
     &:focus
         background-color: #F6BEAA
@@ -312,8 +314,6 @@
 
 @media screen and (max-width: 1000px)
     .store__showcase
-        grid-template-rows: repeat(auto-fill, 450px)
-        grid-template-columns: repeat(auto-fill, 300px)
         gap: 20px 10px
 
         &-user
@@ -322,21 +322,15 @@
     .product-editor, .product-normal
         justify-items: center
         align-self: center
-        height: 450px
-        grid-template-rows: 40% 5% 10% 10% 5% 10% 20%
         padding-bottom: 10px
         background-color: #ffffff
         align-items: center
         position: relative
 
-    .product-editor__input
-        height: 30px
-        font-size: 20px
-
 @media screen and (max-width: 500px)
     .store__showcase
         grid-template-columns: 90%
-        grid-template-rows: repeat(auto-fit, auto)
+        grid-template-rows: repeat(auto-fit, 450px)
 @media screen and (max-width: 370px)
     .store__showcase-user
         grid-template-columns: 80%

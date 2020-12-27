@@ -118,9 +118,9 @@
     row-gap: 20px
     padding: 10px
     &__error
-        white-space: nowrap
-        font-size: 25px
-        grip-row: 1
+        max-width: 100%
+        font-size: 20px
+        grid-row: 1
     &__list
         display: flex
         flex-direction: row
@@ -129,11 +129,11 @@
         width: 100%
 
     &__item
-        padding: 10px
+        padding: 5px 10px
         margin: 5px
         background: #305935
         border-radius: 5px
-        font-size: 20px
+        font-size: 18px
         color: #FFFFFF
         border: none
         width: min-content
@@ -142,7 +142,7 @@
         cursor: pointer
 
 .active-tag
-    background: #6cc577
+    background: $light-green
 
 @media screen and (max-width: 1500px)
     .tags
@@ -164,12 +164,13 @@
         padding: 5px 10px
         margin: 5px
         border-radius: 20px
-        font-size: 18px
+        font-size: 15px
         color: #FFFFFF
         border: 1px solid #FFFFFF
         width: min-content
         height: min-content
         white-space: nowrap
+        cursor: default
         
 @media screen and (max-width: 500px)
     .store-tags
