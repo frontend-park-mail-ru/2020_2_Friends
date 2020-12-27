@@ -54,7 +54,10 @@ export const ajaxPostUsingFetch = async (ajaxArgs, withCsrf = false) => {
         }
     });
     if (withCsrf) {
-        csrfToken = response.headers.get('X-CSRF-Token');
+        console.log('all cookies: ', document.cookie);
+        csrfToken = document.cookie.split(';').filter((item) => item.includes('X-CSRF-Cookie'))[0].split('=')[1];
+        console.log('token ', csrfToken);
+        // csrfToken = response.headers.get('X-CSRF-Token');
         localStorage.setItem('csrf', csrfToken);
     }
     return response;
