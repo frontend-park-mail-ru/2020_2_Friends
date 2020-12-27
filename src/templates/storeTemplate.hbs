@@ -10,21 +10,17 @@
             <div class="store-tags__item">{{this}}</div>
             {{/each}}
         </div>
-        <button class="info-button js-goto-reviews store__reviews">Отзывы</button>
+        <button class="js-goto-reviews store__reviews">Отзывы</button>
         <div class="store-header__map" id="map"></div>
     </div>
     <div class="store__showcase-user">
         {{#each products}}
-        <div class="product-customer product" id="{{ this.id }}">
-            <img src="{{ this.picture }}" class="product__img" alt="assets/burger1.png">
-            <div class="product__info">
-                <div class="product__name"> {{ this.food_name }} </div>
-                <div class="product__price">{{ this.food_calories }}</div>
-                <div class="product__price">{{ this.food_price }}</div>
-            </div>
-            <div class="product__descr">Описание вкусного обеда, которым можно насытиться и получить витамины и
-                минералы.</div>
-            <button class="proceed-button js-add-to-cart" data-product-id="{{ this.id }}">В корзину</button>
+        <div class="product-customer" id="{{ this.id }}">
+            <img src="{{ this.picture }}" class="product-customer__img" alt="assets/burger1.png">
+                <div class="product-customer__name"> {{ this.food_name }} </div>
+                <div class="product-customer__price">{{ this.food_price }} p</div>
+            <div class="product-customer__descr">Описание вкусного об витамины и минералы.</div>
+            <button class="proceed-button js-add-to-cart product-customer__button" data-product-id="{{ this.id }}">В корзину</button>
         </div>
         {{/each}}
     </div>
