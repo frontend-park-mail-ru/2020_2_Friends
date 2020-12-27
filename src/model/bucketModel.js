@@ -22,7 +22,7 @@ export class BucketModel {
             products = []
         }
         const total = products.reduce((a, b) => a + b.food_price * b.count, 0);
-        this.eventBus.call('SHOW_CART', { total: total, products: products, addresses: null });
+        this.eventBus.call('SHOW_CART', { total, products, addresses: null });
     }
 
     async createOrder (data) {
@@ -39,8 +39,7 @@ export class BucketModel {
 
     deleteFromBucket (productId) {
         let products = JSON.parse(localStorage.getItem('cart'));
-        products = products.filter((product) => { return product.id != productId; });
-        localStorage.setItem('cart', JSON.stringify(products));
+        localStorage.setItem('cart', JSON.stringify(products.filter((product) => { product.id != productId; })));
     }
 
     changeCount (obj) {

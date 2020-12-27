@@ -62,20 +62,17 @@ export class StoreModel {
 
     addToCart (product) {
         product.count = 1;
-        let productsJSON = localStorage.getItem('cart');
+        const productsJSON = localStorage.getItem('cart');
         if (productsJSON === null) {
-            let products = [];
-            products.push(product);
-            localStorage.setItem('cart', JSON.stringify(products));
+            localStorage.setItem('cart', JSON.stringify([product]));
             return
         }
 
-        let products = JSON.parse(productsJSON);
-        if(products.some(p => p.id === product.id)){
+        const products = JSON.parse(productsJSON);
+        if (products.some(p => p.id === product.id)){
             return
         }
 
-        products.push(product);
-        localStorage.setItem('cart', JSON.stringify(products));
+        localStorage.setItem('cart', JSON.stringify([...products, product]));
     };
 }
