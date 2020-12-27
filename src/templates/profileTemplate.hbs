@@ -18,7 +18,7 @@
             <div class="profile-page__right-column">
                 <div class="js-login-errors text-error"></div>
                 <div class="profile-page__input-label">Имя</div>
-                <input type="text" class="profile-page__input js-login-input" placeholder="{{name}}"
+                <input type="text" autocomplete="on" class="profile-page__input js-login-input" placeholder="{{name}}"
                     value="{{name}}"></input>
                 <div class="js-number-errors text-error"></div>
                 <div class="profile-page__input-label">Номер телефона</div>
@@ -44,9 +44,15 @@
                     {{/each}}
                 </div>
                 <div class="add-address-block">
+<<<<<<< HEAD
                     <input type="text" class="profile-page__input js-address-input"
                         placeholder="Введите новый адрес:"></input>
                     <button class="proceed-button js-add-address margin-button">Добавить адрес</button>
+=======
+                    <input type="text" autocomplete="on" class="common-input js-address-input"
+                        placeholder="Добавьте новый адрес:"></input>
+                    <button class="proceed-button js-add-address">Добавить</button>
+>>>>>>> 1e5fcbccb0256b00eee1484e4deedbd2eaa44929
                 </div>
             </div>
         </div>
@@ -55,6 +61,7 @@
             <div id="review_overlay">
                 <div id="review-form" class="review-form">
                     <div class="review-form__title">Оцените ваш заказ!</div>
+<<<<<<< HEAD
                     <select id="review-form__rating" class="review-form__rating">
                         <option value="1" class="status__option">1</option>
                         <option value="2" class="status__option">2</option>
@@ -66,6 +73,17 @@
                     <textarea id="review-form__text" type="text" cols="20" rows="3"
                         class="common-text-area review-form__text"
                         placeholder="Расскажите о ваших впечатлениях!"></textarea>
+=======
+                        <select id="review-form__rating" class="review-form__rating">
+                            <option value="5" class="status__option">5</option>
+                            <option value="4" class="status__option">4</option>
+                            <option value="3" class="status__option">3</option>
+                            <option value="2" class="status__option">2</option>
+                            <option value="1" class="status__option">1</option>
+                        </select>
+                        <div class="round-delete-button js-close-overlay review-form__close"></div>
+                    <textarea id="review-form__text" type="text" cols="20" rows="3" class="common-text-area review-form__text" placeholder="Расскажите о ваших впечатлениях!"></textarea>
+>>>>>>> 1e5fcbccb0256b00eee1484e4deedbd2eaa44929
                     <button id="js-add-review" class="proceed-button review-form__add-button">Добавить отзыв</button>
                 </div>
             </div>
