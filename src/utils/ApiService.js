@@ -199,7 +199,7 @@ export const changePartnerPersonalInfoRequest = (input) => {
 };
 
 export const createProductRequest = (input) => {
-    const productInfo = { food_name: input.food_name, food_price: input.food_price };
+    const productInfo = { food_name: input.food_name, food_price: input.food_price, description: input.description };
     const args = {
         url: backendUrl + `/api/v1/vendors/${input.id}/products`,
         body: productInfo
