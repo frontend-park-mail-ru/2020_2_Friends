@@ -54,7 +54,7 @@ export class PartnerStoreModel {
 
     async createProduct (input) {
         if (this.validate({ foodPrice: input.food_price })) {
-            const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), id: input.store_id };
+            const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), id: input.store_id, description: input.description };
             const response = await createProductRequest(productInfo);
             switch (response.status) {
             case 200: {
@@ -75,7 +75,7 @@ export class PartnerStoreModel {
 
     async changeProduct (input) {
         if (this.validate({ foodPrice: input.food_price, foodId: input.food_id })) {
-            const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), food_id: input.food_id, store_id: input.store_id };
+            const productInfo = { food_name: input.food_name, food_price: parseInt(input.food_price), food_id: input.food_id, store_id: input.store_id, description: input.description };
             const response = await changeProductRequest(productInfo);
 
             switch (response.status) {

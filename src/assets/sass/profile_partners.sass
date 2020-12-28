@@ -9,53 +9,59 @@
 
 .my-store
     display: grid
-    width: 80%
-    grid-template-columns: 30% 40% 30%
+    width: 70%
+    grid-template-columns: 1fr 2fr
     grid-template-rows: auto auto auto
-    border: 1px solid #C4C4C4
-    border-radius: 20px
+    column-gap: 20px
+    border-bottom: 1px solid #C4C4C4
     margin: 10px
     padding: 10px
     align-items: center
-    justify-items: center
-
 
     &__name
         font-style: normal
         font-weight: normal
         white-space: nowrap
-        font-size: 25px
-        margin: 20px
+        font-weight: bold
+        font-size: 56px
+        line-height: 76px
         grid-column: 2
         grid-row: 1
-
+        margin: 0
 
     &__descr
         overflow: hidden
         text-overflow: ellipsis
         margin: 10px
         font-size: 20px
+        line-height: 27px
         grid-column: 2
-        grid-row: 2/4
-
+        grid-row: 2
 
     &__img
-        width: 150px
-        height: 150px
+        width: 180px
+        height: 180px
         border-radius: 50%
-        padding: 10px
         margin: 10px
         grid-column: 1
         grid-row: 1/4
-
+        object-fit: cover
+        justify-self: center
 
     &__button
-        grid-column: 3
+        grid-column: 2
         grid-row: 3
+@media screen and (max-width: 1000px)
+    .my-stores-list
+        grid-column: 1/4
 
+@media screen and (max-width: 800px)
+    .my-store__name
+        font-size: 8vw
 @media screen and (max-width: 600px)
     .my-store__img
         width: 100px
+        
         height: 100px
         grid-column: auto
         grid-row: 1
@@ -71,14 +77,13 @@
     .my-store
         width: 95%
         grid-template-columns: none
-        grid-template-rows: 30% 20% 20% 20%
-
+        grid-template-rows: auto auto auto auto
+        justify-items: center
 
         &s-list
             display: grid
             justify-items: center
             grid-column: 1
-
 
         &__descr
             grid-column: auto
@@ -110,7 +115,7 @@
 .addstore__map
     width: 90%
     height: 350px
-    justify-self: center
+    max-width: 700px
 
 .addstore-avatar-form
     width: 200px

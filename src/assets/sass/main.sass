@@ -1,6 +1,12 @@
 $dark-green: #305935
 $light-green: #4D8B55
-    
+$gray: #838383
+$light-gray: #E0E1E5
+$red: #A74343
+$light-blue: #F5F8F6
+$input-gray: #F6F6F6
+$gray-blue: #F7F7F7
+
 .background
     display: grid
     grid-template-rows: auto auto auto auto
@@ -9,21 +15,20 @@ $light-green: #4D8B55
     width: 100%
     min-width: 100%
     min-height: 100vh
+    position: relative
 
 .common-input
-    height: 50px
-    margin: 15px
     background: #FFFFFF
-    border: 1px solid #878A86
+    border: 1px solid $gray
     box-sizing: border-box
-    padding: 10px 5px 10px 20px
-    border-radius: 5px
+    padding: 5px 5px 5px 20px
+    border-radius: 4px
     /* Text */
     font-style: normal
     font-weight: normal
-    font-size: 25px
+    font-size: 20px
     line-height: 140.62%
-    color: #878A86
+    color: $gray
     outline: none
     overflow: hidden
     text-overflow: ellipsis
@@ -40,60 +45,60 @@ $light-green: #4D8B55
     border-radius: 20px
     font-size: 25px
     border: none
-    font-family: sans-serif
     width: min-content
     height: min-content
     white-space: nowrap
     cursor: pointer
 
 .proceed-button, .info-button
-    padding: 10px
-    background: #305935
-    border-radius: 5px
-    font-size: 25px
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-items: center
+    background: $dark-green
+    box-sizing: border-box
+    font-size: 18px
+    line-height: 140.62%
     color: #FFFFFF
-    border: none
-    font-family: sans-serif
-    width: min-content
-    height: min-content
-    white-space: nowrap
     cursor: pointer
+    white-space: nowrap
+    border-radius: 30px
+    padding: 6px 15px
+    width: min-content
+    border: none
+    &:focus
+        outline: none
 
 .info-button
     font-size: 20px
-
 
     &
         background-color: #FFFFFF
         border: 1px solid #305935
         color: #305935
 
-
     &:focus, .info-button:hover, .support-button:hover
         outline: none
         background: #D5896F
         color: #FFFFFF
 
-.proceed-button:hover
-    background-color: #57963E
-    color: #45A7D1
+.proceed-button:hover, .proceed-button:active
+    background-color: $light-green
 
-.proceed-button:active
-    background-color: #57963E
-    color: #45A7D1
 
 .proceed-button:focus
     outline: none
 
 .common-image
     background-color: #ffffff
+    object-fit: cover
     border-radius: 50%
 
 .text-error
-    font-size: 20px
-    color: #878A86
-    max-width: 350px
-    margin: 15px
+    font-size: 12px
+    color: $red
+    max-width: 90%
+    margin: 5px
 
 @media screen and (max-width: 550px)
     .proceed-button

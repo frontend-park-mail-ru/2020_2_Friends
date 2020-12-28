@@ -1,5 +1,5 @@
 <div class="background">
-        <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
+    <div id="storeHeader" data-storeid="{{storeId}}" class="store__header">
         <img src="{{vendor_picture}}" class="store__logo" alt="Store logo">
         <div class="store__header-headline">
             <div class="store__name">{{vendor_name}}</div>
@@ -7,13 +7,17 @@
         </div>
     </div>
     <div class="review-column">
-    {{#each reviews}}
-    <div class="review-cart">
+        {{#each reviews}}
+        <div class="review-cart">
             <div class="review-cart__name">{{this.username}}</div>
             <div class="review-cart__date">{{this.created_at}}</div>
-            <div class="review-cart__rating">Оценка: {{this.rating}}</div>
-        <div class="review-cart__text">{{this.text}}</div>
-    </div>
-    {{/each}}
+            <div class="review-cart__rating">
+                {{#each stars}}
+                <div class="review-cart__star"></div>
+                {{/each}}
+            </div>
+            <div class="review-cart__text">{{this.text}}</div>
+        </div>
+        {{/each}}
     </div>
 </div>

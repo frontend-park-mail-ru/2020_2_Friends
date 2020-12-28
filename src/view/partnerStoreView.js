@@ -115,7 +115,7 @@ export class PartnerStoreView {
             const data = {
                 food_name: name.value,
                 food_price: price.value,
-                food_descr: descr.value,
+                description: descr.value,
                 food_img: img,
                 store_id: storeHeader.dataset.store_id,
                 food_id: id
@@ -146,7 +146,7 @@ export class PartnerStoreView {
         priceErr.innerHTML = '';
         name.innerHTML = data.food_name;
         price.innerHTML = data.food_price;
-        descr.innerHTML = data.food_descr;
+        descr.innerHTML = data.description;
         if (data.avatarUrl) {
             const avatarElement = product.querySelector('.product__img');
             avatarElement.src = data.avatarUrl;
@@ -206,7 +206,7 @@ export class PartnerStoreView {
             const data = {
                 food_name: name.value,
                 food_price: parseInt(price.value),
-                food_descr: descr.value,
+                description: descr.value,
                 food_img: img,
                 store_id: storeHeader.dataset.store_id
             };

@@ -29,7 +29,7 @@
                     <div class="product__cals">{{ this.food_calories }}</div>
                     <div class="product__price">{{ this.food_price }} p</div>
                 </div>
-                <div class="product__descr">{{ this.descr }}</div>
+                <div class="product__descr">{{ this.description }}</div>
                 <button class="proceed-button js-edit-item edit-button"
                     data-product_id="{{ this.id }}">Редактировать</button>
             </div>
@@ -40,12 +40,12 @@
                         accept=".png, .jpg, .jpeg">
                 </form>
                 <button class="delete-button js-delete-button"></button>
-                <input type="text" class="common-input product-editor__input js-name-input" placeholder="Название:"
+                <input type="text" class="common-input js-name-input" placeholder="Название:"
                     value="{{ this.food_name }}"></input>
-                <input type="text" class="common-input product-editor__input js-descr-input" placeholder="Описание:"
-                    value="{{ this.descr }}"></input>
+                <input type="text" class="common-input js-descr-input" placeholder="Описание:"
+                    value="{{ this.description }}"></input>
                 <div class="js-price-error text-error"></div>
-                <input type="number" class="common-input  product-editor__input js-price-input" placeholder="Цена:"
+                <input type="number" class="common-input js-price-input" placeholder="Цена:"
                     value="{{ this.food_price }}"></input>
                 <button class="proceed-button js-save-item-changes" data-product_id="{{ this.id }}">Сохранить</button>
             </div>

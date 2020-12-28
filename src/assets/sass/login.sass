@@ -6,22 +6,34 @@
     left: 0
     width: 100%
     height: 100%
-    background: linear-gradient(180deg, #0A3200 0%, #35695C 50.18%, #488286 100%), #FFFFFF
+    background: url("../img/background.png")
+    background-size: cover
 
+.login-input 
+    width: 90%
+    margin: 10px 0
 .login-page__input-block
-    display: flex
-    align-self: center
-    flex-direction: column
+    display: grid
+    grid-template-columns: none
+    grid-template-rows: repeat(5, auto)
     align-items: center
-    justify-content: center
-    padding: 30px
+    justify-items: center
+    align-self: center
+    padding: 30px 50px
     background: #FFFFFF
-    border-radius: 20px
+    border-radius: 50px
 
 .welcome-logo
     width: 250px
     height: 250px
     background: #FFFFFF
+    object-fit: cover
 
     &:hover
         cursor: pointer
+
+@media screen and (max-width: 500px)
+    .welcome-logo
+        width: 50vw
+        height: 50vw
+
